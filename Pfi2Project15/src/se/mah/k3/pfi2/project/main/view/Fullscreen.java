@@ -73,6 +73,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		moduleList.add(new BusPanel());
 		moduleList.add(new DummyPanel());
 		moduleList.add(new NewsPanel());
+		moduleList.add(new FillEmptyAndDebugModule());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
@@ -83,9 +84,15 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			cons.gridy = yPlace;
 			yPlace = yPlace +1;
 			cons.gridx = 0;
+			if ( !(moduleInterface instanceof FillEmptyAndDebugModule)){
+				cons.fill = GridBagConstraints.HORIZONTAL;
+				cons.weighty = 0.0;
+			}else{
+				cons.weighty = 1.0;
+			}
 			contentPane.add((Component) moduleInterface, cons);
 		}
-
+		setFullscreen(true);
 		
 	}
 
@@ -102,6 +109,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			setBounds(0,0,getToolkit().getScreenSize().width,getToolkit().getScreenSize().height);
 			setVisible(true);
 			this.inFullScreenMode = true;
+			moduleList.get(4).sendMessage("");
 		}
 		else{
 			setVisible(true);
@@ -110,6 +118,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			setUndecorated(false);
 			setVisible(true);
 			this.inFullScreenMode = false;
+			moduleList.get(4).sendMessage("");
 		}
     }
 

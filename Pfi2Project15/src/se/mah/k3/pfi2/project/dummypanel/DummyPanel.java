@@ -23,17 +23,17 @@ public class DummyPanel extends JPanel implements ModuleInterface {
 		add(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{"Dummy", null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column"
+				"New column", "New column", "New column", "New column"
 			}
 		));
 	}
@@ -51,6 +51,11 @@ public class DummyPanel extends JPanel implements ModuleInterface {
 	public int getPreferdHeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public void sendMessage(String s) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

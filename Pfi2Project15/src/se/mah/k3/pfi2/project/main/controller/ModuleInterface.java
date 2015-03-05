@@ -4,4 +4,5 @@ public interface ModuleInterface {
 	public int getPreferedPriority();
 	public int getPreferdNumberOfRows();
 	public int getPreferdHeight();
+	public void sendMessage(String s);
 }
