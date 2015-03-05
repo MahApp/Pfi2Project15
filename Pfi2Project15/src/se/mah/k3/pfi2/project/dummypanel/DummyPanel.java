@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.Frame.view.panels;
+package se.mah.k3.pfi2.project.dummypanel;
 
 import java.awt.BorderLayout;
 
@@ -6,7 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import se.mah.k3.pfi2.project.Frame.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+
 import java.awt.Color;
 
 public class DummyPanel extends JPanel implements ModuleInterface {

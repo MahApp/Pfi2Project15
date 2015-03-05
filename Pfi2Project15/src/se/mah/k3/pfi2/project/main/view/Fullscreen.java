@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.Frame.view;
+package se.mah.k3.pfi2.project.main.view;
 
 
 import java.awt.Color;
@@ -16,11 +16,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import se.mah.k3.pfi2.project.Frame.controller.ModuleInterface;
-import se.mah.k3.pfi2.project.Frame.view.panels.DummyPanel;
-import se.mah.k3.pfi2.project.bus.view.BusPanel;
-import se.mah.k3.pfi2.project.kronox.view.KronoxPanel;
-import se.mah.k3.pfi2.project.news.view.NewsPanel;
+import se.mah.k3.pfi2.project.bus.BusPanel;
+import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
+import se.mah.k3.pfi2.project.kronox.KronoxPanel;
+import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.news.NewsPanel;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**

@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.Frame.controller;
+package se.mah.k3.pfi2.project.main.controller;
 
 public interface ModuleInterface {
 	public int getPreferedPriority();

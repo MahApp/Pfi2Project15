@@ -1,18 +1,19 @@
-package se.mah.k3.pfi2.project.news.view;
+package se.mah.k3.pfi2.project.bus;
 
 import javax.swing.JPanel;
 
-import se.mah.k3.pfi2.project.Frame.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+
 import java.awt.Color;
 
-public class NewsPanel extends JPanel implements ModuleInterface{
+public class BusPanel extends JPanel implements ModuleInterface{
 
 	/**
 	 * Create the panel.
 	 */
-	public NewsPanel() {
-		setBackground(Color.BLUE);
-
+	public BusPanel() {
+		setBackground(Color.PINK);
+		
 	}
 
 	@Override

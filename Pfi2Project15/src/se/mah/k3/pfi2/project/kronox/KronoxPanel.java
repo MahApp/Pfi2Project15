@@ -1,8 +1,9 @@
-package se.mah.k3.pfi2.project.kronox.view;
+package se.mah.k3.pfi2.project.kronox;
 
 import javax.swing.JPanel;
 
-import se.mah.k3.pfi2.project.Frame.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+
 import java.awt.Color;
 
 public class KronoxPanel extends JPanel implements ModuleInterface{

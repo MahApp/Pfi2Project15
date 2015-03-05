@@ -2,7 +2,8 @@ package se.mah.k3.pfi2.project.idle;
 
 import javax.swing.JPanel;
 
-import se.mah.k3.pfi2.project.Frame.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+
 import java.awt.Color;
 
 public class IdlePanel extends JPanel implements ModuleInterface{
