@@ -25,7 +25,7 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	}
 
 	@Override
-	public int getPreferedPriority() {
+	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -37,15 +37,16 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	}
 
 	@Override
-	public int getPreferdHeight() {
+	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+
 	@Override
-	public void sendMessage(String s) {
+	public boolean showNumberOfRows(int start, int end) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }

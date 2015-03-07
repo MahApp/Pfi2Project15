@@ -11,6 +11,7 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 
 public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
@@ -20,10 +21,11 @@ public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		add(lblNewLabel);
+		setInfo();
 	}
 
 	@Override
-	public int getPreferedPriority() {
+	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -35,13 +37,20 @@ public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
 	}
 
 	@Override
-	public int getPreferdHeight() {
+	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	@Override
-	public void sendMessage(String s) {
+	public void repaint() {
+		super.repaint();
+		try {
+			setInfo();
+		} catch (Exception e) {
+		}
+	}
+	public void setInfo() {
+		String s;
 		int screenWidth = getToolkit().getScreenSize().width;
 		int screenHeight = getToolkit().getScreenSize().height;
 		s = "ScreenWidth: "+screenWidth +" ScreenHeight: = "+ screenHeight;
@@ -53,8 +62,7 @@ public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
 		s = s+ " Screens connected: ";
 		for(GraphicsDevice curGs : gs)
 		{
-		      GraphicsConfiguration[] gc = curGs.getConfigurations();
-		      
+		      GraphicsConfiguration[] gc = curGs.getConfigurations();  
 		      for(GraphicsConfiguration curGc : gc)
 		      {
 		            Rectangle bounds = curGc.getBounds();
@@ -62,6 +70,12 @@ public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
 		      }
 		 }
 		lblNewLabel.setText(s);
+	}
+
+	@Override
+	public boolean showNumberOfRows(int start, int end) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

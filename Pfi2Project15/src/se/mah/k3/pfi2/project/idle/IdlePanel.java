@@ -13,15 +13,14 @@ public class IdlePanel extends JPanel implements ModuleInterface{
 	 * Create the panel.
 	 */
 	public IdlePanel() {
-		setBackground(Color.PINK);
-		
+		setBackground(Color.PINK);	
 		JLabel lblIdle = new JLabel("Idle");
 		add(lblIdle);
 		
 	}
 
 	@Override
-	public int getPreferedPriority() {
+	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -33,15 +32,14 @@ public class IdlePanel extends JPanel implements ModuleInterface{
 	}
 
 	@Override
-	public int getPreferdHeight() {
+	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void sendMessage(String s) {
+	public boolean showNumberOfRows(int start, int end) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
-
 }

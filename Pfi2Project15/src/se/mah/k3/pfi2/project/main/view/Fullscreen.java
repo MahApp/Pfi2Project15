@@ -3,7 +3,8 @@ package se.mah.k3.pfi2.project.main.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -29,31 +30,14 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private boolean inFullScreenMode = false;
-	private int PrevX,PrevY,PrevWidth,PrevHeight;
+	private int PrevX = 100 ,PrevY = 100 ,PrevWidth = 480,PrevHeight = 640;
 	public static ArrayList<ModuleInterface> moduleList = new ArrayList<ModuleInterface>();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Fullscreen frame = new Fullscreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
+	
 	
 	/**
 	 * Create the frame.
 	 */
-	private Fullscreen() {
+	public Fullscreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -92,24 +76,23 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			}
 			contentPane.add((Component) moduleInterface, cons);
 		}
-		setFullscreen(true);
+		setFullscreen(false);
 		
 	}
 
 	public void setFullscreen(boolean fullscreen) {
+		 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		     GraphicsDevice[] gd = ge.getScreenDevices();
     	if(fullscreen){
 			PrevX = getX();
 			PrevY = getY();
 			PrevWidth = getWidth();
 			PrevHeight = getHeight();
-			dispose(); //Destroys the whole JFrame but keeps organized every Component                               
-			//Needed if you want to use Undecorated JFrame
-			//dispose() is the reason that this trick doesn't work with videos
-			setUndecorated(true);
-			setBounds(0,0,getToolkit().getScreenSize().width,getToolkit().getScreenSize().height);
+			dispose(); 
+			//Always on last screen!
+			gd[gd.length-1].setFullScreenWindow(this);
 			setVisible(true);
 			this.inFullScreenMode = true;
-			moduleList.get(4).sendMessage("");
 		}
 		else{
 			setVisible(true);
@@ -118,7 +101,6 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			setUndecorated(false);
 			setVisible(true);
 			this.inFullScreenMode = false;
-			moduleList.get(4).sendMessage("");
 		}
     }
 
