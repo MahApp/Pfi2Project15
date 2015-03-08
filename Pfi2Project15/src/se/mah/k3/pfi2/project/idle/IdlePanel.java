@@ -42,4 +42,10 @@ public class IdlePanel extends JPanel implements ModuleInterface{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void repaintPanel() {
+		// TODO Auto-generated method stub
+		
+	}
 }

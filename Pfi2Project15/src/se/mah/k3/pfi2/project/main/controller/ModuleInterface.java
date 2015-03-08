@@ -24,6 +24,6 @@ public interface ModuleInterface {
 	 * @return booblen rows if the module is split on two screens t
 	 */
 	public boolean showNumberOfRows(int start, int end);
-	public void repaint();
+	public void repaintPanel();
 }
 

@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -54,10 +55,9 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	
 	private void setupPanels() {
 		moduleList.add(new KronoxPanel());
-		moduleList.add(new BusPanel());
 		moduleList.add(new DummyPanel());
 		moduleList.add(new NewsPanel());
-		moduleList.add(new FillEmptyAndDebugModule());
+		moduleList.add(new FillEmptySpace());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
@@ -68,7 +68,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			cons.gridy = yPlace;
 			yPlace = yPlace +1;
 			cons.gridx = 0;
-			if ( !(moduleInterface instanceof FillEmptyAndDebugModule)){
+			if ( !(moduleInterface instanceof FillEmptySpace)){
 				cons.fill = GridBagConstraints.HORIZONTAL;
 				cons.weighty = 0.0;
 			}else{
@@ -90,6 +90,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			PrevHeight = getHeight();
 			dispose(); 
 			//Always on last screen!
+			setUndecorated(true);
 			gd[gd.length-1].setFullScreenWindow(this);
 			setVisible(true);
 			this.inFullScreenMode = true;

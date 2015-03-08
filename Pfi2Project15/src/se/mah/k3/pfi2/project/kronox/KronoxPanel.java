@@ -44,4 +44,10 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		return false;
 	}
 
+	@Override
+	public void repaintPanel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

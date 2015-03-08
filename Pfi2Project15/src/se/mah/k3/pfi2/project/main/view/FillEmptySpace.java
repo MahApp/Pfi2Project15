@@ -14,9 +14,9 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 
-public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
+public class FillEmptySpace extends JPanel implements ModuleInterface {
 	private JLabel lblNewLabel;
-	public FillEmptyAndDebugModule() {
+	public FillEmptySpace() {
 		lblNewLabel = new JLabel("Info:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -76,6 +76,12 @@ public class FillEmptyAndDebugModule extends JPanel implements ModuleInterface {
 	public boolean showNumberOfRows(int start, int end) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void repaintPanel() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
