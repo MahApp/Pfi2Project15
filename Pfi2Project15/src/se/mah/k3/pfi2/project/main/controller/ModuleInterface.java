@@ -4,6 +4,7 @@ public interface ModuleInterface {
 	/** All modules are ordered out of priority and all doesn't fit at all times
 	 * The module is expected to respect the rules
 	 * @return priority An integer from 1 - 10.
+	 * 0 = don't show.
 	 * 1 = Crucial
 	 * 5 = If room
 	 * 9 = Entertaiment module
