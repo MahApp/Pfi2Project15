@@ -11,8 +11,11 @@ import java.util.ArrayList;
 //import org.json.JSONObject;
 //import android.text.Html;
 
-public class KronoxAJAXGetFriendlyNames {
 
+
+public class KronoxAJAXGetFriendlyNames {
+	String testUrl= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?"+"typ=signatur" + "&term=" + "K3lara";
+	String testUrlSammansatt= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=signatur&term=K3lara";
 	private static final String TYPE_COURSE = "typ=kurs";
 	@SuppressWarnings("unused")
 	private static final String TYPE_PROGRAM = "typ=program";
@@ -53,6 +56,8 @@ public class KronoxAJAXGetFriendlyNames {
 		}
 		return r;
 	}
+	
+
 	
 	public static String getTeacherName(String search) throws IOException {
 		String data = getData(TYPE_TEACHER_ID, search);

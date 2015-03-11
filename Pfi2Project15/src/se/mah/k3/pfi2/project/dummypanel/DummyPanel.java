@@ -16,6 +16,10 @@ public class DummyPanel extends JPanel implements ModuleInterface {
 	 * Create the panel.
 	 */
 	public DummyPanel() {
+	//	HttpWebRequest reqFp = (HttpWebRequest)HttpWebRequest.Create(KronosServerUrl);
+	//	reqFp.Method = "POST";
+	//	reqFp.ContentType = "text/xml";
+		
 		setBackground(Color.GRAY);
 		setLayout(new BorderLayout(0, 0));
 		table = new JTable();
