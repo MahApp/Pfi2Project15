@@ -8,7 +8,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 public class Time extends JPanel implements ModuleInterface{
-
+//
 	/**
 	 * Create the panel.
 	 */
