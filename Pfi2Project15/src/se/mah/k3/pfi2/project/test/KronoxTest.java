@@ -19,6 +19,8 @@ public class KronoxTest {
 			System.out.println("JSON to parse for courseName: "+ s2);
 			String s3 = KronoxAJAXGetFriendlyNames.getProgramName("TGIND");
 			System.out.println("JSON to parse for programName: "+ s3);
+			
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
