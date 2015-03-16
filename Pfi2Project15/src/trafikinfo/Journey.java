@@ -20,6 +20,7 @@ public class Journey {
 	private Station startStation;
 	private Station endStation;
 	private String depDeviationAffect;
+	private String details;
 	
 	public Journey(Station startStation, Station endStation) {
 		this.startStation = startStation;
@@ -93,6 +94,17 @@ public class Journey {
 		this.depTimeDeviation = depTimeDeviation;
 	}
 	
+			// Trafic delays stuffssz
+	
+	public void setDetails(String details){
+		this.details = details;
+	}
+	
+	public String getDetails(){
+		return details;
+	}
+	
+	
 	public void setDepDeviationAffect(String depDeviationAffect){
 		this.depDeviationAffect = depDeviationAffect;
 	}
@@ -115,6 +127,7 @@ public class Journey {
 	public void setEndStation(Station endStation) {
 		this.endStation = endStation;
 	}
+
 
 	
 }

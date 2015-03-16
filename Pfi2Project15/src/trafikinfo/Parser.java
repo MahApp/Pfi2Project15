@@ -129,7 +129,8 @@ public class Parser {
 			    thisJourney.setLineTypeName(parser.getValue(e, "TransportModeName"));
 			    thisJourney.setArrTimeDeviation( parser.getValue(e, "ArrTimeDeviation"));
 			    thisJourney.setDepTimeDeviation( parser.getValue(e, "DepTimeDeviation"));
-			    thisJourney.setDepDeviationAffect( parser.getValue(e, "DepDeviationAffect")); //hej
+			    thisJourney.setDepDeviationAffect( parser.getValue(e, "DepDeviationAffect")); 
+			    thisJourney.setDetails( parser.getValue(e, "Details"));
 			    journeys.addJourney(thisJourney);
 			}
 		}

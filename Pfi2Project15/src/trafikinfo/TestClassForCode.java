@@ -13,6 +13,9 @@ public class TestClassForCode {
 		for (Journey journey : journeys.getJourneys()) {
 			String effect = journey.getDepDeviationAffect();
 			System.out.print(effect+ "\n");
+			
+			String details = journey.getDetails();
+			System.out.print(details + "\n");
 		} 
 		
 	}
