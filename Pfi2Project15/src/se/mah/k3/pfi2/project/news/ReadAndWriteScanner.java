@@ -13,11 +13,14 @@ public class ReadAndWriteScanner {
 	public void readAndWriteExample(){	
 	System.out.println("********************Read from the net********************");
 		try {
-			URL mah = new URL("http://www.mah.se/Nyheter/Kalender/");
+			URL mah = new URL("http://www.hamnaratt.com/veckans-lunch");
 			Scanner s = new Scanner(mah.openStream());
-			while (s.hasNext()){
+			while (s.hasNext("Måndag")){
 				String string = s.nextLine();
-				System.out.println(string);
+//				System.out.println(string);
+				System.out.println(s.findInLine("Kalendern"));
+				System.out.println(s.nextLine());
+				s.close();
 			}
 			s.close();
 		} catch (Exception e) {
