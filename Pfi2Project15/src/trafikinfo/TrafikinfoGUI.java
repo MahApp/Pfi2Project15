@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 
@@ -42,10 +44,25 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		/* ********************IF WE USE A SCROLLING STRING****************************** */
+		// Placement on screen to be edited depending on what we decide in priority discussions
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(193,0,43));
-		panel.setBounds(0, 80, 1064, 80);
+		panel.setBounds(0, 80, 1080, 80);
 		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JTextArea txtrThisIsGoing = new JTextArea();
+		txtrThisIsGoing.setForeground(Color.WHITE);
+		txtrThisIsGoing.setText("Discuss font size with group");
+		txtrThisIsGoing.setFont(new Font("Futura Std Medium", Font.PLAIN, 30));
+		txtrThisIsGoing.setBackground(null);
+		txtrThisIsGoing.setBounds(0, 20, 1080, 40);
+		panel.add(txtrThisIsGoing);
+		/* ********************IF WE USE A SCROLLING STRING****************************** */
+		
+		
 	}
 	
 	@Override
