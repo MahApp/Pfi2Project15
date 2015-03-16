@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class BusPanel extends JPanel implements ModuleInterface{
 	private JTextField textField;
@@ -36,12 +39,48 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	 * Create the panel.
 	 */
 	public BusPanel() {
-		setBackground(Color.PINK);
-		setLayout(new BorderLayout(0, 0));
-
-		JLabel lblNewLabel = new JLabel("Bus");
-		add(lblNewLabel, BorderLayout.NORTH);
-
+		setBackground(Color.DARK_GRAY);
+				setLayout(new GridLayout(0, 3, 0, 0));
+				
+				JLabel lblLinje = new JLabel("Linje");
+				lblLinje.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblLinje.setForeground(Color.ORANGE);
+				lblLinje.setVerticalAlignment(SwingConstants.TOP);
+				add(lblLinje);
+				
+				JLabel lblDestination = new JLabel("Destination");
+				lblDestination.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblDestination.setForeground(Color.ORANGE);
+				lblDestination.setVerticalAlignment(SwingConstants.TOP);
+				add(lblDestination);
+				
+				JLabel lblAvgr = new JLabel("Avg\u00E5r");
+				lblAvgr.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblAvgr.setForeground(Color.ORANGE);
+				lblAvgr.setVerticalAlignment(SwingConstants.TOP);
+				add(lblAvgr);
+				
+				JLabel lblNewLabel = new JLabel("5");
+				lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblNewLabel.setForeground(Color.ORANGE);
+				lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+				add(lblNewLabel);
+				
+				JLabel lblStenkllanViaCentralen = new JLabel("Stenk\u00E4llan via Centralen");
+				lblStenkllanViaCentralen.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblStenkllanViaCentralen.setForeground(Color.ORANGE);
+				lblStenkllanViaCentralen.setVerticalAlignment(SwingConstants.TOP);
+				lblStenkllanViaCentralen.setHorizontalAlignment(SwingConstants.LEFT);
+				add(lblStenkllanViaCentralen);
+				
+				JLabel lblNewLabel_1 = new JLabel("2 min");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblNewLabel_1.setForeground(Color.ORANGE);
+				lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
+				add(lblNewLabel_1);
+		
+		
+		
 		
 	}
 
