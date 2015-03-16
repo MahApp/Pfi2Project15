@@ -21,6 +21,7 @@ public class Journey {
 	private Station endStation;
 	private String depDeviationAffect;
 	private String details;
+	private String text;
 	
 	public Journey(Station startStation, Station endStation) {
 		this.startStation = startStation;
@@ -102,6 +103,14 @@ public class Journey {
 	
 	public String getDetails(){
 		return details;
+	}
+	
+	public void setText(String text){
+		this.text = text;
+	}
+	
+	public String getText(){
+		return text;
 	}
 	
 	

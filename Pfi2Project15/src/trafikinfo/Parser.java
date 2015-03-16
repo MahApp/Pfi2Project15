@@ -131,6 +131,7 @@ public class Parser {
 			    thisJourney.setDepTimeDeviation( parser.getValue(e, "DepTimeDeviation"));
 			    thisJourney.setDepDeviationAffect( parser.getValue(e, "DepDeviationAffect")); 
 			    thisJourney.setDetails( parser.getValue(e, "Details"));
+			    thisJourney.setDetails( parser.getValue(e, "Text"));
 			    journeys.addJourney(thisJourney);
 			}
 		}
