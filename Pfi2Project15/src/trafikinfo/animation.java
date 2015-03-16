@@ -1,6 +1,5 @@
 package trafikinfo;
 
-			//nilstestarpushatillgithub text
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -13,7 +12,7 @@ import javax.swing.Timer;
 
 public class animation {
 	
-	private void display(String s) {
+	public void display(String s) {
         JFrame f = new JFrame("MarqueeTest");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MarqueePanel mp = new MarqueePanel(s, 32);
