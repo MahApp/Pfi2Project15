@@ -63,16 +63,16 @@ public class testSchema extends JFrame {
 	private static BasicStroke stroke = new BasicStroke(10);
 	private JTable table;
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
-	final static float DPI = 72;
+	final static float DPI = 72; // Pixel density 96 är standard på moderna monitors, 72 ät gamla
 	final static float PT = 7; // font size pt
-	final static int SCREEN_WIDTH = 1080;// old 768px
-	final static int SCREEN_HEIGHT = 1920;// old 1024px
-	final static int MIN_MODULE_HEIGHT=80; // min 
+	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn  
+	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn 
+	final static int MIN_MODULE_HEIGHT=80; // minimum module height 
 	int fontSize = (int) Math.round(PT * screenRes / DPI);
-	public Font futuraLight = new Font("Futura LT Light", Font.PLAIN,fontSize);
-	public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);
-	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);
+	public Font futuraLight = new Font("Futura LT Light", Font.PLAIN,fontSize); // typsnittet vi kanske ska använda
+	public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);// typsnittet vi ska använda
+	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);// typsnittet vi ska använda
+	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
 
 	/**
 	 * Launch the application.
@@ -84,7 +84,7 @@ public class testSchema extends JFrame {
 
 					testSchema frame = new testSchema();
 					frame.setVisible(true);
-					frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+					frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE); // stäng appen när du trycker på kryss
 					frame.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 					System.out.println("Screen Resolution: "
 							+ String.valueOf(screenRes));
@@ -92,8 +92,8 @@ public class testSchema extends JFrame {
 							+ "pt");
 					System.out.println("Screen DPI: "
 							+ String.valueOf(screenRes));
-					paintCanvas();
-
+					paintCanvas(); // en funktion som paintar canvasen ,finns längst nere i koden
+					//BTW fungerar inte!!!!
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -105,16 +105,16 @@ public class testSchema extends JFrame {
 	 * Create the frame.
 	 */
 	public testSchema() {
-		GraphicsEnvironment env = GraphicsEnvironment
+		GraphicsEnvironment env = GraphicsEnvironment  
 				.getLocalGraphicsEnvironment();
-		// Get all font family name in a String[]
-		// String[] fontNames = env.getAvailableFontFamilyNames();
+		// Get all font family name in a String[]   
+		// String[] fontNames = env.getAvailableFontFamilyNames(); //intierar alla fonten.
 		// for (String fontName : fontNames) {
 		// System.out.println(fontName);
 		// }
 		// Construct all Font instance (with font size of 1)
 		Font[] fonts = env.getAllFonts();
-		for (Font font : fonts) {
+		for (Font font : fonts) {      // printar dem för att testa
 			System.out.println(font);
 		}
 
@@ -124,7 +124,7 @@ public class testSchema extends JFrame {
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		contentPane = new JPanel();
-		 contentPane.setFont(futuraBook);
+		contentPane.setFont(futuraBook);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -153,7 +153,7 @@ public class testSchema extends JFrame {
 		});
 
 		table.setRowHeight(0, 80);
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // custom renderrer för centrering av text
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		centerRenderer.setToolTipText("cell");
 		centerRenderer.setBackground(Color.LIGHT_GRAY);
@@ -164,22 +164,22 @@ public class testSchema extends JFrame {
 
 		contentPane.add(table);
 		
-		JLabel lblNewLabel = new JLabel("Futura Book");
+		JLabel lblNewLabel = new JLabel("Futura Book"); // labels
 		lblNewLabel.setBounds(34, 200, 200, 80);
 		lblNewLabel.setFont(futuraBook.deriveFont(Font.PLAIN, 28));
 		contentPane.add(lblNewLabel);
 
-		JLabel lblFuturaBold = new JLabel("Futura Bold");
+		JLabel lblFuturaBold = new JLabel("Futura Bold");// labels
 		lblFuturaBold.setBounds(34, 280, 200, 80);
 		lblFuturaBold.setFont(futuraBold.deriveFont(Font.PLAIN, 28));
 		contentPane.add(lblFuturaBold);
 
-		JLabel lblFuturaMedium = new JLabel("Futura Medium");
+		JLabel lblFuturaMedium = new JLabel("Futura Medium");// labels
 		lblFuturaMedium.setBounds(34, 241, 200, 80);
 		lblFuturaMedium.setFont(futuraMedium.deriveFont(Font.PLAIN, 28));
 		contentPane.add(lblFuturaMedium);
 		
-		JLabel lblFuturaLight = new JLabel("Futura Light");
+		JLabel lblFuturaLight = new JLabel("Futura Light");// labels
 		lblFuturaLight.setBounds(34, 160, 200, 80);
 		lblFuturaLight.setFont(futuraLight.deriveFont(Font.PLAIN, 28));
 		contentPane.add(lblFuturaLight);
@@ -190,6 +190,7 @@ public class testSchema extends JFrame {
 	}
 
 	public static void paintCanvas() {
+		// printar canvas för att testa fungerar inte!!!!
 		// Graphics2D g2= (Graphics2D) testSchema.canvas.getGraphics();
 		Graphics g2 = testSchema.canvas.getGraphics();
 		g2.drawLine(0, 0, 100, 100);
