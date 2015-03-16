@@ -13,13 +13,9 @@ import javax.swing.Timer;
 
 public class animation {
 	
-	private void display() {
+	private void display(String s) {
         JFrame f = new JFrame("MarqueeTest");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        String s = "H�r skrivs info ut, "
-        + "Vi kan g�ra den hur l�ng som heeeeeeeeeeeelst, "
-        + "Det �r bara att k�tta p������; ... "
-        + "bra va?";
         MarqueePanel mp = new MarqueePanel(s, 32);
         f.add(mp);
         f.pack();
@@ -33,7 +29,7 @@ public class animation {
 
             @Override
             public void run() {
-                new animation().display();
+                new animation().display("Test string yoyo");
             }
         });
     }
