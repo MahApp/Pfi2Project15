@@ -26,6 +26,14 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
+
+//ska testa rita med swt-klassen
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.Transform;
+import org.eclipse.swt.widgets.*;
+
 //import java.awt.Font[family=Arial,name=Arial,style=plain,size=1];
 //java.awt.Font[family=Futura LT,name=Futura LT Bold,style=plain,size=1]
 //java.awt.Font[family=Futura LT,name=Futura LT Bold Oblique,style=plain,size=1]
