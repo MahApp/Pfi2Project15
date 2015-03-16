@@ -1,5 +1,6 @@
 package trafikinfo;
 
+			//nilstestarpushatillgithub text
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,9 +16,9 @@ public class animation {
 	private void display() {
         JFrame f = new JFrame("MarqueeTest");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        String s = "Här skrivs info ut, "
-        + "Vi kan göra den hur lång som heeeeeeeeeeeelst, "
-        + "Det är bara att kötta påååååå; ... "
+        String s = "Hï¿½r skrivs info ut, "
+        + "Vi kan gï¿½ra den hur lï¿½ng som heeeeeeeeeeeelst, "
+        + "Det ï¿½r bara att kï¿½tta pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½; ... "
         + "bra va?";
         MarqueePanel mp = new MarqueePanel(s, 32);
         f.add(mp);
