@@ -19,6 +19,7 @@ public class Journey {
 	private String arrTimeDeviation;
 	private Station startStation;
 	private Station endStation;
+	private String depDeviationAffect;
 	
 	public Journey(Station startStation, Station endStation) {
 		this.startStation = startStation;
@@ -91,6 +92,15 @@ public class Journey {
 	public void setDepTimeDeviation(String depTimeDeviation) {
 		this.depTimeDeviation = depTimeDeviation;
 	}
+	
+	public void setDepDeviationAffect(String depDeviationAffect){
+		this.depDeviationAffect = depDeviationAffect;
+	}
+	
+	public  String getDepDeviationAffect(){
+		return depDeviationAffect;
+	}
+	
 	public String getArrTimeDeviation() {
 		return arrTimeDeviation;
 	}
