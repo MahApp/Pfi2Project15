@@ -58,6 +58,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		moduleList.add(new DummyPanel());
 		moduleList.add(new NewsPanel());
 		moduleList.add(new FillEmptySpace());
+		moduleList.add(new BusPanel());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
