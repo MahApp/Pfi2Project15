@@ -2,14 +2,24 @@ package trafikinfo;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-public class TrafikinfoGUITest extends JFrame {
 
-	private JPanel contentPane;
+public class TrafikinfoGUITest extends JFrame {
+	// Skapar en ny JFrame för sidoscrolls-texten.
+	 JPanel contentPane;
+	
+	
+	// Här skapas sidoscrollande text. Minimera för att jobba ostört med GUI.
+
 
 	/**
 	 * Launch the application.
@@ -24,19 +34,24 @@ public class TrafikinfoGUITest extends JFrame {
 					e.printStackTrace();
 				}
 			}
+			
 		});
 	}
 
 	/**
 	 * Create the frame.
 	 */
+	
 	public TrafikinfoGUITest() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 	}
+// Mer info för sidoscroll, minimera för att jobba ostört med GUI.
+	
+	
 
 }
