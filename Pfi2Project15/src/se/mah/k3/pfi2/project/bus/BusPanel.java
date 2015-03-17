@@ -22,14 +22,14 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	private JFrame frmSknetrafiken;
 	public JTextArea Linje;
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
-	public JTextArea Sökresultat_1;
-	public JTextField Från;
+	public JTextArea SÃ¶kresultat_1;
+	public JTextField FrÃ¥n;
 	public JTextField Till;
 	public String results = "";
 	public Journeys journeys;
 	private Parser parser = new Parser();
 	private JTextArea Destination;
-	private JTextArea Avgår;
+	private JTextArea AvgÃ¥r;
 	private JTextArea Sen;
 
 	/**
@@ -47,7 +47,7 @@ public class BusPanel extends JPanel implements ModuleInterface{
 
 	@Override
 	public int getExpectedPriority() {
-		// Prioritet 1 för testsyfte
+		// Prioritet 1 fï¿½r testsyfte
 		return 1;
 	}
 

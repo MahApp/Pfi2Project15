@@ -8,6 +8,9 @@ public class Line {
 	private Calendar depTime;
 	private String depTimeDeviation;
 	private String towards;
+	
+	private String stopPoint;
+
 	public Line() {
 	}
 	public String getLine() {
@@ -32,13 +35,25 @@ public class Line {
 	public void setDestination(String destination){
 		this.towards=destination;
 	}
-	
-	
 	public String getDestination(){
 		return towards;
 	}
 	//More methods here for the rest of the tags
 	//And perhaps some special methods ????
+	public String getTowards(){
+		return towards;
+	}
+	public void setTowards(String towards){
+		this.towards = towards;
+	}
+	
+	public String getStopPoint(){
+		return stopPoint;
+	}
+	public void setStopPoint(String stopPoint){
+		this.stopPoint = stopPoint;
+	}
+
 
 }
 
