@@ -10,12 +10,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+
 import javax.swing.JTextArea;
+
 import java.awt.Font;
 
 public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 
 	private JPanel contentPane;
+
 
 	/**
 	 * Launch the application.
