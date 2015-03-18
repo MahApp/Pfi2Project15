@@ -86,6 +86,10 @@ public class CanvasTest {
 		public void paint(Graphics g) {
 			Graphics2D g2;
 			g2 = (Graphics2D) g;
+			RenderingHints rh = new RenderingHints(
+		            RenderingHints.KEY_TEXT_ANTIALIASING,
+		            RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+		    g2.setRenderingHints(rh);
 			
 		//	g2.drawLine(10, 10, 200, 200);
 			// g2.setStroke();
@@ -106,24 +110,40 @@ public class CanvasTest {
 			g2.fill(headField);
 			g2.setColor(headerYellowTextColor);
 			g2.drawString("TID", 20, 50);
-			g2.drawString("KURS", 300, 50);
+			g2.drawString("KURS", 200, 50);
 			g2.drawString("V/LOKAL", 750, 50);
 			g2.drawString("STATUS", SCREEN_WIDTH-200, 50);
 			
 			//skapar en arraylist av fält
 			ArrayList<Shape> shapeList = new ArrayList<Shape>();
 			
-			int antalElement = 7;
-			for (int i = 1; i <= antalElement; i++) {
+			int antalElement = 10;
+			for (int i = 0; i < antalElement; i++) {
 				
-				shapeList.add(new Rectangle2D.Float(0, fieldHeight +1 + (i * fieldHeight), SCREEN_WIDTH - 100, fieldHeight));
+				shapeList.add(new Rectangle2D.Float(0, fieldHeight + (i * fieldHeight), SCREEN_WIDTH - 100, fieldHeight));
 			}
 
-			boolean colorTurn = true;
+			boolean colorTurn = false;
 			g2.setFont(fieldFont);
+			
+			//Strängar i en array som lagras i en lista, som sen ska skrivas ut i respektive fält
+			//alla relevanta värden läggs till i en lista
+			String[] fieldValues = {"09.15", "Interaktionsdesign A", "C310" };
+			//listan sparas sedan i en lista
+			ArrayList<String[]> valueList = new ArrayList<String[]>();
+			
+			for(int i = 0; i <antalElement; i++){
+				valueList.add(fieldValues);
+			
+			}
+			String tidString = "08.15";
+			String kursString = "Interaktionsdesign A";
+			String salString = "C310";
+			
+			
 			for (int i = 0; i < antalElement; i++) {
 				Shape tempShape = shapeList.get(i);
-				
+				String[] tempValues = (String[]) valueList.get(i);
 				if (colorTurn) {
 					g2.setColor(blueFieldColor);
 				}else{
@@ -132,7 +152,9 @@ public class CanvasTest {
 				//fill skriver ut
 				g2.fill(tempShape);
 				g2.setColor(Color.black);
-				g2.drawString("09.15", 10, (fieldHeight + fieldHeight/2) + (fieldHeight*i) );
+				g2.drawString(tempValues[0], 10, (fieldHeight + fieldHeight/2 +10) + (fieldHeight*i) );
+				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
+				g2.drawString(tempValues[2], 750, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
 				colorTurn = !colorTurn;
 			}
 			//Color.decode("rgb(0,0,0,1)");
