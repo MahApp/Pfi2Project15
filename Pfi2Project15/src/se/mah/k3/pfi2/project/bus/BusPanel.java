@@ -14,17 +14,18 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 
 import java.awt.GridLayout;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.Font;
 
 public class BusPanel extends JPanel implements ModuleInterface{
-
 	/**
 	 * 
 	 */
@@ -42,7 +43,7 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	 */
 	public BusPanel() {
 		Thread lineThread = new BusPanel.LineThread(parser);
-		lineThread.start();
+lineThread.start();
 		
 		setBackground(Color.LIGHT_GRAY);
 				setLayout(new GridLayout(0, 4, 0, 0));
@@ -70,6 +71,7 @@ public class BusPanel extends JPanel implements ModuleInterface{
 				lblAvgr.setForeground(Color.BLACK);
 				lblAvgr.setVerticalAlignment(SwingConstants.TOP);
 				add(lblAvgr);
+	
 				
 				Line = new JTextArea();
 				Line.setEditable(false);
@@ -85,13 +87,18 @@ public class BusPanel extends JPanel implements ModuleInterface{
 				Departure.setEditable(false);
 				Departure.setRows(5);
 				add(Departure);
+
 				
 				Stop = new JTextArea();
 				Stop.setEditable(false);
 				Stop.setRows(5);
 				add(Stop);
+	
+
 	}
 	
+	
+
 	public class LineThread extends Thread{
 		private Parser parser;
 		private ArrayList<Station> searchStations = new ArrayList<Station>();
@@ -102,27 +109,36 @@ public class BusPanel extends JPanel implements ModuleInterface{
 
 		public void run() {
 			Lines lines = Parser.getStationResults(new Station("80046"));
+		
+			// Är det inte bättre att använda String.format %02d ist? 
 			for (Line l : lines.getLines()) {
-				
-//				String minutes = "";
+				Line.append("        " +l.getLine() + "\n");
+				Destination.append("    " +  l.getTowards()+"\n");
+					int H = l.getDepTime().get(Calendar.HOUR_OF_DAY);
+					int M = l.getDepTime().get(Calendar.MINUTE);
+					Departure.setText(String.format("%02d", H) +":" + String.format("%02d", M) + "\n");
+					Stop.setText(l.getStopPoint() + "\n");
+			}}}
+
+////				String minutes = "";
+////				
+////				if (String.valueOf(l.getDepTime().get(Calendar.MINUTE)).length() == 1) {
+////					minutes = "0" + String.valueOf(l.getDepTime().get(Calendar.MINUTE));
+////				} else {
+////					minutes = String.valueOf(l.getDepTime().get(Calendar.MINUTE));
+////				}
 //				
-//				if (String.valueOf(l.getDepTime().get(Calendar.MINUTE)).length() == 1) {
-//					minutes = "0" + String.valueOf(l.getDepTime().get(Calendar.MINUTE));
-//				} else {
-//					minutes = String.valueOf(l.getDepTime().get(Calendar.MINUTE));
-//				}
-				
-				Line.append(l.getLine() + "\n");
-				Destination.setText(l.getTowards() + "\n");
-//				if (Parser.hours == false) {
-//				Departure.append(l.getTimeToDeparture() + " min \n");
-//				} else {
-					Departure.setText(String.valueOf(l.getDepTime().get(Calendar.HOUR_OF_DAY)+":"+l.getDepTime().get(Calendar.MINUTE)));
-					Departure.setText("\n");
-//				}
-			}		
-		}
-	}
+//				Line.append(l.getLine() + "\n");
+//				Destination.setText(l.getTowards() + "\n");
+////				if (Parser.hours == false) {
+////				Departure.append(l.getTimeToDeparture() + " min \n");
+////				} else {
+//					Departure.setText(String.valueOf(l.getDepTime().get(Calendar.HOUR_OF_DAY)+":"+l.getDepTime().get(Calendar.MINUTE)));
+//					Departure.setText("\n");
+////				}
+//			}		
+//		}
+//	}
 
 	@Override
 	public int getExpectedPriority() {

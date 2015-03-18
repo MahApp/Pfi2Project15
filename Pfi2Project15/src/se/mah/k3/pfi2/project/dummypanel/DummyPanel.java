@@ -2,6 +2,7 @@ package se.mah.k3.pfi2.project.dummypanel;
 
 import java.awt.BorderLayout;
 
+import javax.sound.sampled.Line;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,7 @@ public class DummyPanel extends JPanel implements ModuleInterface {
 		add(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Dummy", null, null, null},
+				{"Dummy",null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
