@@ -1,4 +1,12 @@
+//Skapad av Mattias & Victor
+//2015-03-18
+//
+//Detta är en klass som visar posterna i schemat, till denna klass ska det tilldelas animationer och logik för att få in korrekta värden
+//
+//
 package se.mah.k3.pfi2.project.kronox;
+
+
 
 import java.awt.BorderLayout;
 import java.awt.*;
@@ -148,7 +156,6 @@ controlPanel.setBackground(Color.GRAY);
 			
 			int antalElement = 10;
 			for (int i = 0; i < antalElement; i++) {
-				
 				shapeList.add(new Rectangle2D.Float(0, fieldHeight + (i * fieldHeight), SCREEN_WIDTH - 100, fieldHeight));
 			}
 
@@ -181,8 +188,13 @@ controlPanel.setBackground(Color.GRAY);
 				//fill skriver ut
 				g2.fill(tempShape);
 				g2.setColor(Color.black);
+				//write out time
 				g2.drawString(tempValues[0], 10, (fieldHeight + fieldHeight/2 +10) + (fieldHeight*i) );
+				
+				//write out course
 				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
+				
+				//write out classroom
 				g2.drawString(tempValues[2], 750, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
 				colorTurn = !colorTurn;
 			}

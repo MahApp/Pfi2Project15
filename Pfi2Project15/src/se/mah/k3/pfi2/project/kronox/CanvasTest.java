@@ -1,3 +1,13 @@
+//
+//Skapad av Mattias & Victor
+//2015-03-18
+//
+//Denna klasss är gjord för att experimentera ed canvasklassen
+//Klassen CanvasInJframe är den mer seriösa klassen där all logik bör kopplas
+//
+//
+
+
 package se.mah.k3.pfi2.project.kronox;
 
 import java.awt.*;
@@ -7,9 +17,11 @@ import java.awt.Font;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+
+
 public class CanvasTest {
-	int height = 0;
-	private Frame mainFrame;
+	
+	private Frame contentPane;
 	private Panel controlPanel;
 
 	// diverse bra variabler att ha
@@ -50,29 +62,29 @@ public class CanvasTest {
 
 	private void prepareGUI() {
 
-		// Mainframe är huvudrutan
-		mainFrame = new Frame("Java AWT Examples");
+		// contentPane är huvudrutan
+		contentPane = new Frame("Java AWT Examples");
 		// SetSize
-		mainFrame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		contentPane.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-		mainFrame.setLayout(new GridLayout(1, 1));
-		mainFrame.addWindowListener(new WindowAdapter() {
+		contentPane.setLayout(new GridLayout(1, 1));
+		contentPane.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent windowEvent) {
 				System.exit(0);
 			}
 		});
 		controlPanel = new Panel();
 		controlPanel.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		mainFrame.add(controlPanel);
+		contentPane.add(controlPanel);
 		controlPanel.setLayout(null);
 
-		mainFrame.setVisible(true);
+		contentPane.setVisible(true);
 
 	}
 
 	private void showCanvasDemo() {
 		controlPanel.add(new MyCanvas());
-		mainFrame.setVisible(true);
+		contentPane.setVisible(true);
 	}
 
 	class MyCanvas extends Canvas {
