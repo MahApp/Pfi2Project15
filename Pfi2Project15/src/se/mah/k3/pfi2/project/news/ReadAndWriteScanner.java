@@ -32,7 +32,7 @@ public class ReadAndWriteScanner {
 				
 				String dagens = s.nextLine();
 				if (dagens.contains("Husman")){
-					//System.out.println(dagens);
+//					System.out.println(dagens);
 					int d = dagens.indexOf("Husman");
 					int d2 = dagens.indexOf("stomp");
 					String dagensResultat = dagens.substring(d, d2);
