@@ -10,8 +10,6 @@ import java.awt.Font;
 public class CanvasTest {
 int height = 0;
    private Frame mainFrame;
-   private Label headerLabel;
-   private Label statusLabel;
    private Panel controlPanel;
    
    //diverse bra variabler att ha
@@ -33,11 +31,11 @@ int height = 0;
    Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 19);
    //Färger
    Color whiteColor = Color.decode("#ffffff");
-   Color headerYellowTextColro = Color.decode("#E5DA9F");
+   Color headerYellowTextColor = Color.decode("#E5DA9F");
    Color headerFieldBackgroundColor = Color.decode("#3A3A39");
    Color blueFieldColor = Color.decode("#D6ECF3");
    Color redEditText = Color.decode("#C52033");
-  // Color 
+
    
    public CanvasTest(){
       prepareGUI();
@@ -49,32 +47,28 @@ int height = 0;
    }
 
    private void prepareGUI(){
+	   
+	  //Mainframe är huvudrutan
       mainFrame = new Frame("Java AWT Examples");
-      mainFrame.setSize(400,400);
-      mainFrame.setLayout(new GridLayout(3, 1));
+      //SetSize
+      mainFrame.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+      
+      mainFrame.setLayout(new GridLayout(1, 1));
       mainFrame.addWindowListener(new WindowAdapter() {
          public void windowClosing(WindowEvent windowEvent){
             System.exit(0);
          }        
       });    
-      headerLabel = new Label();
-      headerLabel.setAlignment(Label.CENTER);
-      statusLabel = new Label();        
-      statusLabel.setAlignment(Label.CENTER);
-      statusLabel.setSize(350,100);
-
       controlPanel = new Panel();
-      controlPanel.setLayout(new FlowLayout());
-
-      mainFrame.add(headerLabel);
+      controlPanel.setSize(2000,2000);
       mainFrame.add(controlPanel);
-      mainFrame.add(statusLabel);
-      mainFrame.setVisible(true);  
+      controlPanel.setLayout(null);
+      
+      mainFrame.setVisible(true); 
+      
    }
 
    private void showCanvasDemo(){
-      headerLabel.setText("Control in action: Canvas"); 
-
       controlPanel.add(new MyCanvas());
       mainFrame.setVisible(true);  
    } 
@@ -82,15 +76,16 @@ int height = 0;
    class MyCanvas extends Canvas {
 
       public MyCanvas () {
-         setBackground (Color.GRAY);
-         setSize(300, 300);
+    	 setSize(2000, 2000);
+         setBackground (whiteColor);
+         
       }
 
       public void paint (Graphics g) {
          Graphics2D g2;
          g2 = (Graphics2D) g;
          g2.drawLine(10, 10, 200, 200);
-         g2.drawString ("It is a custom canvas area", 70, 70);
+         g2.drawString ("It is a custom canvas area", 870, 370);
 	
       }
    }
