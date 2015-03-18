@@ -33,6 +33,8 @@ int height = 0;
    Color whiteColor = Color.decode("#ffffff");
    Color headerYellowTextColro = Color.decode("#E5DA9F");
    Color headerFieldBackgroundColor = Color.decode("#3A3A39");
+   Color blueFieldColor = Color.decode("#D6ECF3");
+   Color redEditText = Color.decode("#C52033");
   // Color 
    
    public CanvasTest(){
