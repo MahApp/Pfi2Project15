@@ -1,5 +1,7 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
@@ -8,17 +10,25 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class Parser {
-
+	private String startTid,slutTid;
+	public static Posts storedPosts;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// DocumentBuilderFactory factory =
-		// DocumentBuilderFactory.newInstance();
-		XmlDomParser parser = new XmlDomParser();
-		String xml = parser.getXmlFromUrl("notImplement"); // getting XML
+		System.out.println("start program");
+		storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
 
+	}
+
+	
+	
+	public static Posts getPostsfrom(String searchURL){
+		System.out.println("startpostparse");
+		XmlDomParser parser = new XmlDomParser();
+		String xml = XmlDomParser.getXmlFromUrl(searchURL); // getting XML
+		ArrayList<Post> tempPost=new ArrayList<Post>();
+		System.out.println("xml fixing");
 		if (xml != null) {
-			Document doc = parser.getDomElement(xml); // getting DOM element
-														// schemaPost
+			Document doc = XmlDomParser.getDomElement(xml); // getting DOM elementschemaPost
+
 			NodeList schemaPost = doc.getElementsByTagName("schemaPost");// looping through all item nodes <item>
 			for (int i = 0; i < schemaPost.getLength(); i++) { // loop av fšrsta gen "schemaPost"
 				System.out.println("___[Index number "+i+ "  ] ______________________________________________");
@@ -113,6 +123,13 @@ public class Parser {
 				System.out.println();
 			}
 		}
+	
+		return new Posts(tempPost);
+		
+		
 	}
-
+	
+	
+	
+	
 }

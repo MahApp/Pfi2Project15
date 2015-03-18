@@ -24,12 +24,13 @@ public  class XmlDomParser {
 
 	
 	public static String getXmlFromUrl(String url) {
-		String textURL="http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C";
-		String xml = null;
-
+	//	String textURL="http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C";
+	
+		String xml = url;
+			System.out.println("getXml from kronox");
 		try {
 			HttpClient httpClient = HttpClientBuilder.create().build(); 
-			HttpPost httpPost = new HttpPost(textURL);
+			HttpPost httpPost = new HttpPost(xml);
 
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			HttpEntity httpEntity = httpResponse.getEntity();
@@ -50,7 +51,7 @@ public  class XmlDomParser {
 	 * for finding elements and values can be used.
 	 * @param XML string
 	 * */
-	public Document getDomElement(String xml){
+	public static Document getDomElement(String xml){
 		Document doc = null;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
