@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class DummyPanel extends JPanel implements ModuleInterface {
 	private JTable table; 
