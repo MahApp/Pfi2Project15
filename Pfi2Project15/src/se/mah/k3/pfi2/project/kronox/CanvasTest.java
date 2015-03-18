@@ -23,18 +23,12 @@ public class CanvasTest {
 
 	// Fonter
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
-	public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);// typsnittet
-																				// vi
-																				// ska
-																				// använda
-	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);// typsnittet
-																				// vi
-																				// ska
-																				// använda
+	public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);
+	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);
 	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,
 			fontSize);// typsnittet vi ska använda
 	Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 19);
-
+	Font headerFont = futuraBold.deriveFont(Font.PLAIN, 19);
 	// Färger
 	Color whiteColor = Color.decode("#ffffff");
 	Color headerYellowTextColor = Color.decode("#E5DA9F");
@@ -42,6 +36,9 @@ public class CanvasTest {
 	Color blueFieldColor = Color.decode("#D6ECF3");
 	Color redEditText = Color.decode("#C52033");
 
+	// mått
+	int fieldHeight = 80;
+	
 	public CanvasTest() {
 		prepareGUI();
 	}
@@ -92,25 +89,39 @@ public class CanvasTest {
 			
 		//	g2.drawLine(10, 10, 200, 200);
 			// g2.setStroke();
-			g2.drawRect(10, 10, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1000);
+			g2.drawRect(0, 0, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1000);
 			
 			// rader
 
 			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
 					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
 			g2.setStroke(stroke);
-
+			
+			
+			//Lägger till header-fältet m. text osv
+			g2.setFont(headerFont);
+			
+			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH - 100, fieldHeight);
+			g2.setColor(headerFieldBackgroundColor);
+			g2.fill(headField);
+			g2.setColor(headerYellowTextColor);
+			g2.drawString("TID", 20, 50);
+			g2.drawString("KURS", 300, 50);
+			g2.drawString("V/LOKAL", 750, 50);
+			g2.drawString("STATUS", SCREEN_WIDTH-200, 50);
+			
 			//skapar en arraylist av fält
 			ArrayList<Shape> shapeList = new ArrayList<Shape>();
 			
-			int antalElement = 11;
-			for (int i = 0; i < antalElement; i++) {
-				shapeList.add(new Rectangle2D.Float(11, 11 + i * 80, SCREEN_WIDTH - 101, 80));
+			int antalElement = 7;
+			for (int i = 1; i <= antalElement; i++) {
+				
+				shapeList.add(new Rectangle2D.Float(0, fieldHeight +1 + (i * fieldHeight), SCREEN_WIDTH - 100, fieldHeight));
 			}
 
 			boolean colorTurn = true;
-			
-			for (int i = 1; i <= antalElement; i++) {
+			g2.setFont(fieldFont);
+			for (int i = 0; i < antalElement; i++) {
 				Shape tempShape = shapeList.get(i);
 				
 				if (colorTurn) {
@@ -120,9 +131,11 @@ public class CanvasTest {
 				}
 				//fill skriver ut
 				g2.fill(tempShape);
+				g2.setColor(Color.black);
+				g2.drawString("09.15", 10, (fieldHeight + fieldHeight/2) + (fieldHeight*i) );
 				colorTurn = !colorTurn;
 			}
-
+			//Color.decode("rgb(0,0,0,1)");
 			// g2.drawre
 
 		}
