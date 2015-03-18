@@ -34,9 +34,10 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
 	public Journeys journeys;
 	private Parser parser = new Parser();
-	private JTextArea Destination;
-	private JTextArea Stop;
-	private JTextArea Departure;
+	public JTextArea Destination;
+	public JTextArea Stop;
+	public JTextArea Departure;
+	 
 
 	/**
 	 * Create the panel.
@@ -110,14 +111,27 @@ lineThread.start();
 		public void run() {
 			Lines lines = Parser.getStationResults(new Station("80046"));
 		
-			// Är det inte bättre att använda String.format %02d ist? 
+			// ï¿½r det inte bï¿½ttre att anvï¿½nda String.format %02d ist? 
 			for (Line l : lines.getLines()) {
 				Line.append("        " +l.getLine() + "\n");
 				Destination.append("    " +  l.getTowards()+"\n");
-					int H = l.getDepTime().get(Calendar.HOUR_OF_DAY);
-					int M = l.getDepTime().get(Calendar.MINUTE);
-					Departure.setText(String.format("%02d", H) +":" + String.format("%02d", M) + "\n");
-					Stop.setText(l.getStopPoint() + "\n");
+				
+				
+				Calendar cal = Calendar.getInstance();
+				
+					
+					int H1 = cal.get(Calendar.HOUR);
+					int M1 = cal.get(Calendar.MINUTE);
+					int H = l.getDepTime().get(Calendar.HOUR_OF_DAY );
+					int M = l.getDepTime().get(Calendar.MINUTE );
+					
+					long difference = H - H1;	
+					long difference1 = M - M1;
+					
+					System.out.println(difference + "jajajajajajaj");
+					
+					Departure.append(String.format("%02d", difference) +":" + String.format("%02d", difference1) + "\n");
+					Stop.append(l.getStopPoint() + "\n");
 			}}}
 
 ////				String minutes = "";

@@ -1,6 +1,7 @@
 package se.mah.k3lara.skaneAPI.control;
 
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -15,32 +16,44 @@ public class Helpers{
 	 * @return String in format HH:MM
 	 * */
     public static String formatTime(String dateTimeString){
+    	
+		
     	String formattedTime= "";
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     	Date date =null;
+    	
+    	
 		try {
 			date = dateFormat.parse(dateTimeString);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		Calendar cal = Calendar.getInstance();
+		
+		
+		
 		cal.setTime(date);
 		String hour;
-		if (cal.get(Calendar.HOUR_OF_DAY)<10){
-			hour = "0"+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
+		if (cal.get(Calendar.HOUR_OF_DAY )<10 ){
+			hour = "0"+ String.valueOf(cal.get(Calendar.HOUR_OF_DAY ) );
 		}else {
-			hour = String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
-		}
-		String minute;
-		if (cal.get(Calendar.MINUTE)<10){
-			minute = "0"+ String.valueOf(cal.get(Calendar.MINUTE));
-		}else {
-			minute = String.valueOf(cal.get(Calendar.MINUTE));
+			hour = String.valueOf(cal.get(Calendar.HOUR_OF_DAY ) );
 		}
 		
-		formattedTime = formattedTime + " " + hour +":"+minute;
+		
+		String minute;
+		if (cal.get(Calendar.MINUTE)<10 ){
+			minute = "0"+ String.valueOf(cal.get(Calendar.MINUTE ));
+		}else {
+			minute = String.valueOf(cal.get(Calendar.MINUTE ) );
+		}
+		
+		formattedTime = formattedTime.format("%02d:%02d" + " " + hour  + ":" + minute );
+		
     	return hour +":"+minute;
     }
+    
+   
     
     /**
 	 *Extracts date and month from dateTimeString and formats 
