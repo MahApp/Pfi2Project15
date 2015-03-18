@@ -31,7 +31,7 @@ public class ScannerOrkanen {
 
 		
 		try {
-			URL mhMatsalar = new URL("http://www.mhmatsalar.se");
+			URL mhMatsalar = new URL("http://www.mhmatsalar.se"); //orkanens matsedel
 			Scanner s = new Scanner(mhMatsalar.openStream());
 			while (s.hasNext()) {
 				String fullText = s.nextLine();
