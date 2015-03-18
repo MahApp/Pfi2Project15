@@ -54,23 +54,24 @@ public class ScannerOrkanen {
 				}
 				
 				
+				String s2 = s.nextLine();
+				System.out.println(s2);
 				
-				
-				String veg = fullText;
-			if (veg.contains("fetaost")){ 
-					int vegStartRead = veg.indexOf("Pasta");
-					int vegEndRead = veg.indexOf("<br>");
-					
-					String vegResultat = veg.substring(vegStartRead,  vegEndRead);
-	//				int removeChars = vegResultat.length() - 120;
-//					String cleanResultat = vegResultat.char - removeChars;
-				
-					int removeStart = vegResultat.indexOf("Pasta");
-					int removeEnd = vegResultat.indexOf("ost");
-					String cleanResultat = vegResultat.substring(removeStart, removeEnd);
-					
-					System.out.println(cleanResultat);
-				}
+//				String veg = fullText;
+//			if (veg.contains("fetaost")){ 
+//					int vegStartRead = veg.indexOf("Pasta");
+//					int vegEndRead = veg.indexOf("<br>");
+//					
+//					String vegResultat = veg.substring(vegStartRead,  vegEndRead);
+//	//				int removeChars = vegResultat.length() - 120;
+////					String cleanResultat = vegResultat.char - removeChars;
+//				
+//					int removeStart = vegResultat.indexOf("Pasta");
+//					int removeEnd = vegResultat.indexOf("ost");
+//					String cleanResultat = vegResultat.substring(removeStart, removeEnd);
+//					
+//					System.out.println(cleanResultat);
+//				}
 		
 			}
 			
