@@ -24,11 +24,13 @@ int height = 0;
 
    
    //Fonter
+	
+	
    public int fontSize = (int) Math.round(PT * screenRes / DPI);
    public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);// typsnittet vi ska använda
    public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);// typsnittet vi ska använda
    public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
-   
+   Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 19);
    //Färger
    Color whiteColor = Color.decode("#ffffff");
    Color headerYellowTextColro = Color.decode("#E5DA9F");
