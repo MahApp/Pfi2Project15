@@ -4,90 +4,130 @@ import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3lara.skaneAPI.model.Journeys;
+import se.mah.k3lara.skaneAPI.model.Line;
+import se.mah.k3lara.skaneAPI.model.Lines;
 import se.mah.k3lara.skaneAPI.model.Station;
+//import se.mah.k3lara.skaneAPI.view.TestClassGUI;
 import se.mah.k3lara.skaneAPI.xmlparser.Parser;
 
 import java.awt.Color;
-import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-import javax.swing.JFrame;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.GridLayout;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 
 public class BusPanel extends JPanel implements ModuleInterface{
-	private JTextField textField;
 
-	private JFrame frmSknetrafiken;
-	public JTextArea Linje;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public JTextArea Line;
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
-	public JTextArea Sökresultat_1;
-	public JTextField Från;
-	public JTextField Till;
-	public String results = "";
 	public Journeys journeys;
 	private Parser parser = new Parser();
 	private JTextArea Destination;
-	private JTextArea Avgår;
-	private JTextArea Sen;
+	private JTextArea Stop;
+	private JTextArea Departure;
 
 	/**
 	 * Create the panel.
 	 */
 	public BusPanel() {
-		setBackground(Color.DARK_GRAY);
-				setLayout(new GridLayout(0, 3, 0, 0));
+		Thread lineThread = new BusPanel.LineThread(parser);
+		lineThread.start();
+		
+		setBackground(Color.LIGHT_GRAY);
+				setLayout(new GridLayout(0, 4, 0, 0));
 				
 				JLabel lblLinje = new JLabel("Linje");
-				lblLinje.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblLinje.setForeground(Color.ORANGE);
+				lblLinje.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblLinje.setForeground(Color.BLACK);
 				lblLinje.setVerticalAlignment(SwingConstants.TOP);
 				add(lblLinje);
 				
 				JLabel lblDestination = new JLabel("Destination");
-				lblDestination.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblDestination.setForeground(Color.ORANGE);
+				lblDestination.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblDestination.setForeground(Color.BLACK);
 				lblDestination.setVerticalAlignment(SwingConstants.TOP);
 				add(lblDestination);
 				
-				JLabel lblAvgr = new JLabel("Avg\u00E5r");
-				lblAvgr.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblAvgr.setForeground(Color.ORANGE);
-				lblAvgr.setVerticalAlignment(SwingConstants.TOP);
-				add(lblAvgr);
-				
-				JLabel lblNewLabel = new JLabel("5");
-				lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblNewLabel.setForeground(Color.ORANGE);
+				JLabel lblNewLabel = new JLabel("L\u00E4ge");
+				lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblNewLabel.setForeground(Color.BLACK);
 				lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 				add(lblNewLabel);
 				
-				JLabel lblStenkllanViaCentralen = new JLabel("Stenk\u00E4llan via Centralen");
-				lblStenkllanViaCentralen.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblStenkllanViaCentralen.setForeground(Color.ORANGE);
-				lblStenkllanViaCentralen.setVerticalAlignment(SwingConstants.TOP);
-				lblStenkllanViaCentralen.setHorizontalAlignment(SwingConstants.LEFT);
-				add(lblStenkllanViaCentralen);
+				JLabel lblAvgr = new JLabel("Avg\u00E5r");
+				lblAvgr.setFont(new Font("Tahoma", Font.BOLD, 16));
+				lblAvgr.setForeground(Color.BLACK);
+				lblAvgr.setVerticalAlignment(SwingConstants.TOP);
+				add(lblAvgr);
 				
-				JLabel lblNewLabel_1 = new JLabel("2 min");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-				lblNewLabel_1.setForeground(Color.ORANGE);
-				lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
-				add(lblNewLabel_1);
-		
-		
-		
-		
+				Line = new JTextArea();
+				Line.setEditable(false);
+				Line.setRows(5);
+				add(Line);
+				
+				Destination = new JTextArea();
+				Destination.setEditable(false);
+				Destination.setRows(5);
+				add(Destination);
+				
+				Departure = new JTextArea();
+				Departure.setEditable(false);
+				Departure.setRows(5);
+				add(Departure);
+				
+				Stop = new JTextArea();
+				Stop.setEditable(false);
+				Stop.setRows(5);
+				add(Stop);
+	}
+	
+	public class LineThread extends Thread{
+		private Parser parser;
+		private ArrayList<Station> searchStations = new ArrayList<Station>();
+
+		public LineThread(Parser parser) {
+			this.parser = parser;
+		}
+
+		public void run() {
+			Lines lines = Parser.getStationResults(new Station("80046"));
+			for (Line l : lines.getLines()) {
+				
+//				String minutes = "";
+//				
+//				if (String.valueOf(l.getDepTime().get(Calendar.MINUTE)).length() == 1) {
+//					minutes = "0" + String.valueOf(l.getDepTime().get(Calendar.MINUTE));
+//				} else {
+//					minutes = String.valueOf(l.getDepTime().get(Calendar.MINUTE));
+//				}
+				
+				Line.append(l.getLine() + "\n");
+				Destination.setText(l.getTowards() + "\n");
+//				if (Parser.hours == false) {
+//				Departure.append(l.getTimeToDeparture() + " min \n");
+//				} else {
+					Departure.setText(String.valueOf(l.getDepTime().get(Calendar.HOUR_OF_DAY)+":"+l.getDepTime().get(Calendar.MINUTE)));
+					Departure.setText("\n");
+//				}
+			}		
+		}
 	}
 
 	@Override
 	public int getExpectedPriority() {
 		// Prioritet 1 f�r testsyfte
-		return 1;
+		return 5;
 	}
 
 	@Override
@@ -102,7 +142,6 @@ public class BusPanel extends JPanel implements ModuleInterface{
 		return 1;
 	}
 
-
 	@Override
 	public boolean showNumberOfRows(int start, int end) {
 		// TODO Auto-generated method stub
@@ -112,7 +151,5 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	@Override
 	public void repaintPanel() {
 		// TODO Auto-generated method stub
-
 	}
-
 }
