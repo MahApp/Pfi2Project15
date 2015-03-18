@@ -38,7 +38,7 @@ public  class XmlDomParser {
 		} catch (Exception e) {
 			xml=null;
 		} 
-		System.out.println(xml);
+		//System.out.println(xml);
 		return xml;
 	}
 	
