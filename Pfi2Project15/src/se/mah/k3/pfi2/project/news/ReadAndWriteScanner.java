@@ -40,7 +40,7 @@ public class ReadAndWriteScanner {
 				}
 				
 				String veg = s.nextLine();
-				if (veg.contains("VeckoVeg")){
+				if (veg.contains("VeckoVeg")){ // kommentar
 					//System.out.println(veg);
 					int v = veg.indexOf("VeckoVeg");
 					int v2 = veg.indexOf("</strong>");
