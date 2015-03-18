@@ -10,6 +10,5 @@
 	<classpathentry kind="lib" path="lib/httpmime-4.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-core-2.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/xmlpull-xpp3-1.1.4c.jar"/>
-	<classpathentry kind="var" path="SWT_LIB"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
