@@ -26,13 +26,8 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
+import se.mah.k3.pfi2.project.test.KronoxAJAXGetFriendlyNames;
 
-//ska testa rita med swt-klassen
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.graphics.Transform;
-import org.eclipse.swt.widgets.*;
 
 //import java.awt.Font[family=Arial,name=Arial,style=plain,size=1];
 //java.awt.Font[family=Futura LT,name=Futura LT Bold,style=plain,size=1]
@@ -82,6 +77,9 @@ public class testSchema extends JFrame {
 	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);// typsnittet vi ska använda
 	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
 
+	Canvas canvas2 = new Canvas();
+	//implementera schemalogik-klassen
+	schemaLogik kronoxNames = new schemaLogik();
 	/**
 	 * Launch the application.
 	 */
@@ -105,6 +103,7 @@ public class testSchema extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -191,6 +190,61 @@ public class testSchema extends JFrame {
 		lblFuturaLight.setBounds(34, 160, 200, 80);
 		lblFuturaLight.setFont(futuraLight.deriveFont(Font.PLAIN, 28));
 		contentPane.add(lblFuturaLight);
+		
+		JPanel panel = new JPanel();
+		
+		//Med color.decode kan du sätta custom färger på dina element
+		panel.setBackground(Color.decode("#ffffff"));
+		panel.setBounds(0, 423, 1064, 80);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		
+		//Victor - en temporär modell av en post för att se om det går att bygga så här
+		//ge labelen futurafont och sätt den
+		Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 19);
+		//Färg för rubriksfältet
+		Color headColor = Color.decode("#E5DA9F");
+		
+		JLabel timeLbl = new JLabel("08:15 - 10.00");
+		timeLbl.setBounds(10, 29, 133, 18);
+		timeLbl.setFont(fieldFont);
+		panel.add(timeLbl);
+		
+		
+		
+		JLabel courseLbl = new JLabel(kronoxNames.getCourseName());
+		courseLbl.setBounds(193, 24, 141, 35);
+		courseLbl.setFont(fieldFont);
+		panel.add(courseLbl);
+
+		
+		JLabel roomLbl = new JLabel("C310");
+		roomLbl.setBounds(669, 30, 108, 21);
+		roomLbl.setFont(fieldFont);
+		panel.add(roomLbl);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.decode("#3A3A39"));
+		panel_1.setBounds(0, 366, 1064, 61);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel tidHeadLbl = new JLabel("TID");
+		tidHeadLbl.setBounds(27, 11, 103, 39);
+		panel_1.add(tidHeadLbl);
+		
+		JLabel kursHeadLbl = new JLabel("KURS");
+		kursHeadLbl.setBounds(208, 17, 170, 26);
+		panel_1.add(kursHeadLbl);
+		
+		JLabel lokalHeadLbl = new JLabel("V/LOKAL");
+		lokalHeadLbl.setBounds(664, 11, 121, 39);
+		panel_1.add(lokalHeadLbl);
+		
+		JLabel statusHeadLbl = new JLabel("STATUS");
+		statusHeadLbl.setBounds(923, 23, 46, 14);
+		panel_1.add(statusHeadLbl);
 
 		// g2= (Graphics2D) canvas.getGraphics();
 		// this.canvas.paint(g2);

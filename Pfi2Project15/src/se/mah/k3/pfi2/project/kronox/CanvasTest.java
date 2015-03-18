@@ -1,6 +1,11 @@
 package se.mah.k3.pfi2.project.kronox;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+
+
+
 
 public class CanvasTest {
 int height = 0;
@@ -8,7 +13,27 @@ int height = 0;
    private Label headerLabel;
    private Label statusLabel;
    private Panel controlPanel;
+   
+   //diverse bra variabler att ha
+	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
+	final static float DPI = 72; // Pixel density 96 är standard på moderna monitors, 72 ät gamla
+	final static float PT = 7; // font size pt
+	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn  
+	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn 
+	final static int MIN_MODULE_HEIGHT=80; // minimum module height 
 
+   
+   //Fonter
+   public int fontSize = (int) Math.round(PT * screenRes / DPI);
+   public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);// typsnittet vi ska använda
+   public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);// typsnittet vi ska använda
+   public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
+   
+   //Färger
+   Color whiteColor = Color.decode("#ffffff");
+   Color headerYellowTextColro = Color.decode("#E5DA9F");
+  // Color 
+   
    public CanvasTest(){
       prepareGUI();
    }
