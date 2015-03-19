@@ -19,6 +19,7 @@ import java.awt.EventQueue;
 //for images
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
+import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -40,8 +41,8 @@ public class CanvasInJframe extends JFrame {
 		final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 		final static int MIN_MODULE_HEIGHT = 80; // minimum module height
 		final static int fieldHeight = 80; //field height
-		//Image img = getToolkit().getImage("/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png");
-		
+		Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+	//	Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
 		
 		// Fonter
 		public int fontSize = (int) Math.round(PT * screenRes / DPI);
@@ -102,12 +103,8 @@ public class CanvasInJframe extends JFrame {
 		contentPane.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		contentPane.setLayout(new GridLayout(1, 1));
-		/*contentPane.addWindowListener(new WindowAdapter() {
-	         public void windowClosing(WindowEvent windowEvent){
-	 	        System.exit(0);
-	          }        
-	       });  
-		*/controlPanel = new Panel();
+	
+		controlPanel = new Panel();
 controlPanel.setBackground(Color.GRAY);
 		controlPanel.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		contentPane.add(controlPanel);
@@ -203,12 +200,14 @@ controlPanel.setBackground(Color.GRAY);
 				
 				//write out classroom
 				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
-		
+				
+				//g2.drawImage(img, 100, 100, temporaryLostComponent);
+				
 				colorTurn = !colorTurn;
 			}
 			//Color.decode("rgb(0,0,0,1)");
 			// g2.drawre
-
+//g2.drawImage(img, 100, 100, null);
 		}
 
 		private void BasicStroke(int i) {
