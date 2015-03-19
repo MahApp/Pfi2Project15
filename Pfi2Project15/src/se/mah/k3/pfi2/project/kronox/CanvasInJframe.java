@@ -164,6 +164,7 @@ controlPanel.setBackground(Color.GRAY);
 			
 			//Strängar i en array som lagras i en lista, som sen ska skrivas ut i respektive fält
 			//alla relevanta värden läggs till i en lista
+			
 			String[] fieldValues = {"09.15", "Interaktionsdesign A", "C310" };
 			//listan sparas sedan i en lista
 			ArrayList<String[]> valueList = new ArrayList<String[]>();
@@ -172,9 +173,6 @@ controlPanel.setBackground(Color.GRAY);
 				valueList.add(fieldValues);
 			
 			}
-			String tidString = "08.15";
-			String kursString = "Interaktionsdesign A";
-			String salString = "C310";
 			
 			
 			for (int i = 0; i < antalElement; i++) {
