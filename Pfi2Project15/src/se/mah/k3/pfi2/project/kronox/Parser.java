@@ -12,14 +12,20 @@ import org.w3c.dom.NodeList;
 
 public class Parser {
 	private String startTid,slutTid;
-	public static Posts storedPosts;
+	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>();
 	public static void main(String[] args) {
 		System.out.println("start program");
-		storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
-
+		//storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
+		
+		ArrayList<String> Urls = Constants.getURL("orkanen", null);
+		for(int i=0; i< Urls.size();i++){
+		String schema=Urls.get(i);
+		storedPosts.add(Parser.getPostsfrom(schema));
+		}
 	}
 	
 	public static Posts getPostsfrom(String searchURL){
+		
 		System.out.println("startpostparse");
 		XmlDomParser parser = new XmlDomParser();
 		String xml = XmlDomParser.getXmlFromUrl(searchURL); // getting XML
@@ -30,6 +36,7 @@ public class Parser {
 
 			NodeList schemaPost = doc.getElementsByTagName("schemaPost");// looping through all item nodes <item>
 			for (int i = 0; i < schemaPost.getLength(); i++) { // loop av fšrsta gen "schemaPost"
+				Post tempSchemaPost=new Post(); // TEMPPOST FOR STORING IN POSTS
 				System.out.println("___[Index number "+i+ "  ] ______________________________________________");
 				Node schemaPostN = schemaPost.item(i);
 				if (schemaPostN.getNodeType() == Node.ELEMENT_NODE) {
@@ -43,11 +50,15 @@ public class Parser {
 						if (bokadeDatumN.getNodeType() == Node.ELEMENT_NODE) {
 							Element bokadeDatumE = (Element) bokadeDatum.item(j);
 							System.out.print(" class start: "+bokadeDatumE.getAttribute("startDatumTid")); // get attribut'
+							tempSchemaPost.setStartTid(bokadeDatumE.getAttribute("startDatumTid"));
 							System.out.println(" class end: "+bokadeDatumE.getAttribute("slutDatumTid")); // get attribut'
+							tempSchemaPost.setSlutTid(bokadeDatumE.getAttribute("slutDatumTid"));
 						}
 					}
 					System.out.println("Updated: "+parser.getValue(schemaPostE, "senastAndradDatum")); // fšrsta
+					tempSchemaPost.setEditedSince(parser.getValue(schemaPostE, "senastAndradDatum"));
 					System.out.println("Edited by: "+parser.getValue(schemaPostE, "senastAndradAv"));// fšrsta
+					tempSchemaPost.setEditedBy(parser.getValue(schemaPostE, "senastAndradAv"));
 					NodeList resursTrad = schemaPostE.getElementsByTagName("resursTrad");
 					for (int j = 0; j < resursTrad.getLength(); j++) {  // loop av andra gen "-resursTrad"
 						Node resursTradN = resursTrad.item(j);
@@ -111,10 +122,11 @@ public class Parser {
 		
 				}
 	
-				System.out.println();
+				System.out.println("savingPost from XML to Posts");
+				tempPost.add(tempSchemaPost);
 			}
 		}
-	
+		
 		return new Posts(tempPost);
 		
 		
