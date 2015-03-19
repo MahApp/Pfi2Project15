@@ -18,7 +18,16 @@ public class Post {
 	 * */
 	private float x, y, vx, vy, ax, ay; // for animation
 	public Cell[] cell= new Cell[5];
+	String startTid,slutTid,updaterad,editedBy,programId,KursId,lararId;
 	
+
+	Post(){
+		
+		
+		
+		
+	}
+
 	void Post() {
 
 	}

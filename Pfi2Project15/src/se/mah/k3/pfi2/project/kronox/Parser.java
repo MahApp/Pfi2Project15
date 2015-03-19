@@ -110,21 +110,7 @@ public class Parser {
 					}
 		
 				}
-				// System.out.println(parser.getValue(el, ""));
-
-				/*
-				 * NodeList n2 = e.getChildNodes(); for (int j = 0; j <
-				 * n2.getLength(); j++) { Element el = (Element) n2.item(i);
-				 * System.out.println("--"+el.getNodeName()+"..."+j);
-				 * System.out.println(parser.getValue(el, "")); }
-				 */
-				// } else {
-
-				// }
-				// System.out.println(parser.getValue(e, "bokadeDatum")); //
-				// andra generation
-				// <<>BokningsId_20150304_000000205</bokningsId>
-				
+	
 				System.out.println();
 			}
 		}
