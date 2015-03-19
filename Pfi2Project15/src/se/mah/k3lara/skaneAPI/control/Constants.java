@@ -14,7 +14,7 @@ public class Constants {
 	public static final String midPartURL = "0&selPointTo=";
 	public static final String lastPartURL = "0&LastStart=";
 	public static final String noOfResults = "&NoOf=";
-	public static int nbrResultsToGet = 25;
+	public static int nbrResultsToGet = 5;
 
 
 	/**
@@ -48,7 +48,9 @@ public class Constants {
 	 * @param startStationNumber from skånetrafiken
 	 * */
 	public static String getStationResultURL(Station station){
-		String url = baseURL + stationResultURL +station.getStationNbr();
+		int nbrResults = 5;
+		String nbrRes = String.valueOf(nbrResults);
+		String url = baseURL + stationResultURL +station.getStationNbr()+noOfResults+nbrRes;
 		return url;
 	}
 	
