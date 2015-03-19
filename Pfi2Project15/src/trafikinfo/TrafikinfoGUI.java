@@ -2,10 +2,14 @@ package trafikinfo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
 
@@ -41,9 +45,9 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 	 */
 	public TrafikinfoGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1080, 80);
+		setBounds(0, 0, 1080, 80);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -56,36 +60,35 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		contentPane.add(panelString);
 		panelString.setLayout(null);
 		
-		JTextArea txtrString = new JTextArea();
-		txtrString.setForeground(Color.WHITE);
-		txtrString.setText("Discuss font size with group");
-		txtrString.setFont(new Font("Futura Std Medium", Font.PLAIN, 30));
-		txtrString.setBackground(null);
-		txtrString.setBounds(0, 20, 1080, 40);
-		panelString.add(txtrString);
-		/* ********************IF WE USE A SCROLLING STRING****************************** */
+		JLabel lblNewLabel = new JLabel("TRAFIKST\u00D6RNING:");
+		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNewLabel.setDisplayedMnemonicIndex(0);
+		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel.setFont(new Font("Futura Std Heavy", Font.BOLD, 30));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(10, 0, 290, 46);
+		add(lblNewLabel);
+		
+		JLabel left310 = new JLabel("New label");
+		left310.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/left_part_310x80.PNG")));
+		left310.setBounds(0, 0, 310, 80);
+		add(left310);
+		
+		//JLabel middle580 = new JLabel("New label");
+		//middle580.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/middle_part_580x80.PNG")));
+		//middle580.setBounds(310, 0, 580, 80);
+		//add(middle580);
+		
+		JLabel right190 = new JLabel("New label");
+		right190.setInheritsPopupMenu(false);
+		right190.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/right_part_190x80.PNG")));
+		right190.setBounds(890, -8, 190, 80);
+		add(right190);
 		
 		Thread tx = new gThread(g);
 		tx.start();
 		
-		/* ********************IF WE USE A BLOCK***************************************** */
-		// Placement on screen to be edited depending on what we decide in priority discussions
-		JPanel panelBlock = new JPanel();
-		panelBlock.setBounds(0, 733, 1080, 320);
-		contentPane.add(panelBlock);
-		panelBlock.setBackground(new Color(193,0,43));
-		panelBlock.setLayout(null);
-		
-		JTextArea textAreaBlock = new JTextArea();
-		textAreaBlock.setText("Text for a block of information.");
-		textAreaBlock.setForeground(Color.WHITE);
-		textAreaBlock.setFont(new Font("Futura Std Medium", Font.PLAIN, 30));
-		textAreaBlock.setBackground(null);
-		textAreaBlock.setBounds(20, 20, 1040, 280);
-		panelBlock.add(textAreaBlock);
-		/* ********************IF WE USE A BLOCK***************************************** */
 
-		
 		
 	}
 	

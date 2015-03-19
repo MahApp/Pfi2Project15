@@ -22,22 +22,22 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import java.awt.Component;
 
 public class TrafficInfo extends JPanel implements ModuleInterface  {
-//	JFrame jf = new JFrame();
+	JFrame jf = new JFrame();
 	
 	
 	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					TrafficInfo frame = new TrafficInfo();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TrafficInfo frame = new TrafficInfo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	/**
 	 * Create the panel.

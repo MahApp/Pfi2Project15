@@ -65,7 +65,7 @@ public class ScrollText extends JComponent {
     Graphics2D scratchG2 = scratchImage.createGraphics();
     scratchG2.setRenderingHints(renderHints);
 
-    Font font = new Font("Futura Book", Font.BOLD, 48);
+    Font font = new Font("Futura Book", Font.BOLD, 50);
 
     FontRenderContext frc = scratchG2.getFontRenderContext();
     TextLayout tl = new TextLayout(text, font, frc);
@@ -87,10 +87,10 @@ public class ScrollText extends JComponent {
 
     int baselineOffset = (verticalPad / 2) - ((int) textBounds.getY());
 
-    g2.setColor(Color.white);
+    g2.setColor(new Color(193,0,43));
     g2.fillRect(0, 0, imageSize.width, imageSize.height);
 
-    g2.setColor(new Color(193,0,43));
+    g2.setColor(Color.white);
     tl.draw(g2, 0, baselineOffset);
 
     // Free-up resources right away, but keep "image" for

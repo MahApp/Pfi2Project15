@@ -26,7 +26,8 @@ public class gThread extends Thread {
 				details = journey.getDetails();
 				text = journey.getText();
 
-				 ScrollText st = new ScrollText(effect+", "+text+", "+details);
+				 //ScrollText st = new ScrollText(effect+", "+text+", "+details);
+				ScrollText st = new ScrollText("Buss ersätter tågen mellan Malmö C och Lund C pga ett löv på spåret.");
 				 gui.add(st);
 			}
 
