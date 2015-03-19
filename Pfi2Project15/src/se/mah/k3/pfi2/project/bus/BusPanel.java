@@ -15,15 +15,19 @@ import java.util.Calendar;
 
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
-
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+import java.io.File;
+import java.io.FileInputStream;
+
 import net.miginfocom.swing.MigLayout;
 
 public class BusPanel extends JPanel implements ModuleInterface{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	public JTextArea Line;
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
@@ -37,38 +41,37 @@ public class BusPanel extends JPanel implements ModuleInterface{
 	 * Create the panel.
 	 */
 	public BusPanel() {
-		setAutoscrolls(true);
 		Thread lineThread = new BusPanel.LineThread(parser);
 		lineThread.start();
 
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(new MigLayout("", "[112px][112px][112px,grow][112px,grow][112px,grow]", "[150px][150px,grow]"));
-
+		
 		JLabel lblLinje = new JLabel("Linje");
-		lblLinje.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblLinje.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblLinje.setForeground(new Color(0, 0, 0));
 		lblLinje.setVerticalAlignment(SwingConstants.TOP);
-		add(lblLinje, "flowx,cell 0 0 2 1,growx,aligny top");
+		add(lblLinje, "flowx,cell 0 0,alignx center,aligny top");
 
 		JLabel lblNewLabel = new JLabel("L\u00E4ge");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		add(lblNewLabel, "cell 3 0,grow");
+		add(lblNewLabel, "cell 3 0,alignx center,growy");
 
-		JLabel lblAvgr = new JLabel("Avg\u00E5r");
-		lblAvgr.setFont(new Font("Tahoma", Font.BOLD, 16));
+		JLabel lblAvgr = new JLabel("Avg\u00E5ng");
+		lblAvgr.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblAvgr.setForeground(new Color(0, 0, 0));
 		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
 		add(lblAvgr, "cell 4 0,grow");
 
 		Line = new JTextArea();
+		Line.setRows(2);
 		Line.setBackground(Color.LIGHT_GRAY);
 		Line.setAutoscrolls(false);
 		Line.setFont(new Font("Tahoma", Font.BOLD, 14));
 		Line.setEditable(false);
 		add(Line, "flowx,cell 0 1,alignx center,growy");
-		Line.setRows(2);
 
 		Destination = new JTextArea();
 		Destination.setEditable(false);
@@ -93,17 +96,18 @@ public class BusPanel extends JPanel implements ModuleInterface{
 		Departure.setRows(2);
 		Departure.setForeground(new Color(0, 0, 0));
 		Departure.setAutoscrolls(false);
-		add(Departure, "cell 4 1,alignx left,growy");
+		add(Departure, "cell 4 1,alignx center,growy");
 
 		JLabel lblDestination = new JLabel("Destination");
-		lblDestination.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDestination.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblDestination.setForeground(new Color(0, 0, 0));
 		lblDestination.setVerticalAlignment(SwingConstants.TOP);
-		add(lblDestination, "cell 1 0,grow");
+		add(lblDestination, "cell 1 0 2 1,grow");
 	}
 
 	public class LineThread extends Thread{
 		private Parser parser;
+		private ArrayList<Station> searchStations = new ArrayList<Station>();
 
 		public LineThread(Parser parser) {
 			this.parser = parser;
@@ -111,9 +115,11 @@ public class BusPanel extends JPanel implements ModuleInterface{
 
 		public void run() {
 			Lines lines = Parser.getStationResults(new Station("80046"));
-
+			int results = 0;
 			// �r det inte b�ttre att anv�nda String.format %02d ist? 
 			for (Line l : lines.getLines()) {
+				results++;
+				
 				Calendar cal = Calendar.getInstance();
 
 				int H1 = cal.get(Calendar.HOUR);
@@ -136,6 +142,9 @@ public class BusPanel extends JPanel implements ModuleInterface{
 					Stop.append(l.getStopPoint() + "\n");
 					Departure.append(String.format("%02d", difference) +":" + String.format("%02d", difference1) + "\n");
 					System.out.println("En buss kommer om " + difference + " minuter");
+				}
+				if (results == 4) {
+					break;
 				}
 			}
 		}

@@ -144,8 +144,8 @@ public class Parser {
   	 * @return a Lines object containing information on lines leaving the specified station. 
   	 * */
 	public static Lines getStationResults(Station station){
-		boolean debug = true;
-		String searchURL = Constants.getStationResultURL(station);
+		boolean debug = false;
+		String searchURL = Constants.getStationResultURL(station)+"&NoOf=";
 		XMLParser parser = new XMLParser();
 		String lineNo;
 		Calendar depTime;
@@ -163,25 +163,25 @@ public class Parser {
 				Element e = (Element) nl.item(i);  //Get the XML element Line;
 				//Get the value for that tag "No"
 				lineNo = parser.getValue(e, "No"); 
-				if(debug){System.out.println("LineNo: "+ lineNo);} //For debugging.....
+				//if(debug){System.out.println("LineNo: "+ lineNo);} //For debugging.....
 				//Get the value for the tag "JourneyDateTime" //That is departuretime and date as String
 				String journeyDateTime = parser.getValue(e, "JourneyDateTime"); 
-				if(debug){System.out.println("JourneyDateTime: "+ journeyDateTime);}
+				//if(debug){System.out.println("JourneyDateTime: "+ journeyDateTime);}
 				//Convert the String to a Calendar object with a helper method written for this in the Helpers class
 				depTime = Helpers.parseCalendarString(journeyDateTime);
 				
 				destination= parser.getValue(e, "Towards");
-				if(debug){System.out.println("Towards: "+ destination);}
+				//if(debug){System.out.println("Towards: "+ destination);}
 				//Get the value for that tag "JourneyDateTime"
 				depTimeDeviation = parser.getValue(e, "DepTimeDeviation"); 
-				if(debug){System.out.println("DepTimeDeviation: "+ depTimeDeviation);}
+				//if(debug){System.out.println("DepTimeDeviation: "+ depTimeDeviation);}
 				
 				
 				//Continue with all other elements in the Line node.......
 				//....
 				
 				stopPoint = parser.getValue(e, "StopPoint"); 
-				if(debug){System.out.println("StopPoint: "+ stopPoint);}
+				//if(debug){System.out.println("StopPoint: "+ stopPoint);}
 				//Then we got one Line lets create a line object and add it to Lines
 				Line l = new Line();
 				l.setDestination(destination);
