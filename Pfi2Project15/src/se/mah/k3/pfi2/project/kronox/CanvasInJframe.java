@@ -8,7 +8,6 @@ package se.mah.k3.pfi2.project.kronox;
 
 
 
-import java.awt.BorderLayout;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
@@ -17,9 +16,15 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.awt.EventQueue;
 
+//for images
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 
 public class CanvasInJframe extends JFrame {
 
@@ -34,16 +39,20 @@ public class CanvasInJframe extends JFrame {
 		final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
 		final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 		final static int MIN_MODULE_HEIGHT = 80; // minimum module height
-
+		final static int fieldHeight = 80; //field height
+		//Image img = getToolkit().getImage("/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png");
+		
+		
 		// Fonter
 		public int fontSize = (int) Math.round(PT * screenRes / DPI);
-		public Font futuraBook = new Font("Futura LT Book", Font.PLAIN, fontSize);
-		public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);
+		public Font futuraBook = new Font("Futura LT Regular", Font.PLAIN, fontSize);
+		public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
 		public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,
 				fontSize);// typsnittet vi ska använda
-		Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 19);
-		Font headerFont = futuraBold.deriveFont(Font.PLAIN, 19);
+		Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 25);
+		Font headerFont = futuraBold.deriveFont(Font.PLAIN, 30);
 		// Färger
+		
 		Color whiteColor = Color.decode("#ffffff");
 		Color headerYellowTextColor = Color.decode("#E5DA9F");
 		Color headerFieldBackgroundColor = Color.decode("#3A3A39");
@@ -51,7 +60,7 @@ public class CanvasInJframe extends JFrame {
 		Color redEditText = Color.decode("#C52033");
 
 		// mått
-		int fieldHeight = 80;
+		
 
 	/**
 	 * Launch the application.
@@ -130,7 +139,7 @@ controlPanel.setBackground(Color.GRAY);
 			
 		//	g2.drawLine(10, 10, 200, 200);
 			// g2.setStroke();
-			g2.drawRect(0, 0, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 1000);
+			g2.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
 			
 			// rader
 
@@ -142,21 +151,21 @@ controlPanel.setBackground(Color.GRAY);
 			//Lägger till header-fältet m. text osv
 			g2.setFont(headerFont);
 			
-			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH - 100, fieldHeight);
+			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH, fieldHeight);
 			g2.setColor(headerFieldBackgroundColor);
 			g2.fill(headField);
 			g2.setColor(headerYellowTextColor);
 			g2.drawString("TID", 20, 50);
 			g2.drawString("KURS", 200, 50);
-			g2.drawString("V/LOKAL", 750, 50);
-			g2.drawString("STATUS", SCREEN_WIDTH-200, 50);
+			g2.drawString("V/LOKAL", 680, 50);
+			g2.drawString("STATUS", SCREEN_WIDTH-175, 50);
 			
 			//skapar en arraylist av fält
 			ArrayList<Shape> shapeList = new ArrayList<Shape>();
 			
 			int antalElement = 10;
 			for (int i = 0; i < antalElement; i++) {
-				shapeList.add(new Rectangle2D.Float(0, fieldHeight + (i * fieldHeight), SCREEN_WIDTH - 100, fieldHeight));
+				shapeList.add(new Rectangle2D.Float(0, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 			}
 
 			boolean colorTurn = false;
@@ -193,7 +202,8 @@ controlPanel.setBackground(Color.GRAY);
 				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
 				
 				//write out classroom
-				g2.drawString(tempValues[2], 750, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
+				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/2+10) + (fieldHeight*i) );
+		
 				colorTurn = !colorTurn;
 			}
 			//Color.decode("rgb(0,0,0,1)");
