@@ -6,6 +6,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -17,8 +18,6 @@ public class Parser {
 		storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
 
 	}
-
-	
 	
 	public static Posts getPostsfrom(String searchURL){
 		System.out.println("startpostparse");
@@ -97,10 +96,16 @@ public class Parser {
 						Node statusN = status.item(j);
 							if (statusN.getNodeType() == Node.ELEMENT_NODE) {
 							Element statusE = (Element) status.item(j);
-							System.out.print("-"+ statusE.getTagName() + "...#" + j+": ");
+							System.out.println("-"+ statusE.getTagName() + "...#" + j+": ");
 							NodeList statusC = statusE.getChildNodes();//NodeList resursNod = resursTradE.getChildNodes();
-							Node arRaderad=statusC.item(0);
-							Element arRaderadE=(Element) arRaderad;
+								for(int k = 0; k < statusC.getLength(); k++){
+									Node arRaderad=statusC.item(k);
+									Element arRaderadE=(Element) arRaderad;
+								  NamedNodeMap attributes = arRaderad.getAttributes();
+								  Node theAttribute = attributes.item(0);
+								  System.out.print("--"+arRaderad.getNodeName()+":");
+								  System.out.println(theAttribute.getNodeValue());
+								}
 							}
 					}
 		

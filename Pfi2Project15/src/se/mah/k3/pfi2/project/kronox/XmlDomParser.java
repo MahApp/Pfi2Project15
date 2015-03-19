@@ -24,8 +24,12 @@ public  class XmlDomParser {
 
 	
 	public static String getXmlFromUrl(String url) {
-	//	String textURL="http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C";
 	
+		
+		
+		
+		
+		
 		String xml = url;
 			System.out.println("getXml from kronox");
 		try {
@@ -35,7 +39,6 @@ public  class XmlDomParser {
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			HttpEntity httpEntity = httpResponse.getEntity();
 			xml = EntityUtils.toString(httpEntity);
-
 		} catch (Exception e) {
 			xml=null;
 		} 
@@ -70,20 +73,7 @@ public  class XmlDomParser {
 	}
 	
 	public static Post getPost(){
-		
-		
-		
-		
-		
 	
-		
-		
-		
-		
-		
-		
-		
-		
 		return null;	
 	}
 	
