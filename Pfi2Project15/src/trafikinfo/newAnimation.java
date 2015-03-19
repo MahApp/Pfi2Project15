@@ -22,9 +22,10 @@ import java.awt.FlowLayout;
 public class newAnimation extends JFrame {
 
 	JFrame jf = new JFrame();
+	private String s;
 	private JPanel contentPane;
     private JWindow window = new JWindow();
-    private JLabel label = new JLabel("Slide Text Swing, Slide Text Swing, ..........");
+    private JLabel label = new JLabel("Slide Text Swing, Slide Text Swing, ..........................................");
     private JPanel windowContents = new JPanel();
 
     public newAnimation() {
@@ -41,27 +42,29 @@ public class newAnimation extends JFrame {
         jf.setLocationRelativeTo(null);
         jf.setSize(500, 50);
         
-        final int desiredWidth = label.getWidth() + 250;
-        
+        final int desiredWidth = label.getWidth()*3 + 50;
+
         
         jf.getContentPane().setLayout(null);
         jf.setSize(label.getWidth() + 20, label.getHeight() + 50);
         jf.setVisible(true);
-        Timer timer = new Timer(20, new ActionListener() {
+        
+        
 
+        
+        Timer timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int newWidth = Math.min(label.getWidth() + 1, desiredWidth);
-                label.setSize(newWidth, label.getHeight());
-                windowContents.setLocation(newWidth - desiredWidth, 0);
-//                if (newWidth >= desiredWidth) {
-//                    ((Timer) e.getSource()).stop();
-//                    label.setForeground(Color.red);
-//                    mainKill();
-//                }
+            		int newWidth = Math.min(label.getWidth() + 1, desiredWidth);
+            		label.setSize(newWidth, label.getHeight());
+            		int theWidth = label.getWidth()*2;
+            		windowContents.setLocation(desiredWidth - theWidth, 0);
             }
         });
+        
+
         timer.start();
+        
     }
 
     public void mainKill() {
@@ -81,7 +84,6 @@ public class newAnimation extends JFrame {
 				try {
 					newAnimation frame = new newAnimation();
 					frame.setVisible(true);
-					//SlideTextSwing windowTest = new SlideTextSwing();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
