@@ -19,6 +19,8 @@ public class Journey {
 	private String arrTimeDeviation;
 	private Station startStation;
 	private Station endStation;
+	private String stopPoint;
+	private String towards;
 	
 	public Journey(Station startStation, Station endStation) {
 		this.startStation = startStation;
@@ -102,6 +104,19 @@ public class Journey {
 	}
 	public void setEndStation(Station endStation) {
 		this.endStation = endStation;
+	}
+	public String getStopPoint(){
+		return stopPoint;
+	}
+	public void setStopPoint(String stopPoint){
+		this.stopPoint = stopPoint;
+	}
+
+	public String getTowards() {
+		return towards;
+	}
+	public void setTowards(String towards) {
+		this.towards = towards;
 	}
 
 	

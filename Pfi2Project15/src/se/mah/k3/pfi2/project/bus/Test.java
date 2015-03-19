@@ -28,11 +28,26 @@ public class Test {
 			long difference1 = M1 - M;
 			System.out.println("Line " + l.getLine() + " "+ l.getTowards() +" departs: "+ difference/1000 + difference1  +"min");
 			
-			//System.out.println("Line " + l.getLine() + " "+ l.getTowards() +" departs: "+l.getDepTime().get(Calendar.HOUR_OF_DAY)+":"+l.getDepTime().get(Calendar.MINUTE)+
-					// " Läge: "+l.getStopPoint()+" and is "+l.getDepTimeDeviation()+" minutes late ");
+			
 		}
-		// TODO Auto-generated method stub
-
+		//Testar från ubåtshallen till centralen för att enbart visa läge B, minuter före avgång och antal avgångar
+				//Ubåtshallen = 80046,	 Malmö C = 80000,	Orkanen = 80003
+				String searchURL = Constants.getURL("80046","80000",4); //Ubåtshallen - Malmö C, begränsar antalet avgångar med 4 
+				System.out.println(searchURL);							
+				Journeys journeys = Parser.getJourneys(searchURL); 
+				for (Journey journey : journeys.getJourneys()) {
+					
+					int HJ= journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
+					int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
+					String time=(String.format("%02d",HJ)+":"+(String.format("%02d",MJ)));
+					
+					String D = journey.getTimeToDeparture()+journey.getDepTimeDeviation(); //adderar försenade minuter
+					
+					System.out.print("Line "+journey.getLineOnFirstJourney()+" "+
+									journey.getTowards()+
+									" Läge:"+journey.getStopPoint()+
+									" Departs: "+D+" min\n");
+				} 
 	}
 
 }
