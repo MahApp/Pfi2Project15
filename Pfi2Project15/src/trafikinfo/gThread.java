@@ -4,6 +4,9 @@ package trafikinfo;
 public class gThread extends Thread {
 	private TrafikinfoGUI gui;
 	private boolean running = true;
+	private String effect;
+	private String details;
+	private String text;
 	
 	private int count = 0;
 	
@@ -19,16 +22,17 @@ public class gThread extends Thread {
 
 			Journeys journeys = Parser.getJourneys(searchURL);
 			for (Journey journey : journeys.getJourneys()) {
-				String effect = journey.getDepDeviationAffect();
-				String details = journey.getDetails();
-				String text = journey.getText();
+				effect = journey.getDepDeviationAffect();
+				details = journey.getDetails();
+				text = journey.getText();
 
-        		new animation().display(effect+", "+text+", "+details);
+				 ScrollText st = new ScrollText(effect+", "+text+", "+details);
+				 gui.add(st);
 			}
 
 			
 			try {
-				Thread.sleep(3);
+				Thread.sleep(20000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

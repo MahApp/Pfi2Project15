@@ -18,7 +18,7 @@ import java.awt.Font;
 public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 
 	private JPanel contentPane;
-
+	TrafikinfoGUI g = this;
 
 	/**
 	 * Launch the application.
@@ -64,6 +64,9 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		txtrString.setBounds(0, 20, 1080, 40);
 		panelString.add(txtrString);
 		/* ********************IF WE USE A SCROLLING STRING****************************** */
+		
+		Thread tx = new gThread(g);
+		tx.start();
 		
 		/* ********************IF WE USE A BLOCK***************************************** */
 		// Placement on screen to be edited depending on what we decide in priority discussions
