@@ -18,7 +18,8 @@ public class Post {
 	 * */
 	private float x, y, vx, vy, ax, ay; // for animation
 	private Cell[] cell= new Cell[5]; // diffrent colunm in canvas
-	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment;
+	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur;
+
 	private boolean raderad,temp,dubbelBokad,extern,onskad;
 	
 
@@ -166,6 +167,13 @@ public class Post {
 	public void setMoment(String moment) {
 		this.moment = moment;
 	}
+	public String getResursSignatur() {
+		return resursSignatur;
+	}
+
+	public void setResursSignatur(String setResursSignatur) {
+		this.resursSignatur = resursSignatur;
+	}
 
 	public boolean isRaderad() {
 		return raderad;
@@ -206,6 +214,7 @@ public class Post {
 	public void setOnskad(boolean onskad) {
 		this.onskad = onskad;
 	}
+
 
 
 }

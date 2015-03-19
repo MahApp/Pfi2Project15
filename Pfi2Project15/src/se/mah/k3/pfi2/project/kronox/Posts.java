@@ -26,7 +26,7 @@ public class Posts  {
 	 public Post getPost(int _index){
 		return posts.get(_index);
 	 }
-	 public ArrayList<Post> getPosts(){
+	 public ArrayList<Post> getPostArray(){
 		return posts;
 	 }
 	 
