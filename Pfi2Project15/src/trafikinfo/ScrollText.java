@@ -65,7 +65,7 @@ public class ScrollText extends JComponent {
     Graphics2D scratchG2 = scratchImage.createGraphics();
     scratchG2.setRenderingHints(renderHints);
 
-    Font font = new Font("Futura Book", Font.BOLD, 50);
+    Font font = new Font("Futura Book", Font.BOLD, 38);
 
     FontRenderContext frc = scratchG2.getFontRenderContext();
     TextLayout tl = new TextLayout(text, font, frc);
@@ -109,7 +109,7 @@ public class ScrollText extends JComponent {
     g.drawImage(image, imageSize.width - localOffset, 0, this);
 
     // draw outline
-    g.setColor(Color.black);
+    g.setColor(new Color(193,0,43));
     g.drawRect(0, 0, imageSize.width - 1, imageSize.height - 1);
   }
 

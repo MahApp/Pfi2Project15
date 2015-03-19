@@ -28,7 +28,8 @@ public class gThread extends Thread {
 
 				 //ScrollText st = new ScrollText(effect+", "+text+", "+details);
 				ScrollText st = new ScrollText("Buss ersätter tågen mellan Malmö C och Lund C pga ett löv på spåret.");
-				 gui.add(st);
+				st.setBounds(0, 6, 1080, 80);
+				gui.add(st);
 			}
 
 			

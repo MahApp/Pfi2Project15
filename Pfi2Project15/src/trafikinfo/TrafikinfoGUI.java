@@ -50,6 +50,7 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.setBackground(new Color(193,0,43));
 		
 		
 		/* ********************IF WE USE A SCROLLING STRING****************************** */
@@ -64,14 +65,14 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setDisplayedMnemonicIndex(0);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel.setFont(new Font("Futura Std Heavy", Font.BOLD, 30));
+		lblNewLabel.setFont(new Font("Futura Std Heavy", Font.BOLD, 23));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(10, 0, 290, 46);
+		lblNewLabel.setBounds(10, -5, 290, 46);
 		add(lblNewLabel);
 		
 		JLabel left310 = new JLabel("New label");
 		left310.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/left_part_310x80.PNG")));
-		left310.setBounds(0, 0, 310, 80);
+		left310.setBounds(-60, 0, 310, 80);
 		add(left310);
 		
 		//JLabel middle580 = new JLabel("New label");
@@ -88,7 +89,6 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		Thread tx = new gThread(g);
 		tx.start();
 		
-
 		
 	}
 	
