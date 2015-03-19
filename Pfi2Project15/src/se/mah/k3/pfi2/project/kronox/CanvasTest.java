@@ -148,11 +148,7 @@ public class CanvasTest {
 				valueList.add(fieldValues);
 			
 			}
-			String tidString = "08.15";
-			String kursString = "Interaktionsdesign A";
-			String salString = "C310";
-			
-			
+
 			for (int i = 0; i < antalElement; i++) {
 				Shape tempShape = shapeList.get(i);
 				String[] tempValues = (String[]) valueList.get(i);
