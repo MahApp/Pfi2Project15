@@ -32,49 +32,58 @@ public class ScannerHalsaSamhall {
 			Scanner sc = new Scanner(freda49.openStream());
 			while (sc.hasNext()) {
 				String fullText = sc.nextLine();
-//				if (fullText.contains("Vecka")){
-//					int startRead = fullText.indexOf("NDAG");
-//					int endRead = fullText.indexOf(">TISDAG<");
-//					String resultat = fullText.substring(startRead,  endRead);
-//					System.out.println("READING HALSA SAMHALL-------" + '\n' + resultat);
-//				}
 				
-//				String dagens = sc.nextLine();
-//				if (dagens.contains("Husman")){
-////					System.out.println(dagens);
-//					int dagStartRead = dagens.indexOf("NDAG");
-//					int dagEndRead = dagens.indexOf("</p>");
-//					String dagensResultat = dagens.substring(dagStartRead, dagEndRead);
-//					System.out.println("Husman : " + dagensResultat);
-//				}
+//				int menuStart = fullText.indexOf("LUNCHMENY");   //från "lunchmeny"
+//				int menuEnd = fullText.indexOf("L=inneh");       //till "L=innehåller laktos"
+//				String fullMenu = fullText.substring(menuStart, menuEnd);
 //				
-//				String halsa = sc.nextLine();
-//				if (halsa.contains("lsa:")){
-//					int halsaStartRead = halsa.indexOf("lsa:");
-//					int halsaEndRead = halsa.indexOf("</p>");
-//					String halsaResultat = halsa.substring(halsaStartRead,  halsaEndRead);
-//					System.out.println("Halsa : " + halsaResultat);
-//				}
+//				int mondayStart = fullMenu.indexOf("ndag:");
+//				int mondayEnd = fullMenu.indexOf("TISDAG");
+//				String monday = fullMenu.substring(mondayStart, mondayEnd);
 				
-				String veg = fullText;
-				if (veg.contains("Vegetarisk:")){ 
-					int vegStartRead = veg.indexOf("Vegetarisk");
-					int vegEndRead = veg.indexOf(">TISDAG<");
+				String dagens = fullText;
+				if (dagens.contains("Husman")){	
+					int dagensStartRead = dagens.indexOf("Husman");
+					int dagensEndRead = dagens.indexOf("lsa:");
+					String dagensResultat = dagens.substring(dagensStartRead, dagensEndRead);
 					
-					String vegResultat = veg.substring(vegStartRead,  vegEndRead);
-//					int removeChars = vegResultat.length() - 120;
-//					String cleanResultat = vegResultat.char - removeChars;
+					int cleanStart = dagensResultat.indexOf("Husman:");
+					int cleanEnd = dagensResultat.indexOf("</span>");
+					String cleanResultat = dagensResultat.substring(cleanStart, cleanEnd);
 					
-					int removeStart = vegResultat.indexOf("Vegetarisk");
-					int removeEnd = vegResultat.indexOf("</span>");
-					String cleanResultat = vegResultat.substring(removeStart, removeEnd);
 					
 					System.out.println(cleanResultat);
 				}
 				
+				String halsa = fullText;
+				if (halsa.contains("lsa:")){
+					int halsaStartRead = halsa.indexOf("lsa:");
+					int halsaEndRead = halsa.indexOf("Vegetarisk");
+					String halsaResultat = halsa.substring(halsaStartRead,  halsaEndRead);
+					
+					int cleanStart = halsaResultat.indexOf("lsa:");
+					int cleanEnd = halsaResultat.indexOf("</span>");
+					String cleanResultat = halsaResultat.substring(cleanStart, cleanEnd);
+							
+							
+					System.out.println("Ha" + cleanResultat);
+				}
 				
-//				String string = s.nextLine();
-//				System.out.println(string);
+				String veg = fullText;
+				if (veg.contains("Vegetarisk:")){ 
+					int vegStartRead = veg.indexOf("Vegetarisk");    
+					int vegEndRead = veg.indexOf(">TISDAG<");
+					String vegResultat = veg.substring(vegStartRead,  vegEndRead); //tar in all text inom taggarna "Vegetarisk" och 
+																				   //">TISDAG<"
+					
+					int cleanStart = vegResultat.indexOf("Vegetarisk");
+					int cleanEnd = vegResultat.indexOf("</span>");
+					String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text från början av vegResultat och 
+																					    // </span> inom vegresultat
+					
+					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
+				}
+				
 			}
 			sc.close();
 		}

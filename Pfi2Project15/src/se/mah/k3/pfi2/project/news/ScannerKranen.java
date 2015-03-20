@@ -24,32 +24,18 @@ public class ScannerKranen {
 		try {
 			URL hamnaratt = new URL("http://www.hamnaratt.com/veckans-lunch");
 			Scanner s = new Scanner(hamnaratt.openStream());
-			while (s.hasNext()){
-				String string = s.nextLine();
-//				System.out.println(s.findInLine("Kalendern")); // Kanske kan användas
-				if (string.contains("Veckans Lunch v")){
-					int i = string.indexOf("Veckans");
-					int i2 = string.indexOf("</h1>");
-					String resultat = string.substring(i, i2);
-					System.out.println(resultat);
-				}
-				
-//				String monday = s.nextLine();
-//				if (monday.contains("dag")){
-//					System.out.println("Måndag");
-//				}
-				
+			while (s.hasNext()){				
 				String dagens = s.nextLine();
 				if (dagens.contains("Husman")){
-					int d = dagens.indexOf("Husman");
-					int d2 = dagens.indexOf("stomp");
+					int d = dagens.indexOf("</span>");
+					int d2 = dagens.indexOf("</strong>");
 					String dagensResultat = dagens.substring(d, d2);
 					System.out.println(dagensResultat);
 				}
 				
 				String veg = s.nextLine();
-				if (veg.contains("VeckoVeg")){ // kommentar
-					int v = veg.indexOf("VeckoVeg");
+				if (veg.contains("VeckoVeg")){
+					int v = veg.indexOf("<strong>");
 					int v2 = veg.indexOf("</strong>");
 					String vegResultat = veg.substring(v,  v2);
 					System.out.println(vegResultat);
@@ -57,12 +43,11 @@ public class ScannerKranen {
 				
 				String kapet = s.nextLine();
 				if (kapet.contains("Kapet")){
-					int k = kapet.indexOf("Kapet");
+					int k = kapet.indexOf("<strong>");
 					int k2 = kapet.indexOf("</strong>");
 					String kapetResultat = kapet.substring(k,  k2);
 					System.out.println(kapetResultat);
-				}
-				
+				}				
 			}
 			s.close();
 		} catch (Exception e) {
@@ -165,10 +150,11 @@ public class ScannerKranen {
 				String string = t.nextLine();
 				if (string.contains("Husman")){
 			//		System.out.println(string);
-					int i = string.indexOf("Husman");
+					int i = string.indexOf("<strong>");
 					int i2 = string.indexOf("</strong>");
 					String resultat = string.substring(i,  i2);
 					System.out.println(resultat);
+			
 				}
 			}
 			t.close();
@@ -185,7 +171,7 @@ public class ScannerKranen {
 				String string = t.nextLine();
 				if (string.contains("VeckoVeg")){
 				//	System.out.println(string);
-					int i = string.indexOf("VeckoVeg");
+					int i = string.indexOf("<strong>");
 					int i2 = string.indexOf("</strong>");
 					String resultat = string.substring(i,  i2);
 					System.out.println(resultat);
@@ -205,7 +191,7 @@ public class ScannerKranen {
 				String string = t.nextLine();
 				if (string.contains("Kapet")){
 				//	System.out.println(string);
-					int i = string.indexOf("Kapet");
+					int i = string.indexOf("<strong>");
 					int i2 = string.indexOf("</strong>");
 					String resultat = string.substring(i,  i2);
 					System.out.println(resultat);
