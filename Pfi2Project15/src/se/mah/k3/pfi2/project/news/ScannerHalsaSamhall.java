@@ -33,8 +33,8 @@ public class ScannerHalsaSamhall {
 			while (sc.hasNext()) {
 				String fullText = sc.nextLine();
 				
-//				int menuStart = fullText.indexOf("LUNCHMENY");   //från "lunchmeny"
-//				int menuEnd = fullText.indexOf("L=inneh");       //till "L=innehåller laktos"
+//				int menuStart = fullText.indexOf("LUNCHMENY");   //frï¿½n "lunchmeny"
+//				int menuEnd = fullText.indexOf("L=inneh");       //till "L=innehï¿½ller laktos"
 //				String fullMenu = fullText.substring(menuStart, menuEnd);
 //				
 //				int mondayStart = fullMenu.indexOf("ndag:");
@@ -53,6 +53,7 @@ public class ScannerHalsaSamhall {
 					
 					
 					System.out.println(cleanResultat);
+					
 				}
 				
 				String halsa = fullText;
@@ -78,7 +79,7 @@ public class ScannerHalsaSamhall {
 					
 					int cleanStart = vegResultat.indexOf("Vegetarisk");
 					int cleanEnd = vegResultat.indexOf("</span>");
-					String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text från början av vegResultat och 
+					String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text frï¿½n bï¿½rjan av vegResultat och 
 																					    // </span> inom vegresultat
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
