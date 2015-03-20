@@ -8,22 +8,24 @@ public class ScannerUbatshallen {
 	public static void main(String[] args) {
 		ScannerUbatshallen st = new ScannerUbatshallen();
 		st.readAndWriteMonday();
+		System.out.println("blablabla");
 	}
 
 	public void readAndWriteMonday(){
 		try {
 			URL whiteShark = new URL("http://www.whiteshark.gastrogate.com/page/3");
 			Scanner s = new Scanner(whiteShark.openStream());
-			for (int i = 0; i<5; i++){
+			
 			while (s.hasNext()) {
 				String string = s.nextLine();
 				
 				
 				String mon = s.nextLine();
 				if (mon.contains("lunch_menu")){ 
-					int monStartRead = mon.indexOf("Måndag 16 mars");
+					int monStartRead = mon.indexOf("ndag 16 mars");
 					int monEndRead = mon.indexOf("Tisdag 17 mars");
-					
+					String monResult = mon.substring(monStartRead, monEndRead);
+					System.out.println(monResult);
 					
 					
 					//String monResultat = mon.substring(monStartRead,  monEndRead);
@@ -69,10 +71,10 @@ public class ScannerUbatshallen {
 				
 				}
 					
-				System.out.println(string);
+				//System.out.println(string);
 			}
 			s.close();
-		}
+		
 		}
 		catch (Exception e) {
 			e.printStackTrace();
