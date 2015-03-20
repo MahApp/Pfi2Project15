@@ -3,20 +3,14 @@ package se.mah.k3.pfi2.project.bus;
 import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
-import se.mah.k3lara.skaneAPI.control.Constants;
-import se.mah.k3lara.skaneAPI.model.Journey;
-import se.mah.k3lara.skaneAPI.model.Journeys;
-import se.mah.k3lara.skaneAPI.model.Station;
-import se.mah.k3lara.skaneAPI.xmlparser.Parser;
+
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.JTextArea;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
+<<<<<<< HEAD
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
@@ -38,11 +32,16 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	private int results = 1;
 	public int priority = getExpectedPriority();
 	private int busCount = 0;
+=======
+public class BusPanel extends JPanel implements ModuleInterface{
+	private JTextField textField;
+>>>>>>> branch 'master' of https://github.com/MahApp/Pfi2Project15.git
 
 	/**
 	 * Create the panel.
 	 */
 	public BusPanel() {
+<<<<<<< HEAD
 		Thread lineThread = new BusPanel.LineThread(parser);
 
 		setBackground(Color.LIGHT_GRAY);
@@ -192,29 +191,46 @@ public class BusPanel extends JPanel implements ModuleInterface {
 			}
 			start();
 		}
+=======
+		setBackground(Color.PINK);
+		setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel = new JLabel("Bus");
+		add(lblNewLabel, BorderLayout.NORTH);
+		
+>>>>>>> branch 'master' of https://github.com/MahApp/Pfi2Project15.git
 	}
 
 	@Override
 	public int getExpectedPriority() {
-		return 1;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int getPreferdNumberOfRows() {
-		return 4;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
-		return 1;
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
 
 	@Override
 	public boolean showNumberOfRows(int start, int end) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void repaintPanel() {
+		// TODO Auto-generated method stub
+		
 	}
+
 }
+
