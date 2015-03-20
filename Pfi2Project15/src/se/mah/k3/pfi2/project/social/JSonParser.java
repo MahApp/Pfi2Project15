@@ -16,10 +16,11 @@ public class JSonParser {
 	private final String fooPt1 = "aHR0cHM6Ly9hcGkuaW5zdGFncmFtLmNvbS92MS91c2Vycy9zZWFyY2g/cT0=";
 	private final String fooPt2 = "JmFjY2Vzc190b2tlbj0xNzUyOTE4MzAyLjE1NDFmYzYuZjY2NjM2ODI0YTczNDQ0YmE2NTgwYjU1Y2U2ZjkyYzcmY291bnQ9MQ==";
 
-	private String imgUrl;
-	private String userName;
-	private String imgText;
-	private String imgUserUrl;
+	public String imgUrl;
+	public String userName;
+	public String imgText;
+	public String imgUserUrl;
+	public String timePosted;
 
 	public void parseJSon(String json) {
 		JSONObject obj;
@@ -77,7 +78,8 @@ public class JSonParser {
 			}
 
 			System.out.println("****** Slutgiltigt Tidsformat ********");
-			System.out.println(getPostTime(longTime));// (3) Skickar Long
+			timePosted = getPostTime(longTime);
+			System.out.println(timePosted);// (3) Skickar Long
 			// unixTime till metoden
 			// this.getPostTime().
 			// Och tar emot

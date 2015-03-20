@@ -33,9 +33,6 @@ public class ConsoleTest {
 			}else{
 				json.parseJSon(data);
 			}
-			
-			
-			
 		}
 		catch(Exception  e){
 			//e.printStackTrace();
