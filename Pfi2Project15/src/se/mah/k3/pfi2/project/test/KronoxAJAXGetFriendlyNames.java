@@ -11,13 +11,23 @@ import java.util.ArrayList;
 //import org.json.JSONObject;
 //import android.text.Html;
 
-public class KronoxAJAXGetFriendlyNames {
 
+
+public class KronoxAJAXGetFriendlyNames {
+	String testUrl= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?"+"typ=signatur" + "&term=" + "K3lara";
+	String testUrlSammansatt= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=signatur&term=K3lara";
+	String testUrlSammansattLokal= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=lokal";
+	String testUrlSammansattHjalpmedel= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=hjalpmedel";
 	private static final String TYPE_COURSE = "typ=kurs";
 	@SuppressWarnings("unused")
 	private static final String TYPE_PROGRAM = "typ=program";
 	@SuppressWarnings("unused")
     private static final String TYPE_TEACHER_ID = "typ=signatur";
+	@SuppressWarnings("unused")
+	private static final String TYPE_LOCATION_ID = "typ=lokal";
+	@SuppressWarnings("unused")
+	private static final String TYPE_SUPPORT = "typ=hjalpmedel";
+	
 	/**
 	 * Generate the URL to KronoX' AJAX with the specified search options.
 	 * 
@@ -30,6 +40,7 @@ public class KronoxAJAXGetFriendlyNames {
 	private static String generateURL(String type, String search) {
 		String url = "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?";
 		url += type + "&term=" + search;
+
 		return url;
 	}
 	/**
@@ -54,6 +65,8 @@ public class KronoxAJAXGetFriendlyNames {
 		return r;
 	}
 	
+
+	
 	public static String getTeacherName(String search) throws IOException {
 		String data = getData(TYPE_TEACHER_ID, search);
 		//Here parse the JSON to extract the name
@@ -71,6 +84,15 @@ public class KronoxAJAXGetFriendlyNames {
 		//Here parse the JSON to extract the name
 		return data;
 	}
-	
+	public static String getLocationName(String search) throws IOException {
+		String data = getData(TYPE_LOCATION_ID, search);
+		//Here parse the JSON to extract the name
+		return data;
+	}
+	public static String getSupport(String search) throws IOException {
+		String data = getData(TYPE_SUPPORT, search);
+		//Here parse the JSON to extract the name
+		return data;
+	}
 	
 }

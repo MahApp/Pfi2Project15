@@ -7,7 +7,7 @@ public interface ModuleInterface {
 	 * 0 = don't show.
 	 * 1 = Crucial
 	 * 5 = If room
-	 * 9 = Entertaiment module
+	 * 9 = Entertainment module
 	 * 10 = Screensaver module when the screens are idle
 	 */
 	public int getExpectedPriority();
@@ -22,7 +22,7 @@ public interface ModuleInterface {
 	/** In an multiscreen environment one part can be shown on one screen and the other on next.
 	 * @param start the first rownumber to show (starts from zero)
 	 * @param end the last rownumber to show (starts from zero)
-	 * @return booblen rows if the module is split on two screens t
+	 * @return rows if the module is split on two screens returns false if this is not possible
 	 */
 	public boolean showNumberOfRows(int start, int end);
 	public void repaintPanel();
