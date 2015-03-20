@@ -140,6 +140,7 @@ public class CanvasInJframe extends JFrame {
 			System.out.println("paint!!!!");
 			Graphics2D g2;
 			g2 = (Graphics2D) g;
+			//mjuka upp texten
 			RenderingHints rh = new RenderingHints(
 					RenderingHints.KEY_TEXT_ANTIALIASING,
 					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
@@ -192,6 +193,7 @@ public class CanvasInJframe extends JFrame {
 				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
 				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));
 				g2.drawImage(img, 940, 90, this);
+				g2.drawLine(710, 120, 775, 120);
 		//		colorTurn = !colorTurn;
 			}
 			// Color.decode("rgb(0,0,0,1)");
