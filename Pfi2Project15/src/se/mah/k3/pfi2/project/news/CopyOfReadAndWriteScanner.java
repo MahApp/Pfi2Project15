@@ -15,28 +15,28 @@ public class CopyOfReadAndWriteScanner {
 		try {
 			URL mah = new URL("http://www.hamnaratt.com/veckans-lunch");
 			Scanner s = new Scanner(mah.openStream());
-			while (s.hasNext()){  //Här testar vi om det finns fler rader att läsa
-				String string = s.nextLine(); //Här läser vi nästa rad
-				//System.out.println(string);  //Detta är vad vi har läst
-				//System.out.println(s.findInLine("Kalendern")); Så här kan man kanske göra 
-				//System.out.println(s.nextLine()); Denna är obra eftersom den läser en ny rad
-				//s.close(); Inte heller bra för den stänger läsningen
+			while (s.hasNext()){  //HÃ¤r testar vi om det finns fler rader att lÃ¤sa
+				String string = s.nextLine(); //HÃ¤r lÃ¤ser vi nÃ¤sta rad
+				//System.out.println(string);  //Detta Ã¤r vad vi har lÃ¤st
+				//System.out.println(s.findInLine("Kalendern")); SÃ¥ hÃ¤r kan man kanske gÃ¶ra 
+				//System.out.println(s.nextLine()); Denna Ã¤r obra eftersom den lÃ¤ser en ny rad
+				//s.close(); Inte heller bra fÃ¶r den stÃ¤nger lÃ¤sningen
 				
 				
 				
-				//OM jag letar efter när veckans lunch serveras så vet jag att det är två rader efter den rad där orden Veckans lunch står.....
-				//Detta är inte rocket science mer ett testande samt att använda en massa String-metoder.
-				//Det bygger på att sidorna ser exakt lika dana ut varje dag.
-				//Det får man testa men man kan ofta kompensera för det.
+				//OM jag letar efter nÃ¤r veckans lunch serveras sÃ¥ vet jag att det Ã¤r tvÃ¥ rader efter den rad dÃ¤r orden Veckans lunch stÃ¥r.....
+				//Detta Ã¤r inte rocket science mer ett testande samt att anvÃ¤nda en massa String-metoder.
+				//Det bygger pÃ¥ att sidorna ser exakt lika dana ut varje dag.
+				//Det fÃ¥r man testa men man kan ofta kompensera fÃ¶r det.
 				if (string.contains("Veckans Lunch v")){
 					System.out.println(string);  //HA HA vi hittade den
-					String  s2 = s.nextLine();  //Läs nästa rad där finns bara en <h2>tagg skippa denna
-					s2 = s.nextLine();  //Men här är det intresssanta
-					System.out.println(s2);  //OK men det är skräpigt lät oss städa det...
-					int i = s2.indexOf("Serveras");   ///Här blir i lika med startplatsen 
-					int i2 = s2.indexOf("</span>");  //Här är texten slut
+					String  s2 = s.nextLine();  //LÃ¤s nÃ¤sta rad dÃ¤r finns bara en <h2>tagg skippa denna
+					s2 = s.nextLine();  //Men hÃ¤r Ã¤r det intresssanta
+					System.out.println(s2);  //OK men det Ã¤r skrÃ¤pigt lÃ¥t oss stÃ¤da det...
+					int i = s2.indexOf("Serveras");   ///HÃ¤r blir i lika med startplatsen 
+					int i2 = s2.indexOf("</span>");  //HÃ¤r Ã¤r texten slut
 					String resultat = s2.substring(i, i2);  //Klipp ut den biten jag hittat......
-					System.out.println("Så här är det: "+resultat);
+					System.out.println("SÃ¥ hÃ¤r Ã¤r det: "+resultat);
 				}
 				
 			}
