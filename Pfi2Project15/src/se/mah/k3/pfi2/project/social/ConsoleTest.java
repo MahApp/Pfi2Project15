@@ -1,34 +1,44 @@
 package se.mah.k3.pfi2.project.social;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import org.apache.commons.codec.binary.Base64;
 
 public class ConsoleTest {
 	
 	
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		
+		
 		try{
-			Class.forName("se.mah.k3.pfi2.project.social.Token");
+			// Superotydliga variabelnamn med vilje.
+			String fooIn = "aHR0cHM6Ly9hcGkuaW5zdGFncmFtLmNvbS92MS91c2Vycy8xNzUyOTE4MzAyL21lZGlhL3JlY2VudC8/YWNjZXNzX3Rva2VuPTE3NTI5MTgzMDIuMTU0MWZjNi5mNjY2MzY4MjRhNzM0NDRiYTY1ODBiNTVjZTZmOTJjNw==";
 			
-			final String instaURL = "https://api.instagram.com/v1/users/1752918302/media/recent/?access_token=" + Token.token + "&count=1";
+			byte[] fooOut = Base64.decodeBase64( fooIn );
+			
+			String fooFinal = new String(fooOut); //, "UTF-8"
+			
+			final String instaURL = fooFinal + "&count=1";
 			
 			
 			final JSonParser json = new JSonParser();
 			String data = json.fetchData(instaURL);
-			json.parseJSon(data);
+			
+			
+			String fooErrorCode = " \"code\":400";
+			if(data == ""){
+				System.out.println("No Instagram data :(");
+			}else if(data.toLowerCase().contains(fooErrorCode.toLowerCase())){
+				System.out.println("Couldn't fetch the right data. Error: \n" + fooErrorCode);
+			}else{
+				json.parseJSon(data);
+			}
+			
+			
 			
 		}
-		catch(ClassNotFoundException  e){
+		catch(Exception  e){
 			//e.printStackTrace();
-			JFrame jf2 = new JFrame();
-			jf2.setSize(401, 401);
-			jf2.setDefaultCloseOperation(jf2.EXIT_ON_CLOSE);
-			JOptionPane.showMessageDialog(jf2, "Token.java not found. Contact developers.", "ERROR", JOptionPane.ERROR_MESSAGE);
-			
-			System.out.println("Token.java not found. Contact developers.");
-			
 		}
 
 		

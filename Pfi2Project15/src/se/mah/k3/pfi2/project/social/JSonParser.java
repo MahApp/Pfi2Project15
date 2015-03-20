@@ -4,14 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.cert.Certificate;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLPeerUnverifiedException;
-
 import org.json.*;
 
 public class JSonParser {
@@ -22,9 +15,6 @@ public class JSonParser {
 		JSONObject obj;
 		try {
 			obj = new JSONObject(json);
-
-			// String pageName =
-			// obj.getJSONObject("pageInfo").getString("pageName");
 
 			// Bild (640x640)
 			JSONArray data = obj.getJSONArray("data");
@@ -54,7 +44,7 @@ public class JSonParser {
 			try {
 				longTime = Long.parseLong(postTime);
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 
 			System.out.println("****** Slutgiltigt Tidsformat ********");
@@ -68,7 +58,7 @@ public class JSonParser {
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -84,58 +74,30 @@ public class JSonParser {
 	public String fetchData(String https_url) {
 
 		URL url;
+		
 		try {
-
 			url = new URL(https_url);
-			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-
-			// dumpl all cert info
-			// print_https_cert(con);
-
-			// dump all the content
+			HttpsURLConnection con;
+			con = (HttpsURLConnection) url.openConnection();
+			
+			
 			file = print_content(con);
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			//e1.printStackTrace();
+			System.out.println("MalformedURLException");
 		} catch (IOException e) {
-			e.printStackTrace();
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("IOException");
 		}
+		
+		
 		return this.file;
 
 	}
 
-	private void print_https_cert(HttpsURLConnection con) {
-
-		if (con != null) {
-
-			try {
-
-				System.out.println("Response Code : " + con.getResponseCode());
-				System.out.println("Cipher Suite : " + con.getCipherSuite());
-				System.out.println("\n");
-
-				Certificate[] certs = con.getServerCertificates();
-				for (Certificate cert : certs) {
-					System.out.println("Cert Type : " + cert.getType());
-					System.out.println("Cert Hash Code : " + cert.hashCode());
-					System.out.println("Cert Public Key Algorithm : "
-							+ cert.getPublicKey().getAlgorithm());
-					System.out.println("Cert Public Key Format : "
-							+ cert.getPublicKey().getFormat());
-					System.out.println("\n");
-				}
-
-			} catch (SSLPeerUnverifiedException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-
-	@SuppressWarnings("unused")
 	private String print_content(HttpsURLConnection con) {
 		String file = "";
 		if (con != null) {
@@ -154,12 +116,12 @@ public class JSonParser {
 				
 				
 				//System.out.println(file);
-				if (file == null){
+				if (file == ""){
 					System.out.println("No data recieved, please check your connection to Instagram API!");
 				}
 
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 
 		}
