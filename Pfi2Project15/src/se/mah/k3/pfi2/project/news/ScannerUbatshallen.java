@@ -19,11 +19,11 @@ public class ScannerUbatshallen {
 			while (s.hasNext()) {
 				String string = s.nextLine();
 				
-				
-				String mon = s.nextLine();
+				System.out.println(string);
+				String mon = string;
 				if (mon.contains("lunch_menu")){ 
-					int monStartRead = mon.indexOf("ndag 16 mars");
-					int monEndRead = mon.indexOf("Tisdag 17 mars");
+					int monStartRead = mon.indexOf("Lunchen");
+					int monEndRead = mon.indexOf("serverat i");
 					String monResult = mon.substring(monStartRead, monEndRead);
 					System.out.println(monResult);
 					
