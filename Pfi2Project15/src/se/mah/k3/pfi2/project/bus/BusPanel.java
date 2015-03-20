@@ -3,18 +3,32 @@ package se.mah.k3.pfi2.project.bus;
 import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
-
+import se.mah.k3lara.skaneAPI.control.Constants;
+import se.mah.k3lara.skaneAPI.model.Journey;
+import se.mah.k3lara.skaneAPI.model.Journeys;
+import se.mah.k3lara.skaneAPI.model.Station;
+import se.mah.k3lara.skaneAPI.xmlparser.Parser;
 
 import java.awt.Color;
-import java.awt.BorderLayout;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import java.util.ArrayList;
+import java.util.Calendar;
 
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+
+import net.miginfocom.swing.MigLayout;
+
+<<<<<<< HEAD
 <<<<<<< HEAD
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
 
+=======
+>>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 public class BusPanel extends JPanel implements ModuleInterface {
 	/**
 	 * 
@@ -32,16 +46,22 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	private int results = 1;
 	public int priority = getExpectedPriority();
 	private int busCount = 0;
+<<<<<<< HEAD
 =======
 public class BusPanel extends JPanel implements ModuleInterface{
 	private JTextField textField;
 >>>>>>> branch 'master' of https://github.com/MahApp/Pfi2Project15.git
+=======
+>>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 
 	/**
 	 * Create the panel.
 	 */
 	public BusPanel() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 		Thread lineThread = new BusPanel.LineThread(parser);
 
 		setBackground(Color.LIGHT_GRAY);
@@ -191,6 +211,7 @@ public class BusPanel extends JPanel implements ModuleInterface{
 			}
 			start();
 		}
+<<<<<<< HEAD
 =======
 		setBackground(Color.PINK);
 		setLayout(new BorderLayout(0, 0));
@@ -199,38 +220,31 @@ public class BusPanel extends JPanel implements ModuleInterface{
 		add(lblNewLabel, BorderLayout.NORTH);
 		
 >>>>>>> branch 'master' of https://github.com/MahApp/Pfi2Project15.git
+=======
+>>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 	}
 
 	@Override
 	public int getExpectedPriority() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public int getPreferdNumberOfRows() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 4;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
-
 
 	@Override
 	public boolean showNumberOfRows(int start, int end) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void repaintPanel() {
-		// TODO Auto-generated method stub
-		
 	}
-
 }
-
