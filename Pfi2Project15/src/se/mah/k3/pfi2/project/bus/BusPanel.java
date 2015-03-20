@@ -34,13 +34,14 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	public JTextArea Departure;
 	public JTextArea Destination;
 	private int noOfUpdates = 0;
-	private int updateInterval = 30000;
+	private int updateInterval = 60000;
 	private int results = 1;
 	public int priority = getExpectedPriority();
 	private int lineEnd;
 	private int destinationEnd;
 	private int stopEnd;
 	private int departureEnd;
+	private int busCount = 0;
 
 	/**
 	 * Create the panel.
@@ -127,14 +128,14 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		//LAGRA TEXTAREAS INNEHÅLL I STRÄNGAR, ANVÄND STRÄNGARNA FÖR ATT SKRIVAS ÖVER ELLER ADDERAS TILL
 
 		String searchURL = Constants.getURL("80046", "80000", results);
-		System.out.println("START \nPRIORITET " + priority + "\nUPPDATERINGSINTERVALL: 30s\n");
+		System.out.println("START \nPRIORITET " + priority + "\nUPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
 		Journeys journeys = Parser.getJourneys(searchURL);
 
 		Line.setText("");
 		Destination.setText("");
 		Stop.setText("");
 		Departure.setText("");
-		
+
 		for (Journey journey : journeys.getJourneys()) {
 			int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
 			int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
@@ -147,19 +148,24 @@ public class BusPanel extends JPanel implements ModuleInterface {
 
 			if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
 				Departure.append(time + "\n");
-			} else {
+
+			} if (Integer.valueOf(depTime) < 10 && Integer.valueOf(depTime) > 0){
 				Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
 			}
 
-			if (Integer.valueOf(depTime) <= 00 || Integer.valueOf(depTime) <= 0) {
-				searchURL = Constants.getURL("80046", "80000", 1);
-				Parser.getJourneys(searchURL);	
+			//			else if(Integer.valueOf(depTime) <= 5) {
+			//				Departure.append("*");
+			//			}
 
-				Line.replaceRange(journey.getLineOnFirstJourney()+"ERSATT", 0, lineEnd+1);
-				Destination.replaceRange(journey.getTowards(), 0, destinationEnd+24);
-				Stop.replaceRange(journey.getStopPoint(), 0, stopEnd+1);
-				Departure.replaceRange(depTime, 0, departureEnd+1);
-			}
+//			if (Integer.valueOf(depTime) <= 00 || Integer.valueOf(depTime) <= 0) {
+//				searchURL = Constants.getURL("80046", "80000", 1);
+//				Parser.getJourneys(searchURL);
+//
+//				Line.replaceRange(journey.getLineOnFirstJourney()+"ERSATT", 0, lineEnd+1);
+//				Destination.replaceRange(journey.getTowards(), 0, destinationEnd+24);
+//				Stop.replaceRange(journey.getStopPoint(), 0, stopEnd+1);
+//				Departure.replaceRange(depTime, 0, departureEnd+1);
+//			}
 		}
 
 		lineThread.start();
@@ -192,11 +198,13 @@ public class BusPanel extends JPanel implements ModuleInterface {
 						int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
 						String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
 						String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
+						
+						busCount++;
 
 						Line.append(journey.getLineOnFirstJourney() + "\n");
 						Destination.append(journey.getTowards() + "\n");
 						Stop.append(journey.getStopPoint() + "\n");
-						System.out.println(depTime);
+						System.out.println("Buss " + busCount + " avgår om " + depTime + " min");
 
 						if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
 							Departure.append(time + "\n");
@@ -204,19 +212,19 @@ public class BusPanel extends JPanel implements ModuleInterface {
 							Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
 						}
 
-//						if (Integer.valueOf(depTime) <= 3) {
-//							Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min *");
+						//						if (Integer.valueOf(depTime) <= 3) {
+						//							Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min *");
+						//						}
+
+//						if (Integer.valueOf(depTime) <= 00 || Integer.valueOf(depTime) <= 0) {
+//							searchURL = Constants.getURL("80046", "80000", 1);
+//							Parser.getJourneys(searchURL);	
+//
+//							Line.replaceRange(journey.getLineOnFirstJourney()+"ERSATT", 0, lineEnd+1);
+//							Destination.replaceRange(journey.getTowards(), 0, destinationEnd+24);
+//							Stop.replaceRange(journey.getStopPoint(), 0, stopEnd+1);
+//							Departure.replaceRange(depTime, 0, departureEnd+1);
 //						}
-
-						if (Integer.valueOf(depTime) <= 00 || Integer.valueOf(depTime) <= 0) {
-							searchURL = Constants.getURL("80046", "80000", 1);
-							Parser.getJourneys(searchURL);	
-
-							Line.replaceRange(journey.getLineOnFirstJourney()+"ERSATT", 0, lineEnd+1);
-							Destination.replaceRange(journey.getTowards(), 0, destinationEnd+24);
-							Stop.replaceRange(journey.getStopPoint(), 0, stopEnd+1);
-							Departure.replaceRange(depTime, 0, departureEnd+1);
-						}
 					}
 				}
 			} catch (Exception ex) {
