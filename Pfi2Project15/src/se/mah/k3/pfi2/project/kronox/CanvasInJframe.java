@@ -38,8 +38,8 @@ public class CanvasInJframe extends JFrame {
 	private Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
 	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
-	public Font futuraBook = new Font("Futura LT Regular", Font.PLAIN, fontSize);
-	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
+	public Font futuraBook = new Font("Futura LT Light", Font.PLAIN, fontSize);
+	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);
 	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
 	
 	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 25);
@@ -51,7 +51,7 @@ public class CanvasInJframe extends JFrame {
 	private Color blueFieldColor = Color.decode("#D6ECF3");
 	private Color redEditText = Color.decode("#C52033");
 	private ArrayList<Post> displayPost= new ArrayList<Post>();
-	private String[] fieldValues = { "09.15", "Interaktionsdesign A", "C310" };
+	private String[] fieldValues = { "- -:- - - -:- -", "LOADING...", "Sal..." };
 	private ArrayList<String[]> valueList = new ArrayList<String[]>();
 	private  MyCanvas demo= new MyCanvas();
 	// mått
@@ -104,10 +104,11 @@ public class CanvasInJframe extends JFrame {
 			System.out.println(valueList.size());
 		for (int i = 0; i < antalElement; i++) {
 			System.out.println(i +"index");
-			valueList.add(new String[]{storedPost.get(i).getStartTid(),storedPost.get(i).getMoment(),(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
+			valueList.add(new String[]{storedPost.get(i).getStartTid()+"-"+storedPost.get(i).getSlutTid(),storedPost.get(i).getMoment(),(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
 		}
 		
 			demo.repaint(); // this
+			CanvasInJframe.this.setTitle("Loaded");
 	}
 	
 	private void prepareGUI() {
@@ -137,6 +138,7 @@ public class CanvasInJframe extends JFrame {
 		}
 
 		public void paint(Graphics g) {
+			
 			System.out.println("paint!!!!");
 			Graphics2D g2;
 			g2 = (Graphics2D) g;

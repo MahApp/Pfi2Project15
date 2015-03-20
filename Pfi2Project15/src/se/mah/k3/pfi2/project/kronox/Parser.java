@@ -27,13 +27,14 @@ public class Parser {
 	static CanvasInJframe awtControlDemo ;
 	static Calendar cal;
 	public static void main(String[] args) {
-		try {
+		try{
 			
 			frame = new CanvasInJframe();
 			frame.setVisible(false);
 			 awtControlDemo = new CanvasInJframe();
 			awtControlDemo.showCanvasDemo();
 			awtControlDemo.setVisible(true);
+			awtControlDemo.setTitle("loading...");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
