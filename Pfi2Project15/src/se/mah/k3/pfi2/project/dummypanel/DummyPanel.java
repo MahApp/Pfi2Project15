@@ -2,7 +2,6 @@ package se.mah.k3.pfi2.project.dummypanel;
 
 import java.awt.BorderLayout;
 
-<<<<<<< HEAD
 import javax.sound.sampled.Line;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -30,31 +29,6 @@ public class DummyPanel extends JPanel implements ModuleInterface {
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Dummy",null, null, null},
-=======
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
-
-import java.awt.Color;
-import javax.swing.JLabel;
-
-public class DummyPanel extends JPanel implements ModuleInterface {
-	private JTable table; 
-	/**
-	 * Create the panel.
-	 */
-	public DummyPanel() {
-		setBackground(Color.GRAY);
-		setLayout(new BorderLayout(0, 0));
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		add(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Dummy", null, null, null},
->>>>>>> refs/heads/GruppManne
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
