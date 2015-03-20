@@ -1,22 +1,23 @@
-package timeweather;
+package se.mah.k3.pfi2.project.timeweather;
 
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
-public class WeatherPanel extends JPanel implements ModuleInterface{
-	
-	public WeatherPanel(){
+public class Time extends JPanel implements ModuleInterface{
+
+	/**
+	 * Create the panel.
+	 */
+	public Time() {
+		setBackground(Color.BLUE);
 		
+		JLabel lblTime = new JLabel("Time");
+		add(lblTime);
+
 	}
 
 	@Override
@@ -48,5 +49,5 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		// TODO Auto-generated method stub
 		
 	}
-}
 
+}
