@@ -185,6 +185,11 @@ public class Post implements Comparable<Post>{
 	}
 
 	public void setMoment(String moment) {
+		int maxletters= 38;
+		moment=Constants.fixUTF8(moment);
+		moment=Constants.fixHTML(moment);
+		if(moment.length()>maxletters)moment=moment.substring(0,maxletters)+"...";
+		
 		this.moment = moment;
 	}
 	public String getResursSignatur() {

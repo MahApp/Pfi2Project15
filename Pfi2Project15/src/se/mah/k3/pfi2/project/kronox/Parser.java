@@ -23,12 +23,24 @@ public class Parser {
 	private String startTid,slutTid;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-
+	static CanvasInJframe frame;
+	static CanvasInJframe awtControlDemo ;
+	static Calendar cal;
 	public static void main(String[] args) {
+		try {
+			
+			frame = new CanvasInJframe();
+			frame.setVisible(false);
+			 awtControlDemo = new CanvasInJframe();
+			awtControlDemo.showCanvasDemo();
+			awtControlDemo.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("start program");
 		//storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
 		
-		ArrayList<String> Urls = Constants.getURL("ubåtshallen", null); // can get multiple URLs
+		ArrayList<String> Urls = Constants.getURL("kranen", null); // can get multiple URLs
 		for(int i=0; i< Urls.size();i++){
 		String schema=Urls.get(i);
 		storedPosts.add(Parser.getPostsfrom(schema));
@@ -43,11 +55,11 @@ public class Parser {
 		// format startTid & slutTid
 		for(int i=0; i<storedPost.size();i++){
 			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); // paring format
-			try {
-				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid())); // Date
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}// all done
+				try {
+					storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
+				} catch (ParseException e) {
+				} // Date
+
 			
 			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));
 			storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16));
@@ -66,7 +78,24 @@ public class Parser {
 				System.out.println(schema.getStartTid());
 			}
 		}
+		cal=Calendar.getInstance();
 		
+//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//		Date d = null;
+//		try {
+//			 d = sdf.parse("10:30");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		for(int i=0; i<storedPost.size();i++){
+			if(storedPost.get(i).startTidCal.before(cal.getTime())){ //currentTime
+			storedPost.remove(i);
+			}
+		}
+		awtControlDemo.loadData(storedPost);
+		awtControlDemo.repaint();
+
 	}
 	
 	public static Posts getPostsfrom(String searchURL){

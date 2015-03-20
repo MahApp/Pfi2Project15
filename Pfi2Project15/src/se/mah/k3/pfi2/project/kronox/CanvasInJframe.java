@@ -28,28 +28,32 @@ public class CanvasInJframe extends JFrame {
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
+	public int antalElement=12;
 	// monitors, 72 ät gamla
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
 	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 	final static int MIN_MODULE_HEIGHT = 80; // minimum module height
 	final static int fieldHeight = 80; // field height
-	Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
-
+	private Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
 	public Font futuraBook = new Font("Futura LT Regular", Font.PLAIN, fontSize);
 	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,
-			fontSize);// typsnittet vi ska använda
-	Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 25);
-	Font headerFont = futuraBold.deriveFont(Font.PLAIN, 30);
+	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
+	
+	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 25);
+	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 30);
 	// Färger
-	Color whiteColor = Color.decode("#ffffff");
-	Color headerYellowTextColor = Color.decode("#E5DA9F");
-	Color headerFieldBackgroundColor = Color.decode("#3A3A39");
-	Color blueFieldColor = Color.decode("#D6ECF3");
-	Color redEditText = Color.decode("#C52033");
-
+	private Color whiteColor = Color.decode("#ffffff");
+	private Color headerYellowTextColor = Color.decode("#E5DA9F");
+	private Color headerFieldBackgroundColor = Color.decode("#3A3A39");
+	private Color blueFieldColor = Color.decode("#D6ECF3");
+	private Color redEditText = Color.decode("#C52033");
+	private ArrayList<Post> displayPost= new ArrayList<Post>();
+	private String[] fieldValues = { "09.15", "Interaktionsdesign A", "C310" };
+	private ArrayList<String[]> valueList = new ArrayList<String[]>();
+	private  MyCanvas demo= new MyCanvas();
 	// mått
 	/**
 	 * Launch the application.
@@ -61,6 +65,7 @@ public class CanvasInJframe extends JFrame {
 					CanvasInJframe frame = new CanvasInJframe();
 					frame.setVisible(false);
 					CanvasInJframe awtControlDemo = new CanvasInJframe();
+					
 					awtControlDemo.showCanvasDemo();
 					awtControlDemo.setVisible(true);
 				} catch (Exception e) {
@@ -74,16 +79,39 @@ public class CanvasInJframe extends JFrame {
 	 * Create the frame.
 	 */
 	public CanvasInJframe() {
+		System.out.println("construct");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		for (int i = 0; i < antalElement; i++) {
+			valueList.add(fieldValues);
+		}
+		for (int i = 0; i < antalElement; i++) {
+			shapeList.add(new Rectangle2D.Float(0, fieldHeight+(i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+		}
 		prepareGUI();
 	}
-
+	
+	public void loadData(ArrayList<Post> storedPost){
+		System.out.println("loaded into canvas");
+			valueList.clear();
+			for(int i = valueList.size(); i>0;i--){
+				valueList.remove(i);
+			}
+			System.out.println(valueList.size());
+		for (int i = 0; i < antalElement; i++) {
+			System.out.println(i +"index");
+			valueList.add(new String[]{storedPost.get(i).getStartTid(),storedPost.get(i).getMoment(),(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
+		}
+		
+			demo.repaint(); // this
+	}
+	
 	private void prepareGUI() {
+		
 		// contentPane är huvudrutan
 		contentPane.setBackground(Color.WHITE);
 		// SetSize
@@ -97,8 +125,8 @@ public class CanvasInJframe extends JFrame {
 		contentPane.setVisible(true);
 	}
 
-	private void showCanvasDemo() {
-		controlPanel.add(new MyCanvas());
+	void showCanvasDemo() {
+		controlPanel.add(demo);
 		contentPane.setVisible(true);
 	}
 
@@ -109,6 +137,7 @@ public class CanvasInJframe extends JFrame {
 		}
 
 		public void paint(Graphics g) {
+			System.out.println("paint!!!!");
 			Graphics2D g2;
 			g2 = (Graphics2D) g;
 			RenderingHints rh = new RenderingHints(
@@ -134,48 +163,36 @@ public class CanvasInJframe extends JFrame {
 			g2.drawString("V/LOKAL", 680, 50);
 			g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
 			// skapar en arraylist av fält
-			ArrayList<Shape> shapeList = new ArrayList<Shape>();
-			int antalElement = 10;
-			for (int i = 0; i < antalElement; i++) {
-				shapeList.add(new Rectangle2D.Float(0, fieldHeight
-						+ (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
-			}
-			boolean colorTurn = false;
+
+		//	boolean colorTurn = false;
 			g2.setFont(fieldFont);
 			// Strängar i en array som lagras i en lista, som sen ska skrivas ut
 			// i respektive fält
 			// alla relevanta värden läggs till i en lista
-			String[] fieldValues = { "09.15", "Interaktionsdesign A", "C310" };
+			
 			// listan sparas sedan i en lista
-			ArrayList<String[]> valueList = new ArrayList<String[]>();
-			for (int i = 0; i < antalElement; i++) {
-				valueList.add(fieldValues);
-			}
+			
 			for (int i = 0; i < antalElement; i++) {
 				Shape tempShape = shapeList.get(i);
 				String[] tempValues = (String[]) valueList.get(i);
-				if (colorTurn) {
-					g2.setColor(blueFieldColor);
-				} else {
+//				if (colorTurn) {
+//					g2.setColor(blueFieldColor);
+//				} else {
+//					g2.setColor(whiteColor);
+//				}
+				if(i%2==1){
+					g2.setColor(blueFieldColor);							
+				}else{
 					g2.setColor(whiteColor);
 				}
 				// fill skriver ut
 				g2.fill(tempShape);
-				g2.setColor(Color.black);
-				// write out time
-				g2.drawString(tempValues[0], 10,
-						(fieldHeight + fieldHeight / 2 + 10)
-								+ (fieldHeight * i));
-				// write out course
-				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight
-						/ 2 + 10)
-						+ (fieldHeight * i));
-				// write out classroom
-				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight
-						/ 2 + 10)
-						+ (fieldHeight * i));
-				 g2.drawImage(img, 100, 100, this);
-				colorTurn = !colorTurn;
+				g2.setColor(Color.black);// write out time
+				g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
+				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
+				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));
+				g2.drawImage(img, 940, 90, this);
+		//		colorTurn = !colorTurn;
 			}
 			// Color.decode("rgb(0,0,0,1)");
 			// g2.drawre

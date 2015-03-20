@@ -12,7 +12,11 @@ public class Constants {
 	public static final String od = "&orgenheterUTB=OD";
 	public static final String ts = "&orgenheterUTB=TS";
 	public static final String us = "&orgenheterUTB=US";
-	
+	public static final String n5020 = "&orgenheterUTB=5020"; // vi
+	public static final String n5030 = "&orgenheterUTB=5030";
+	public static final String n5040 = "&orgenheterUTB=5040";
+	public static final String n5060 = "&orgenheterUTB=5060";
+	public static final String n6030 = "&orgenheterUTB=60300";
 	static ArrayList<String> array = new ArrayList<String>();
 	
 	public static ArrayList<String> getURL(String building, String program){
@@ -41,14 +45,33 @@ public class Constants {
 			array.add(baseURL + ts);
 			array.add(baseURL + cts);
 			array.add(baseURL + us);
+			array.add(baseURL + n5020);
+			array.add(baseURL + n5030);
+			array.add(baseURL + n6030);
 		}
 		
 		else if (building.equals("gäddan")){
 			array.add(baseURL + ts);
 			array.add(baseURL + us);
-			
+			array.add(baseURL + n5040);
+			array.add(baseURL + n5060);
 		}
 		return array;
+	}
+	
+	public static String fixUTF8( String _input){
+		_input=_input.replace("&#246;", "ö");
+		_input=_input.replace("&#228;", "ä");
+		_input=_input.replace("&#229;", "å");
+		_input=_input.replace("&#246;", "å");
+		_input=_input.replace("&#196;", "Ä");
+		_input=_input.replace("&#197;", "Å");
+		_input=_input.replace("&#214;", "Ö");
+		return _input;
+	}
+
+	public static String fixHTML(String _input) {
+		    return _input.replaceAll("\\<[^>]*>","");
 	}
 	
 }
