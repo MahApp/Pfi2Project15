@@ -6,11 +6,14 @@ import javax.swing.JPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
+
 import java.awt.Font;
+
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 
@@ -21,6 +24,21 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 	/**
 	 * Create the panel.
 	 */
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					NewsPanel frame = new NewsPanel();
+					frame.setVisible(true);
+				//Thread T = new ThreadLine (p);
+					//T.start();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	public NewsPanel() {
 		setForeground(UIManager.getColor("scrollbar"));
 		setBorder(new LineBorder(Color.WHITE, 5));
