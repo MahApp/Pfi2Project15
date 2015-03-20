@@ -1,7 +1,13 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -11,11 +17,13 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+
 public class Parser {
 	public static boolean debug;
 	private String startTid,slutTid;
-	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted array of Post
-	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted Post
+	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
+	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
+
 	public static void main(String[] args) {
 		System.out.println("start program");
 		//storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
@@ -24,14 +32,40 @@ public class Parser {
 		for(int i=0; i< Urls.size();i++){
 		String schema=Urls.get(i);
 		storedPosts.add(Parser.getPostsfrom(schema));
-
 		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
-		
 		}
+		System.out.println("-----------------------------------------");
 		for(int i=0; i<storedPosts.size();i++){
-		System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
+			System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
 		}
-		System.out.println("total post in all parsed XML: "+storedPost.size()+"& stored in \"storedPost\"");
+		System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
+		
+		// format startTid & slutTid
+		for(int i=0; i<storedPost.size();i++){
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); // paring format
+			try {
+				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid())); // Date
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}// all done
+			
+			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));
+			storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16));
+			
+			// format minute and hours
+			String digits[] =storedPost.get(i).getStartTid().split(":");
+			int hour =Integer.parseInt(digits[0]);
+			int minute= Integer.parseInt(digits[1]);
+			//System.out.println(hour+" "+minute);
+		}
+
+		// sorting arraylist by startTid
+		Collections.sort(storedPost);
+		if(debug){
+			for (Post schema : storedPost) {
+				System.out.println(schema.getStartTid());
+			}
+		}
 		
 	}
 	

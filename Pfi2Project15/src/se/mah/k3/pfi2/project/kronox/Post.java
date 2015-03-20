@@ -1,13 +1,17 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import java.util.Calendar;
+import java.util.Date;
+
 //
-public class Post {
+public class Post implements Comparable<Post>{
 	/**
 	 * stores date for 1 schedule post
 	 * 
 	 * That includes:
 	 * -period startTime
 	 * -period endTime
+	 * -time in Date format
 	 * -last edited time for displaying changed icon
 	 * -program ID
 	 * -teacher/admin signed code
@@ -19,7 +23,9 @@ public class Post {
 	private float x, y, vx, vy, ax, ay; // for animation
 	private Cell[] cell= new Cell[5]; // diffrent colunm in canvas
 	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur;
-
+	public int sort;
+	public Date startTidCal;
+	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad;
 	
 
@@ -104,7 +110,21 @@ public class Post {
 	public void setSlutTid(String slutTid) {
 		this.slutTid = slutTid;
 	}
+	public Date getStartTidCal() {
+		return startTidCal;
+	}
 
+	public void setStartTidCal(Date date) {
+		this.startTidCal = date;
+	}
+
+	public Calendar getSlutTidCal() {
+		return slutTidCal;
+	}
+
+	public void setSlutTidCal(Calendar slutTidCal) {
+		this.slutTidCal = slutTidCal;
+	}
 	public String getUpdaterad() {
 		return updaterad;
 	}
@@ -213,6 +233,17 @@ public class Post {
 
 	public void setOnskad(boolean onskad) {
 		this.onskad = onskad;
+	}
+
+	@Override
+	public int compareTo(Post otherPost) {
+		if(this.startTidCal.before(otherPost.startTidCal)){
+			return (-1);
+		}else if(this.startTidCal.after(otherPost.startTidCal))
+			return 1;
+		else{
+		return 0;
+		}
 	}
 
 
