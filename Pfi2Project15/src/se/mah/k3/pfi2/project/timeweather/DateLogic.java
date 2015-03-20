@@ -1,4 +1,4 @@
-package timeweather;
+package se.mah.k3.pfi2.project.timeweather;
 
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 

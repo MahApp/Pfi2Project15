@@ -3,9 +3,8 @@ package se.mah.k3.pfi2.project.kronox;
 import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
-
-import timeweather.DateLogic;
-import timeweather.TimeLogic;
+import se.mah.k3.pfi2.project.timeweather.DateLogic;
+import se.mah.k3.pfi2.project.timeweather.TimeLogic;
 
 import java.awt.Color;
 
@@ -15,6 +14,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.SwingConstants;
 
 
