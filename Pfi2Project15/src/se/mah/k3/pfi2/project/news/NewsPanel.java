@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 
 public class NewsPanel extends JPanel implements ModuleInterface{
 
+	public JTextArea Meny = new JTextArea();
+	
 	/**
 	 * Create the panel.
 	 */
@@ -42,7 +44,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
 				
-				JTextArea Meny = new JTextArea();
+				
 				Meny.setFont(new Font("Futura", Font.PLAIN, 20));
 				Meny.setText("Här kommer menyn stå!");
 				Meny.setBounds(24, 57, 381, 163);
