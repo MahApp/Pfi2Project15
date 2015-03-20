@@ -34,12 +34,16 @@ import org.w3c.dom.Element;
 				System.out.println("Time from : " + eElement.getAttribute("from").substring(11, 16));
 			}
 		}
-		
+		//String c = "";
 		for (int temp = 0; temp < 4; temp++) {
 			Node nNode = nList.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
-				System.out.println("Temperature : " + eElement.getAttribute("value"));
+				String c = eElement.getAttribute("value");
+				float a = Float.parseFloat(c);
+				int b;
+				b =(int)a; 
+				System.out.println("Temperature : " + b + "c");
 			}
 		}
 		
