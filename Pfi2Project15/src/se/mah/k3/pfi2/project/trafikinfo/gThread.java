@@ -27,14 +27,14 @@ public class gThread extends Thread {
 				text = journey.getText();
 
 				 //ScrollText st = new ScrollText(effect+", "+text+", "+details);
-				ScrollText st = new ScrollText("Buss ersätter tågen mellan Malmö C och Lund C pga ett löv på spåret.");
+				ScrollText st = new ScrollText("Buss ersÃ¤tter tÃ¥gen mellan MalmÃ¶ C och Lund C pga ett lÃ¶v pÃ¥ spÃ¥ret.");
 				st.setBounds(0, 6, 1080, 80);
 				gui.add(st);
 			}
 
 			
 			try {
-				Thread.sleep(20000);
+				Thread.sleep(30000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
