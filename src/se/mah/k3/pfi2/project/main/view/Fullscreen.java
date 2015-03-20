@@ -23,6 +23,7 @@ import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
+import timeweather.TimePanel;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**
@@ -54,6 +55,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
+		moduleList.add(new TimePanel());
 		moduleList.add(new KronoxPanel());
 		moduleList.add(new DummyPanel());
 		moduleList.add(new NewsPanel());

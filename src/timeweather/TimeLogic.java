@@ -18,6 +18,7 @@ public class TimeLogic implements TimeInterface {
 	public void update(int hoursIn, int minuteIn) {
 		String currentTime;
 		String minute;
+		String hours;
 		
 		if(minuteIn<10){
 			minute = "0" + String.valueOf(minuteIn);
@@ -25,7 +26,13 @@ public class TimeLogic implements TimeInterface {
 			minute = String.valueOf(minuteIn);
 		}
 		
-		currentTime = String.valueOf(hoursIn) + ":" + minute;
+		if(hoursIn<10){
+			hours = "0" + String.valueOf(hoursIn);
+		}else{
+			hours = String.valueOf(hoursIn);
+		}
+		
+		currentTime = hours + ":" + minute;
 		
 		timePanel.showTime(currentTime);
 

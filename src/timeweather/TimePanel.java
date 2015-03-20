@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class TimePanel extends JPanel implements ModuleInterface{
 	private JLabel lblTime;
@@ -18,6 +19,7 @@ public class TimePanel extends JPanel implements ModuleInterface{
 	private JLabel lblBuilding;
 	private TimeLogic timeLogic = new TimeLogic(this);
 	private DateLogic dateLogic = new DateLogic(this);
+	private JLabel lblMahLogo;
 	
 	/**
 	 * Create the panel.
@@ -27,23 +29,25 @@ public class TimePanel extends JPanel implements ModuleInterface{
 		setLayout(new GridLayout(0, 4, 0, 0));
 		
 		lblTime = new JLabel("Time");
-		lblTime.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(lblTime);
 		lblTime.setForeground(new Color(193, 0, 43));
 		lblTime.setFont(new Font("Futura", Font.PLAIN, 20));
 		
 		lblDate = new JLabel("Date");
-		lblDate.setVerticalAlignment(SwingConstants.BOTTOM);
 		add(lblDate);
 		lblDate.setForeground(new Color(193, 0, 43));
 		lblDate.setFont(new Font("Futura", Font.PLAIN, 13));
 		
 		lblBuilding = new JLabel("Kranen");
 		lblBuilding.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblBuilding.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblBuilding.setForeground(new Color(193, 0, 43));
 		lblBuilding.setFont(new Font("Futura", Font.PLAIN, 20));
 		add(lblBuilding);
+		
+		lblMahLogo = new JLabel("");
+		lblMahLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMahLogo.setIcon(new ImageIcon(TimePanel.class.getResource("/Bilder/mah60.png")));
+		add(lblMahLogo);
 
 	}
 	
