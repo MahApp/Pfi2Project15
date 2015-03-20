@@ -1,4 +1,5 @@
-package trafikinfo;
+package se.mah.k3.pfi2.project.trafikinfo;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;

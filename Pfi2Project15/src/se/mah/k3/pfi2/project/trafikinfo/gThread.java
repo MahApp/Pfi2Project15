@@ -1,4 +1,4 @@
-package trafikinfo;
+package se.mah.k3.pfi2.project.trafikinfo;
 
 
 public class gThread extends Thread {
@@ -27,7 +27,7 @@ public class gThread extends Thread {
 				text = journey.getText();
 
 				 //ScrollText st = new ScrollText(effect+", "+text+", "+details);
-				ScrollText st = new ScrollText("Buss ersÃ¤tter tÃ¥gen mellan MalmÃ¶ C och Lund C pga ett lÃ¶v pÃ¥ spÃ¥ret.");
+				ScrollText st = new ScrollText("Buss ersätter tågen mellan Malmö C och Lund C pga ett löv på spåret.");
 				st.setBounds(0, 6, 1080, 80);
 				gui.add(st);
 			}

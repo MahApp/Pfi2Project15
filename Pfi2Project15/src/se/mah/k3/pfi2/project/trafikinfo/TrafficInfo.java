@@ -1,4 +1,4 @@
-package trafikinfo;
+package se.mah.k3.pfi2.project.trafikinfo;
 
 import javax.swing.JPanel;
 
