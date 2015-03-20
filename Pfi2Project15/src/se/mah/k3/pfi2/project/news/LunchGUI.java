@@ -49,8 +49,8 @@ public class LunchGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-//		ScannerHalsaSamhall st = new ScannerHalsaSamhall();
-//		st.readAndWriteMonday();
+		ScannerHalsaSamhall st = new ScannerHalsaSamhall();
+		st.readAndWriteMonday();
 		
 			
 			JPanel panel2 = new JPanel();
