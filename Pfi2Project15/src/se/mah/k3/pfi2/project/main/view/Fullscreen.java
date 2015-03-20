@@ -23,6 +23,7 @@ import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
+<<<<<<< HEAD
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**
@@ -59,6 +60,45 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		moduleList.add(new NewsPanel());
 		moduleList.add(new FillEmptySpace());
 		moduleList.add(new BusPanel());
+=======
+import timeweather.TimePanel;
+
+public class Fullscreen extends JFrame implements KeyEventDispatcher {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private boolean inFullScreenMode = false;
+	private int PrevX = 100 ,PrevY = 100 ,PrevWidth = 480,PrevHeight = 640;
+	public static ArrayList<ModuleInterface> moduleList = new ArrayList<ModuleInterface>();
+	
+	
+	/**
+	 * Create the frame.
+	 */
+	public Fullscreen() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.ORANGE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0};
+		contentPane.setLayout(gbl_contentPane);
+		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager(); //Listen to keyboard
+        manager.addKeyEventDispatcher(this);
+        setupPanels();
+	}
+	
+	private void setupPanels() {
+		moduleList.add(new TimePanel());
+		moduleList.add(new KronoxPanel());
+		moduleList.add(new DummyPanel());
+		moduleList.add(new NewsPanel());
+		moduleList.add(new FillEmptySpace());
+>>>>>>> refs/heads/GruppManne
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
