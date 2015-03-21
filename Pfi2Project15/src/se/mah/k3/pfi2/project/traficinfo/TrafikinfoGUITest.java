@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.trafikinfo;
+package se.mah.k3.pfi2.project.traficinfo;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,11 +14,11 @@ import javax.swing.border.EmptyBorder;
 
 
 public class TrafikinfoGUITest extends JFrame {
-	// Skapar en ny JFrame för sidoscrolls-texten.
+	// Skapar en ny JFrame fï¿½r sidoscrolls-texten.
 	 JPanel contentPane;
 	
 	
-	// Här skapas sidoscrollande text. Minimera för att jobba ostört med GUI.
+	// Hï¿½r skapas sidoscrollande text. Minimera fï¿½r att jobba ostï¿½rt med GUI.
 
 
 	/**
@@ -50,7 +50,7 @@ public class TrafikinfoGUITest extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	}
-// Mer info för sidoscroll, minimera för att jobba ostört med GUI.
+// Mer info fï¿½r sidoscroll, minimera fï¿½r att jobba ostï¿½rt med GUI.
 	
 	
 
