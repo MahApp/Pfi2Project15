@@ -28,7 +28,7 @@ public class CanvasInJframe extends JFrame {
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
-	public int antalElement=12;
+	public int antalElement=3;
 	// monitors, 72 ät gamla
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
@@ -102,11 +102,11 @@ public class CanvasInJframe extends JFrame {
 				valueList.remove(i);
 			}
 			System.out.println(valueList.size());
+			antalElement=valueList.size();  // change the element based on parsed xml
 		for (int i = 0; i < antalElement; i++) {
 			System.out.println(i +"index");
-			valueList.add(new String[]{storedPost.get(i).getStartTid()+"-"+storedPost.get(i).getSlutTid(),storedPost.get(i).getMoment(),(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
+			valueList.add(new String[]{storedPost.get(i).getStartTid()+"-"+storedPost.get(i).getSlutTid(),(storedPost.get(i).getMoment()!=null)?storedPost.get(i).getMoment():"",(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
 		}
-		
 			demo.repaint(); // this
 			CanvasInJframe.this.setTitle("Loaded");
 	}

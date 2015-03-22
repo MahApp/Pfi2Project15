@@ -18,7 +18,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 
-
 public class CanvasTest {
 	
 	private Frame contentPane;

@@ -26,12 +26,13 @@ public class Parser {
 	static CanvasInJframe frame;
 	static CanvasInJframe awtControlDemo ;
 	static Calendar cal;
+	public static String biulding="orkanen";
 	public static void main(String[] args) {
 		try{
 			
 			frame = new CanvasInJframe();
 			frame.setVisible(false);
-			 awtControlDemo = new CanvasInJframe();
+			awtControlDemo = new CanvasInJframe();
 			awtControlDemo.showCanvasDemo();
 			awtControlDemo.setVisible(true);
 			awtControlDemo.setTitle("loading...");
@@ -41,9 +42,10 @@ public class Parser {
 		System.out.println("start program");
 		//storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
 		
-		ArrayList<String> Urls = Constants.getURL("kranen", null); // can get multiple URLs
+		ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 		for(int i=0; i< Urls.size();i++){
-		String schema=Urls.get(i);
+		String schema=biulding;
+		System.out.println("got xml url: "+schema);
 		storedPosts.add(Parser.getPostsfrom(schema));
 		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
 		}
