@@ -80,7 +80,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			}
 			contentPane.add((Component) moduleInterface, cons);
 		}
-		setFullscreen(false);
+		setFullscreen(true);
 		
 	}
 
