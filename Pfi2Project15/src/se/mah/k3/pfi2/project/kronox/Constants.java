@@ -20,6 +20,13 @@ public class Constants {
 	public static final String n3060 = "&orgenheterUTB=3060";
 	public static final String n3070 = "&orgenheterUTB=3070";
 	public static final String n3080 = "&orgenheterUTB=3080";
+	public static final String n4065 = "&orgenheterUTB=4065";
+	public static final String n4070 = "&orgenheterUTB=4070";
+	public static final String n4071 = "&orgenheterUTB=4071";
+	public static final String n4081 = "&orgenheterUTB=4081";
+	public static final String n4082 = "&orgenheterUTB=4082";
+	public static final String n4083 = "&orgenheterUTB=4083";
+	public static final String n5000 = "&orgenheterUTB=5000";
 	public static final String n5020 = "&orgenheterUTB=5020"; // vi
 	public static final String n5030 = "&orgenheterUTB=5030";
 	public static final String n5040 = "&orgenheterUTB=5040";
@@ -33,6 +40,8 @@ public class Constants {
 		array.add(baseURL + cts);
 		array.add(baseURL + ts);
 		array.add(baseURL + us);
+		array.add(baseURL + n5020);
+		array.add(baseURL + n5030);
 		
 		}
 		
@@ -49,6 +58,12 @@ public class Constants {
 			array.add(baseURL + n3060);
 			array.add(baseURL + n3070);
 			array.add(baseURL + n3080);
+			array.add(baseURL + n4065);
+			array.add(baseURL + n4070);
+			array.add(baseURL + n4071);
+			array.add(baseURL + n4081);
+			array.add(baseURL + n4083);
+			array.add(baseURL + n5020);
 		}
 		
 		else if (building.equals("odontologiska")){
@@ -74,6 +89,11 @@ public class Constants {
 			array.add(baseURL + n3040);
 			array.add(baseURL + n3050);
 			array.add(baseURL + n3060);
+			array.add(baseURL + n4070);
+			array.add(baseURL + n4082);
+			array.add(baseURL + n5000);
+			array.add(baseURL + n5020);
+			array.add(baseURL + n5030);
 			array.add(baseURL + n5040);
 			array.add(baseURL + n5060);
 		}
