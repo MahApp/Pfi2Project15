@@ -111,6 +111,7 @@ public class Constants {
 			array.add(baseURL + n5040);
 			array.add(baseURL + n5060);
 		}
+		System.out.println(array);
 		return array;
 	}
 	

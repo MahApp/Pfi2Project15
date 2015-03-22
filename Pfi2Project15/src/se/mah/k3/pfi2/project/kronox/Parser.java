@@ -19,17 +19,16 @@ import org.w3c.dom.NodeList;
 
 
 public class Parser {
-	public static boolean debug;
+	public static boolean debug=true;
 	private String startTid,slutTid;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
 	static CanvasInJframe frame;
 	static CanvasInJframe awtControlDemo ;
 	static Calendar cal;
-	public static String biulding="orkanen";
+	public static String biulding="kranen";
 	public static void main(String[] args) {
 		try{
-			
 			frame = new CanvasInJframe();
 			frame.setVisible(false);
 			awtControlDemo = new CanvasInJframe();
@@ -45,10 +44,10 @@ public class Parser {
 		ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 		for(int i=0; i< Urls.size();i++){
 		String schema=biulding;
-		System.out.println("got xml url: "+schema);
-		storedPosts.add(Parser.getPostsfrom(schema));
+		System.out.println("got xml url from: "+schema);
 		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
 		}
+		System.out.println(storedPost.size());
 		System.out.println("-----------------------------------------");
 		for(int i=0; i<storedPosts.size();i++){
 			System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
@@ -61,7 +60,7 @@ public class Parser {
 				try {
 					storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
 				} catch (ParseException e) {
-				} // Date
+			} // Date
 
 			
 			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));
@@ -108,7 +107,9 @@ public class Parser {
 		String xml = XmlDomParser.getXmlFromUrl(searchURL); // getting XML
 		ArrayList<Post> tempPost=new ArrayList<Post>();
 		System.out.println("xml fixing");
+		System.out.println("convert the xml:"+ xml);
 		if (xml != null) {
+			System.out.println("-found Xml");
 			Document doc = XmlDomParser.getDomElement(xml); // getting DOM elementschemaPost
 
 			NodeList schemaPost = doc.getElementsByTagName("schemaPost");// looping through all item nodes <item>
