@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.traficinfo;
+package se.mah.k3.pfi2.project.traficinfo.xmlparser;
 
 import java.io.IOException;
 import java.io.StringReader;

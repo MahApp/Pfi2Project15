@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.traficinfo;
+package se.mah.k3.pfi2.project.traficinfo.view;
 
 import java.awt.Color;
 import java.awt.Dimension;

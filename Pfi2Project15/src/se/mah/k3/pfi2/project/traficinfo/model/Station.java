@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.traficinfo;
+package se.mah.k3.pfi2.project.traficinfo.model;
 
 /**
  * Contains all information for an individual station 
