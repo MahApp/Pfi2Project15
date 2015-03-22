@@ -46,7 +46,9 @@ public class TimePanel extends JPanel implements ModuleInterface{
 		
 		lblMahLogo = new JLabel("");
 		lblMahLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMahLogo.setIcon(new ImageIcon(TimePanel.class.getResource("/Bilder/mah60.png")));
+		//lblMahLogo.setIcon(new ImageIcon(TimePanel.class.getResource("/Bilder/mah60.png")));
+		//Lars changed to correct path
+		lblMahLogo.setIcon(new ImageIcon(TimePanel.class.getResource("/se/mah/k3/pfi2/project/Bilder/mah60.png")));
 		add(lblMahLogo);
 
 	}

@@ -16,11 +16,10 @@ import java.util.ArrayList;
 public class KronoxAJAXGetFriendlyNames {
 	String testUrl= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?"+"typ=signatur" + "&term=" + "K3lara";
 	String testUrlSammansatt= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=signatur&term=K3lara";
-<<<<<<< HEAD
+
 	String testUrlSammansattLokal= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=lokal";
 	String testUrlSammansattHjalpmedel= "http://kronox.mah.se/ajax/ajax_autocompleteResurser.jsp?typ=hjalpmedel";
-=======
->>>>>>> TeamViktor
+
 	private static final String TYPE_COURSE = "typ=kurs";
 	@SuppressWarnings("unused")
 	private static final String TYPE_PROGRAM = "typ=program";

@@ -19,16 +19,12 @@ public class KronoxTest {
 			System.out.println("JSON to parse for courseName: "+ s2);
 			String s3 = KronoxAJAXGetFriendlyNames.getProgramName("TGIND");
 			System.out.println("JSON to parse for programName: "+ s3);
-<<<<<<< HEAD
 			String s4 = KronoxAJAXGetFriendlyNames.getLocationName("A134");
 			System.out.println("JSON to parse for locationName: "+ s4);
 			String s5 = KronoxAJAXGetFriendlyNames.getSupport("dator");
 			System.out.println("JSON to parse for support: "+ s5);
 		
-=======
-			
-		
->>>>>>> TeamViktor
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

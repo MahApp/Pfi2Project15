@@ -15,20 +15,17 @@ import java.util.Calendar;
 
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
 
-=======
->>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 public class BusPanel extends JPanel implements ModuleInterface {
 	/**
 	 * 
@@ -46,22 +43,12 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	private int results = 1;
 	public int priority = getExpectedPriority();
 	private int busCount = 0;
-<<<<<<< HEAD
-=======
-public class BusPanel extends JPanel implements ModuleInterface{
 	private JTextField textField;
->>>>>>> branch 'master' of https://github.com/MahApp/Pfi2Project15.git
-=======
->>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 
 	/**
 	 * Create the panel.
 	 */
 	public BusPanel() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 		Thread lineThread = new BusPanel.LineThread(parser);
 
 		setBackground(Color.LIGHT_GRAY);
@@ -211,17 +198,6 @@ public class BusPanel extends JPanel implements ModuleInterface{
 			}
 			start();
 		}
-<<<<<<< HEAD
-=======
-		setBackground(Color.PINK);
-		setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel = new JLabel("Bus");
-		add(lblNewLabel, BorderLayout.NORTH);
-		
->>>>>>> branch 'master' of https://github.com/MahApp/Pfi2Project15.git
-=======
->>>>>>> 840b3d29b3e0dc2e63e613da65c751e45938ef2c
 	}
 
 	@Override

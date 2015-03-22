@@ -23,6 +23,8 @@ import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
+import se.mah.k3.pfi2.project.timeweather.TimePanel;
+import se.mah.k3.pfi2.project.traficinfo.TrafficInfo;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**
@@ -54,11 +56,12 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		moduleList.add(new KronoxPanel());
-		moduleList.add(new DummyPanel());
+		moduleList.add(new TrafficInfo());
+		moduleList.add(new TimePanel());
 		moduleList.add(new NewsPanel());
-		moduleList.add(new FillEmptySpace());
 		moduleList.add(new BusPanel());
+		moduleList.add(new FillEmptySpace());
+		//moduleList.add(new DummyPanel());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
