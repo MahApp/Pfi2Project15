@@ -88,9 +88,7 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 		add(right190);
 		
 		Thread tx = new gThread(g);
-		tx.start();
-		
-		
+		tx.start();	
 	}
 	
 	@Override

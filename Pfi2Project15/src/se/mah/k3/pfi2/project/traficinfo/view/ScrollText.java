@@ -137,17 +137,5 @@ public class ScrollText extends JComponent {
   public boolean isAlive() {
     return internalThread.isAlive();
   }
-
-  public static void main(String[] args) {
-    ScrollText st = new ScrollText("Java can do animation!");
-
-    JPanel p = new JPanel(new FlowLayout());
-    p.add(st);
-
-    JFrame f = new JFrame("ScrollText Demo");
-    f.setContentPane(p);
-    f.setSize(400, 100);
-    f.setVisible(true);
-  }
 }
 
