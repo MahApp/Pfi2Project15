@@ -32,7 +32,7 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TrafikinfoGUI frame = new TrafikinfoGUI();
+					TrafficInfo frame = new TrafficInfo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
