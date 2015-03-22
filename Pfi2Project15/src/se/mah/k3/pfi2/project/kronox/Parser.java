@@ -19,14 +19,14 @@ import org.w3c.dom.NodeList;
 
 
 public class Parser {
-	public static boolean debug=true;
+	public static boolean debug;
 	private String startTid,slutTid;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
 	static CanvasInJframe frame;
 	static CanvasInJframe awtControlDemo ;
 	static Calendar cal;
-	public static String biulding="kranen";
+	public static String biulding="kranen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		try{
 			frame = new CanvasInJframe();
@@ -43,7 +43,7 @@ public class Parser {
 		
 		ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 		for(int i=0; i< Urls.size();i++){
-		String schema=biulding;
+		String schema=Urls.get(i);
 		System.out.println("got xml url from: "+schema);
 		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
 		}
@@ -90,11 +90,13 @@ public class Parser {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		/*
 		for(int i=0; i<storedPost.size();i++){
 			if(storedPost.get(i).startTidCal.before(cal.getTime())){ //currentTime
 			storedPost.remove(i);
 			}
-		}
+		}*/
 		awtControlDemo.loadData(storedPost);
 		awtControlDemo.repaint();
 

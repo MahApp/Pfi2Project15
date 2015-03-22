@@ -28,7 +28,7 @@ public class CanvasInJframe extends JFrame {
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
-	public int antalElement=3;
+	public static int antalElement=14;
 	// monitors, 72 ät gamla
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
@@ -98,14 +98,18 @@ public class CanvasInJframe extends JFrame {
 	public void loadData(ArrayList<Post> storedPost){
 		System.out.println("loaded into canvas");
 			valueList.clear();
+			shapeList.clear();
 			for(int i = valueList.size(); i>0;i--){
 				valueList.remove(i);
 			}
-			System.out.println(valueList.size());
-			antalElement=valueList.size();  // change the element based on parsed xml
-		for (int i = 0; i < antalElement; i++) {
+			System.out.println(storedPost.size());
+			antalElement=storedPost.size();  // change the element based on parsed xml
+		for (int i = 0; i < storedPost.size(); i++) {
 			System.out.println(i +"index");
 			valueList.add(new String[]{storedPost.get(i).getStartTid()+"-"+storedPost.get(i).getSlutTid(),(storedPost.get(i).getMoment()!=null)?storedPost.get(i).getMoment():"",(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
+		}
+		for (int i = 0; i < storedPost.size(); i++) {
+			shapeList.add(new Rectangle2D.Float(0, fieldHeight+(i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
 			demo.repaint(); // this
 			CanvasInJframe.this.setTitle("Loaded");
