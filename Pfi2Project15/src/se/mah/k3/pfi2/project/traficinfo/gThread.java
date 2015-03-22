@@ -20,6 +20,8 @@ public class gThread extends Thread {
 			
 			String searchURL = Constants.getURL("14096","61079", 20);
 			String searchURL2 = Constants.getURL("45006","95006", 20); //KPH Airport -> GTB C
+			String searchURL3 = Constants.getURL("45006","10007", 20); //KPH Airport -> Karlskrona C
+			String searchURL4 = Constants.getURL("80000","86239", 20); //Malmö -> Ystad 
 
 			Journeys journeys = Parser.getJourneys(searchURL);
 			for (Journey journey : journeys.getJourneys()) {
