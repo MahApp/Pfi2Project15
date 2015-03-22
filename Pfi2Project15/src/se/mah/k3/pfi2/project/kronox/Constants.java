@@ -24,7 +24,7 @@ public class Constants {
 	public static final String n5030 = "&orgenheterUTB=5030";
 	public static final String n5040 = "&orgenheterUTB=5040";
 	public static final String n5060 = "&orgenheterUTB=5060";
-	public static final String n6030 = "&orgenheterUTB=60300";
+	public static final String n6030 = "&orgenheterUTB=6030";
 	static ArrayList<String> array = new ArrayList<String>();
 	
 	public static ArrayList<String> getURL(String building, String program){
