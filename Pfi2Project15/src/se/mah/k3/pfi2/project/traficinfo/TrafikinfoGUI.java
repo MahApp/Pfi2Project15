@@ -62,24 +62,24 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 		contentPane.add(panelString);
 		panelString.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("TRAFIKST\u00D6RNING:");
+		/*JLabel lblNewLabel = new JLabel("TRAFIKST\u00D6RNING:");
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setDisplayedMnemonicIndex(0);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setFont(new Font("Futura Std Heavy", Font.BOLD, 23));
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(10, -5, 290, 46);
-		add(lblNewLabel);
+		add(lblNewLabel); */
 		
 		JLabel left310 = new JLabel("New label");
 		left310.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/left_part_310x80.PNG")));
-		left310.setBounds(-60, 0, 310, 80);
+		left310.setBounds(-300, 0, 310, 80);
 		add(left310);
 		
-		//JLabel middle580 = new JLabel("New label");
-		//middle580.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/middle_part_580x80.PNG")));
-		//middle580.setBounds(310, 0, 580, 80);
-		//add(middle580);
+		/*JLabel middle580 = new JLabel("New label");
+		middle580.setIcon(new ImageIcon(TrafficInfo.class.getResource("/resources/middle_part_580x80.PNG")));
+		middle580.setBounds(310, 0, 580, 80);
+		add(middle580); */
 		
 		JLabel right190 = new JLabel("New label");
 		right190.setInheritsPopupMenu(false);
@@ -96,19 +96,19 @@ public class TrafikinfoGUI extends JFrame implements ModuleInterface{
 	@Override
 	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override

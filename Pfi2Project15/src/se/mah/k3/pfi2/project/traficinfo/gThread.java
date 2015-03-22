@@ -19,6 +19,7 @@ public class gThread extends Thread {
 		while(running == true){
 			
 			String searchURL = Constants.getURL("14096","61079", 20);
+			String searchURL2 = Constants.getURL("45006","95006", 20); //KPH Airport -> GTB C
 
 			Journeys journeys = Parser.getJourneys(searchURL);
 			for (Journey journey : journeys.getJourneys()) {
@@ -42,6 +43,7 @@ public class gThread extends Thread {
 			
 			count++;
 			System.out.println("Update nr: "+count+".");
+			System.out.println(searchURL2);
 		}		
 	}
 	
