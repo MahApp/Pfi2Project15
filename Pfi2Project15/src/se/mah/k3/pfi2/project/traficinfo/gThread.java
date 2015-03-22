@@ -2,7 +2,7 @@ package se.mah.k3.pfi2.project.traficinfo;
 
 
 public class gThread extends Thread {
-	private TrafikinfoGUI gui;
+	private TrafficInfo gui;
 	private boolean running = true;
 	private String effect;
 	private String details;
@@ -10,7 +10,7 @@ public class gThread extends Thread {
 	
 	private int count = 0;
 	
-	public gThread(TrafikinfoGUI g){
+	public gThread(TrafficInfo g){
 		this.gui = g;
 	}
 	
