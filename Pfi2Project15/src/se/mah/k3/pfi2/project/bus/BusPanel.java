@@ -55,12 +55,13 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		setLayout(new MigLayout("", "[][112px][112px][112px,grow][112px,grow][112px,grow]", "[150px][150px,grow][150px,grow][150px,grow][150px,grow]"));
 
 		JLabel lblLinje = new JLabel("Linje");
-		lblLinje.setFont(new Font("Futura LT", Font.BOLD, 24));
+		//test Ã¤ndring font size frÃ¥n 24 till 26
+		lblLinje.setFont(new Font("Futura LT", Font.BOLD, 26));
 		lblLinje.setForeground(new Color(0, 0, 0));
 		lblLinje.setVerticalAlignment(SwingConstants.TOP);
 		add(lblLinje, "cell 1 0,alignx center,aligny top");
 
-		JLabel lblNewLabel = new JLabel("Läge");
+		JLabel lblNewLabel = new JLabel("Lï¿½ge");
 		lblNewLabel.setFont(new Font("Futura LT", Font.BOLD, 24));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
@@ -73,7 +74,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		add(lblDestination, "cell 2 0 2 1,alignx center,aligny top");
 		lblDestination.setBounds(92, 56, 236, 50);
 
-		JLabel lblAvgr = new JLabel("Avgång");
+		JLabel lblAvgr = new JLabel("Avgï¿½ng");
 		lblAvgr.setFont(new Font("Futura LT", Font.BOLD, 24));
 		lblAvgr.setForeground(new Color(0, 0, 0));
 		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
@@ -185,7 +186,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 						Line.append(journey.getLineOnFirstJourney() + "\n");
 						Destination.append(journey.getTowards() + "\n");
 						Stop.append(journey.getStopPoint() + "\n");
-						System.out.println("Buss " + busCount + " avgår om " + depTime + " min");
+						System.out.println("Buss " + busCount + " avgï¿½r om " + depTime + " min");
 
 						if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
 							Departure.append(time + "\n");
