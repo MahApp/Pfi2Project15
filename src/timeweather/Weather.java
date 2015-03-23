@@ -47,6 +47,9 @@ public class Weather {
 		this.timeList = timeList;
 	}
 	
+	//Axel - här är metoden där man kopplar vädertypen med en vädericon. 
+	//Den anropas i WeatherThread. Hör av dig till mig om du har frågor /Lars
+	
 	public void setWeatherIcon(String weatherCondition){
 		if(weatherCondition.equals("broken clouds")){
 			setIconPathway("/timeweather/images/weatherIconTest2.png");
