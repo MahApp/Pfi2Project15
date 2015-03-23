@@ -17,7 +17,7 @@ public class TimePanel extends JPanel implements ModuleInterface{
 	private JLabel lblTime;
 	private JLabel lblDate;
 	private JLabel lblBuilding;
-	private TimeLogic timeLogic = new TimeLogic(this);
+	//private TimeLogic timeLogic = new TimeLogic(this);
 	private DateLogic dateLogic = new DateLogic(this);
 	private JLabel lblMahLogo;
 	

@@ -13,8 +13,11 @@ private TimePanel timePanel;
 	}
 
 	@Override
-	public void update(int monthIn, int dayIn) {
+	public void update(int hoursIn, int minuteIn,int monthIn, int dayIn) {
 		String currentDate;
+		String currentTime;
+		String minute;
+		String hours;
 		
 		String monthString;
 		String[] monthNames = {"Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"};
@@ -23,6 +26,22 @@ private TimePanel timePanel;
 		currentDate = String.valueOf(dayIn) + " " + monthString;
 		
 		timePanel.showDate(currentDate);
+		
+		if(minuteIn<10){
+			minute = "0" + String.valueOf(minuteIn);
+		}else{
+			minute = String.valueOf(minuteIn);
+		}
+		
+		if(hoursIn<10){
+			hours = "0" + String.valueOf(hoursIn);
+		}else{
+			hours = String.valueOf(hoursIn);
+		}
+		
+		currentTime = hours + ":" + minute;
+		
+		timePanel.showTime(currentTime);
 
 	}
 	
