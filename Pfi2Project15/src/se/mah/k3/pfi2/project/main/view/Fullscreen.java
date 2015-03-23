@@ -22,6 +22,7 @@ import se.mah.k3.pfi2.project.bus.BusPanel;
 import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.news.LunchGUI2;
 import se.mah.k3.pfi2.project.news.NewsPanel;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
@@ -55,7 +56,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	
 	private void setupPanels() {
 		moduleList.add(new KronoxPanel());
-		moduleList.add(new DummyPanel());
+		moduleList.add(new LunchGUI2());
 		moduleList.add(new NewsPanel());
 		moduleList.add(new FillEmptySpace());
 		int yPlace = 0;

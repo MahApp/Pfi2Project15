@@ -14,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class LunchGUI2 extends JPanel {
+import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+
+public class LunchGUI2 extends JPanel implements ModuleInterface{
 	public JPanel contentPane;
 
 	public JLabel labelDagens;
@@ -54,7 +56,7 @@ public class LunchGUI2 extends JPanel {
 			JPanel panel2 = new JPanel();
 			panel2.setBounds(17, 18, 662, 241);
 			panel2.setBackground(Color.WHITE);
-			getContentPane().add(panel2);
+			add(panel2);
 			panel2.setLayout(null);
 					
 					JLabel lblNewLabel = new JLabel("New label");
@@ -70,14 +72,6 @@ public class LunchGUI2 extends JPanel {
 					labelDagens = new JLabel("");
 					labelDagens.setBounds(24, 87, 293, 31);
 					panel2.add(labelDagens);
-					
-					vegetarisk = new JLabel("hh");
-					vegetarisk.setBounds(24, 154, 293, 31);
-					panel2.add(vegetarisk);
-					
-					kapet = new JLabel("");
-					kapet.setBounds(24, 224, 293, 31);
-					panel2.add(kapet);
 					
 					JPanel panel = new JPanel();
 					panel.setBounds(0, 6, 662, 229);
@@ -99,7 +93,16 @@ public class LunchGUI2 extends JPanel {
 							JPanel panel_1 = new JPanel();
 							panel_1.setBounds(0, 6, 662, 217);
 							panel.add(panel_1);
-							panel_1.setBackground(new Color(240, 241, 241));
+							panel_1.setLayout(null);
+							
+							kapet = new JLabel("");
+							kapet.setBounds(27, 180, 293, 31);
+							panel_1.add(kapet);
+							
+							vegetarisk = new JLabel("hh");
+							vegetarisk.setBounds(27, 122, 293, 31);
+							panel_1.add(vegetarisk);
+							panel.setBackground(new Color(240, 241, 241));
 					readAndWriteMonday();
 
 	}
