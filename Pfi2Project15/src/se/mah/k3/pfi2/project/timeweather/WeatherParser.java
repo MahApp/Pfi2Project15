@@ -22,7 +22,7 @@ public class WeatherParser {
 		try {
 			
 			
-			//String url = "http://api.openweathermap.org/data/2.5/forecast?q=Malm%C3%B6&mode=xml";
+			
 			String url = "http://api.openweathermap.org/data/2.5/forecast?q=Malmo,se&mode=xml";
 			if(debugging){
 				System.out.println(url);
