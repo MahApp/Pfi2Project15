@@ -47,16 +47,19 @@ public class Weather {
 		this.timeList = timeList;
 	}
 	
-	//Axel - här är metoden där man kopplar vädertypen med en vädericon. 
+	//Axel - här är metoden där man kopplar vädertypen med en vädericon. Lägg till else if påstående för varje vädertyp och sen setIconPathway med rätt bild. 
 	//Den anropas i WeatherThread. Hör av dig till mig om du har frågor /Lars
 	
 	public void setWeatherIcon(String weatherCondition){
 		if(weatherCondition.equals("broken clouds")){
 			setIconPathway("/timeweather/images/weatherIconTest2.png");
 			}
-		if(weatherCondition.equals("sky is clear")){
+		else if(weatherCondition.equals("sky is clear")){
 			setIconPathway("/timeweather/images/weatherIconTest.png");
+		}else{
+			setIconPathway("/timeweather/images/weatherIconError.png");
 		}
+		
 	}
 	
 
