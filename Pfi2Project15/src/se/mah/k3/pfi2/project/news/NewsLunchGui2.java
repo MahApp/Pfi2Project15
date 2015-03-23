@@ -66,15 +66,15 @@ public class NewsLunchGui2 extends JPanel {
 					lblNews.setForeground(Color.WHITE);
 					Rubrik.add(lblNews);
 					
-					labelDagens = new JLabel("Dagens");
+					labelDagens = new JLabel("");
 					labelDagens.setBounds(24, 87, 293, 31);
 					panel2.add(labelDagens);
 					
-					vegetarisk = new JLabel("vegetariskt");
+					vegetarisk = new JLabel("");
 					vegetarisk.setBounds(24, 113, 293, 31);
 					panel2.add(vegetarisk);
 					
-					kapet = new JLabel("KApet");
+					kapet = new JLabel("");
 					kapet.setBounds(24, 152, 293, 31);
 					panel2.add(kapet);
 					
@@ -88,6 +88,7 @@ public class NewsLunchGui2 extends JPanel {
 					lblKalendarium.setFont(new Font("Futura", Font.PLAIN, 28));
 					panel.add(lblKalendarium);
 					panel.setBackground(new Color(0, 158, 212));
+					
 					readAndWriteMonday();
 
 	}
