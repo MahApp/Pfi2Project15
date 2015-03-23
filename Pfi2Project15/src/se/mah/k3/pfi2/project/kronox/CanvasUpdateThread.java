@@ -39,7 +39,6 @@ public class CanvasUpdateThread extends Thread {
 		while (running) {
 			System.out.println("hej");
 			demo.updatePost();
-			
 			demo.repaint();
 			try {
 				Thread.sleep(1000);

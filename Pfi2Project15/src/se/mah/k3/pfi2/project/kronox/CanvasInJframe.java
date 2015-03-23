@@ -120,7 +120,7 @@ public class CanvasInJframe extends JFrame {
 			valueList.add(new String[]{storedPost.get(i).getStartTid()+"-"+storedPost.get(i).getSlutTid(),(storedPost.get(i).getMoment()!=null)?storedPost.get(i).getMoment():"",(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
 		}
 		for (int i = 0; i < storedPost.size(); i++) {
-			shapeList.add(new Rectangle2D.Float(0, fieldHeight+(i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight+(i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
 			demo.repaint(); // this
 			CanvasInJframe.this.setTitle("Loaded");
@@ -185,7 +185,6 @@ public Graphics drawBackground(){
 }
 		public void paint(Graphics g) {
 			
-			System.out.println("paint!!!!");
 			Graphics2D g2;			
 			g2 = (Graphics2D) g;
 
@@ -208,33 +207,25 @@ public Graphics drawBackground(){
 				}
 				// fill skriver ut
 				g2.fill(tempShape);
-		g2.setColor(Color.black);// write out time
-			g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
-			g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
+	        	g2.setColor(Color.black);// write out time
+		    	g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
+			    g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
 				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));
 				g2.drawImage(cancelImg, 940, 90, this);
 				g2.drawImage(modifiedImg, 940, 90+fieldHeight, this);
 				g2.drawLine(710, 120, 775, 120);
-		//		colorTurn = !colorTurn;
+		
 			}
-			// Color.decode("rgb(0,0,0,1)");
-			// g2.drawre
-			// g2.drawImage(img, 100, 100, null);
+
 			g2.setColor(Color.orange);// write out time
 			g2.drawRect(Math.round( minPost.getX()),(int) minPost.getY(), 600, 300);
 		}
-
-		private void BasicStroke(int i) {
-			// TODO Auto-generated method stub
-		}
-		
-		
 
 		
 		
 		
 	}
-	
+	//här under kommer animeringen att äga rum
 	public void updatePost(){
 		
 		
