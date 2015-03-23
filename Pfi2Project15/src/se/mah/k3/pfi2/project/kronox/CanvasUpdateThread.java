@@ -18,9 +18,14 @@ public class CanvasUpdateThread extends Thread {
 		 * */
 	Parser parserClass = new Parser();
 	CanvasInJframe canvasClass = new CanvasInJframe();
+	FilterOutRooms filteredStrings = new FilterOutRooms();
 	
 	ArrayList<Post> canvasPost = new ArrayList<Post>();
+	ArrayList<Post> filteredPosts = new ArrayList<Post>();
+	
 	public CanvasInJframe demo = new CanvasInJframe();
+	
+	
 	private int refreshRate = 100;
 	private boolean running = true;
 
@@ -29,8 +34,10 @@ public class CanvasUpdateThread extends Thread {
 		this.demo = demo;
 		//System.out.println("hej");
 		addToList();
+		
 		canvasPost = parserClass.getPost();
-		demo.loadData(canvasPost);
+		filteredPosts = filteredStrings.filter(canvasPost);
+		demo.loadData(filteredPosts);
 
 	}
 

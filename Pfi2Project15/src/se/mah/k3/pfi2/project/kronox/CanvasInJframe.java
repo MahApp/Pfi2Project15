@@ -142,35 +142,14 @@ public class CanvasInJframe extends JFrame {
 											// xml
 		for (int i = 0; i < storedPost.size(); i++) {
 
-			String startTid = storedPost.get(i).getStartTid();
-			String slutTid = storedPost.get(i).getSlutTid();
-
-			// kolla om Moment = tomt
-			if (storedPost.get(i).getMoment() == null) {
-				getMoment = "";
-			} else {
-				getMoment = storedPost.get(i).getMoment();
-			}
-
-			// Kolla om salIDt är tomt
-			if (storedPost.get(i).getSalID() == null) {
-				getSalID = "";
-			} else {
-				getSalID = storedPost.get(i).getSalID();
-			}
-			
-			// OBS! Om salID inte existerar, lägg inte till. 
-			if (getSalID == "") {
-				System.out.println("no Sal");
-			}else if(getMoment == ""){
-				System.out.println("no moment");
-			}else{
-				valueList.add(new String[] { startTid + "-" + slutTid, getMoment, getSalID });
-			}
+			startTid = storedPost.get(i).getStartTid();
+			slutTid = storedPost.get(i).getSlutTid();
+			getMoment = storedPost.get(i).getMoment();
+			getSalID = storedPost.get(i).getSalID();
+			valueList.add(new String[] { startTid + "-" + slutTid, getMoment, getSalID });
 		}
 		for (int i = 0; i < storedPost.size(); i++) {
-			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight
-					+ (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
 		demo.repaint(); // this
 		CanvasInJframe.this.setTitle("Loaded");
