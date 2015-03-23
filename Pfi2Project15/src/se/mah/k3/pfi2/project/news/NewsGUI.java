@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.net.URL;
+import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -79,10 +81,38 @@ public class NewsGUI extends JFrame {
 					panel2.add(RAM);
 					RAM.setBackground(new Color(0,158,212));
 			//panel.setBackground(new Color(134, 188, 37));
-
+					
+					readAndWriteEvents();
 		}
 
+		
+	public void readAndWriteEvents(){
+		try {
+			URL mahKalender = new URL("http://www.mah.se/Nyheter/RSS/Kalender-fran-Malmo-hogskola/");
+			Scanner s = new Scanner(mahKalender.openStream());
+			while (s.hasNext()) {
+				String string = s.nextLine();
+			//	System.out.println(string);
+				String s2 = s.nextLine();
+				if (s2.contains("2015-03-27")){
+				//	System.out.println(s2);
+					String eventOne = ("27/3	10.00-11.00 	Spikning: Allogenic stem cell transplantation 				Hälsa & Samhälle");
+					String eventTwo = ("27/3 	13.00-15.00 	Girls of Hope: Film screening with director Aysegül Selenga Taskent 	Ubåtshallen 301");
+					String eventThree = ("27/3 	13.15-15.00 	Disputation - Helen Hasslöf 						Orkanen D138");
+					
+					System.out.println(eventOne);
+					System.out.println(eventTwo);
+					System.out.println(eventThree);
+					Meny.setText(eventOne + "\n" + eventTwo + "\n" + eventThree + "\n");
+				}
 
+				}
+			s.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 		
 	
 		public int getExpectedPriority() {
