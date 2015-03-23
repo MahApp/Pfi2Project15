@@ -28,7 +28,7 @@ public class LunchGUI2 extends JPanel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LunchGUI frame = new LunchGUI();
+					LunchGUI2 frame = new LunchGUI2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,20 +53,9 @@ public class LunchGUI2 extends JPanel {
 			
 			JPanel panel2 = new JPanel();
 			panel2.setBounds(17, 18, 662, 241);
-			panel2.setBackground(new Color(227, 230, 229));
+			panel2.setBackground(Color.WHITE);
 			getContentPane().add(panel2);
 			panel2.setLayout(null);
-			
-			JPanel Rubrik = new JPanel();
-			Rubrik.setBounds(24, 0, 218, 50);
-			Rubrik.setBackground(new Color(134,188,37));
-			panel2.add(Rubrik);
-			
-					
-					JLabel lblNews = new JLabel("Lunch 69:-");
-					lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
-					lblNews.setForeground(Color.WHITE);
-					Rubrik.add(lblNews);
 					
 					JLabel lblNewLabel = new JLabel("New label");
 					lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/salad.jpg")));
@@ -89,7 +78,28 @@ public class LunchGUI2 extends JPanel {
 					kapet = new JLabel("");
 					kapet.setBounds(24, 224, 293, 31);
 					panel2.add(kapet);
-			//panel.setBackground(new Color(134, 188, 37));
+					
+					JPanel panel = new JPanel();
+					panel.setBounds(0, 6, 662, 229);
+					panel2.add(panel);
+					panel.setBackground(new Color(227, 230, 229));
+					panel.setLayout(null);
+					
+					JPanel Rubrik = new JPanel();
+					Rubrik.setBounds(32, 6, 218, 50);
+					panel.add(Rubrik);
+					Rubrik.setBackground(new Color(134,188,37));
+					
+							
+							JLabel lblNews = new JLabel("Lunch 69:-");
+							lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
+							lblNews.setForeground(Color.WHITE);
+							Rubrik.add(lblNews);
+							
+							JPanel panel_1 = new JPanel();
+							panel_1.setBounds(0, 6, 662, 217);
+							panel.add(panel_1);
+							panel_1.setBackground(new Color(240, 241, 241));
 					readAndWriteMonday();
 
 	}
