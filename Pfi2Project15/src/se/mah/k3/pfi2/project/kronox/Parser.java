@@ -23,6 +23,8 @@ public class Parser {
 	private String startTid,slutTid;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
+	public static ArrayList <Post> sortedPost= new ArrayList <Post>(); // sorted raw Post
+	
 	static CanvasInJframe frame;
 	static CanvasInJframe awtControlDemo ;
 	static Calendar cal;
@@ -38,6 +40,9 @@ public class Parser {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		System.out.println("start program");
 		//storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
 		
@@ -260,7 +265,48 @@ public class Parser {
 		
 	}
 	
+	public static ArrayList<Post> getPost(){
 	
+
+	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
+	for(int i=0; i< Urls.size();i++){
+		String schema=Urls.get(i);
+		System.out.println("got xml url from: "+schema);
+		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
+	}
+	System.out.println(storedPost.size());
+	System.out.println("-----------------------------------------");
+	for(int i=0; i<storedPosts.size();i++){
+		System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
+	}
+	System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
 	
+
+	for(int i=0; i<storedPost.size();i++){
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); // paring format
+			try {
+				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
+			} catch (ParseException e) {
+		} 
+		
+		storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
+		storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
+
+		String digits[] =storedPost.get(i).getStartTid().split(":");
+		int hour =Integer.parseInt(digits[0]);
+		int minute= Integer.parseInt(digits[1]);
+		
+	}
+
+	Collections.sort(storedPost);
+	if(debug){
+		for (Post schema : storedPost) {
+			System.out.println(schema.getStartTid());
+		}
+	}
+	cal=Calendar.getInstance(); // get the current time
 	
+	return storedPost;
+	}
+
 }
