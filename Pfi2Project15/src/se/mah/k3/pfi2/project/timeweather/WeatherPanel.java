@@ -59,7 +59,7 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		lblTemperature = new JLabel("Temperature");
 		lblTemperature.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTemperature.setFont(new Font("Futura", Font.PLAIN, 48));
-		lblTemperature.setBounds(127, 42, 80, 80);
+		lblTemperature.setBounds(127, 42, 100, 80);
 		panel.add(lblTemperature);
 		
 		lblWeatherConditions = new JLabel("WeatherConditions");
@@ -92,7 +92,7 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		lblTemperature2 = new JLabel("Temperature");
 		lblTemperature2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTemperature2.setFont(new Font("Futura", Font.PLAIN, 48));
-		lblTemperature2.setBounds(127, 42, 80, 80);
+		lblTemperature2.setBounds(127, 42, 100, 80);
 		panel_1.add(lblTemperature2);
 		
 		lblWeatherConditions2 = new JLabel("WeatherConditions");
@@ -120,7 +120,7 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		lblTemperature3 = new JLabel("Temperature");
 		lblTemperature3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTemperature3.setFont(new Font("Futura", Font.PLAIN, 48));
-		lblTemperature3.setBounds(143, 43, 80, 80);
+		lblTemperature3.setBounds(143, 43, 100, 80);
 		panel_2.add(lblTemperature3);
 		
 		lblTime3 = new JLabel("Time");
