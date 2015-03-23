@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SocialPanel extends JPanel implements ModuleInterface {
 
@@ -23,6 +25,8 @@ public class SocialPanel extends JPanel implements ModuleInterface {
 	private static final long serialVersionUID = -5619243716297221701L;
 	
 	JSonParser json;
+	int postsToRetrive = 2;
+	private List<PostData> posts;
 	
 	/**
 	 * Create the panel.
@@ -43,11 +47,11 @@ public class SocialPanel extends JPanel implements ModuleInterface {
 			
 			String fooFinal = new String(fooOut); //, "UTF-8"
 			
-			final String instaURL = fooFinal + "&count=1";
+			final String instaURL = fooFinal;
 			
 			
 			json = new JSonParser();
-			String data = json.fetchData(instaURL);
+			String data = json.fetchData(instaURL,postsToRetrive);
 			
 			
 			String fooErrorCode = " \"code\":400";
@@ -56,20 +60,21 @@ public class SocialPanel extends JPanel implements ModuleInterface {
 			}else if(data.toLowerCase().contains(fooErrorCode.toLowerCase())){
 				System.out.println("Couldn't fetch the right data. Error: \n" + fooErrorCode);
 			}else{
-				json.parseJSon(data);
+				json.parseJSon(data, postsToRetrive);
 			}
 		}
-		catch(Exception  e){
+		catch(Exception e){
 			//e.printStackTrace();
 		}
+		posts = json.getPostsList();
 		
 		//Skapar ett objekt av en instagram post med hög prioritet
-		InstagramPost post = new InstagramPost(json.getUserName(), json.getImgUserUrl(), json.getImgUrl(), json.getImgText(), json.getTimePosted());
-		InstagramPost post2 = new InstagramPost(json.getUserName(), json.getImgUserUrl(), json.getImgUrl(), json.getImgText(), json.getTimePosted());
+		InstagramPost post = new InstagramPost(posts.get(0).getUserName(), posts.get(0).getImgUserUrl(), posts.get(0).getImgUrl(), posts.get(0).getImgText(), posts.get(0).getTimePosted());
+		InstagramPost post2 = new InstagramPost(posts.get(1).getUserName(), posts.get(1).getImgUserUrl(), posts.get(1).getImgUrl(), posts.get(1).getImgText(), posts.get(1).getTimePosted());
 		
 		
-		add(post2.getPanel());
 		add(post.getPanel());
+		add(post2.getPanel());
 		
 	}
 

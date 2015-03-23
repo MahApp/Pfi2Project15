@@ -62,7 +62,7 @@ public class InstagramPost {
 		panel.add(time);
 		
 		JLabel profilePicBorder = new JLabel("");
-		profilePicBorder.setIcon(new ImageIcon(TestGUI.class.getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramProfilePicBorder.png"))); //Profile pic border
+		profilePicBorder.setIcon(new ImageIcon(SocialPanel.class.getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramProfilePicBorder.png"))); //Profile pic border
 		profilePicBorder.setBounds(5, 444, 92, 92);
 		panel.add(profilePicBorder);
 		
@@ -72,7 +72,7 @@ public class InstagramPost {
 		panel.add(profilePic);
 		
 		JLabel gradientOverlay = new JLabel("");
-		gradientOverlay.setIcon(new ImageIcon(TestGUI.class.getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramGradientOverlay.png"))); //Gradient overlay
+		gradientOverlay.setIcon(new ImageIcon(SocialPanel.class.getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramGradientOverlay.png"))); //Gradient overlay
 		gradientOverlay.setBounds(0, 440, 540, 100);
 		panel.add(gradientOverlay);
 		
