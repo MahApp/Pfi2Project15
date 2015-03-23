@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
@@ -39,12 +40,13 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 				}
 			}
 		});
-	}
+	} 
 
 	/**
 	 * Create the frame.
 	 */
 	public TrafficInfo() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1080, 160);
 		contentPane = new JPanel();
@@ -87,6 +89,8 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 		right190.setBounds(0, 0, 1080, 160);
 		add(right190);
 		
+		
+		
 		Thread tx = new gThread(g);
 		tx.start();	
 	}
@@ -100,13 +104,13 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 2;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 2;
 	}
 
 	@Override
