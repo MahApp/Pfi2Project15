@@ -26,7 +26,7 @@ public class NewsGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LunchGUI frame = new LunchGUI();
+					NewsGUI frame = new NewsGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,8 +39,9 @@ public class NewsGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public NewsGUI() {
-		setBounds(100, 100, 688, 300);
+		setBounds(100, 100, 1080, 400);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -48,38 +49,44 @@ public class NewsGUI extends JFrame {
 			
 			JPanel panel2 = new JPanel();
 			panel2.setBounds(17, 18, 662, 241);
-			panel2.setBackground(new Color(227, 230, 229));
+			panel2.setBackground(new Color(238,238,238));
 			getContentPane().add(panel2);
 			panel2.setLayout(null);
-			
-			JPanel Rubrik = new JPanel();
-			Rubrik.setBounds(433, -1, 218, 50);
-			Rubrik.setBackground(new Color(0, 158, 212));
-			panel2.add(Rubrik);
-			
 					
-					JLabel lblNews = new JLabel("Kalendarium");
-					lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
-					lblNews.setForeground(Color.WHITE);
-					Rubrik.add(lblNews);
+					JPanel panel = new JPanel();
+					panel.setLayout(null);
+					panel.setBackground(new Color(227, 230, 229));
+					panel.setBounds(10, 11, 1034, 329);
+					panel2.add(panel);
 					
+					JPanel Rubrik = new JPanel();
+					Rubrik.setBounds(423, 11, 218, 50);
+					panel.add(Rubrik);
+					Rubrik.setBackground(new Color(0, 158, 212));
 					
-					Meny.setFont(new Font("Futura", Font.PLAIN, 20));
-					Meny.setText("Här kommer schemat för gästföreläsningar och seminarium stå!");
-					Meny.setBounds(280, 58, 381, 163);
-					Meny.setBackground(new Color(227, 230, 229));
-					Meny.setForeground(new Color(97, 101, 109));
-					panel2.add(Meny);
-					
-					JLabel lblNewLabel = new JLabel("New label");
-					lblNewLabel.setIcon(new ImageIcon(NewsGUI.class.getResource("/Images/11063394_10152837690193282_601781019_n.jpg")));
-					lblNewLabel.setBounds(11, 22, 202, 193);
-					panel2.add(lblNewLabel);
-					
-					JPanel RAM = new JPanel();
-					RAM.setBounds(8, 26, 208, 184);
-					panel2.add(RAM);
-					RAM.setBackground(new Color(0,158,212));
+							
+							JLabel lblNews = new JLabel("Kalendarium");
+							lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
+							lblNews.setForeground(Color.WHITE);
+							Rubrik.add(lblNews);
+							Meny.setBounds(242, 98, 782, 163);
+							panel.add(Meny);
+							
+							
+							Meny.setFont(new Font("Dialog", Font.PLAIN, 18));
+							Meny.setText("kalendarie hej schema");
+							Meny.setBackground(new Color(227, 230, 229));
+							Meny.setForeground(new Color(97, 101, 109));
+							
+							JLabel lblNewLabel = new JLabel("New label");
+							lblNewLabel.setBounds(19, 85, 202, 193);
+							panel.add(lblNewLabel);
+							lblNewLabel.setIcon(new ImageIcon(NewsGUI.class.getResource("/Images/11063394_10152837690193282_601781019_n.jpg")));
+							
+							JPanel RAM = new JPanel();
+							RAM.setBounds(10, 84, 222, 195);
+							panel.add(RAM);
+							RAM.setBackground(new Color(0,158,212));
 			//panel.setBackground(new Color(134, 188, 37));
 					
 					readAndWriteEvents();
