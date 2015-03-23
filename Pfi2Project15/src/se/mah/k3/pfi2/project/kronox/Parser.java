@@ -43,9 +43,9 @@ public class Parser {
 		
 		ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 		for(int i=0; i< Urls.size();i++){
-		String schema=Urls.get(i);
-		System.out.println("got xml url from: "+schema);
-		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
+			String schema=Urls.get(i);
+			System.out.println("got xml url from: "+schema);
+			storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
 		}
 		System.out.println(storedPost.size());
 		System.out.println("-----------------------------------------");
@@ -61,11 +61,9 @@ public class Parser {
 					storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
 				} catch (ParseException e) {
 			} // Date
-
 			
-			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));
-			storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16));
-			
+			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
+			storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
 			// format minute and hours
 			String digits[] =storedPost.get(i).getStartTid().split(":");
 			int hour =Integer.parseInt(digits[0]);
@@ -80,23 +78,25 @@ public class Parser {
 				System.out.println(schema.getStartTid());
 			}
 		}
-		cal=Calendar.getInstance();
+		cal=Calendar.getInstance(); // get the current time
 		
-//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-//		Date d = null;
-//		try {
-//			 d = sdf.parse("10:30");
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		/*
-		for(int i=0; i<storedPost.size();i++){
-			if(storedPost.get(i).startTidCal.before(cal.getTime())){ //currentTime
+	/*SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:mm"); // Date for testing
+		Date d = null;
+		try {
+			 d = sdf.parse("2015-03-23 10:30");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cal.set(2013, 03, 23, 10, 30);
+		for(int i=0; i<storedPost.size();i++){          // remove post that is old
+			//if(storedPost.get(i).startTidCal.before(cal.getTime())){ //currentTime
+			if(storedPost.get(i).startTidCal.before(d)){ //currentTime
+
 			storedPost.remove(i);
 			}
 		}*/
+		
 		awtControlDemo.loadData(storedPost);
 		awtControlDemo.repaint();
 
