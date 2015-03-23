@@ -21,8 +21,6 @@ public class LunchGUI2 extends JPanel implements ModuleInterface{
 	public JPanel contentPane;
 
 	public JLabel labelDagens;
-	public JLabel vegetarisk;
-	public JLabel kapet;
 	
 	/**
 	 * Launch the application.
@@ -66,14 +64,14 @@ public class LunchGUI2 extends JPanel implements ModuleInterface{
 					lblNewLabel.setBounds(438, 19, 202, 196);
 					panel2.add(lblNewLabel);
 					
+					labelDagens = new JLabel("");
+					labelDagens.setBounds(24, 87, 293, 31);
+					panel2.add(labelDagens);
+					
 					JPanel RAM = new JPanel();
 					RAM.setBounds(435, 16, 208, 204);
 					panel2.add(RAM);
 					RAM.setBackground(new Color(134,188,37));
-					
-					labelDagens = new JLabel("");
-					labelDagens.setBounds(24, 87, 293, 31);
-					panel2.add(labelDagens);
 					
 					JPanel panel = new JPanel();
 					panel.setBounds(0, 6, 662, 229);
@@ -91,19 +89,6 @@ public class LunchGUI2 extends JPanel implements ModuleInterface{
 							lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 							lblNews.setForeground(Color.WHITE);
 							Rubrik.add(lblNews);
-							
-							JPanel panel_1 = new JPanel();
-							panel_1.setBounds(0, 6, 662, 217);
-							panel.add(panel_1);
-							panel_1.setLayout(null);
-							
-							kapet = new JLabel("");
-							kapet.setBounds(27, 180, 293, 31);
-							panel_1.add(kapet);
-							
-							vegetarisk = new JLabel("hh");
-							vegetarisk.setBounds(27, 122, 293, 31);
-							panel_1.add(vegetarisk);
 							panel.setBackground(new Color(240, 241, 241));
 					readAndWriteMonday();
 
@@ -119,19 +104,19 @@ public class LunchGUI2 extends JPanel implements ModuleInterface{
 	}
 	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 3;
 	}
 
 
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 3;
 	}
 
 
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 3;
 	}
 
 
