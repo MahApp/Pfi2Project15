@@ -21,13 +21,12 @@ public class Post implements Comparable<Post>{
 	 * 
 	 * */
 	private float x, y, vx, vy, ax, ay; // for animation
-	private Cell[] cell= new Cell[5]; // diffrent colunm in canvas
 	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur;
 	public int sort;
 	public Date startTidCal;
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad;
-	
+	public boolean deleteAnimate, stackupAnimate;
 
 	Post(){
 		
@@ -85,14 +84,6 @@ public class Post implements Comparable<Post>{
 
 	public void setAy(float ay) {
 		this.ay = ay;
-	}
-
-	public Cell[] getCell() {
-		return cell;
-	}
-
-	public void setCell(Cell[] cell) {
-		this.cell = cell;
 	}
 
 	public String getStartTid() {

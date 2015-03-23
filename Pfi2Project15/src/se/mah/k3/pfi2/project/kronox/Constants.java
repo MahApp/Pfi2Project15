@@ -74,7 +74,6 @@ public class Constants {
 			array.add(baseURL + n4071);
 			array.add(baseURL + n4081);
 			array.add(baseURL + n4083);
-			array.add(baseURL + n5020);
 			array.add(baseURL + n5040);
 		}
 		
@@ -92,6 +91,7 @@ public class Constants {
 			array.add(baseURL + n5040);
 			array.add(baseURL + n6030);
 			array.add(baseURL + n6040);
+			
 		}
 		
 		else if (building.equals("gäddan")){

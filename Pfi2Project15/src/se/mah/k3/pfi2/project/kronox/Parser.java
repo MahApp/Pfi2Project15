@@ -26,7 +26,7 @@ public class Parser {
 	static CanvasInJframe frame;
 	static CanvasInJframe awtControlDemo ;
 	static Calendar cal;
-	public static String biulding="kranen"; // change this to search for other bulding
+	public static String biulding="orkanen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		try{
 			frame = new CanvasInJframe();
@@ -99,7 +99,7 @@ public class Parser {
 		
 		awtControlDemo.loadData(storedPost);
 		awtControlDemo.repaint();
-
+		System.out.println(Urls);
 	}
 	
 	public static Posts getPostsfrom(String searchURL){

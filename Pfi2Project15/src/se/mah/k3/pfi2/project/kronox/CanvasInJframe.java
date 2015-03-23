@@ -29,7 +29,8 @@ public class CanvasInJframe extends JFrame {
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
 	public static int antalElement=14;
-	// monitors, 72 ät gamla
+	Post minPost= new Post();
+			// monitors, 72 ät gamla
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
 	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
@@ -205,10 +206,20 @@ public class CanvasInJframe extends JFrame {
 			// Color.decode("rgb(0,0,0,1)");
 			// g2.drawre
 			// g2.drawImage(img, 100, 100, null);
+			g2.drawRect((int)minPost.getX(),(int) minPost.getY(), 600, 80);
 		}
 
 		private void BasicStroke(int i) {
 			// TODO Auto-generated method stub
 		}
+		
+		
+		public void update(){
+			minPost.setX(minPost.getX()+1);
+			repaint();
+		} 
+		
+		
+		
 	}
 }
