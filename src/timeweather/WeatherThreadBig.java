@@ -7,13 +7,13 @@ import javax.swing.ImageIcon;
 
 
 
-	public class WeatherThread extends Thread {
+	public class WeatherThreadBig extends Thread {
 		
-		private WeatherPanel gui;
+		private WeatherPanelBig gui;
 		private boolean running = true;
 		
 
-		public WeatherThread(WeatherPanel gui) {
+		public WeatherThreadBig(WeatherPanelBig gui) {
 			this.gui = gui;
 			// TODO Auto-generated constructor stub
 		}
