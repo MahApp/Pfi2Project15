@@ -18,8 +18,6 @@ public class gThread extends Thread {
 	private String text;
 	private ArrayList<String> texts = new ArrayList<String>();
 
-	private String info = null;
-	private String newInfo;
 	private String searchURL;
 
 	
@@ -33,21 +31,15 @@ public class gThread extends Thread {
 	public void run(){
 		while(running == true){
 			
-			String searchURL1 = Constants.getURL("14096","61079", 20);
-			String searchURL2 = Constants.getURL("45006","95006", 20); //KPH Airport -> GTB C
-			String searchURL3 = Constants.getURL("45006","10007", 20); //KPH Airport -> Karlskrona C
-			String searchURL4 = Constants.getURL("80000","86239", 20); //Malmö -> Ystad 
 
-			for(int i = 1; i<5; i++){
+			for(int i = 1; i<3; i++){
 				
 				 switch (i) {
-		            case 1:  searchURL = searchURL1;
+		            case 1:  searchURL = Constants.getURL("45006","95006", 20); //KPH Airport -> GTB C
 		                     break;
-		            case 2:  searchURL = searchURL2;
+		            case 2:  searchURL = Constants.getURL("45006","10007", 20); //KPH Airport -> Karlskrona C
                     		 break;
-		            case 3:  searchURL = searchURL3;
-                    		 break;
-		            case 4:  searchURL = searchURL4;
+		            case 3:  searchURL = Constants.getURL("80000","86239", 20); //Malmö -> Ystad 
                     		 break;
 				 }
 				
@@ -57,17 +49,13 @@ public class gThread extends Thread {
 				detail = journey.getDetails();
 				text = journey.getText();
 
-				
-				if(effect == "CRITICAL"){
-					effects.add(effect);
-					details.add(detail);
-					texts.add(text);
+					if(effect == "CRITICAL"){
+						effects.add(effect);
+						details.add(detail);
+						texts.add(text);
 					
-				}
-
-
-				}
-
+					}
+				}	
 			}
 			
 			if(effects != null){
@@ -76,13 +64,6 @@ public class gThread extends Thread {
 			gui.add(st);
 			}
 
-				
-			
-				
-	
-			
-
-			
 			try {
 				Thread.sleep(30000);
 			} catch (InterruptedException e) {
@@ -94,6 +75,4 @@ public class gThread extends Thread {
 			System.out.println("Update nr: "+count+".");
 		}		
 	}
-	
-
 }
