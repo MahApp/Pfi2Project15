@@ -58,9 +58,10 @@ public class gThread extends Thread {
 				}	
 			}
 			
-			if(effects != null){
-			ScrollText st = new ScrollText(effects+", "+details+", "+texts);
-			st.setBounds(100, 13, 1080, 80);
+			if(details != null){
+			//ScrollText st = new ScrollText(effects+", "+details+", "+texts);'
+			ScrollText st = new ScrollText("Test test test test test test test test test");
+			st.setBounds(100, 13, 1080, 160);
 			gui.add(st);
 			}
 
