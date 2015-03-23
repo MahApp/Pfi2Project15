@@ -27,7 +27,7 @@ public class Parser {
 	
 	static CanvasInJframe frame;
 	static CanvasInJframe awtControlDemo ;
-	static Calendar cal;
+	
 	public static String biulding="orkanen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		try{
@@ -83,7 +83,10 @@ public class Parser {
 				System.out.println(schema.getStartTid());
 			}
 		}
-		cal=Calendar.getInstance(); // get the current time
+
+		storedPost=FilterOutBiulding.filter(storedPost); // filter
+		storedPost=FilterOutRooms.filter(storedPost); // filter
+		storedPost=FilterOutTime.filter(storedPost); // filter
 		
 	/*SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:mm"); // Date for testing
 		Date d = null;
@@ -304,8 +307,11 @@ public class Parser {
 			System.out.println(schema.getStartTid());
 		}
 	}
-	cal=Calendar.getInstance(); // get the current time
-	
+
+	storedPost=FilterOutBiulding.filter(storedPost); // filter
+	storedPost=FilterOutRooms.filter(storedPost); // filter
+	storedPost=FilterOutTime.filter(storedPost); // filter
+
 	return storedPost;
 	}
 
