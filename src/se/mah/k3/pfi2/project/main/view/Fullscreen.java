@@ -23,8 +23,8 @@ import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
-import timeweather.TimePanel;
-import timeweather.WeatherPanel;
+import se.mah.k3.pfi2.project.timeweather.TimePanel;
+import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**

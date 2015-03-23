@@ -1,4 +1,4 @@
-package timeweather;
+package se.mah.k3.pfi2.project.timeweather;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 
-public class WeatherPanel extends JPanel implements ModuleInterface{
+public class WeatherPanelBig extends JPanel implements ModuleInterface{
 	private JPanel contentPane;
 	public JLabel lblWeatherConditions;
 	public JLabel lblTemperature;
@@ -34,8 +34,8 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 	public JLabel lblWeatherIcon2;
 	public JLabel lblWeatherIcon3;
 	
-	public WeatherPanel(){
-		WeatherThread weatherThread = new WeatherThread(WeatherPanel.this);
+	public WeatherPanelBig(){
+		WeatherThreadBig weatherThread = new WeatherThreadBig(WeatherPanelBig.this);
 		weatherThread.start();
 		
 		setMinimumSize(new Dimension(1080, 160));
