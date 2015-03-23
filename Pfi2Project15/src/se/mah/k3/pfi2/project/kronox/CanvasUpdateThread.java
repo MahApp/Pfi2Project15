@@ -23,13 +23,13 @@ public class CanvasUpdateThread extends Thread {
 	public CanvasInJframe demo = new CanvasInJframe();
 	private int refreshRate = 100;
 	private boolean running = true;
-	private ArrayList parserValues;
 
 	public CanvasUpdateThread(CanvasInJframe demo) {
 		super();
 		this.demo = demo;
 		//System.out.println("hej");
-		canvasPost = Parser.getPost(); // get all post och sparar i canvasPost
+		addToList();
+		canvasPost = parserClass.getPost();
 		demo.loadData(canvasPost);
 
 	}
@@ -38,10 +38,10 @@ public class CanvasUpdateThread extends Thread {
 		System.out.println("hej");
 		while (running) {
 			System.out.println("hej");
-			demo.updatePost();
+			//demo.updatePost();
 			demo.repaint();
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(1000000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -50,12 +50,11 @@ public class CanvasUpdateThread extends Thread {
 		}
 
 	}
-
-	public void getPostsFromParser() {
-		parserValues = new ArrayList<Post>();
-		parserValues = Parser.getPost();
-		demo.loadData(parserValues);
-		demo.repaint();
+	
+	private void addToList(){
+	
 	}
+
+
 
 }
