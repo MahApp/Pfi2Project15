@@ -3,6 +3,7 @@ package se.mah.k3.pfi2.project.news;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.net.URL;
@@ -42,7 +43,8 @@ public class LunchGUI2 extends JPanel implements ModuleInterface{
 	 * Create the panel.
 	 */
 	public LunchGUI2() {
-		
+		setPreferredSize(new Dimension(1080,240));
+		setMinimumSize(new Dimension(1080,240));
 		setBounds(100, 100, 688, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -117,19 +119,19 @@ public class LunchGUI2 extends JPanel implements ModuleInterface{
 	}
 	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 

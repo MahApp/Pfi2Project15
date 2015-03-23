@@ -55,7 +55,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		moduleList.add(new KronoxPanel());
+		//moduleList.add(new KronoxPanel());
 		moduleList.add(new LunchGUI2());
 		moduleList.add(new NewsPanel());
 		moduleList.add(new FillEmptySpace());
