@@ -19,8 +19,10 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
 public class LunchGUI2 extends JPanel implements ModuleInterface{
 	public JPanel contentPane;
-
 	public JLabel labelDagens;
+	public JLabel vegetarisk;
+	public JLabel kapet;
+	
 	
 	/**
 	 * Launch the application.
