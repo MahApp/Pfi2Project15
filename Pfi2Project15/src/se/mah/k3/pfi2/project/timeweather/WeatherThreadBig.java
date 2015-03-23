@@ -47,6 +47,10 @@ private void weatherUpdate(){
 		gui.lblTemperature3.setText(weather.getTemperature().get(2)+ "°");
 		gui.lblWeatherConditions3.setText(weather.getWeather().get(2));
 		
+		gui.lblTime4.setText(weather.getTimeList().get(3));
+		gui.lblTemperature4.setText(weather.getTemperature().get(3)+ "°");
+		gui.lblWeatherConditions4.setText(weather.getWeather().get(3));
+		
 		weather.setWeatherIcon(weather.getWeather().get(0));
 		gui.lblWeatherPic1.setIcon(new ImageIcon(WeatherPanel.class.getResource(weather.getIconPathway())));
 		

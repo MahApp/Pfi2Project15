@@ -25,6 +25,7 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
+import se.mah.k3.pfi2.project.timeweather.WeatherPanelBig;
 import se.mah.k3.pfi2.project.traficinfo.TrafficInfo;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
@@ -60,6 +61,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		moduleList.add(new TrafficInfo());
 		moduleList.add(new TimePanel());
 		moduleList.add(new WeatherPanel());
+		moduleList.add(new WeatherPanelBig());
 		moduleList.add(new NewsPanel());
 		moduleList.add(new BusPanel());
 		moduleList.add(new FillEmptySpace());
