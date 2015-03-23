@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class NewsLunchGui extends JPanel {
-
+	
+	public JPanel contentPane;
 	public JLabel labelDagens;
 	public JLabel vegetarisk;
 	public JLabel kapet;
@@ -38,7 +39,7 @@ public class NewsLunchGui extends JPanel {
 	
 	public NewsLunchGui() {
 		setBounds(100, 100, 688, 300);
-		JPanel contentPane = new JPanel();
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -77,14 +78,10 @@ public class NewsLunchGui extends JPanel {
 					label.setForeground(Color.WHITE);
 					label.setFont(new Font("Futura", Font.PLAIN, 28));
 					panel.add(label);
-			//panel.setBackground(new Color(134, 188, 37));
+					panel.setBackground(new Color(134, 188, 37));
 
-					JLabel lblNews1 = new JLabel("Lunch 69:-");
-					lblNews1.setFont(new Font("Futura", Font.PLAIN, 28));
-					lblNews1.setForeground(Color.WHITE);
-					Rubrik.add(lblNews);
-					
-				
+		
+						
 					
 					labelDagens = new JLabel("dagens");
 					labelDagens.setBounds(358, 87, 293, 31);
