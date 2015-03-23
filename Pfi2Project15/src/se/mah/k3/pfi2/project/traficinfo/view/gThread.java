@@ -34,8 +34,12 @@ public class gThread extends Thread {
 				details = journey.getDetails();
 				text = journey.getText();
 
+						//Need to add function that checks for differences in the information.
+						// Should not draw or add new ScrollTexts, performance issues will be occurring.
+				
+				
 				 //ScrollText st = new ScrollText(effect+", "+text+", "+details);
-				ScrollText st = new ScrollText("Buss ersätter tågen mellan Malmö C och Lund C pga ett löv på spåret.");
+				ScrollText st = new ScrollText("Buss ersï¿½tter tï¿½gen mellan Malmï¿½ C och Lund C pga ett lï¿½v pï¿½ spï¿½ret.");
 				st.setBounds(0, 6, 1080, 80);
 				gui.add(st);
 			}
