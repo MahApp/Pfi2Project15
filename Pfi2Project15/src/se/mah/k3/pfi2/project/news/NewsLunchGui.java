@@ -43,6 +43,10 @@ public class NewsLunchGui extends JPanel {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		ScannerHalsaSamhall st = new ScannerHalsaSamhall();
+		st.readAndWriteMonday();
+		
+		
 			
 			JPanel panel2 = new JPanel();
 			panel2.setBounds(17, 18, 662, 241);
