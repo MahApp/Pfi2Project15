@@ -26,7 +26,7 @@ public class Post implements Comparable<Post>{
 	public Date startTidCal;
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad;
-	public boolean deleteAnimate, stackupAnimate;
+	public boolean deleteAnimate, stackupAnimate,hide;
 
 	Post(){
 		

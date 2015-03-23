@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.awt.EventQueue;
@@ -207,6 +209,7 @@ public Graphics drawBackground(){
 				}
 				// fill skriver ut
 				g2.fill(tempShape);
+				
 	        	g2.setColor(Color.black);// write out time
 		    	g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
 			    g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
@@ -229,14 +232,21 @@ public Graphics drawBackground(){
 	public void updatePost(){
 		
 		
-		//detta borde väl funka egetnligen?!?!
+	
 		minPost.setX(minPost.getX()+10);
-		Point point1 = new Point((int)minPost.getX(),160);
-		shapeList.get(1).getBounds().setLocation(point1);
+		Point2D point1 = new Point((int)minPost.getX(),160); // denna crazy shit
+		Rectangle2D rect=(Rectangle2D)shapeList.get(1);		// tänk på att det en adress
+		rect.setFrame(point1, new Dimension((int)rect.getWidth(),(int)rect.getHeight())); // denna tillhör fortfarande shape.get(1)
+		
+//		shapeList.get(1).getBounds().setLocation(new Point(300,10));
+//		shapeList.get(1).getBounds().setLocation(100,10);
+//		Rectangle2D hej=shapeList.get(1).getBounds2D();
+//		hej.setRect(100, 10, 500, 50);
+		//shapeList.get(1).getBounds().setLocation(new Point(300,160));
 		minPost.setY(200);
 		
-		
-		System.out.println("kör!!"+minPost.getX());
+
+		System.out.println("kör!!"+shapeList.get(1).getBounds());
 		demo.repaint();  //
 //		demo.repaint(arg0, arg1, arg2, arg3);
 	} 
