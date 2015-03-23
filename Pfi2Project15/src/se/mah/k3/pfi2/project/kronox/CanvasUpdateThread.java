@@ -30,6 +30,7 @@ public class CanvasUpdateThread extends Thread {
 		this.demo = demo;
 		//System.out.println("hej");
 		canvasPost = Parser.getPost(); // get all post och sparar i canvasPost
+		demo.loadData(canvasPost);
 
 	}
 
@@ -38,7 +39,7 @@ public class CanvasUpdateThread extends Thread {
 		while (running) {
 			System.out.println("hej");
 			demo.updatePost();
-			demo.loadData(canvasPost);
+			
 			demo.repaint();
 			try {
 				Thread.sleep(1000);

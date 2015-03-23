@@ -236,7 +236,9 @@ public Graphics drawBackground(){
 	}
 	
 	public void updatePost(){
-		// minPost.setX(minPost.getX()+10);
+		
+		
+		//detta borde väl funka egetnligen?!?!
 		minPost.setX(minPost.getX()+10);
 		Point point1 = new Point((int)minPost.getX(),160);
 		shapeList.get(1).getBounds().setLocation(point1);
