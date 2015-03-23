@@ -52,12 +52,12 @@ public class Weather {
 	
 	public void setWeatherIcon(String weatherCondition){
 		if(weatherCondition.equals("broken clouds")){
-			setIconPathway("/timeweather/images/weatherIconTest2.png");
+			setIconPathway("/se/mah/k3/pfi2/project/timeweather/images/weatherIconTest2.png");
 			}
 		else if(weatherCondition.equals("sky is clear")){
-			setIconPathway("/timeweather/images/weatherIconTest.png");
+			setIconPathway("/se/mah/k3/pfi2/project/timeweather/images/weatherIconTest.png");
 		}else{
-			setIconPathway("/timeweather/images/weatherIconError.png");
+			setIconPathway("/se/mah/k3/pfi2/project/timeweather/images/weatherIconError.png");
 		}
 		
 	}

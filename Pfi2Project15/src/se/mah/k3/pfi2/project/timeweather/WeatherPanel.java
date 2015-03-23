@@ -69,6 +69,7 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		panel.add(lblNu);
 		
 		lblWeatherIcon1 = new JLabel("weather icon");
+		lblWeatherIcon1.setIcon(new ImageIcon(WeatherPanel.class.getResource("/se/mah/k3/pfi2/project/timeweather/images/weatherIconTest2.png")));
 		lblWeatherIcon1.setBounds(0, 0, 360, 160);
 		panel.add(lblWeatherIcon1);
 		
