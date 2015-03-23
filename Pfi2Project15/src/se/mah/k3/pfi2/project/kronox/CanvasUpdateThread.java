@@ -1,5 +1,7 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import java.awt.Canvas;
+
 public class CanvasUpdateThread extends Thread {
 		/**
 		 * 
@@ -7,33 +9,33 @@ public class CanvasUpdateThread extends Thread {
 		 *   
 		 * 
 		 * 
-		 * 
+		
 		 * */
-	
-		int refreshRate=10;
-		boolean  running=true;
-		
-		
-		
-	CanvasUpdateThread(){
-		
+		public CanvasInJframe demo= new CanvasInJframe();
+		private int refreshRate=100;
+		private boolean  running=true;
 		
 	
-		
-	}
-	
-	private void Run(){
-		
-		while(running){
-		
-		
-		try {
-			Thread.sleep(refreshRate);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		public  CanvasUpdateThread(CanvasInJframe demo) {
+			super();
+			this.demo=demo;
+			System.out.println("hej");
 		}
-		
+
+
+		public void run(){
+		System.out.println("hej");
+		while(running){
+			System.out.println("hej");
+			demo.updatePost();
+			demo.repaint();
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}

@@ -17,6 +17,7 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,14 +30,18 @@ public class CanvasInJframe extends JFrame {
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
 	public static int antalElement=14;
-	Post minPost= new Post();
+	public Post minPost= new Post();
+	
+
 			// monitors, 72 ät gamla
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
 	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 	final static int MIN_MODULE_HEIGHT = 80; // minimum module height
 	final static int fieldHeight = 80; // field height
-	private Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+	private Image cancelImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png"));
+	private Image modifiedImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+
 	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
 	public Font futuraBook = new Font("Futura LT Light", Font.PLAIN, fontSize);
@@ -67,6 +72,10 @@ public class CanvasInJframe extends JFrame {
 					frame.setVisible(false);
 					CanvasInJframe awtControlDemo = new CanvasInJframe();
 					
+					CanvasUpdateThread t= new CanvasUpdateThread(awtControlDemo);
+					System.out.println("main thread");
+					t.start();
+					
 					awtControlDemo.showCanvasDemo();
 					awtControlDemo.setVisible(true);
 				} catch (Exception e) {
@@ -81,6 +90,7 @@ public class CanvasInJframe extends JFrame {
 	 */
 	public CanvasInJframe() {
 		System.out.println("construct");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		contentPane = new JPanel();
@@ -141,37 +151,46 @@ public class CanvasInJframe extends JFrame {
 			setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 			setBackground(Color.white);
 		}
+public Graphics drawBackground(){
+	//initiate one-time graphics
+	Graphics2D g3 = null;
+	//g3 = (Graphics2D) g;
 
+	//mjuka upp texten
+	RenderingHints rh = new RenderingHints(
+			RenderingHints.KEY_TEXT_ANTIALIASING,
+			RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+	g3.setRenderingHints(rh);
+	// g2.drawLine(10, 10, 200, 200);
+	// g2.setStroke();
+	g3.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
+	// rader
+	Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
+			BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
+	g3.setStroke(stroke);
+	// Lägger till header-fältet m. text osv
+	g3.setFont(headerFont);
+	Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
+			fieldHeight);
+	g3.setColor(headerFieldBackgroundColor);
+	g3.fill(headField);
+	g3.setColor(headerYellowTextColor);
+	g3.drawString("TID", 20, 50);
+	g3.drawString("KURS", 200, 50);
+	g3.drawString("V/LOKAL", 680, 50);
+	g3.drawString("STATUS", SCREEN_WIDTH - 175, 50);
+	// skapar en arraylist av fält
+	return g3;
+	
+}
 		public void paint(Graphics g) {
 			
 			System.out.println("paint!!!!");
 			Graphics2D g2;
+			
+			
 			g2 = (Graphics2D) g;
-			//mjuka upp texten
-			RenderingHints rh = new RenderingHints(
-					RenderingHints.KEY_TEXT_ANTIALIASING,
-					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
-			g2.setRenderingHints(rh);
-			// g2.drawLine(10, 10, 200, 200);
-			// g2.setStroke();
-			g2.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
-			// rader
-			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
-					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
-			g2.setStroke(stroke);
-			// Lägger till header-fältet m. text osv
-			g2.setFont(headerFont);
-			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
-					fieldHeight);
-			g2.setColor(headerFieldBackgroundColor);
-			g2.fill(headField);
-			g2.setColor(headerYellowTextColor);
-			g2.drawString("TID", 20, 50);
-			g2.drawString("KURS", 200, 50);
-			g2.drawString("V/LOKAL", 680, 50);
-			g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
-			// skapar en arraylist av fält
-
+			
 		//	boolean colorTurn = false;
 			g2.setFont(fieldFont);
 			// Strängar i en array som lagras i en lista, som sen ska skrivas ut
@@ -183,11 +202,7 @@ public class CanvasInJframe extends JFrame {
 			for (int i = 0; i < antalElement; i++) {
 				Shape tempShape = shapeList.get(i);
 				String[] tempValues = (String[]) valueList.get(i);
-//				if (colorTurn) {
-//					g2.setColor(blueFieldColor);
-//				} else {
-//					g2.setColor(whiteColor);
-//				}
+
 				if(i%2==1){
 					g2.setColor(blueFieldColor);							
 				}else{
@@ -199,14 +214,16 @@ public class CanvasInJframe extends JFrame {
 				g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
 				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
 				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));
-				g2.drawImage(img, 940, 90, this);
+				g2.drawImage(cancelImg, 940, 90, this);
+				g2.drawImage(modifiedImg, 940, 90+fieldHeight, this);
 				g2.drawLine(710, 120, 775, 120);
 		//		colorTurn = !colorTurn;
 			}
 			// Color.decode("rgb(0,0,0,1)");
 			// g2.drawre
 			// g2.drawImage(img, 100, 100, null);
-			g2.drawRect((int)minPost.getX(),(int) minPost.getY(), 600, 80);
+			g2.setColor(Color.orange);// write out time
+			g2.drawRect(Math.round( minPost.getX()),(int) minPost.getY(), 600, 300);
 		}
 
 		private void BasicStroke(int i) {
@@ -214,12 +231,19 @@ public class CanvasInJframe extends JFrame {
 		}
 		
 		
-		public void update(){
-			minPost.setX(minPost.getX()+1);
-			repaint();
-		} 
+
 		
 		
 		
 	}
+	
+	public void updatePost(){
+		minPost.setX(minPost.getX()+3);
+		minPost.setY(200);
+		
+		
+		System.out.println("kör!!"+minPost.getX());
+		demo.repaint();  //
+//		demo.repaint(arg0, arg1, arg2, arg3);
+	} 
 }
