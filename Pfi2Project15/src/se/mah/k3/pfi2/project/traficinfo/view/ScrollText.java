@@ -65,7 +65,7 @@ public class ScrollText extends JComponent {
     Graphics2D scratchG2 = scratchImage.createGraphics();
     scratchG2.setRenderingHints(renderHints);
 
-    Font font = new Font("Futura Book", Font.BOLD, 38);
+    Font font = new Font("Futura Book", Font.BOLD, 30);
 
     FontRenderContext frc = scratchG2.getFontRenderContext();
     TextLayout tl = new TextLayout(text, font, frc);
@@ -120,7 +120,6 @@ public class ScrollText extends JComponent {
 
         // adjust the scroll position
         currOffset = (currOffset + 1) % imageSize.width;
-
         // signal the event thread to call paint()
         repaint();
       } catch (InterruptedException x) {
