@@ -52,30 +52,30 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Thread lineThread = new BusPanel.LineThread(parser);
 
 		setBackground(Color.LIGHT_GRAY);
-		setLayout(new MigLayout("", "[][112px][112px][112px,grow][112px,grow][112px,grow]", "[150px][150px,grow][150px,grow][150px,grow][150px,grow]"));
+		setLayout(new MigLayout("", "[][80px][80px][80px,grow][80px,grow][80px,grow]"));
 
 		JLabel lblLinje = new JLabel("Linje");
 		//test ändring font size från 24 till 26
-		lblLinje.setFont(new Font("Futura LT", Font.BOLD, 26));
+		lblLinje.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblLinje.setForeground(new Color(0, 0, 0));
 		lblLinje.setVerticalAlignment(SwingConstants.TOP);
 		add(lblLinje, "cell 1 0,alignx center,aligny top");
 
 		JLabel lblNewLabel = new JLabel("L�ge");
-		lblNewLabel.setFont(new Font("Futura LT", Font.BOLD, 24));
+		lblNewLabel.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		add(lblNewLabel, "cell 4 0,alignx center,aligny top");
 
 		JLabel lblDestination = new JLabel("Destination");
-		lblDestination.setFont(new Font("Futura LT", Font.BOLD, 24));
+		lblDestination.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblDestination.setForeground(new Color(0, 0, 0));
 		lblDestination.setVerticalAlignment(SwingConstants.TOP);
 		add(lblDestination, "cell 2 0 2 1,alignx center,aligny top");
 		lblDestination.setBounds(92, 56, 236, 50);
 
 		JLabel lblAvgr = new JLabel("Avg�ng");
-		lblAvgr.setFont(new Font("Futura LT", Font.BOLD, 24));
+		lblAvgr.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblAvgr.setForeground(new Color(0, 0, 0));
 		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
 		add(lblAvgr, "cell 5 0,alignx center,aligny top");
@@ -86,14 +86,14 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Line.setRows(2);
 		Line.setBackground(Color.LIGHT_GRAY);
 		Line.setAutoscrolls(false);
-		Line.setFont(new Font("Futura LT", Font.BOLD, 14));
+		Line.setFont(new Font("Futura LT", Font.BOLD, 32));
 		add(Line, "cell 1 1 1 4,alignx center,growy");
 
 		Destination = new JTextArea();
 		Destination.setForeground(Color.BLACK);
 		Destination.setEditable(false);
 		Destination.setBackground(Color.LIGHT_GRAY);
-		Destination.setFont(new Font("Futura LT", Font.BOLD, 14));
+		Destination.setFont(new Font("Futura LT", Font.BOLD, 32));
 		Destination.setRows(2);
 		Destination.setAutoscrolls(false);
 		add(Destination, "cell 2 1 2 4,alignx center,growy");
@@ -102,7 +102,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Stop.setForeground(Color.BLACK);
 		Stop.setEditable(false);
 		Stop.setBackground(Color.LIGHT_GRAY);
-		Stop.setFont(new Font("Futura LT", Font.BOLD, 14));
+		Stop.setFont(new Font("Futura LT", Font.BOLD, 32));
 		Stop.setRows(2);
 		Stop.setAutoscrolls(false);
 		add(Stop, "cell 4 1 1 4,alignx center,growy");
@@ -111,7 +111,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Departure.setForeground(Color.BLACK);
 		Departure.setEditable(false);
 		Departure.setBackground(Color.LIGHT_GRAY);
-		Departure.setFont(new Font("Futura LT", Font.BOLD, 14));
+		Departure.setFont(new Font("Futura LT", Font.BOLD, 32));
 		Departure.setRows(2);
 		Departure.setAutoscrolls(false);
 		add(Departure, "cell 5 1 1 4,alignx center,growy");
