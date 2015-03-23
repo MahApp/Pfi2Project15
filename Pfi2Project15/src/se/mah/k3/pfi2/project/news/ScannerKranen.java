@@ -11,13 +11,13 @@ public class ScannerKranen {
 	//	st.readAndWriteTuesday();
 	//	st.readAndWriteWednesday();
 	//	st.readAndWriteThursday();
-	//	st.readAndWriteFriday();
-		System.out.println("***Dagens***");
-		st.readAndWriteDagens();
-		System.out.println("***VeckoVeg***");
-		st.readAndWriteVeg();
-		System.out.println("***Kapet***");
-		st.readAndWriteKapet();
+		st.readAndWriteFriday();
+//		System.out.println("***Dagens***");
+//		st.readAndWriteDagens();
+//		System.out.println("***VeckoVeg***");
+//		st.readAndWriteVeg();
+//		System.out.println("***Kapet***");
+//		st.readAndWriteKapet();
 	}
 	
 	public void readAndWriteMonday(){	
@@ -134,7 +134,14 @@ public class ScannerKranen {
 			URL hamnaratt = new URL("http://www.hamnaratt.com/veckans-lunch");
 			Scanner s = new Scanner(hamnaratt.openStream());
 			while (s.hasNext()){
-				
+				String string = s.nextLine();
+				if (string.contains("Fredag")){
+					System.out.println(string);
+				}
+				String string2 = s.nextLine();
+				if (string2.contains("Husman")){
+					System.out.println(string2);
+				}
 			}
 			s.close();
 		} catch (Exception e){

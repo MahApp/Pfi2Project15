@@ -70,6 +70,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				Meny.setForeground(new Color(97, 101, 109));
 				panel2.add(Meny);
 				
+				
 				JLabel lblNewLabel = new JLabel("New label");
 				lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/salad.jpg")));
 				lblNewLabel.setBounds(438, 19, 202, 196);
