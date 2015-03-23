@@ -58,11 +58,11 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 		
 		/* ********************IF WE USE A SCROLLING STRING****************************** */
 		// Placement on screen to be edited depending on what we decide in priority discussions
-		JPanel panelString = new JPanel();
+		/*JPanel panelString = new JPanel();
 		panelString.setBackground(new Color(193,0,43));
 		panelString.setBounds(0, 160, 1080, 80);
 		contentPane.add(panelString);
-		panelString.setLayout(null);
+		panelString.setLayout(null);*/
 		
 		/*JLabel lblNewLabel = new JLabel("TRAFIKST\u00D6RNING:");
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
