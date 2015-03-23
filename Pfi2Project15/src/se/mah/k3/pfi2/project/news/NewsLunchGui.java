@@ -59,7 +59,7 @@ public class NewsLunchGui extends JPanel {
 					JLabel lblNews = new JLabel("Lunch 69:-");
 					lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 					lblNews.setForeground(Color.WHITE);
-					Rubrik.add(lblNews);
+					Rubrik.add(lblNews);//
 					
 					
 				
