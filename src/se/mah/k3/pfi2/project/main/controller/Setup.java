@@ -1,5 +1,8 @@
 package se.mah.k3.pfi2.project.main.controller;
 import se.mah.k3.pfi2.project.main.view.Fullscreen;
+import timeweather.WeatherParser;
+import timeweather.Weathers;
+import timeweather.Weather;
 
 public class Setup {
 	

@@ -24,6 +24,7 @@ import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
 import timeweather.TimePanel;
+import timeweather.WeatherPanel;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**
@@ -43,7 +44,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.ORANGE);
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -56,6 +57,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	
 	private void setupPanels() {
 		moduleList.add(new TimePanel());
+		moduleList.add(new WeatherPanel());
 		moduleList.add(new KronoxPanel());
 		moduleList.add(new DummyPanel());
 		moduleList.add(new NewsPanel());
