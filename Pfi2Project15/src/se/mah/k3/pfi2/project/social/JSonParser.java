@@ -12,15 +12,35 @@ import org.json.*;
 
 public class JSonParser {
 
-	public String file;
+	private String file;
 	private final String fooPt1 = "aHR0cHM6Ly9hcGkuaW5zdGFncmFtLmNvbS92MS91c2Vycy9zZWFyY2g/cT0=";
 	private final String fooPt2 = "JmFjY2Vzc190b2tlbj0xNzUyOTE4MzAyLjE1NDFmYzYuZjY2NjM2ODI0YTczNDQ0YmE2NTgwYjU1Y2U2ZjkyYzcmY291bnQ9MQ==";
 
-	public String imgUrl;
-	public String userName;
-	public String imgText;
-	public String imgUserUrl;
-	public String timePosted;
+	private String imgUrl;
+	private String userName;
+	private String imgText;
+	private String imgUserUrl;
+	private String timePosted;
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getImgText() {
+		return imgText;
+	}
+
+	public String getImgUserUrl() {
+		return imgUserUrl;
+	}
+
+	public String getTimePosted() {
+		return timePosted;
+	}
 
 	public void parseJSon(String json) {
 		JSONObject obj;
