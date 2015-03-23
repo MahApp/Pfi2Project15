@@ -17,7 +17,7 @@ private TimePanel timePanel;
 		String currentDate;
 		
 		String monthString;
-		String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		String[] monthNames = {"Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"};
 		monthString = monthNames[monthIn];
 		
 		currentDate = String.valueOf(dayIn) + " " + monthString;
