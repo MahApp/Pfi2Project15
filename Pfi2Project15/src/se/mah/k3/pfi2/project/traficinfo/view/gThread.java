@@ -48,21 +48,24 @@ public class gThread extends Thread {
 				effect = journey.getDepDeviationAffect();
 				detail = journey.getDetails();
 				text = journey.getText();
+				System.out.println(effect);
 
 					if(effect == "CRITICAL"){
 						effects.add(effect);
 						details.add(detail);
 						texts.add(text);
-					
+					System.out.println("CRITICAL TRIGGER");
 					}
 				}	
 			}
 			
+			//Problem where details contains just blank spaces, thus !=(not) null. 
 			if(details != null){
-			//ScrollText st = new ScrollText(effects+", "+details+", "+texts);
-			ScrollText st = new ScrollText("Test test test test test test test test test");
-			st.setBounds(100, 3, 1080, 160);
-			gui.add(st);
+				//ScrollText st = new ScrollText(effects+", "+details+", "+texts);
+				ScrollText st = new ScrollText("Test test test test test test test test test");
+				st.setBounds(100, 3, 1080, 160);
+				gui.add(st);
+				System.out.println("DETAILS NOT NULL");
 			}
 
 			try {
