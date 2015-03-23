@@ -31,6 +31,8 @@ public class CanvasInJframe extends JFrame {
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
+	
+	//går att ändra, men starta på 14
 	public static int antalElement = 14;
 	public Post minPost = new Post();
 
@@ -181,6 +183,7 @@ public class CanvasInJframe extends JFrame {
 			setBackground(Color.white);
 		}
 
+		//skit i denna metod 4 now
 		public Graphics drawBackground() {
 			// initiate one-time graphics
 			Graphics2D g3 = null;
@@ -190,9 +193,7 @@ public class CanvasInJframe extends JFrame {
 			RenderingHints rh = new RenderingHints(
 					RenderingHints.KEY_TEXT_ANTIALIASING,
 					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
-			g3.setRenderingHints(rh);
-			// g2.drawLine(10, 10, 200, 200);
-			// g2.setStroke();
+			g3.setRenderingHints(rh);;
 			g3.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
 			// rader
 			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
@@ -207,9 +208,8 @@ public class CanvasInJframe extends JFrame {
 			g3.setColor(headerYellowTextColor);
 			g3.drawString("TID", 20, 50);
 			g3.drawString("KURS", 200, 50);
-			g3.drawString("V/LOKAL", 680, 50);
+			g3.drawString("LOKAL", 680, 50);
 			g3.drawString("STATUS", SCREEN_WIDTH - 175, 50);
-			// skapar en arraylist av fält
 			return g3;
 
 		}
@@ -243,7 +243,7 @@ public class CanvasInJframe extends JFrame {
 			g2.setColor(headerYellowTextColor);
 			g2.drawString("TID", 20, 50);
 			g2.drawString("KURS", 200, 50);
-			g2.drawString("V/LOKAL", 680, 50);
+			g2.drawString("LOKAL", 680, 50);
 			g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
 			//Header koden-avslutad
 
@@ -312,5 +312,9 @@ public class CanvasInJframe extends JFrame {
 		System.out.println("kör!!" + shapeList.get(1).getBounds());
 		demo.repaint(); //
 		// demo.repaint(arg0, arg1, arg2, arg3);
+	}
+	
+	public void setAntalElement(int antal){
+		antalElement = antal;
 	}
 }

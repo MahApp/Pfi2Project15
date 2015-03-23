@@ -13,11 +13,8 @@ public class FilterOutRooms {
 	
 	FilterOutRooms(){
 		
-		
-		
+		//Konstruktor
 	}
-	
-	
 	
 	public static  ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster){     // important filter code
 		
@@ -48,10 +45,6 @@ public class FilterOutRooms {
 			}
 		}
 		
-		/*	for(Post p: sorteradePoster){  // for each loop search on Google if you dont know it
-		//...code here for sorting
-		}
-		*/
 		System.out.println("antal post:"+ofiltreradPoster.size());
 		if (filtreradePoster.isEmpty()) {
 			return ofiltreradPoster;

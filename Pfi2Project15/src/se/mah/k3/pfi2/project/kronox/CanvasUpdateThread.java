@@ -35,10 +35,6 @@ public class CanvasUpdateThread extends Thread {
 		//System.out.println("hej");
 		addToList();
 		
-		canvasPost = parserClass.getPost();
-		filteredPosts = filteredStrings.filter(canvasPost);
-		demo.loadData(filteredPosts);
-
 	}
 
 	public void run() {
@@ -59,9 +55,22 @@ public class CanvasUpdateThread extends Thread {
 	}
 	
 	private void addToList(){
-	
+		//addera ofiltrerade till en variabel
+		canvasPost = parserClass.getPost();
+		//filtrera dem i FilterOutRooms
+		filteredPosts = filteredStrings.filter(canvasPost);
+		
+		//Ladda in Antal Element på skärmen
+		setElementIGUI();
+		//Ladda in dem i GUIn
+		demo.loadData(filteredPosts);
+
 	}
-
-
+	private void setElementIGUI(){
+		
+		//Här ändrar vi från tid till tid då.
+	//	demo.setAntalElement(filteredPosts.size());
+		
+	}
 
 }
