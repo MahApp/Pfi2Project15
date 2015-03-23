@@ -62,6 +62,11 @@ public class Weather {
 		
 	}
 	
+	public void setWeatherPic(String weatherCondition){
+		if(true){
+			setIconPathway("/se/mah/k3/pfi2/project/timeweather/images/testWide.png");
+		}
+	}
 
 
 	public String getIconPathway() {

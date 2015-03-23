@@ -38,8 +38,13 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 	public JLabel lblWeatherPic3;
 	public JLabel lblWeatherPic4;
 	
+		//builds a weatherpanel with the current weather and three prognosis ahead
+		//width 1080, height 320
+		//bigger, higher priority panel
+	
 	public WeatherPanelBig(){
 		WeatherThreadBig weatherThread = new WeatherThreadBig(WeatherPanelBig.this);
+		weatherThread.setName("WeatherThreadBig");
 		weatherThread.start();
 		
 		setMinimumSize(new Dimension(1080, 320));

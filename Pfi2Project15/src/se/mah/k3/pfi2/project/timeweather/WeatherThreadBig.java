@@ -51,14 +51,19 @@ private void weatherUpdate(){
 		gui.lblTemperature4.setText(weather.getTemperature().get(3)+ "°");
 		gui.lblWeatherConditions4.setText(weather.getWeather().get(3));
 		
-		weather.setWeatherIcon(weather.getWeather().get(0));
+		//set big picture with big weather build
+		weather.setWeatherPic(weather.getWeather().get(0));
 		gui.lblWeatherPic1.setIcon(new ImageIcon(WeatherPanel.class.getResource(weather.getIconPathway())));
 		
+		//set the smaller pics with the prognosis panels
 		weather.setWeatherIcon(weather.getWeather().get(1));
 		gui.lblWeatherPic2.setIcon(new ImageIcon(WeatherPanel.class.getResource(weather.getIconPathway())));
 		
 		weather.setWeatherIcon(weather.getWeather().get(2));
 		gui.lblWeatherPic3.setIcon(new ImageIcon(WeatherPanel.class.getResource(weather.getIconPathway())));
+		
+		weather.setWeatherIcon(weather.getWeather().get(3));
+		gui.lblWeatherPic4.setIcon(new ImageIcon(WeatherPanel.class.getResource(weather.getIconPathway())));
 	}
 		
 }
