@@ -271,15 +271,15 @@ public class Parser {
 	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 	for(int i=0; i< Urls.size();i++){
 		String schema=Urls.get(i);
-		System.out.println("got xml url from: "+schema);
+	//	System.out.println("got xml url from: "+schema);
 		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
 	}
-	System.out.println(storedPost.size());
-	System.out.println("-----------------------------------------");
+//	System.out.println(storedPost.size());
+//	System.out.println("-----------------------------------------");
 	for(int i=0; i<storedPosts.size();i++){
 		System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
 	}
-	System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
+	//System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
 	
 
 	for(int i=0; i<storedPost.size();i++){

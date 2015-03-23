@@ -60,6 +60,7 @@ public class CanvasInJframe extends JFrame {
 	private String[] fieldValues = { "- -:- - - -:- -", "LOADING...", "Sal..." };
 	private ArrayList<String[]> valueList = new ArrayList<String[]>();
 	private  MyCanvas demo= new MyCanvas();
+	private static CanvasInJframe awtControlDemo = new CanvasInJframe();
 	// mått
 	/**
 	 * Launch the application.
@@ -70,7 +71,6 @@ public class CanvasInJframe extends JFrame {
 				try {
 					CanvasInJframe frame = new CanvasInJframe();
 					frame.setVisible(false);
-					CanvasInJframe awtControlDemo = new CanvasInJframe();
 					
 					CanvasUpdateThread t= new CanvasUpdateThread(awtControlDemo);
 					System.out.println("main thread");
@@ -116,7 +116,7 @@ public class CanvasInJframe extends JFrame {
 			System.out.println(storedPost.size());
 			antalElement=storedPost.size();  // change the element based on parsed xml
 		for (int i = 0; i < storedPost.size(); i++) {
-			System.out.println(i +"index");
+		//	System.out.println(i +"index");
 			valueList.add(new String[]{storedPost.get(i).getStartTid()+"-"+storedPost.get(i).getSlutTid(),(storedPost.get(i).getMoment()!=null)?storedPost.get(i).getMoment():"",(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
 		}
 		for (int i = 0; i < storedPost.size(); i++) {
@@ -186,11 +186,9 @@ public Graphics drawBackground(){
 		public void paint(Graphics g) {
 			
 			System.out.println("paint!!!!");
-			Graphics2D g2;
-			
-			
+			Graphics2D g2;			
 			g2 = (Graphics2D) g;
-			
+
 		//	boolean colorTurn = false;
 			g2.setFont(fieldFont);
 			// Strängar i en array som lagras i en lista, som sen ska skrivas ut
@@ -210,9 +208,9 @@ public Graphics drawBackground(){
 				}
 				// fill skriver ut
 				g2.fill(tempShape);
-				g2.setColor(Color.black);// write out time
-				g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
-				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
+		g2.setColor(Color.black);// write out time
+			g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
+			g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
 				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));
 				g2.drawImage(cancelImg, 940, 90, this);
 				g2.drawImage(modifiedImg, 940, 90+fieldHeight, this);
@@ -238,7 +236,10 @@ public Graphics drawBackground(){
 	}
 	
 	public void updatePost(){
-		minPost.setX(minPost.getX()+3);
+		// minPost.setX(minPost.getX()+10);
+		minPost.setX(minPost.getX()+10);
+		Point point1 = new Point((int)minPost.getX(),160);
+		shapeList.get(1).getBounds().setLocation(point1);
 		minPost.setY(200);
 		
 		
