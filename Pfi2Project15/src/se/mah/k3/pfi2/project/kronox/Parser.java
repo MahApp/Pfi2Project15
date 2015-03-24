@@ -20,13 +20,8 @@ import org.w3c.dom.NodeList;
 
 public class Parser {
 	public static boolean debug;
-	//private String startTid,slutTid;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-
-//	static CanvasInJframe frame;
-	//static CanvasInJframe awtControlDemo ;
-	
 	public static String biulding="orkanen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		CanvasInJframe frame = new CanvasInJframe();
@@ -63,9 +58,27 @@ public class Parser {
 					storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
 				} catch (ParseException e) {
 			} // Date
-			
+
 			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
 			storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
+			
+			if(storedPost.get(i).getSalID()!=null) { // format biulding
+				if(storedPost.get(i).getSalID().equals("null")||storedPost.get(i).getSalID().equals("")) {
+					System.out.println("post: "+i+ " is empty");
+				}else{
+					storedPost.get(i).setBiuldingId(storedPost.get(i).getSalID().substring(0, 2));
+					storedPost.get(i).setBiulding(Constants.parseBiuldingIdToBiulding(storedPost.get(i).getBiuldingId()));
+					System.out.println(storedPost.get(i).getBiuldingId());
+				}
+			}else{
+				System.out.println("post: "+i+ " is null");
+			}
+
+			//System.out.println(storedPost.get(i).getSalID().substring(0, 1));
+			//if(!storedPost.get(i).getSalID().isEmpty()){
+			//storedPost.get(i).setBiuldingId(storedPost.get(i).getSalID().substring(0, 2));
+		//	System.out.println(storedPost.get(i).getBiuldingId());
+			//}
 			// format minute and hours
 			//String digits[] =storedPost.get(i).getStartTid().split(":");
 			//int hour =Integer.parseInt(digits[0]);
@@ -170,19 +183,15 @@ public class Parser {
 												if(debug)System.out.println(resursIdE.getTextContent()); // fšrsta
 													if(resursNodE.getAttribute("resursTypId").equals("UTB_KURSINSTANS_GRUPPER")){
 														tempSchemaPost.setKursId(resursIdE.getTextContent());
-														
 													}
 													if(resursNodE.getAttribute("resursTypId").equals("UTB_PROGRAMINSTANS_KLASSER")){
 														tempSchemaPost.setProgramId(resursIdE.getTextContent());
-													
 													}
 													if(resursNodE.getAttribute("resursTypId").equals("RESURSER_LOKALER")){
 														tempSchemaPost.setSalID(resursIdE.getTextContent());
-														
 													}
 													if(resursNodE.getAttribute("resursTypId").equals("RESURSER_SIGNATURER")){
 														tempSchemaPost.setResursSignatur(resursIdE.getTextContent());
-													
 													}
 												}
 										}
@@ -277,10 +286,12 @@ public class Parser {
 				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
 			} catch (ParseException e) {
 		} 
-		
 		storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
 		storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
 
+		storedPost.get(i).setBiuldingId(storedPost.get(i).getSalID().substring(0, 2));
+		System.out.println(storedPost.get(i).getBiuldingId());
+		//storedPost.get(i).setBiuldingId();
 //String digits[] =storedPost.get(i).getStartTid().split(":");
 	//	int hour =Integer.parseInt(digits[0]);
 	//	int minute= Integer.parseInt(digits[1]);

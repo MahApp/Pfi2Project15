@@ -127,8 +127,28 @@ public class Constants {
 	}
 
 	public static String fixHTML(String _input) {
-		    return _input.replaceAll("\\<[^>]*>","");
+		return _input.replaceAll("\\<[^>]*>","");
 	}
 	
+	public static String parseBiuldingIdToBiulding(String _2letters){
+		String biuldingString="";
+		
+//		if(_2letters.equals("K8"))biuldingString="ubåtshallen";
+//		if (_2letters.equals("G8"))biuldingString="gäddan";
+//		if (_2letters.equals("KL"))biuldingString="odontologiska";
+//		if (_2letters.equals("OR"))biuldingString="orkanen";
+//		if (_2letters.equals("K2"))biuldingString="kranen";
+	     switch (_2letters) {
+         case "K8":biuldingString="ubåtshallen";break;
+         case "G8":biuldingString="gäddan";break;
+         case "KL":biuldingString="odontologiska"; break;
+         case "OR":biuldingString="orkanen";break;
+         case "K2":biuldingString="kranen";break;
+         default:
+        	 System.out.println("unknown biulding!!!");
+	     }
+		System.out.println(biuldingString);
+		return biuldingString;
+	}
 }
 
