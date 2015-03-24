@@ -29,17 +29,17 @@ public class gThread extends Thread {
 	
 
 	public void run(){
+		
 		while(running == true){
-			
-
 			for(int i = 1; i<3; i++){
 				
+				//Filtered journeys
 				 switch (i) {
 		            case 1:  searchURL = Constants.getURL("45006","95006", 20); //KPH Airport -> GTB C
 		                     break;
 		            case 2:  searchURL = Constants.getURL("45006","10007", 20); //KPH Airport -> Karlskrona C
                     		 break;
-		            case 3:  searchURL = Constants.getURL("80000","86239", 20); //MalmÃ¶ -> Ystad 
+		            case 3:  searchURL = Constants.getURL("80000","86239", 20); //Malmö -> Ystad 
                     		 break;
 				 }
 				

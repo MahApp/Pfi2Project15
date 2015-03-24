@@ -96,8 +96,7 @@ public class ScrollText extends JComponent {
     g2.setColor(Color.white);
     tl.draw(g2, 0, baselineOffset);
 
-    // Free-up resources right away, but keep "image" for
-    // animation.
+    // Free-up resources right away, but keep "image" for animation.
     scratchG2.dispose();
     scratchImage.flush();
     g2.dispose();
