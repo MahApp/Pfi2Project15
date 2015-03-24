@@ -22,7 +22,7 @@ public class Parser {
 	public static boolean debug;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-	public static String biulding="orkanen"; // change this to search for other bulding
+	public static String biulding="odontologiska"; // change this to search for other bulding
 	public static void main(String[] args) {
 		CanvasInJframe frame = new CanvasInJframe();
 		CanvasInJframe awtControlDemo = new CanvasInJframe();
