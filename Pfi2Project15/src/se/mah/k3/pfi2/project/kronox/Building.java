@@ -53,7 +53,7 @@ public class Building extends JFrame {
 		
 		final JComboBox buildings = new JComboBox();
 		buildings.setFont(new Font("Futura LT", Font.PLAIN, 18));
-		buildings.setBounds(16, 80, 265, 83);
+		buildings.setBounds(16, 107, 265, 22);
 		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ubåtshallen", "Orkanen", "Odontologkiska", "Gäddan"}));
 		contentPane.add(buildings);
 		
@@ -78,7 +78,7 @@ public class Building extends JFrame {
 			}
 		});
 		btnRun.setFont(new Font("Futura LT", Font.PLAIN, 15));
-		btnRun.setBounds(281, 107, 117, 29);
+		btnRun.setBounds(281, 107, 117, 22);
 		contentPane.add(btnRun);
 	}
 }
