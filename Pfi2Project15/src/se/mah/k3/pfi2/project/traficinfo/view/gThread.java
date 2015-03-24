@@ -1,6 +1,7 @@
 package se.mah.k3.pfi2.project.traficinfo.view;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import se.mah.k3.pfi2.project.traficinfo.control.Constants;
 import se.mah.k3.pfi2.project.traficinfo.model.Journey;
@@ -19,9 +20,10 @@ public class gThread extends Thread {
 	private ArrayList<String> texts = new ArrayList<String>();
 
 	private String searchURL;
-
 	
 	private int count = 0;
+	
+	private int charLength;
 	
 	public gThread(TrafficInfo g){
 		this.gui = g;
@@ -31,15 +33,18 @@ public class gThread extends Thread {
 	public void run(){
 		
 		while(running == true){
-			for(int i = 1; i<3; i++){
+			for(int i = 1; i<4; i++){
 				
 				//Filtered journeys
 				 switch (i) {
 		            case 1:  searchURL = Constants.getURL("45006","95006", 20); //KPH Airport -> GTB C
+		            System.out.println("URL1 Searching...");
 		                     break;
 		            case 2:  searchURL = Constants.getURL("45006","10007", 20); //KPH Airport -> Karlskrona C
+		            System.out.println("URL2 Searching...");
                     		 break;
-		            case 3:  searchURL = Constants.getURL("80000","86239", 20); //Malmö -> Ystad 
+		            case 3:  searchURL = Constants.getURL("80000","86239", 20); //Malmï¿½ -> Ystad 
+		            System.out.println("URL3 Searching...");
                     		 break;
 				 }
 				
@@ -48,7 +53,6 @@ public class gThread extends Thread {
 				effect = journey.getDepDeviationAffect();
 				detail = journey.getDetails();
 				text = journey.getText();
-				System.out.println(effect);
 
 					if(effect == "CRITICAL"){
 						effects.add(effect);
@@ -60,6 +64,17 @@ public class gThread extends Thread {
 			}
 			
 			//Problem where details contains just blank spaces, thus !=(not) null. 
+			
+			
+			Iterator<String> iter = details.iterator();
+		      while (iter.hasNext()) {
+		         charLength = ((CharSequence) details).length();
+		         System.out.println(charLength);
+		      }
+
+			
+			
+			
 			if(details != null){
 				//ScrollText st = new ScrollText(effects+", "+details+", "+texts);
 				ScrollText st = new ScrollText("Test test test test test test test test test");

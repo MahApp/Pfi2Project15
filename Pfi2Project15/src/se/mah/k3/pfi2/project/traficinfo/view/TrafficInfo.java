@@ -56,6 +56,7 @@ public class TrafficInfo extends JFrame implements ModuleInterface{
 		contentPane.setBackground(new Color(193,0,43));
 		
 		
+		
 		/* ********************IF WE USE A SCROLLING STRING****************************** */
 		// Placement on screen to be edited depending on what we decide in priority discussions
 		/*JPanel panelString = new JPanel();
