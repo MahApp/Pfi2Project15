@@ -45,7 +45,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 
 	private int noOfUpdates = 0;
 	private int updateInterval = 60000;
-	private int results = 1;
+	private int results = 4;
 	public int priority = getExpectedPriority();
 	private int busCount = 0;
 	private JTextField textField = new JTextField();
@@ -61,6 +61,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		setLayout(new MigLayout("", "[][112px][112px][112px,grow][112px,grow][112px,grow]"));
 
 		JLabel lblLinje = new JLabel("Linje");
+		lblLinje.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLinje.setFont(new Font("FuturaLT", Font.BOLD, 50));
 		lblLinje.setForeground(new Color(255, 204, 0));
 		lblLinje.setVerticalAlignment(SwingConstants.TOP);
@@ -118,10 +119,10 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		departure.setRows(2);
 		departure.setAutoscrolls(false);
 		add(departure, "cell 5 1 1 4,alignx center,growy");
-
-		if (priority == 1){
-			results = 4;
-		}
+//
+//		if (priority == 1){
+//			results = 4;
+//		}
 
 		String searchURL = Constants.getURL("80046", "80000", results);
 		System.out.println("START \nPRIORITET " + priority + "\nUPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
