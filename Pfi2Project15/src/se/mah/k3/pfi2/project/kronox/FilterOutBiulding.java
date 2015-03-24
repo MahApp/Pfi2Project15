@@ -7,6 +7,8 @@ public class FilterOutBiulding {
 	ArrayList<Post> osorteradePoster = new ArrayList<Post>();
 	static String currentBuilding = "";
 	
+	static String getBuilding;
+	
 	FilterOutBiulding() {
 	}
 
@@ -17,7 +19,20 @@ public class FilterOutBiulding {
 		// you dont know it
 		// ...code here for sorting
 		// }
+		
 		currentBuilding = parser1.getbuilding();
+		
+		for (int i = 0; i < ofiltreradPoster.size(); i++) {
+			
+			//getBuilding = ofiltreradPoster.get(i).get
+			if (getBuilding != currentBuilding) {
+				System.out.println("wrong building \n");
+			}else{
+				filtreradePoster.add(ofiltreradPoster.get(i));
+			}
+		}
+		
+		
 		System.out.println("DENNA BYGGNAD: \n " + currentBuilding + "\n\n_______________");
 		System.out.println("antal post:"+ofiltreradPoster.size() +"efter byggnads filtrering");
 		if (filtreradePoster.isEmpty()) {
