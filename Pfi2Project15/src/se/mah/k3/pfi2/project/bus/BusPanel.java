@@ -25,6 +25,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
+import javax.swing.border.LineBorder;
 
 public class BusPanel extends JPanel implements ModuleInterface {
 	/**
@@ -53,6 +54,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 * Create the panel.
 	 */
 	public BusPanel() {
+		setBorder(new LineBorder(Color.DARK_GRAY, 4, true));
 		Thread lineThread = new LineThread(p);
 
 		setBackground(new Color( 136, 142, 149));
@@ -70,7 +72,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		add(lblNewLabel, "cell 4 0,alignx center,aligny top");
 
-		JLabel lbldestination = new JLabel("destination");
+		JLabel lbldestination = new JLabel("Destination");
 		lbldestination.setFont(new Font("FuturaLT", Font.BOLD, 50));
 		lbldestination.setForeground(new Color(255, 204, 0));
 		lbldestination.setVerticalAlignment(SwingConstants.TOP);
