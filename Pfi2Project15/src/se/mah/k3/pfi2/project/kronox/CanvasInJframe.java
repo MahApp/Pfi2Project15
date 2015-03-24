@@ -316,6 +316,8 @@ public class CanvasInJframe extends JFrame {
 	
 	public void setAntalElement(int antal){
 		antalElement = antal;
-		SCREEN_HEIGHT = fieldHeight + (antalElement * fieldHeight);
+//		sendContentPane = fieldHeight + (antalElement * fieldHeight);
+		
+		demo.setSize(SCREEN_WIDTH, fieldHeight + (antalElement * fieldHeight));
 	}
 }

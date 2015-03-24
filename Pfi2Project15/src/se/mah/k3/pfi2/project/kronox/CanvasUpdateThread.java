@@ -61,7 +61,7 @@ public class CanvasUpdateThread extends Thread {
 		filteredPosts = filteredStrings.filter(canvasPost);
 		
 		//Ladda in Antal Element på skärmen
-	//	setElementIGUI();
+		setElementIGUI();
 		//Ladda in dem i GUIn
 		demo.loadData(filteredPosts);
 
@@ -71,7 +71,7 @@ public class CanvasUpdateThread extends Thread {
 		//Här ändrar vi från tid till tid då.
 		
 		//demo.setAntalElement(filteredPosts.size());
-		//demo.setAntalElement(5);
+		demo.setAntalElement(9);
 	}
 
 }
