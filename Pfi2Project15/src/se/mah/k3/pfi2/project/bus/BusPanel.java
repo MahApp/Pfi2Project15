@@ -105,10 +105,6 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		setBackground(Color.WHITE);
 		setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
-		JTable table = new JTable(){
-
-		};
-		
 		table = new JTable();
 		
 		//BYTA FÄRG TILL GRÅ PÅ VARANNAN RAD
@@ -129,6 +125,8 @@ public class BusPanel extends JPanel implements ModuleInterface {
 			}
 		));
 		add(table, "cell 0 0,grow");
+		
+		updateRowHeights();
 
 //		JLabel lblLinje = new JLabel("Linje");
 //		lblLinje.setFont(new Font("Futura LT", Font.PLAIN, 42));
