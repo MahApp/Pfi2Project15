@@ -53,35 +53,36 @@ public class gThread extends Thread {
 				effect = journey.getDepDeviationAffect();
 				detail = journey.getDetails();
 				text = journey.getText();
+				
+				//Adding FAKE information to test
+				
+				effects.add("Inställda tåg");
+				details.add("Tågen mellan Malmö C och Lund C är försenade med 15 minuter");
+				texts.add("");
 
 					if(effect == "CRITICAL"){
 						effects.add(effect);
 						details.add(detail);
 						texts.add(text);
-					System.out.println("CRITICAL TRIGGER");
+					System.out.println("CRITICAL TRIGGERED");
 					}
 				}	
 			}
 			
-			//Problem where details contains just blank spaces, thus !=(not) null. 
-			
-			
-			Iterator<String> iter = details.iterator();
-		      while (iter.hasNext()) {
-		         charLength = ((CharSequence) details).length();
-		         System.out.println(charLength);
-		      }
-
-			
-			
-			
-			if(details != null){
-				//ScrollText st = new ScrollText(effects+", "+details+", "+texts);
-				ScrollText st = new ScrollText("Test test test test test test test test test");
+			//Checks if there is any details added by the if statement above.   NOT DONE
+			if(details.size() >= 1){
+				for(String temp: details){
+			 						
+			      }	
+				
+				ScrollText st = new ScrollText(effects+", "+details+", "+texts);
 				st.setBounds(100, 3, 1080, 160);
 				gui.add(st);
-				System.out.println("DETAILS NOT NULL");
 			}
+			
+			
+			
+			
 
 			try {
 				Thread.sleep(30000);
@@ -91,7 +92,9 @@ public class gThread extends Thread {
 			}
 			
 			count++;
-			System.out.println("Update nr: "+count+".");
+			System.out.println("-----------------------------");
+			System.out.println("--- Update nr: "+count+". ---");
+			System.out.println("-----------------------------");
 		}		
 	}
 }
