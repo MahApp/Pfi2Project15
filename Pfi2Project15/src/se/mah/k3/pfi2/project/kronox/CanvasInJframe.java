@@ -1,7 +1,7 @@
 //Skapad av Mattias & Victor
 //2015-03-18
 //
-//Detta är en klass som visar posterna i schemat, till denna klass ska det tilldelas animationer och logik för att få in korrekta värden
+//Detta ï¿½r en klass som visar posterna i schemat, till denna klass ska det tilldelas animationer och logik fï¿½r att fï¿½ in korrekta vï¿½rden
 //
 //
 package se.mah.k3.pfi2.project.kronox;
@@ -27,34 +27,35 @@ public class CanvasInJframe extends JFrame {
 	private Panel controlPanel;
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
-	final static float DPI = 72; // Pixel density 96 är standard på moderna
+	final static float DPI = 72; // Pixel density 96 ï¿½r standard pï¿½ moderna
 	public int antalElement=12;
-	// monitors, 72 ät gamla
+	// monitors, 72 ï¿½t gamla
 	final static float PT = 7; // font size pt
-	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
-	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
+	final static int SCREEN_WIDTH = 1080;// old, 768px fï¿½r LG monitorn
+	final static int SCREEN_HEIGHT = 1920;// old, 1024px fï¿½r LG monitorn
 	final static int MIN_MODULE_HEIGHT = 80; // minimum module height
 	final static int fieldHeight = 80; // field height
 	private Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+	private Image img2 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png")); //This implements the image for changed class
 	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
 	public Font futuraBook = new Font("Futura LT Regular", Font.PLAIN, fontSize);
 	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,fontSize);// typsnittet vi ska använda
+	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska anvï¿½nda
 	
 	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 25);
 	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 30);
-	// Färger
+	// Fï¿½rger
 	private Color whiteColor = Color.decode("#ffffff");
-	private Color headerYellowTextColor = Color.decode("#E5DA9F");
-	private Color headerFieldBackgroundColor = Color.decode("#3A3A39");
+	private Color headerYellowTextColor = Color.decode("#ffffff"); //changed to color white
+	private Color headerFieldBackgroundColor = Color.decode("#0087b5"); //changed to blue color
 	private Color blueFieldColor = Color.decode("#D6ECF3");
 	private Color redEditText = Color.decode("#C52033");
 	private ArrayList<Post> displayPost= new ArrayList<Post>();
 	private String[] fieldValues = { "09.15", "Interaktionsdesign A", "C310" };
 	private ArrayList<String[]> valueList = new ArrayList<String[]>();
 	private  MyCanvas demo= new MyCanvas();
-	// mått
+	// mï¿½tt
 	/**
 	 * Launch the application.
 	 */
@@ -112,7 +113,7 @@ public class CanvasInJframe extends JFrame {
 	
 	private void prepareGUI() {
 		
-		// contentPane är huvudrutan
+		// contentPane ï¿½r huvudrutan
 		contentPane.setBackground(Color.WHITE);
 		// SetSize
 		contentPane.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -152,7 +153,7 @@ public class CanvasInJframe extends JFrame {
 			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
 					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
 			g2.setStroke(stroke);
-			// Lägger till header-fältet m. text osv
+			// Lï¿½gger till header-fï¿½ltet m. text osv
 			g2.setFont(headerFont);
 			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
 					fieldHeight);
@@ -163,13 +164,13 @@ public class CanvasInJframe extends JFrame {
 			g2.drawString("KURS", 200, 50);
 			g2.drawString("V/LOKAL", 680, 50);
 			g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
-			// skapar en arraylist av fält
+			// skapar en arraylist av fï¿½lt
 
 		//	boolean colorTurn = false;
 			g2.setFont(fieldFont);
-			// Strängar i en array som lagras i en lista, som sen ska skrivas ut
-			// i respektive fält
-			// alla relevanta värden läggs till i en lista
+			// Strï¿½ngar i en array som lagras i en lista, som sen ska skrivas ut
+			// i respektive fï¿½lt
+			// alla relevanta vï¿½rden lï¿½ggs till i en lista
 			
 			// listan sparas sedan i en lista
 			
