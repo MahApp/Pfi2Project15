@@ -21,10 +21,6 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
-
-import java.awt.Font;
-
-import net.miginfocom.swing.MigLayout;
 import javax.swing.border.LineBorder;
 
 public class BusPanel extends JPanel implements ModuleInterface {
@@ -32,189 +28,146 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static JTextArea line = new JTextArea();
-	public static JTextArea stop = new JTextArea();
-	public static JTextArea departure = new JTextArea();
-	public static JTextArea destination = new JTextArea();
+	
+	public JTextArea line;
+	public JTextArea destination;
+	public JTextArea stop;
+	public JTextArea departure;
 	
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
 	public Journeys journeys;
-	private Parser p = new Parser();
-	Thread t = new LineThread(p, this);
+	private Parser parser = new Parser();
 	
-
 	private int noOfUpdates = 0;
-	private int updateInterval = 60000;
+	private int updateInterval = 2000;
 	private int results = 4;
-	public int priority = getExpectedPriority();
-	private int busCount = 0;
-	private JTextField textField = new JTextField();
-
-	/**
-	 * Create the panel.
-	 */
-	public BusPanel() {
-		setBorder(new LineBorder(Color.DARK_GRAY, 4, true));
-		Thread lineThread = new LineThread(p);
-
-		setBackground(new Color( 136, 142, 149));
-		setLayout(new MigLayout("", "[][50px][][112px][112px,grow][112px,grow][50px,grow]", "[][]"));
-		
-				JLabel lblLinje = new JLabel("Linje");
-				lblLinje.setHorizontalAlignment(SwingConstants.TRAILING);
-				lblLinje.setFont(new Font("FuturaLT", Font.BOLD, 50));
-				lblLinje.setForeground(new Color(255, 204, 0));
-				lblLinje.setVerticalAlignment(SwingConstants.TOP);
-				add(lblLinje, "cell 2 0,alignx center,aligny top");
-
-		JLabel lblNewLabel = new JLabel("Läge");
-		lblNewLabel.setFont(new Font("FuturaLT", Font.BOLD, 50));
-		lblNewLabel.setForeground(new Color(255, 204, 0));
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		add(lblNewLabel, "cell 5 0,alignx center,aligny top");
-
-		JLabel lbldestination = new JLabel("Destination");
-		lbldestination.setFont(new Font("FuturaLT", Font.BOLD, 50));
-		lbldestination.setForeground(new Color(255, 204, 0));
-		lbldestination.setVerticalAlignment(SwingConstants.TOP);
-		add(lbldestination, "cell 3 0 2 1,alignx center,aligny top");
-		lbldestination.setBounds(92, 56, 236, 50);
-
-		JLabel lblAvgr = new JLabel("Avgång");
-		lblAvgr.setFont(new Font("FuturaLT", Font.BOLD, 50));
-		lblAvgr.setForeground(new Color(255, 204, 0));
-		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
-		add(lblAvgr, "cell 6 0,alignx center,aligny top");
-
-		line.setEditable(false);
-		line.setForeground(Color.BLACK);
-		line.setRows(2);
-		line.setBackground(new Color( 136, 142, 149));
-		line.setAutoscrolls(false);
-		line.setFont(new Font("FuturaLT", Font.PLAIN, 40));
-		add(line, "cell 2 1 1 4,alignx center,growy");
-
-		destination = new JTextArea();
-		destination.setForeground(Color.BLACK);
-		destination.setEditable(false);
-		destination.setBackground(new Color( 136, 142, 149));
-		destination.setFont(new Font("FuturaLT", Font.PLAIN, 40));
-		destination.setRows(2);
-		destination.setAutoscrolls(false);
-		add(destination, "cell 3 1 2 4,alignx center,growy");
-
-		stop.setForeground(Color.BLACK);
-		stop.setEditable(false);
-		stop.setBackground(new Color( 136, 142, 149));
-		stop.setFont(new Font("FuturaLT", Font.PLAIN, 40));
-		stop.setRows(2);
-		stop.setAutoscrolls(false);
-		add(stop, "cell 5 1 1 4,alignx center,growy");
-
-		departure = new JTextArea();
-		departure.setForeground(Color.BLACK);
-		departure.setEditable(false);
-		departure.setBackground(new Color( 136, 142, 149));
-		departure.setFont(new Font("FuturaLT", Font.PLAIN, 40));
-		departure.setRows(2);
-		departure.setAutoscrolls(false);
-		add(departure, "cell 6 1 1 4,alignx center,growy");
-//
-//		if (priority == 1){
-//			results = 4;
-//		}
-
+	//public int priority = getExpectedPriority();
+	
+	public void Departures() {
 		String searchURL = Constants.getURL("80046", "80000", results);
-		System.out.println("START \nPRIORITET " + priority + "\nUPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
 		Journeys journeys = Parser.getJourneys(searchURL);
 
 		line.setText("");
 		destination.setText("");
 		stop.setText("");
-	departure.setText("");
+		departure.setText("");
 
-		for (Journey journey : journeys.getJourneys()) { 
-			
-			int H = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
-			int M = journey.getDepDateTime().get(Calendar.MINUTE);
-			
-			String depTime = (String.format("%02d", H) + ":" + (String.format("%02d", M)));
-			String timeToDep = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
+		for (Journey journey : journeys.getJourneys()) {
+			int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
+			int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
+			String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
+			String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
 
 			line.append(journey.getLineOnFirstJourney() + "\n");
 			destination.append(journey.getTowards() + "\n");
 			stop.append(journey.getStopPoint() + "\n");
-			
-//			try {
-//				if (Integer.valueOf(timeToDep) < 3) {
-//					Line.append("*" + journey.getLineOnFirstJourney() + "\n");
-//				}
-//			} catch (NumberFormatException ex) {
-//			}
-			
-			try {
-				if (Integer.valueOf(timeToDep) > 10 && Integer.valueOf(timeToDep) > 0) {
-					departure.append(depTime + "\n");
-				} else {
-					departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
-				}
-			
-					
-				
-			} catch (NumberFormatException ex) {
 
+			if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
+				departure.append(time + "\n");
+			} else {
+				departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
 			}
 		}
-		Thread t = new LineThread(p, this);
+	}
+
+	/**
+	 * Create the panel.
+	 */
+	public BusPanel() {
+		setBorder(new LineBorder(new Color(128, 128, 128), 5, true));
+		setBackground(Color.WHITE);
+		setLayout(new MigLayout("", "[][112px][112px][112px,grow][112px,grow][112px,grow]"));
+
+		JLabel lblLinje = new JLabel("Linje");
+		lblLinje.setFont(new Font("Futura LT", Font.PLAIN, 42));
+		lblLinje.setForeground(Color.BLACK);
+		lblLinje.setVerticalAlignment(SwingConstants.TOP);
+		add(lblLinje, "cell 1 0,alignx center,aligny top");
+
+		JLabel lblNewLabel = new JLabel("Läge");
+		lblNewLabel.setFont(new Font("Futura LT", Font.PLAIN, 42));
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		add(lblNewLabel, "cell 4 0,alignx center,aligny top");
+
+		JLabel lblDestination = new JLabel("Destination");
+		lblDestination.setFont(new Font("Futura LT", Font.PLAIN, 42));
+		lblDestination.setForeground(Color.BLACK);
+		lblDestination.setVerticalAlignment(SwingConstants.TOP);
+		add(lblDestination, "cell 2 0 2 1,alignx center,aligny top");
+		lblDestination.setBounds(92, 56, 236, 50);
+
+		JLabel lblAvgr = new JLabel("Avgång");
+		lblAvgr.setFont(new Font("Futura LT", Font.PLAIN, 42));
+		lblAvgr.setForeground(Color.BLACK);
+		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
+		add(lblAvgr, "cell 5 0,alignx center,aligny top");
+
+		line = new JTextArea();
+		line.setEditable(false);
+		line.setForeground(Color.BLACK);
+		line.setRows(2);
+		line.setBackground(Color.LIGHT_GRAY);
+		line.setAutoscrolls(false);
+		line.setFont(new Font("Futura LT", Font.PLAIN, 32));
+		add(line, "cell 1 1 1 4,alignx center,growy");
+
+		destination = new JTextArea();
+		destination.setForeground(Color.BLACK);
+		destination.setEditable(false);
+		destination.setBackground(Color.LIGHT_GRAY);
+		destination.setFont(new Font("Futura LT", Font.PLAIN, 32));
+		destination.setRows(2);
+		destination.setAutoscrolls(false);
+		add(destination, "cell 2 1 2 4,alignx center,growy");
+
+		stop = new JTextArea();
+		stop.setForeground(Color.BLACK);
+		stop.setEditable(false);
+		stop.setBackground(Color.LIGHT_GRAY);
+		stop.setFont(new Font("Futura LT", Font.PLAIN, 32));
+		stop.setRows(2);
+		stop.setAutoscrolls(false);
+		add(stop, "cell 4 1 1 4,alignx center,growy");
+
+		departure = new JTextArea();
+		departure.setForeground(Color.BLACK);
+		departure.setEditable(false);
+		departure.setBackground(Color.LIGHT_GRAY);
+		departure.setFont(new Font("Futura LT", Font.PLAIN, 32));
+		departure.setRows(2);
+		departure.setAutoscrolls(false);
+		add(departure, "cell 5 1 1 4,alignx center,growy");
+
+//		if (priority == 1){
+//			results = 4;
+//		}
+
+		Thread lineThread = new BusPanel.LineThread(parser);
+		Departures();
+		System.out.println("START\n" + "UPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
 		lineThread.start();
 	}
 
-//	public class LineThread extends Thread {
-//		private Parser parser;
-//
-//		public LineThread(Parser parser) {
-//			this.parser = parser;
-//		}
-//
-//		public void run() {			
-//			try {
-//				while (true) {
-//					String searchURL = Constants.getURL("80046", "80000", results);
-//					Journeys journeys = Parser.getJourneys(searchURL);
-//
-//					Thread.sleep(updateInterval);
-//					noOfUpdates++;
-//					System.out.println("UPPDATERING " + noOfUpdates + "\n");
-//
-//					Line.setText("");
-//					destination.setText("");
-//					Stop.setText("");
-//					Departure.setText("");
-//
-//					for (Journey journey : journeys.getJourneys()) {
-//						int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
-//						int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
-//						String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
-//						String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
-//
-//						busCount++;
-//
-//						Line.append(journey.getLineOnFirstJourney() + "\n");
-//						destination.append(journey.getTowards() + "\n");
-//						Stop.append(journey.getStopPoint() + "\n");
-//						System.out.println("Buss " + busCount + " avg�r om " + depTime + " min");
-//
-//						if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
-//							Departure.append(time + "\n");
-//						} else {
-//							Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
-//						}
-//					}
-//				}
-//			} catch (Exception ex) {
-//			}
-//		}
-//	}
+	public class LineThread extends Thread {
+		private Parser parser;
+
+		public LineThread(Parser parser) {
+			this.parser = parser;
+		}
+
+		public void run() {			
+			try {
+				while (true) {
+					Departures();
+					noOfUpdates++;
+					System.out.println("UPPDATERING " + noOfUpdates + "\n");
+					Thread.sleep(updateInterval);
+				}
+			} catch (Exception ex) {
+			}
+		}
+	}
 
 	@Override
 	public int getExpectedPriority() {
