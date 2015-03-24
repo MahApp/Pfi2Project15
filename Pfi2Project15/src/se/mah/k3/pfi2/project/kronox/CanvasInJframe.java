@@ -33,13 +33,13 @@ public class CanvasInJframe extends JFrame {
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
 	
 	//går att ändra, men starta på 14
-	public static int antalElement = 14;
+	public static int antalElement = 3;
 	public Post minPost = new Post();
 
 	// Variables for measurements
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
-	final static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
+	static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 	final static int fieldHeight = 80; // field height
 
 	// variables for Images
@@ -140,7 +140,7 @@ public class CanvasInJframe extends JFrame {
 			valueList.remove(i);
 		}
 		System.out.println(storedPost.size());
-		antalElement = storedPost.size(); // change the element based on parsed
+		//antalElement = storedPost.size(); // change the element based on parsed
 											// xml
 		for (int i = 0; i < storedPost.size(); i++) {
 
@@ -316,5 +316,6 @@ public class CanvasInJframe extends JFrame {
 	
 	public void setAntalElement(int antal){
 		antalElement = antal;
+		SCREEN_HEIGHT = fieldHeight + (antalElement * fieldHeight);
 	}
 }
