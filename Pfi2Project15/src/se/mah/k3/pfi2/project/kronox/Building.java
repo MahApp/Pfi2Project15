@@ -10,14 +10,19 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Building extends JFrame {
-
+	
+	
 	private JPanel contentPane;
+	static Parser parser1 = new Parser();
 
 	/**
 	 * Launch the application.
@@ -46,16 +51,30 @@ public class Building extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Futura LT", Font.PLAIN, 18));
-		comboBox.setBounds(16, 80, 265, 83);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ubåtshallen", "Orkanen", "Odontologkiska", "Gäddan", "Hälsa och samhälle"}));
-		contentPane.add(comboBox);
+		final JComboBox buildings = new JComboBox();
+		buildings.setFont(new Font("Futura LT", Font.PLAIN, 18));
+		buildings.setBounds(16, 80, 265, 83);
+		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ubåtshallen", "Orkanen", "Odontologkiska", "Gäddan"}));
+		contentPane.add(buildings);
 		
 		JButton btnRun = new JButton("Run");
 		btnRun.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				String currentBuilding = (String) buildings.getSelectedItem();
+			if(currentBuilding.equals("Kranen / Ubåtshallen")){
+				
+				currentBuilding = "kranen";
+						
+			}else if (currentBuilding.equals("Orkanen")) {
+				currentBuilding = "orkanen";
+			}else if (currentBuilding.equals("Odontologiska")) {
+				currentBuilding = "odontologiska";
+			}else if (currentBuilding.equals("Gäddan")) {
+				currentBuilding = "gäddan";
+			}
+			System.out.println("Setting current building to " + currentBuilding);
+				parser1.setbuilding(currentBuilding);
 			}
 		});
 		btnRun.setFont(new Font("Futura LT", Font.PLAIN, 15));
