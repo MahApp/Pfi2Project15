@@ -32,8 +32,8 @@ public class CanvasInJframe extends JFrame {
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
 	
-	//går att ändra, men starta på 14
-	public static int antalElement = 3;
+	//går att ändra, men starta på 10 för bra testSize
+	public static int antalElement = 10;
 	public Post minPost = new Post();
 
 	// Variables for measurements
