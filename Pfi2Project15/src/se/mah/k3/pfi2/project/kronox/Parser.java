@@ -302,8 +302,10 @@ public class Parser {
 	}
 	
 	public void setbuilding(String thisBuilding){
-		this.biulding = thisBuilding;
-		
+		this.biulding = thisBuilding;	
+	}
+	public String getbuilding(){
+		return this.biulding;	
 	}
 
 }
