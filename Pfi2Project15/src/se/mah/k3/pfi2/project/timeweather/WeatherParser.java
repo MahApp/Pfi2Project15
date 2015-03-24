@@ -47,7 +47,9 @@ public class WeatherParser {
 				Node nNode2 = nList2.item(temp);
 				if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode2;
-					System.out.println("Time from : " + eElement.getAttribute("from").substring(11, 16));
+					if(debugging){
+						System.out.println("Time from : " + eElement.getAttribute("from").substring(11, 16));
+					}
 					String t = eElement.getAttribute("from").substring(11, 16);
 					timeList.add(t);
 				}
@@ -82,9 +84,10 @@ public class WeatherParser {
 					
 				}
 			}
-			
+			if(debugging){
 			System.out.println(temperatureList);
 			System.out.println(weatherList);
+			}
 			
 			Weather thisWeather = new Weather();
 			thisWeather.setTemperature(temperatureList);
