@@ -71,7 +71,7 @@ public class CanvasUpdateThread extends Thread {
 		//Här ändrar vi från tid till tid då.
 		
 		//demo.setAntalElement(filteredPosts.size());
-		demo.setAntalElement(9);
+		demo.setAntalElement(filteredPosts.size());
 	}
 
 }
