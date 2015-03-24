@@ -16,7 +16,7 @@ public class FilterOutBiulding {
 		// ...code here for sorting
 		// }
 		
-		System.out.println("antal post:"+ofiltreradPoster.size());
+		System.out.println("antal post:"+ofiltreradPoster.size() +"efter byggnads filtrering");
 		if (filtreradePoster.isEmpty()) {
 			return ofiltreradPoster;
 		} else {

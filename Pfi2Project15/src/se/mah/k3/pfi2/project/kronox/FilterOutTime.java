@@ -23,7 +23,7 @@ public class FilterOutTime {
 		//...code here for sorting
 		//}
 		
-	System.out.println("antal post:"+ofiltreradPoster.size());
+	System.out.println("antal post:"+ofiltreradPoster.size() +"efter starttids filtrering");
 		if (filtreradePoster.isEmpty()) {
 			return ofiltreradPoster;
 		} else {
