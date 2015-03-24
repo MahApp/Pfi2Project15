@@ -77,7 +77,7 @@ public class CanvasUpdateThread extends Thread {
 		
 		//demo.setAntalElement(filteredPosts.size());
 		demo.setAntalElement(canvasPost.size());
-		System.out.println(canvasPost.size());
+		System.out.println();
 	}
 
 }

@@ -21,13 +21,13 @@ import java.awt.event.ActionEvent;
 public class Building extends JFrame {
 	
 	
-	private JPanel contentPane;
+	public JPanel contentPane;
 	static Parser parser1 = new Parser();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(Runnable runnable) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -76,6 +76,7 @@ public class Building extends JFrame {
 			System.out.println("Setting current building to " + currentBuilding);
 				parser1.setbuilding(currentBuilding);
 			}
+			
 		});
 		btnRun.setFont(new Font("Futura LT", Font.PLAIN, 15));
 		btnRun.setBounds(281, 107, 117, 22);

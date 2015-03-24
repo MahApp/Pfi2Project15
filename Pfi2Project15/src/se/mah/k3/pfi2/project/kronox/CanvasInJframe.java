@@ -32,7 +32,7 @@ public class CanvasInJframe extends JFrame {
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
 	final static float DPI = 72; // Pixel density 96 är standard på moderna
 	
-	//går att ändra, men starta på 10 för bra testSize
+	//går att ändra, men starta på 10
 	public static int antalElement = 10;
 	public Post minPost = new Post();
 
@@ -77,6 +77,7 @@ public class CanvasInJframe extends JFrame {
 	private String[] fieldValues = { "- -:- - - -:- -", "LOADING...", "Sal..." };
 	private ArrayList<String[]> valueList = new ArrayList<String[]>();
 	private MyCanvas demo = new MyCanvas();
+	static boolean loaded = false;
 	
 	// variabler att hämta info i
 	String startTid;
@@ -91,20 +92,23 @@ public class CanvasInJframe extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+	
 				try {
+
 					CanvasInJframe frame = new CanvasInJframe();
 					frame.setVisible(false);
 					CanvasInJframe awtControlDemo = new CanvasInJframe();
 					CanvasUpdateThread t = new CanvasUpdateThread(
 							awtControlDemo);
 					System.out.println("main thread");
-					t.start();
-
-					awtControlDemo.showCanvasDemo();
+					t.start();		
+					awtControlDemo.showCanvasDemo();			
 					awtControlDemo.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
