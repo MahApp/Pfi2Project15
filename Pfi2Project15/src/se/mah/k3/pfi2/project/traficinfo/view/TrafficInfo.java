@@ -16,7 +16,7 @@ public class TrafficInfo extends JPanel implements ModuleInterface{
 	
 	TrafficInfo g = this;
 
-	
+	// Made everything add gui-effects in a module instead.
 	
 	/**
 	 * Create the panel.
