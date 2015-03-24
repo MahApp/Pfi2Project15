@@ -42,7 +42,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.ORANGE);
+		contentPane.setBackground(new Color(249,179,0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -54,9 +54,9 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		moduleList.add(new KronoxPanel());
-		moduleList.add(new DummyPanel());
-		moduleList.add(new NewsPanel());
+//		moduleList.add(new KronoxPanel());
+//		moduleList.add(new DummyPanel());
+//		moduleList.add(new NewsPanel());
 		moduleList.add(new FillEmptySpace());
 		moduleList.add(new BusPanel());
 		int yPlace = 0;
