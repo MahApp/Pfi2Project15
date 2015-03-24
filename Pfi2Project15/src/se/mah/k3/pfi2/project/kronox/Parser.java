@@ -300,5 +300,10 @@ public class Parser {
 
 	return storedPost;
 	}
+	
+	public void setbuilding(String thisBuilding){
+		this.biulding = thisBuilding;
+		
+	}
 
 }
