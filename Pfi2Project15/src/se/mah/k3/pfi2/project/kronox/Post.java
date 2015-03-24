@@ -23,7 +23,7 @@ public class Post implements Comparable<Post>{
 	 * 
 	 * */
 	private float x, y, vx, vy, ax, ay; // for animation
-	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur;
+	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur,biuldingId,building;
 	public int sort;
 	public Date startTidCal;
 	private Calendar slutTidCal;
@@ -272,6 +272,21 @@ public class Post implements Comparable<Post>{
 		}
 	}
 
+	public String getBiuldingId() {
+		return biuldingId;
+	}
 
+	public void setBiuldingId(String biuldingId) {
+		this.biuldingId = biuldingId;
+	}
+
+	public void setBiulding(String biuldingString) {
+
+		this.building=biuldingString;
+	}
+
+	public String getBiulding() {
+		return this.building;
+	}
 
 }

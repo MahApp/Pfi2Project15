@@ -18,7 +18,8 @@ public class CanvasUpdateThread extends Thread {
 		 * */
 	Parser parserClass = new Parser();
 	CanvasInJframe canvasClass = new CanvasInJframe();
-	FilterOutRooms filteredStrings = new FilterOutRooms();
+	FilterOutRooms filteredRooms = new FilterOutRooms();
+	FilterOutRooms filteredBuildings = new FilterOutRooms();
 	
 	ArrayList<Post> canvasPost = new ArrayList<Post>();
 	ArrayList<Post> filteredPosts = new ArrayList<Post>();
@@ -55,22 +56,28 @@ public class CanvasUpdateThread extends Thread {
 	}
 	
 	private void addToList(){
+		ArrayList<Post> tempPosts = new ArrayList<Post>();
 		//addera ofiltrerade till en variabel
 		canvasPost = parserClass.getPost();
+		/*
+		//filtrera dem i FilterOutBuilding
+		tempPosts = filteredBuildings.filter(canvasPost); 
 		//filtrera dem i FilterOutRooms
-		filteredPosts = filteredStrings.filter(canvasPost);
-		
+		filteredPosts = filteredRooms.filter(tempPosts);
+	*/	
 		//Ladda in Antal Element på skärmen
 		setElementIGUI();
 		//Ladda in dem i GUIn
-		demo.loadData(filteredPosts);
+		demo.loadData(canvasPost);
 
 	}
 	private void setElementIGUI(){
 		
 		//Här ändrar vi från tid till tid då.
-	//	demo.setAntalElement(filteredPosts.size());
 		
+		//demo.setAntalElement(filteredPosts.size());
+		demo.setAntalElement(canvasPost.size());
+		System.out.println();
 	}
 
 }
