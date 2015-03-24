@@ -15,15 +15,13 @@ public class FilterOutBiulding {
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster) { // important filter code
 		ArrayList<Post> filtreradePoster = new ArrayList<Post>();
 
-		// for(Post p: sorteradePoster){ // for each loop search on Google if
-		// you dont know it
+		// for(Post p: sorteradePoster){ // for each loop search on Google if you dont know it
 		// ...code here for sorting
 		// }
 		
 	//	currentBuilding = parser1.getbuilding(); parser är statisk
 		currentBuilding= Parser.biulding;
 		for (int i = 0; i < ofiltreradPoster.size(); i++) {
-			
 			getBuilding = ofiltreradPoster.get(i).getBiulding();
 			
 			if (getBuilding != currentBuilding) {
