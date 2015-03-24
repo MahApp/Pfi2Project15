@@ -33,6 +33,7 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 	public JLabel lblWeatherIcon1;
 	public JLabel lblWeatherIcon2;
 	public JLabel lblWeatherIcon3;
+	private JLabel lblBorderSmall;
 	
 	
 	//builds a weatherpanel with the current weather and prognosis three and six hours ahead
@@ -49,6 +50,11 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		setPreferredSize(new Dimension(1080, 160));
 		setMaximumSize(new Dimension(1080, 160));
 		setLayout(null);
+		
+		lblBorderSmall = new JLabel("border");
+		lblBorderSmall.setIcon(new ImageIcon(WeatherPanel.class.getResource("/se/mah/k3/pfi2/project/timeweather/images/border_small.png")));
+		lblBorderSmall.setBounds(0, 0, 1080, 160);
+		add(lblBorderSmall);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));

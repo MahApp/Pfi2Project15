@@ -66,6 +66,11 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		setMaximumSize(new Dimension(1080, 320));
 		setLayout(null);
 		
+		JLabel lblBorderBig = new JLabel("border");
+		lblBorderBig.setIcon(new ImageIcon(WeatherPanelBig.class.getResource("/se/mah/k3/pfi2/project/timeweather/images/border_big.png")));
+		lblBorderBig.setBounds(0, 0, 1080, 320);
+		add(lblBorderBig);
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		panel.setBounds(0, 0, 1080, 160);
