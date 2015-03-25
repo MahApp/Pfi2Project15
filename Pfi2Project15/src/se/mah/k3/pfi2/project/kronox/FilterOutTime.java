@@ -8,17 +8,16 @@ import java.util.Date;
 
 public class FilterOutTime {
 	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
+	
 	static Calendar cal;
-<<<<<<< HEAD
 	static Calendar cal2;
 	static Calendar cal3;
 	
-=======
 	static  Date timeBefore,timeAfter; // time stamp where 
 	int minuteMargin =30; // timespan that post filters out from 30min is standard
->>>>>>> branch 'TeamMattias' of https://github.com/MahApp/Pfi2Project15.git
 	FilterOutTime(){
 		cal=Calendar.getInstance(); // get the current time
+		
 		
 	
 		
@@ -28,10 +27,11 @@ public class FilterOutTime {
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster){     // important filtering code
 		ArrayList<Post> filtreradePoster= new ArrayList<Post>();
 		SimpleDateFormat sdf = new SimpleDateFormat(" HH:mm:ss");
-		//String time = cal.toString();
-		//float calTime = Float.parseFloat(time);
 		
 		
+		
+		
+	
 		for (int i = 0; i < ofiltreradPoster.size(); i++)
 		{
 			try {
@@ -48,13 +48,17 @@ public class FilterOutTime {
 				e.printStackTrace();
 			}
 			//float postTime = Float.parseFloat(ofiltreradPoster.get(i).getStartTid());
-			if(cal.after(cal2) && cal.before(cal3)){
+			if(cal.after(cal2)) ofiltreradPoster.get(i).deleteAnimate=true;
+			if( cal.before(cal3))ofiltreradPoster.get(i).stackupAnimate=true;
 				
 				
-			}
+			
 			
 			
 		}
+		//String time = cal.toString();
+		//float calTime = Float.parseFloat(time);
+	
 		
 		// for(Post p: sorteradePoster){  // for each loop search on Google if you dont know it
 		//...code here for sorting
