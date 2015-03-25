@@ -22,6 +22,10 @@ import javax.swing.ImageIcon;
 
 public class NewsPanel extends JPanel implements ModuleInterface{
 
+	public JLabel event1;
+	public JLabel event2;
+	public JLabel event3;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -54,20 +58,20 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
 				
-				JLabel Event1 = new JLabel("Event 1");
-				Event1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-				Event1.setBounds(50, 74, 956, 37);
-				panel2.add(Event1);
+				event1 = new JLabel("");
+				event1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				event1.setBounds(50, 74, 956, 37);
+				panel2.add(event1);
 				
-				JLabel Event2 = new JLabel("Event 2");
-				Event2.setFont(new Font("Tahoma", Font.PLAIN, 19));
-				Event2.setBounds(50, 122, 956, 37);
-				panel2.add(Event2);
+				event2 = new JLabel("");
+				event2.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				event2.setBounds(50, 122, 956, 37);
+				panel2.add(event2);
 				
-				JLabel Event3 = new JLabel("Event 3");
-				Event3.setFont(new Font("Tahoma", Font.PLAIN, 19));
-				Event3.setBounds(50, 170, 956, 37);
-				panel2.add(Event3);
+				event3 = new JLabel("");
+				event3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				event3.setBounds(50, 170, 956, 37);
+				panel2.add(event3);
 				
 				
 				
@@ -133,7 +137,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 					
 					
 					System.out.println(cleanResultat);
-					Events.append("\n" + cleanResultat + "\n" );
+					event1.setText("\n" + cleanResultat + "\n" );
 					
 				}
 				
@@ -149,7 +153,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 							
 							
 					System.out.println("Ha" + cleanResultat);
-					Events.append("Ha" + cleanResultat + "\n" );
+					event2.setText("Ha" + cleanResultat + "\n" );
 				}
 				
 				String veg = fullText;
@@ -165,7 +169,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 																					    // </span> inom vegresultat
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
-					Events.append(cleanResultat);
+					event3.setText(cleanResultat);
 				}
 				
 			}
