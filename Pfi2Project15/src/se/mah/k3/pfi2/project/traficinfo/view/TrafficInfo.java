@@ -1,5 +1,6 @@
 package se.mah.k3.pfi2.project.traficinfo.view;
 
+// Ready for merge.
 
 import java.awt.BorderLayout;
 import java.awt.Color;
