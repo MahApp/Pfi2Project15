@@ -3,6 +3,8 @@ package se.mah.k3.pfi2.project.news;
 import java.net.URL;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.*;
+
 public class ScannerHalsaSamhall {
 
 	public static void main(String[] args) {
@@ -51,6 +53,8 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = dagensResultat.indexOf("</span>");
 					String cleanResultat = dagensResultat.substring(cleanStart, cleanEnd);
 					
+					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println(removeHtml);
 					
 					System.out.println(cleanResultat);
 					
@@ -67,7 +71,9 @@ public class ScannerHalsaSamhall {
 					String cleanResultat = halsaResultat.substring(cleanStart, cleanEnd);
 							
 							
-					System.out.println("Ha" + cleanResultat);
+					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println("Hä" + removeHtml);
+					System.out.println("Hä" + cleanResultat);
 				}
 				
 				String veg = fullText;
@@ -81,6 +87,8 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = vegResultat.indexOf("</span>");
 					String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text fr�n b�rjan av vegResultat och 
 																					    // </span> inom vegresultat
+					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println(removeHtml);
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
 				}
