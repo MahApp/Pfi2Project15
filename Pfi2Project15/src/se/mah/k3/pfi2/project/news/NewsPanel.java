@@ -26,20 +26,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 	 * Create the panel.
 	 */
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NewsPanel frame = new NewsPanel();
-					frame.setVisible(true);
-				//Thread T = new ThreadLine (p);
-					//T.start();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 	public NewsPanel() {
 		setPreferredSize(new Dimension(1080,240));
 		setMinimumSize(new Dimension(1080,240));
