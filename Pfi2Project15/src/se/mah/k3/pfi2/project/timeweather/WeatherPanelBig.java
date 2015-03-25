@@ -87,7 +87,7 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		
 		
 		lblNu.setFont(new Font("Futura", Font.PLAIN, 30));
-		lblNu.setBounds(6, 6, 1068, 40);
+		lblNu.setBounds(27, 6, 1047, 57);
 		panel.add(lblNu);
 		
 		/*
@@ -106,7 +106,7 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		add(panel_1);
 		panel_1.setLayout(null);
 		
-		lblTime2.setBounds(6, 6, 130, 40);
+		lblTime2.setBounds(26, 6, 110, 40);
 		lblTime2.setFont(new Font("Futura", Font.PLAIN, 30));
 		panel_1.add(lblTime2);
 		
