@@ -37,19 +37,19 @@ public class ScannerKalender {
 //					int b2 = s2.indexOf("</p>");
 //					String beskrivning = s2.substring(b, b2);
 					System.out.println(cleanResult);
-				if (s2.contains("2015-03-27")){
-			//		System.out.println(s2);
+					if (s2.contains("2015-03-27")){
+				//		System.out.println(s2);
+						
+						String eventOne = ("10.00 	H‰lsa & Samh‰lle	Spikning: Allogenic stem cell transplantation");
+						String eventTwo = ("13.00 	Ub√•tshallen 301 	Girls of Hope: Film screening");
+						String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hasslˆf");
+						
+						System.out.println(eventOne);
+						System.out.println(eventTwo);
+						System.out.println(eventThree);
 					
-					String eventOne = ("10.00 	H√§lsa & Samh√§lle	Spikning: Allogenic stem cell transplantation");
-					String eventTwo = ("13.00 	Ub√•tshallen 301 	Girls of Hope: Film screening");
-					String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hassl√∂f");
-					
-					System.out.println(eventOne);
-					System.out.println(eventTwo);
-					System.out.println(eventThree);
-				
+					}
 				}
-
 				}
 			s.close();
 		}

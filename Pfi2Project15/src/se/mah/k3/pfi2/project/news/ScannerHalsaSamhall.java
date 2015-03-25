@@ -59,8 +59,6 @@ public class ScannerHalsaSamhall {
 					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
 					System.out.println(removeHtml);
 
-					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
-					System.out.println(removeHtml);
 					
 					System.out.println(cleanResultat);
 					
@@ -81,10 +79,6 @@ public class ScannerHalsaSamhall {
 					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
 					System.out.println("Ha" + removeHtml);
 
-							
-					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
-					System.out.println("Hä" + removeHtml);
-					System.out.println("Hä" + cleanResultat);
 				}
 				
 				String veg = fullText;
@@ -101,8 +95,6 @@ public class ScannerHalsaSamhall {
 					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
 					System.out.println(removeHtml);   //skriver ut vegResultat utan HTML-taggar
 
-					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
-					System.out.println(removeHtml);
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
 				}
