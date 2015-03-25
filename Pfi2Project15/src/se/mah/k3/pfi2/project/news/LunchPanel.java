@@ -38,19 +38,19 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 			
 			JPanel panel2 = new JPanel();
 			panel2.setBorder(new LineBorder(new Color(134, 188, 37), 3, true));
-			panel2.setBounds(17, 11, 1047, 218);
+			panel2.setBounds(10, 11, 1060, 218);
 			panel2.setBackground(Color.WHITE);
 			add(panel2);
 			panel2.setLayout(null);
 			
 			JPanel Rubrik = new JPanel();
 			Rubrik.setBorder(new LineBorder(new Color(134, 188, 37), 1, true));
-			Rubrik.setBounds(109, 2, 738, 50);
+			Rubrik.setBounds(353, 0, 371, 50);
 			Rubrik.setBackground(new Color(134,188,37));
 			panel2.add(Rubrik);
 			
 					
-					JLabel lblNews = new JLabel("DAGENS LUNCH");
+					JLabel lblNews = new JLabel("Dagens lunch");
 					lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 					lblNews.setForeground(Color.WHITE);
 					Rubrik.add(lblNews);
