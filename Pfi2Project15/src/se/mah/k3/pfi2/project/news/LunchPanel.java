@@ -17,6 +17,8 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
 import javax.swing.border.LineBorder;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 public class LunchPanel extends JPanel implements ModuleInterface{
 	
 	public JLabel dagensLabel;
@@ -132,10 +134,12 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 						int cleanEnd = dagensResultat.indexOf("</span>");
 						String cleanResultat = dagensResultat.substring(cleanStart, cleanEnd);
 						
+						String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+						System.out.println(removeHtml);
 						
 						System.out.println(cleanResultat);
-						dagensLabel.setText(cleanResultat);
 						
+						dagensLabel.setText(removeHtml);
 					}
 					
 					String halsa = fullText;
@@ -149,8 +153,11 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 						String cleanResultat = halsaResultat.substring(cleanStart, cleanEnd);
 								
 								
-						System.out.println("Ha" + cleanResultat);
-						veg.setText("Ha" + cleanResultat);
+						String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+						System.out.println("Hä" + removeHtml);
+						System.out.println("Hä" + cleanResultat);
+						
+						veg.setText("Hä" + removeHtml);
 					}
 					
 					String veg = fullText;
@@ -164,9 +171,12 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 						int cleanEnd = vegResultat.indexOf("</span>");
 						String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text fr�n b�rjan av vegResultat och 
 																						    // </span> inom vegresultat
+						String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+						System.out.println(removeHtml);
 						
 						System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
-						kapet.setText(cleanResultat);
+						
+						kapet.setText(removeHtml);
 					}
 					
 				}
