@@ -10,18 +10,11 @@ public class FilterOutTime {
 	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
 	
 	static Calendar cal;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'TeamMattias' of https://github.com/MahApp/Pfi2Project15.git
 	static Calendar cal2;
 	static Calendar cal3;
-<<<<<<< HEAD
-	
 
-=======
 	
->>>>>>> branch 'TeamMattias' of https://github.com/MahApp/Pfi2Project15.git
 	static  Date timeBefore,timeAfter; // time stamp where 
 	int minuteMargin =30; // timespan that post filters out from 30min is standard
 	FilterOutTime(){
