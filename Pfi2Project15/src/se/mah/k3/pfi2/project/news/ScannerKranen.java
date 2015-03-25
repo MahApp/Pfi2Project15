@@ -11,13 +11,13 @@ public class ScannerKranen {
 	//	st.readAndWriteTuesday();
 	//	st.readAndWriteWednesday();
 	//	st.readAndWriteThursday();
-		st.readAndWriteFriday();
-//		System.out.println("***Dagens***");
-//		st.readAndWriteDagens();
-//		System.out.println("***VeckoVeg***");
-//		st.readAndWriteVeg();
-//		System.out.println("***Kapet***");
-//		st.readAndWriteKapet();
+	//	st.readAndWriteFriday();
+		System.out.println("***Dagens***");
+		st.readAndWriteDagens();
+		System.out.println("***VeckoVeg***");
+		st.readAndWriteVeg();
+		System.out.println("***Kapet***");
+		st.readAndWriteKapet();
 	}
 	
 	public void readAndWriteMonday(){	
