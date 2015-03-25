@@ -38,7 +38,7 @@ public class CanvasInJframe extends JFrame {
 
 	// Variables for measurements
 	final static float PT = 7; // font size pt
-	final static int SCREEN_WIDTH = 1080;// old, 768px för LG monitorn
+	final static int SCREEN_WIDTH = 1080;// 1080 old, 768px för LG monitorn
 	static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 	final static int fieldHeight = 80; // field height
 
@@ -55,20 +55,20 @@ public class CanvasInJframe extends JFrame {
 
 	// Variables for font-related stuff
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
-	public Font futuraBook = new Font("Futura LT Light", Font.PLAIN, fontSize);
-	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,
+	public Font futuraBook = new Font("Futura LT", Font.PLAIN, fontSize);
+	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
+	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,
 			fontSize);// typsnittet vi ska använda
 	
 	//the fonts we've initilized. the numbers furthest to the right determines the font-size
-	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 20);
-	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 20);
+	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 30);
+	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 33);
 
 	// Variables for colors
 	private Color whiteColor = Color.decode("#ffffff");
-	private Color headerYellowTextColor = Color.decode("#E5DA9F");
-	private Color headerFieldBackgroundColor = Color.decode("#3A3A39");
-	private Color blueFieldColor = Color.decode("#D6ECF3");
+	private Color headerYellowTextColor = Color.decode("#ffffff");//E5DA9F
+	private Color headerFieldBackgroundColor = Color.decode("#0087b5");   // 3A3A39
+	private Color blueFieldColor = Color.decode("#D6ECF3"); 
 	private Color redEditText = Color.decode("#C52033");
 
 	// Variables for functionality
@@ -154,7 +154,7 @@ public class CanvasInJframe extends JFrame {
 			slutTid = storedPost.get(i).getSlutTid();
 			getMoment = storedPost.get(i).getMoment();
 			getSalID = storedPost.get(i).getSalID();
-			valueList.add(new String[] { startTid + "-" + slutTid,storedPost.get(i).getKursId()+ getMoment, getSalID });
+			valueList.add(new String[] { startTid + "-" + slutTid, storedPost.get(i).getKursId()+"  "+getMoment , getSalID });
 		}
 		for (int i = 0; i < storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
@@ -252,7 +252,8 @@ public class CanvasInJframe extends JFrame {
 			g2.drawString("LOKAL", 680, 50);
 			g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
 			//Header koden-avslutad
-
+			
+			g2.setFont(fieldFont);
 			//Denna skriver ut Posterna + Rektanglarna
 			for (int i = 0; i < antalElement; i++) {
 				//en temporär rektangel skapas utifrån informationen i Shape-listan

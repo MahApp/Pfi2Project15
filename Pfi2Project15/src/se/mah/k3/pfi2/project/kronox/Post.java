@@ -27,19 +27,22 @@ public class Post implements Comparable<Post>{
 	public int sort;
 	public Date startTidCal;
 	private Calendar slutTidCal;
-	private boolean raderad,temp,dubbelBokad,extern,onskad;
+	private boolean raderad,temp,dubbelBokad,extern,onskad; // raderad är cancel, updaterad är ändrad
 	public boolean deleteAnimate, stackupAnimate,hide;
 	Point2D location;
 	Dimension2D dimension;
 	
-
 	Post(){
-		
 		
 		
 		
 	}
 
+	Post(String update){ // dummy const
+		
+	
+		
+	}
 	public void display() {
 
 	}

@@ -21,14 +21,12 @@ public class FilterOutTime {
 		cal=Calendar.getInstance(); // get the current time
 		
 		
-	
-		
 	}
 	
 
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster){     // important filtering code
 		ArrayList<Post> filtreradePoster= new ArrayList<Post>();
-		SimpleDateFormat sdf = new SimpleDateFormat(" HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		
 		
 		
@@ -52,7 +50,6 @@ public class FilterOutTime {
 			//float postTime = Float.parseFloat(ofiltreradPoster.get(i).getStartTid());
 			if(cal.after(cal2)) ofiltreradPoster.get(i).deleteAnimate=true;
 			if( cal.before(cal3))ofiltreradPoster.get(i).stackupAnimate=true;
-				
 				
 			
 			
