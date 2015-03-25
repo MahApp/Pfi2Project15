@@ -154,7 +154,7 @@ public class CanvasInJframe extends JFrame {
 			slutTid = storedPost.get(i).getSlutTid();
 			getMoment = storedPost.get(i).getMoment();
 			getSalID = storedPost.get(i).getSalID();
-			valueList.add(new String[] { startTid + "-" + slutTid, getMoment, getSalID });
+			valueList.add(new String[] { startTid + "-" + slutTid,storedPost.get(i).getKursId()+ getMoment, getSalID });
 		}
 		for (int i = 0; i < storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
