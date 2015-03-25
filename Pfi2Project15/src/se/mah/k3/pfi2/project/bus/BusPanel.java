@@ -25,13 +25,15 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
+import java.awt.Component;
+import javax.swing.JLayeredPane;
+import javax.swing.JInternalFrame;
 
 public class BusPanel extends JPanel implements ModuleInterface {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public JTextArea Line;
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
 	public Journeys journeys;
 	private Parser parser = new Parser();
@@ -44,6 +46,9 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	public int priority = getExpectedPriority();
 	private int busCount = 0;
 	private JTextField textField;
+	public JTextArea Line;
+	
+	
 
 	/**
 	 * Create the panel.
@@ -52,7 +57,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Thread lineThread = new BusPanel.LineThread(parser);
 
 		setBackground(Color.LIGHT_GRAY);
-		setLayout(new MigLayout("", "[][80px][80px][80px,grow][80px,grow][80px,grow]"));
+		setLayout(new MigLayout("", "[grow][80px,grow][][grow][grow][80px][80px,grow][80px,grow][80px,grow]", "[][grow]"));
 
 		JLabel lblLinje = new JLabel("Linje");
 		//test ändring font size från 24 till 26
@@ -65,29 +70,39 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		lblNewLabel.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		add(lblNewLabel, "cell 4 0,alignx center,aligny top");
+		add(lblNewLabel, "cell 7 0,alignx center,aligny top");
 
 		JLabel lblDestination = new JLabel("Destination");
 		lblDestination.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblDestination.setForeground(new Color(0, 0, 0));
 		lblDestination.setVerticalAlignment(SwingConstants.TOP);
-		add(lblDestination, "cell 2 0 2 1,alignx center,aligny top");
+		add(lblDestination, "cell 5 0 2 1,alignx center,aligny top");
 		lblDestination.setBounds(92, 56, 236, 50);
 
 		JLabel lblAvgr = new JLabel("Avg�ng");
 		lblAvgr.setFont(new Font("Futura LT", Font.BOLD, 42));
 		lblAvgr.setForeground(new Color(0, 0, 0));
 		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
-		add(lblAvgr, "cell 5 0,alignx center,aligny top");
-
+		add(lblAvgr, "cell 8 0,alignx center,aligny top");
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		add(layeredPane, "cell 1 1,grow");
+		
 		Line = new JTextArea();
-		Line.setEditable(false);
-		Line.setForeground(Color.BLACK);
-		Line.setRows(2);
-		Line.setBackground(Color.LIGHT_GRAY);
-		Line.setAutoscrolls(false);
-		Line.setFont(new Font("Futura LT", Font.BOLD, 32));
-		add(Line, "cell 1 1 1 4,alignx center,growy");
+		Line.setFont(new Font("Dialog", Font.BOLD, 32));
+		Line.setDisabledTextColor(Color.BLACK);
+		Line.setBounds(0, 0, 99, 217);
+		layeredPane.add(Line);
+		Line.setBackground(new Color(0,0,0,0));
+		Line.setBorder(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 39, 99, 46);
+		layeredPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 124, 99, 46);
+		layeredPane.add(panel_1);
 
 		Destination = new JTextArea();
 		Destination.setForeground(Color.BLACK);
@@ -96,7 +111,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Destination.setFont(new Font("Futura LT", Font.BOLD, 32));
 		Destination.setRows(2);
 		Destination.setAutoscrolls(false);
-		add(Destination, "cell 2 1 2 4,alignx center,growy");
+		add(Destination, "cell 5 1 2 4,alignx center,growy");
 
 		Stop = new JTextArea();
 		Stop.setForeground(Color.BLACK);
@@ -105,7 +120,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Stop.setFont(new Font("Futura LT", Font.BOLD, 32));
 		Stop.setRows(2);
 		Stop.setAutoscrolls(false);
-		add(Stop, "cell 4 1 1 4,alignx center,growy");
+		add(Stop, "cell 7 1 1 4,alignx center,growy");
 
 		Departure = new JTextArea();
 		Departure.setForeground(Color.BLACK);
@@ -114,7 +129,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Departure.setFont(new Font("Futura LT", Font.BOLD, 32));
 		Departure.setRows(2);
 		Departure.setAutoscrolls(false);
-		add(Departure, "cell 5 1 1 4,alignx center,growy");
+		add(Departure, "cell 8 1 1 4,alignx center,growy");
 
 		if (priority == 1){
 			results = 4;
@@ -123,8 +138,6 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		String searchURL = Constants.getURL("80046", "80000", results);
 		System.out.println("START \nPRIORITET " + priority + "\nUPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
 		Journeys journeys = Parser.getJourneys(searchURL);
-
-		Line.setText("");
 		Destination.setText("");
 		Stop.setText("");
 		Departure.setText("");
@@ -135,7 +148,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 			String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
 			String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
 
-			Line.append(journey.getLineOnFirstJourney() + "\n");
+			Line.append("     " + journey.getLineOnFirstJourney() + "\n");
 			Destination.append(journey.getTowards() + "\n");
 			Stop.append(journey.getStopPoint() + "\n");
 
@@ -183,7 +196,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 
 						busCount++;
 
-						Line.append(journey.getLineOnFirstJourney() + "\n");
+						Line.append("     " + journey.getLineOnFirstJourney() + "\n");
 						Destination.append(journey.getTowards() + "\n");
 						Stop.append(journey.getStopPoint() + "\n");
 						System.out.println("Buss " + busCount + " avg�r om " + depTime + " min");
