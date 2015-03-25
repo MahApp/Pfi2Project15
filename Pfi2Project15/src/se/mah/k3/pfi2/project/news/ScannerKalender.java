@@ -15,7 +15,7 @@ public class ScannerKalender {
 			URL mahKalender = new URL("http://www.mah.se/Nyheter/RSS/Kalender-fran-Malmo-hogskola/");
 			Scanner s = new Scanner(mahKalender.openStream());
 			while (s.hasNext()) {
-				String string = s.nextLine();
+			//	String string = s.nextLine();
 			//	System.out.println(string);
 				String s2 = s.nextLine();
 				if (s2.contains("2015-03-25")){
@@ -37,22 +37,19 @@ public class ScannerKalender {
 //					int b2 = s2.indexOf("</p>");
 //					String beskrivning = s2.substring(b, b2);
 					System.out.println(cleanResult);
+				if (s2.contains("2015-03-27")){
+			//		System.out.println(s2);
 					
-//					int i = s2.indexOf("Tid:");
-//					int i2 = s2.indexOf("</strong>");
-//					String resultat = s2.substring(i, i2);
-//					int k = s2.indexOf("12:");
-//					int k2 = s2.indexOf(":00 ");
-//					String tid = s2.substring(k, k2);
-//					int l = s2.indexOf("17:");
-//					int l2 = s2.indexOf(":00<br />");
-//					String tidSlut = s2.substring(l,  l2);
-//					int p = s2.indexOf("Orkanen");
-//					int p2 = s2.indexOf("<br /><strong>Mål");
-//					String plats = s2.substring(p, p2);
-//					System.out.println(tid + "-" + tidSlut + " " + "Öppet hus" + " " + plats);
+					String eventOne = ("10.00 	Hälsa & Samhälle	Spikning: Allogenic stem cell transplantation");
+					String eventTwo = ("13.00 	Ubåtshallen 301 	Girls of Hope: Film screening");
+					String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hasslöf");
+					
+					System.out.println(eventOne);
+					System.out.println(eventTwo);
+					System.out.println(eventThree);
+				
 				}
-		
+
 				}
 			s.close();
 		}

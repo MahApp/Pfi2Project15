@@ -9,18 +9,18 @@ import org.apache.commons.lang3.*;
 public class ScannerKranen {
 
 	public static void main(String[] args) {
-		ScannerKranen st = new ScannerKranen();  //Skapa instans av mig själv :) för att inte köra i statisk kontext
+		ScannerKranen st = new ScannerKranen(); 
 	//	st.readAndWriteMonday();
 	//	st.readAndWriteTuesday();
 	//	st.readAndWriteWednesday();
 	//	st.readAndWriteThursday();
-		st.readAndWriteFriday();
-//		System.out.println("***Dagens***");
-//		st.readAndWriteDagens();
-//		System.out.println("***VeckoVeg***");
-//		st.readAndWriteVeg();
-//		System.out.println("***Kapet***");
-//		st.readAndWriteKapet();
+	//	st.readAndWriteFriday();
+		System.out.println("***Dagens***");
+		st.readAndWriteDagens();
+		System.out.println("***VeckoVeg***");
+		st.readAndWriteVeg();
+		System.out.println("***Kapet***");
+		st.readAndWriteKapet();
 	}
 	
 	public void readAndWriteMonday(){	
