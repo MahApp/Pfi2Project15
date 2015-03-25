@@ -206,9 +206,14 @@ public class Parser {
 	//System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
 	
 	for(int i=0; i<storedPost.size();i++){
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); // paring format
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // paring format
 			try {
+		if(debug)System.out.println(storedPost.get(i).getStartTid());
+
 				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
+			
+
+				System.out.println(storedPost.get(i).getStartTidCal());
 			} catch (ParseException e) {
 		} 
 		storedPost.get(i).setStartTid(Constants.formatTime(storedPost.get(i).getStartTid()));  // set start time in HH:mm format
@@ -237,7 +242,7 @@ public class Parser {
 
 	storedPost=FilterOutBiulding.filter(storedPost); // filter the biulding
 	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
-	//storedPost=FilterOutTime.filter(storedPost); // filter Time
+	storedPost=FilterOutTime.filter(storedPost); // filter Time
 
 	return storedPost;
 	}

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.http.impl.cookie.DateUtils;
+
+
+
 public class FilterOutTime {
 	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
 	
@@ -15,46 +19,55 @@ public class FilterOutTime {
 	static Calendar cal3;
 
 	
-	static  Date timeBefore,timeAfter; // time stamp where 
-	int minuteMargin =30; // timespan that post filters out from 30min is standard
+	 
+	static int minuteMargin =30; // timespan that post filters out from 30min is standard
 	FilterOutTime(){
-		cal=Calendar.getInstance(); // get the current time
-		
-		
+		cal=Calendar.getInstance(); // get the current time		
 	}
 	
 
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster){     // important filtering code
 		ArrayList<Post> filtreradePoster= new ArrayList<Post>();
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		
-		
-		
-		
-	
+		//SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		 Date timeBefore= new Date(),timeAfter= new Date(); // time stamp where 
+//		timeBefore=null;
+//		timeAfter= null;
+
 		for (int i = 0; i < ofiltreradPoster.size(); i++)
 		{
-			try {
-				cal2.setTime(sdf.parse(ofiltreradPoster.get(i).getStartTid()));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				//timeBefore=sdf.parse(ofiltreradPoster.get(i).getStartTid());
+//				//timeAfter=sdf.parse(ofiltreradPoster.get(i).getStartTid());
+//				//System.out.println(timeBefore.getHours()+" "+timeBefore.getMinutes());
+//				//cal2.setTime(sdf.parse(ofiltreradPoster.get(i).getStartTid()));
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			timeAfter=new Date(System.currentTimeMillis()+minuteMargin*60*1000);
+			timeBefore=new Date(System.currentTimeMillis()-minuteMargin*60*1000);
 			
-			try {
-				cal3.setTime(sdf.parse(ofiltreradPoster.get(i).getSlutTid()));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println(timeAfter+"timeAfter");
+			System.out.println(timeBefore+"timeBefore");
+			
+			System.out.println(ofiltreradPoster.get(i).getStartTidCal());
+			
 			//float postTime = Float.parseFloat(ofiltreradPoster.get(i).getStartTid());
-			if(cal.after(cal2)) ofiltreradPoster.get(i).deleteAnimate=true;
-			if( cal.before(cal3))ofiltreradPoster.get(i).stackupAnimate=true;
-				
+			if(!timeBefore.before(ofiltreradPoster.get(i).startTidCal)) {
+				//filtreradePoster.add(ofiltreradPoster.get(i));
+				System.out.println(ofiltreradPoster.get(i).startTidCal+ "before");
+			}else if(!timeAfter.after(ofiltreradPoster.get(i).startTidCal)){
+			//filtreradePoster.add(ofiltreradPoster.get(i));
+			System.out.println(ofiltreradPoster.get(i).startTidCal+ "after");
+			}else{
+				filtreradePoster.add(ofiltreradPoster.get(i));
+			}
+
+	
 			
-			
-			
+
 		}
+
 		//String time = cal.toString();
 		//float calTime = Float.parseFloat(time);
 	
@@ -80,11 +93,8 @@ public class FilterOutTime {
 		}*/
 		
 	System.out.println("antal post:"+ofiltreradPoster.size() +"efter starttids filtrering");
-		if (filtreradePoster.isEmpty()) {
-			return ofiltreradPoster;
-		} else {
 			return filtreradePoster;
-		}
+		
 	}
 	
 }
