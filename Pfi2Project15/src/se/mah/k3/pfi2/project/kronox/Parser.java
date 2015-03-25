@@ -22,7 +22,7 @@ public class Parser {
 	public static boolean debug=true;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-	public static String biulding="odontologiska"; // change this to search for other bulding
+	public static String biulding="kranen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		
 		
@@ -211,8 +211,8 @@ public class Parser {
 				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
 			} catch (ParseException e) {
 		} 
-		storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
-		storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
+		storedPost.get(i).setStartTid(Constants.formatTime(storedPost.get(i).getStartTid()));  // set start time in HH:mm format
+		storedPost.get(i).setSlutTid(Constants.formatTime(storedPost.get(i).getSlutTid())); // set end time in HH:mm format
 
 		if(storedPost.get(i).getSalID()!=null) { // format biulding
 			if(storedPost.get(i).getSalID().equals("null")||storedPost.get(i).getSalID().equals("")) {

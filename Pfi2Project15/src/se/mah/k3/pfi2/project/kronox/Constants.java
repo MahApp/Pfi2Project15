@@ -173,5 +173,10 @@ public class Constants {
 		System.out.println(biuldingString);
 		return biuldingString;
 	}
+	
+	public static String formatTime(String timeString){ // format the start time into HH:mm format
+		timeString=timeString.substring(11, 16);
+		return timeString;
+	}
 }
 
