@@ -22,7 +22,7 @@ public class ConsoleTest {
 			
 			
 			final JSonParser json = new JSonParser();
-			String data = json.fetchData(instaURL);
+			String data = json.fetchData(instaURL, 2);
 			
 			
 			String fooErrorCode = " \"code\":400";
@@ -31,7 +31,7 @@ public class ConsoleTest {
 			}else if(data.toLowerCase().contains(fooErrorCode.toLowerCase())){
 				System.out.println("Couldn't fetch the right data. Error: \n" + fooErrorCode);
 			}else{
-				json.parseJSon(data);
+				json.parseJSon(data, 2);
 			}
 		}
 		catch(Exception  e){
