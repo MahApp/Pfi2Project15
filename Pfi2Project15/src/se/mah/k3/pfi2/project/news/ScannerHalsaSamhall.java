@@ -92,7 +92,7 @@ public class ScannerHalsaSamhall {
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
 				}
-				
+				// kommenterar här för skojs skull
 			}
 			sc.close();
 		}
