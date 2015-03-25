@@ -131,7 +131,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 					
 					String eventOne = ("10.00 	Hälsa & Samhälle	Spikning: Allogenic stem cell transplantation");
 					String eventTwo = ("13.00 	Ubåtshallen 301 	Girls of Hope: Film screening");
-					String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hasslöf");
+					String eventThree = ("13.15 	Orkanen D138 	Disputation - Helen Hasslöf");
 					
 					System.out.println(eventOne);
 					System.out.println(eventTwo);
