@@ -34,6 +34,11 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		return 0;
 	}
 
+//	public void setPreferdNumberOfRows(int input) {
+//		=input;
+//		// TODO Auto-generated method stub
+//	
+//	}
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
