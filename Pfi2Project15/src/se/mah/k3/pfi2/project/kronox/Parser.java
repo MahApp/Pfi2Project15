@@ -235,9 +235,9 @@ public class Parser {
 		}
 	}
 
-	storedPost=FilterOutBiulding.filter(storedPost); // filter
-	storedPost=FilterOutRooms.filter(storedPost); // filter
-	//storedPost=FilterOutTime.filter(storedPost); // filter
+	storedPost=FilterOutBiulding.filter(storedPost); // filter the biulding
+	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
+	//storedPost=FilterOutTime.filter(storedPost); // filter Time
 
 	return storedPost;
 	}
@@ -249,4 +249,13 @@ public class Parser {
 		return this.biulding;	
 	}
 
+//	
+//	public static ArrayList<Post> addDummyPosts (ArrayList<Post> _post){
+//		
+//		ArrayList<Post> dummyfied = new ArrayList<Post>();
+//		dummyfied.add(new Post()); // canceled
+//		dummyfied.add(new Post()); // modified
+//		dummyfied.addAll(_post);
+//	}
+//	
 }
