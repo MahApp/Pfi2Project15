@@ -66,19 +66,16 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-
-//		moduleList.add(new KronoxPanel());
-//		moduleList.add(new DummyPanel());
-//		moduleList.add(new NewsPanel());
-
+		//Comment and uncomment here to show your panel
+		//Add the panels not yet merged
 		moduleList.add(new TimePanel());
 		moduleList.add(new WeatherPanel());
-		moduleList.add(new WeatherPanelBig());
-		moduleList.add(new NewsPanel());
-		moduleList.add(new BusPanel());
-		moduleList.add(new SocialPanel());
-		moduleList.add(new BusPanel());
-		moduleList.add(new TrafficInfo());
+//		moduleList.add(new WeatherPanelBig());
+//		moduleList.add(new NewsPanel());
+//		moduleList.add(new BusPanel());
+//		moduleList.add(new SocialPanel());
+//		moduleList.add(new BusPanel());
+//		moduleList.add(new TrafficInfo());
 		moduleList.add(new FillEmptySpace());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
