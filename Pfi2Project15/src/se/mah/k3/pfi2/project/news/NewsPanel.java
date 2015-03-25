@@ -22,7 +22,9 @@ import javax.swing.ImageIcon;
 
 public class NewsPanel extends JPanel implements ModuleInterface{
 
-	public JTextArea Meny = new JTextArea();
+	public JLabel event1;
+	public JLabel event2;
+	public JLabel event3;
 	
 	/**
 	 * Create the panel.
@@ -34,45 +36,44 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		setMinimumSize(new Dimension(1080,240));
 		setForeground(UIManager.getColor("scrollbar"));
 		setBorder(null);
-		setBackground(new Color(240, 241, 241));
+		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(823, 19, 202, 196);
-		add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/salad.jpg")));
-		
-		JPanel RAM = new JPanel();
-		RAM.setBounds(816, 15, 217, 205);
-		add(RAM);
-		RAM.setBackground(new Color(134,188,37));
-		
 		JPanel panel2 = new JPanel();
-		panel2.setBounds(17, 11, 1047, 218);
-		panel2.setBackground(new Color(227, 230, 229));
+		panel2.setBorder(new LineBorder (new Color(0,158,212), 3, true));
+		panel2.setBounds(10, 11, 1060, 218);
+		panel2.setBackground(Color.WHITE);
 		add(panel2);
 		panel2.setLayout(null);
 		
 		JPanel Rubrik = new JPanel();
-		Rubrik.setBounds(116, 11, 218, 50);
-		Rubrik.setBackground(new Color(134,188,37));
+		Rubrik.setBorder(new LineBorder(new Color(0, 158, 212), 4, true));
+		Rubrik.setBounds(353, 0, 371, 50);
+		Rubrik.setBackground(new Color(0,158,212));
 		panel2.add(Rubrik);
 		
 				
-				JLabel lblNews = new JLabel("Lunch 69:-");
+				JLabel lblNews = new JLabel("Events & H\u00E4ndelser idag");
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
 				
+				event1 = new JLabel("");
+				event1.setFont(new Font("Futura", Font.PLAIN, 20));
+				event1.setBounds(50, 74, 956, 37);
+				panel2.add(event1);
 				
-				Meny.setFont(new Font("Futura", Font.PLAIN, 20));
-				Meny.setText("Här kommer menyn stå!");
-				Meny.setBounds(98, 70, 381, 163);
-				Meny.setBackground(new Color(227, 230, 229));
-				Meny.setForeground(new Color(97, 101, 109));
-				panel2.add(Meny);
-		//panel.setBackground(new Color(134, 188, 37));
+				event2 = new JLabel("");
+				event2.setFont(new Font("Futura", Font.PLAIN, 20));
+				event2.setBounds(50, 122, 956, 37);
+				panel2.add(event2);
+				
+				event3 = new JLabel("");
+				event3.setFont(new Font("Futura", Font.PLAIN, 20));
+				event3.setBounds(50, 170, 956, 37);
+				panel2.add(event3);
+				
+				
 				
 				readAndWriteMonday();
 
@@ -136,7 +137,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 					
 					
 					System.out.println(cleanResultat);
-					Meny.append("\n" + cleanResultat + "\n" );
+					event1.setText("\n" + cleanResultat + "\n" );
 					
 				}
 				
@@ -152,7 +153,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 							
 							
 					System.out.println("Ha" + cleanResultat);
-					Meny.append("Ha" + cleanResultat + "\n" );
+					event2.setText("Ha" + cleanResultat + "\n" );
 				}
 				
 				String veg = fullText;
@@ -168,7 +169,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 																					    // </span> inom vegresultat
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
-					Meny.append(cleanResultat);
+					event3.setText(cleanResultat);
 				}
 				
 			}
