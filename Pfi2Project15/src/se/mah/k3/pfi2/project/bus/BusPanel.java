@@ -8,8 +8,7 @@ import se.mah.k3lara.skaneAPI.model.Journey;
 import se.mah.k3lara.skaneAPI.model.Journeys;
 import se.mah.k3lara.skaneAPI.model.Station;
 import se.mah.k3lara.skaneAPI.xmlparser.Parser;
-
-import java.awt.Color;
+ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -60,16 +59,16 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		setLayout(new MigLayout("insets 0", "[1%:n][grow][::1%,grow]", "[grow][grow]"));
 		departuresTable();
 		
-		//BYTA FÄRG PÅ VARANNAN RAD
+		//BYTA FÃ„RG PÃ… VARANNAN RAD
 		UIDefaults defaults = UIManager.getLookAndFeelDefaults();
 		if (defaults.get("Table.alternateRowColor") == null)
 			defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
 
-		//SKAPA TRÅD OCH STARTA HÄMTA AVGÅNGAR
+		//SKAPA TRÃ…D OCH STARTA HÃ„MTA AVGÃ…NGAR
 		Thread lineThread = new BusPanel.LineThread(parser);
 		Departures();
 
-		//LÄGG TILL TABLES I MIGLAYOUT
+		//LÃ„GG TILL TABLES I MIGLAYOUT
 		add(tableDepartures, "cell 0 1 3 1,grow");
 		add(tableTitle, "cell 1 0,grow");
 
@@ -78,7 +77,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	}
 
 	/**
-	 *Skapa JTable för titlar.
+	 *Skapa JTable fÃ¶r titlar.
 	 */
 	private void titleTable() {
 		tableTitle = new JTable();
@@ -92,7 +91,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		tableTitle.setFont(new Font("Futura LT", Font.PLAIN, 58));
 		tableTitle.setModel(new DefaultTableModel(
 				new Object[][] {
-						{"Linje", "Destination", "Läge", "Avgång"},
+						{"Linje", "Destination", "LÃ¤ge", "AvgÃ¥ng"},
 				},
 				new String[] {
 						"Line", "Destination", "Stop", "Departure"
@@ -101,7 +100,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	}
 
 	/**
-	 *Skapa JTable för avgångar.
+	 *Skapa JTable fÃ¶r avgÃ¥ngar.
 	 */
 	private void departuresTable() {
 		tableDepartures = new JTable(model);
@@ -122,7 +121,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	}
 	
 	/**
-	 *Bestäm radhöjd på JTables.
+	 *BestÃ¤m radhÃ¶jd pÃ¥ JTables.
 	 */
 	private void setRowHeights()
 	{
@@ -142,14 +141,14 @@ public class BusPanel extends JPanel implements ModuleInterface {
 					rowHeight = 80;
 				}
 				tableTitle.setRowHeight(row, rowHeight);
-				tableDepartures.setRowHeight(row, rowHeight);
+				tableDepartures.setRowHeight(row, rowHeight);	
 			}
 		}
 		catch(ClassCastException e) {}
 	}
 
 	/**
-	 *Hämta och skriv ut avgångar.
+	 *HÃ¤mta och skriv ut avgÃ¥ngar.
 	 */
 	public void Departures() {
 		String searchURL = Constants.getURL("80046", "80000", results);
@@ -178,6 +177,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 			}
 			DefaultTableModel model = (DefaultTableModel) tableDepartures.getModel();
 			model.addRow(new Object[]{line, destination, stop, departure});
+			tableDepartures.setRowHeight(80);
 			System.out.print(line + " " + destination + " " + stop + " " + departure + "\n");
 		}
 		System.out.println("");
@@ -187,7 +187,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	}
 	
 	/**
-	 * Uppdatera avgångar.
+	 * Uppdatera avgÃ¥ngar.
 	 */
 	public class LineThread extends Thread {
 		private Parser parser;
