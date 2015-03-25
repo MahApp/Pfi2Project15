@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.timeweather.DateLogic;
-import se.mah.k3.pfi2.project.timeweather.TimeLogic;
+//import se.mah.k3.pfi2.project.timeweather.TimeLogic;
 
 import java.awt.Color;
 
@@ -34,6 +34,11 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		return 0;
 	}
 
+//	public void setPreferdNumberOfRows(int input) {
+//		=input;
+//		// TODO Auto-generated method stub
+//	
+//	}
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub

@@ -11,7 +11,7 @@ public class DateThread extends Thread implements DateInterface {
 	}
 
 	@Override
-	public void update(int monthIn, int dayIn) {
+	public void update(int hoursIn, int minuteIn, int monthIn, int dayIn) {
 		// TODO Auto-generated method stub
 
 	}
@@ -24,7 +24,8 @@ public class DateThread extends Thread implements DateInterface {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			   dateInterface.update(Calendar.getInstance().get(Calendar.MONTH), 
+			   dateInterface.update(Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 
+					   Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.MONTH), 
 					   Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 		   }
 		  

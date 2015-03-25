@@ -1,5 +1,7 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -21,12 +23,14 @@ public class Post implements Comparable<Post>{
 	 * 
 	 * */
 	private float x, y, vx, vy, ax, ay; // for animation
-	private Cell[] cell= new Cell[5]; // diffrent colunm in canvas
 	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur;
 	public int sort;
 	public Date startTidCal;
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad;
+	public boolean deleteAnimate, stackupAnimate,hide;
+	Point2D location;
+	Dimension2D dimension;
 	
 
 	Post(){
@@ -85,14 +89,6 @@ public class Post implements Comparable<Post>{
 
 	public void setAy(float ay) {
 		this.ay = ay;
-	}
-
-	public Cell[] getCell() {
-		return cell;
-	}
-
-	public void setCell(Cell[] cell) {
-		this.cell = cell;
 	}
 
 	public String getStartTid() {
@@ -240,6 +236,31 @@ public class Post implements Comparable<Post>{
 		this.onskad = onskad;
 	}
 
+	public Point2D getLocation() {
+		return location;
+	}
+
+	public void setLocation(Point2D location) {
+		this.location = location;
+	}
+	
+	public void setLocation(double x,double y) {
+		this.location.setLocation(x, y);
+	}
+
+
+	public Dimension2D getDimension() {
+		return dimension;
+	}
+
+	public void setDimension(Dimension2D dimension) {
+		this.dimension = dimension;
+	}
+	public void setDimension(double x,double y) {
+		this.dimension.setSize(x, y);
+	}
+
+	
 	@Override
 	public int compareTo(Post otherPost) {
 		if(this.startTidCal.before(otherPost.startTidCal)){

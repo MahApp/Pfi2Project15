@@ -1,12 +1,13 @@
 package se.mah.k3.pfi2.project.social;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
 public class DateTimeUtils {
 
-	private boolean debug = false;
+	private boolean debug = true;
 	
 	/*
 	 * Den här klassen hjälper oss att översätta unix tiden från Instagram API:et, samt tiden från systemet programmet körs på. 
@@ -104,7 +105,14 @@ public class DateTimeUtils {
 			returnTime = String.valueOf(elapsedDays) + "d";
 		}
 		else if (elapsedDays == 0 && elapsedWeeks == 0) {
-			returnTime = "idag";
+			Calendar cal = Calendar.getInstance();
+	    	cal.getTime();
+	    	SimpleDateFormat sdf = new SimpleDateFormat("HH");
+	    	String hourNow = sdf.format(cal.getTime());
+	    	
+	    	if(Long.valueOf(hourNow) - elapsedHours > 0) returnTime = "idag";
+	    	else returnTime = "1d";
+			
 		}
 		return returnTime;
 	}

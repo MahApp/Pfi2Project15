@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.awt.EventQueue;
@@ -17,6 +19,7 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,9 +30,15 @@ public class CanvasInJframe extends JFrame {
 	private Panel controlPanel;
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
+
 	final static float DPI = 72; // Pixel density 96 ï¿½r standard pï¿½ moderna
-	public int antalElement=12;
+	//public int antalElement=12;
 	// monitors, 72 ï¿½t gamla
+	//final static float DPI = 72; // Pixel density 96 är standard på moderna
+	
+	//går att ändra, men starta på 10
+	public static int antalElement = 10;
+	public Post minPost = new Post();
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// old, 768px fï¿½r LG monitorn
 	final static int SCREEN_HEIGHT = 1920;// old, 1024px fï¿½r LG monitorn
@@ -38,40 +47,70 @@ public class CanvasInJframe extends JFrame {
 	private Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
 	private Image img2 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png")); //This implements the image for changed class
 	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
+	// variables for Images
+	private Image cancelImg = Toolkit
+			.getDefaultToolkit()
+			.getImage(
+					getClass()
+							.getResource(
+									"/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png"));
+	private Image modifiedImg = Toolkit.getDefaultToolkit().getImage(
+			getClass().getResource(
+					"/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+
+	// Variables for font-related stuff
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
-	public Font futuraBook = new Font("Futura LT Regular", Font.PLAIN, fontSize);
-	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska anvï¿½nda
-	
-	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 25);
-	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 30);
-	// Fï¿½rger
+	public Font futuraBook = new Font("Futura LT Light", Font.PLAIN, fontSize);
+	public Font futuraBold = new Font("Futura LT Bold", Font.PLAIN, fontSize);
+	public Font futuraMedium = new Font("Futura LT Medium", Font.PLAIN,
+			fontSize);// typsnittet vi ska använda
+	//the fonts we've initilized. the numbers furthest to the right determines the font-size
+	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 20);
+	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 20);
+
 	private Color whiteColor = Color.decode("#ffffff");
 	private Color headerYellowTextColor = Color.decode("#ffffff"); //changed to color white
 	private Color headerFieldBackgroundColor = Color.decode("#0087b5"); //changed to blue color
 	private Color blueFieldColor = Color.decode("#D6ECF3");
 	private Color redEditText = Color.decode("#C52033");
-	private ArrayList<Post> displayPost= new ArrayList<Post>();
-	private String[] fieldValues = { "09.15", "Interaktionsdesign A", "C310" };
+
+	// Variables for functionality
+	//private ArrayList<Shape> shapeList = new ArrayList<Shape>();
+	private ArrayList<Post> displayPost = new ArrayList<Post>();
+	private String[] fieldValues = { "- -:- - - -:- -", "LOADING...", "Sal..." };
 	private ArrayList<String[]> valueList = new ArrayList<String[]>();
-	private  MyCanvas demo= new MyCanvas();
-	// mï¿½tt
+	private MyCanvas demo = new MyCanvas();
+	static boolean loaded = false;
+	
+	// variabler att hämta info i
+	String startTid;
+	String slutTid;
+	String getMoment;
+	String getSalID;
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+	
 				try {
+
 					CanvasInJframe frame = new CanvasInJframe();
 					frame.setVisible(false);
 					CanvasInJframe awtControlDemo = new CanvasInJframe();
-					
-					awtControlDemo.showCanvasDemo();
+					CanvasUpdateThread t = new CanvasUpdateThread(
+							awtControlDemo);
+					System.out.println("main thread");
+					t.start();		
+					awtControlDemo.showCanvasDemo();			
 					awtControlDemo.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -81,6 +120,7 @@ public class CanvasInJframe extends JFrame {
 	 */
 	public CanvasInJframe() {
 		System.out.println("construct");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		contentPane = new JPanel();
@@ -91,29 +131,39 @@ public class CanvasInJframe extends JFrame {
 			valueList.add(fieldValues);
 		}
 		for (int i = 0; i < antalElement; i++) {
-			shapeList.add(new Rectangle2D.Float(0, fieldHeight+(i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+			shapeList.add(new Rectangle2D.Float(0, fieldHeight
+					+ (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
 		prepareGUI();
 	}
-	
-	public void loadData(ArrayList<Post> storedPost){
+
+	// Loading the post-information
+	public void loadData(ArrayList<Post> storedPost) {
 		System.out.println("loaded into canvas");
-			valueList.clear();
-			for(int i = valueList.size(); i>0;i--){
-				valueList.remove(i);
-			}
-			System.out.println(valueList.size());
-		for (int i = 0; i < antalElement; i++) {
-			System.out.println(i +"index");
-			valueList.add(new String[]{storedPost.get(i).getStartTid(),storedPost.get(i).getMoment(),(storedPost.get(i).getSalID()!=null)?storedPost.get(i).getSalID():""});
+		valueList.clear();
+		shapeList.clear();
+		for (int i = valueList.size(); i > 0; i--) {
+			valueList.remove(i);
 		}
-		
-			demo.repaint(); // this
+		System.out.println(storedPost.size());
+		//antalElement = storedPost.size(); // change the element based on parsed
+											// xml
+		for (int i = 0; i < storedPost.size(); i++) {
+
+			startTid = storedPost.get(i).getStartTid();
+			slutTid = storedPost.get(i).getSlutTid();
+			getMoment = storedPost.get(i).getMoment();
+			getSalID = storedPost.get(i).getSalID();
+			valueList.add(new String[] { startTid + "-" + slutTid, getMoment, getSalID });
+		}
+		for (int i = 0; i < storedPost.size(); i++) {
+			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+		}
+		demo.repaint(); // this
+		CanvasInJframe.this.setTitle("Loaded");
 	}
-	
+
 	private void prepareGUI() {
-		
-		// contentPane ï¿½r huvudrutan
 		contentPane.setBackground(Color.WHITE);
 		// SetSize
 		contentPane.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -137,23 +187,57 @@ public class CanvasInJframe extends JFrame {
 			setBackground(Color.white);
 		}
 
+		//skit i denna metod 4 now
+		public Graphics drawBackground() {
+			// initiate one-time graphics
+			Graphics2D g3 = null;
+			// g3 = (Graphics2D) g;
+
+			// mjuka upp texten
+			RenderingHints rh = new RenderingHints(
+					RenderingHints.KEY_TEXT_ANTIALIASING,
+					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+			g3.setRenderingHints(rh);;
+			g3.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
+			// rader
+			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
+					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
+			g3.setStroke(stroke);
+			// Lägger till header-fältet m. text osv
+			g3.setFont(headerFont);
+			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
+					fieldHeight);
+			g3.setColor(headerFieldBackgroundColor);
+			g3.fill(headField);
+			g3.setColor(headerYellowTextColor);
+			g3.drawString("TID", 20, 50);
+			g3.drawString("KURS", 200, 50);
+			g3.drawString("LOKAL", 680, 50);
+			g3.drawString("STATUS", SCREEN_WIDTH - 175, 50);
+			return g3;
+
+		}
+
 		public void paint(Graphics g) {
-			System.out.println("paint!!!!");
+			//initierar metodvariabler
 			Graphics2D g2;
 			g2 = (Graphics2D) g;
-			//mjuka upp texten
+			
+			g2.setFont(fieldFont);
+
+			// Gör texten smoothare
 			RenderingHints rh = new RenderingHints(
 					RenderingHints.KEY_TEXT_ANTIALIASING,
 					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
 			g2.setRenderingHints(rh);
-			// g2.drawLine(10, 10, 200, 200);
-			// g2.setStroke();
-			g2.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
-			// rader
+		
+			
+			//tar bort borders
 			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
 					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
 			g2.setStroke(stroke);
-			// Lï¿½gger till header-fï¿½ltet m. text osv
+			
+			// Lägger till header-fältet m. text osv
 			g2.setFont(headerFont);
 			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
 					fieldHeight);
@@ -162,48 +246,83 @@ public class CanvasInJframe extends JFrame {
 			g2.setColor(headerYellowTextColor);
 			g2.drawString("TID", 20, 50);
 			g2.drawString("KURS", 200, 50);
-			g2.drawString("V/LOKAL", 680, 50);
+			g2.drawString("LOKAL", 680, 50);
 			g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
-			// skapar en arraylist av fï¿½lt
-
+			//Header koden-avslutad
 		//	boolean colorTurn = false;
-			g2.setFont(fieldFont);
+			//g2.setFont(fieldFont);
 			// Strï¿½ngar i en array som lagras i en lista, som sen ska skrivas ut
-			// i respektive fï¿½lt
-			// alla relevanta vï¿½rden lï¿½ggs till i en lista
-			
-			// listan sparas sedan i en lista
-			
+			//Denna skriver ut Posterna + Rektanglarna
 			for (int i = 0; i < antalElement; i++) {
+				//en temporär rektangel skapas utifrån informationen i Shape-listan
 				Shape tempShape = shapeList.get(i);
+				//en temporär lista sparar alla relevanta värden
 				String[] tempValues = (String[]) valueList.get(i);
-//				if (colorTurn) {
-//					g2.setColor(blueFieldColor);
-//				} else {
-//					g2.setColor(whiteColor);
-//				}
-				if(i%2==1){
-					g2.setColor(blueFieldColor);							
-				}else{
+				
+				//varannan blå, varannan vit
+				if (i % 2 == 1) {
+					g2.setColor(blueFieldColor);
+				} else {
 					g2.setColor(whiteColor);
 				}
+				
 				// fill skriver ut
 				g2.fill(tempShape);
+				
+				//Sets the color to black before printin' it out
 				g2.setColor(Color.black);// write out time
-				g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out course
-				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// write out classroom
-				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));
-				g2.drawImage(img, 940, 90, this);
+				g2.drawString(tempValues[0], 10,
+						(fieldHeight + fieldHeight / 2 + 10)
+								+ (fieldHeight * i));// write out course
+				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight
+						/ 2 + 10)
+						+ (fieldHeight * i));// write out classroom
+				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight
+						/ 2 + 10)
+						+ (fieldHeight * i));
+				
+				//These images are just drawn in randomly at the moment
+				g2.drawImage(cancelImg, 940, 90, this);
+				g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
+				
+				//This line works as crossing over a canceled class maybe?
 				g2.drawLine(710, 120, 775, 120);
-		//		colorTurn = !colorTurn;
+
 			}
-			// Color.decode("rgb(0,0,0,1)");
-			// g2.drawre
-			// g2.drawImage(img, 100, 100, null);
 		}
 
-		private void BasicStroke(int i) {
-			// TODO Auto-generated method stub
-		}
+	}
+
+	// här under kommer animeringen att äga rum
+	public void updatePost() {
+
+		minPost.setX(minPost.getX() + 10);
+		Point2D point1 = new Point((int) minPost.getX(), 160); // denna crazy
+																// shit
+		Rectangle2D rect = (Rectangle2D) shapeList.get(1); // tänk på att det en
+															// adress
+		rect.setFrame(point1,
+				new Dimension((int) rect.getWidth(), (int) rect.getHeight())); // denna
+																				// tillhör
+																				// fortfarande
+																				// shape.get(1)
+
+		// shapeList.get(1).getBounds().setLocation(new Point(300,10));
+		// shapeList.get(1).getBounds().setLocation(100,10);
+		// Rectangle2D hej=shapeList.get(1).getBounds2D();
+		// hej.setRect(100, 10, 500, 50);
+		// shapeList.get(1).getBounds().setLocation(new Point(300,160));
+		minPost.setY(200);
+
+		System.out.println("kör!!" + shapeList.get(1).getBounds());
+		demo.repaint(); //
+		// demo.repaint(arg0, arg1, arg2, arg3);
+	}
+	
+	public void setAntalElement(int antal){
+		antalElement = antal;
+//		sendContentPane = fieldHeight + (antalElement * fieldHeight);
+		
+		demo.setSize(SCREEN_WIDTH, fieldHeight + (antalElement * fieldHeight));
 	}
 }

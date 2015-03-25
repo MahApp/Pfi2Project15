@@ -22,17 +22,21 @@ public class ScannerKalender {
 				//	System.out.println(s2);
 					int i = s2.indexOf("</strong>");
 					int i2 = s2.indexOf(":00 - ");
-					String datumStart = s2.substring(i,  i2);					
-					int i3 = s2.indexOf(" - ");
-					int i4 = s2.indexOf(":00<br />");
-					String datumSlut = s2.substring(i3, i4);
-					int k = s2.indexOf("ts:</strong>");
-					int k2 = s2.indexOf("<br /><strong>Mål");
-					String plats = s2.substring(k, k2);
-					int b = s2.indexOf("<p>");
-					int b2 = s2.indexOf("</p>");
-					String beskrivning = s2.substring(b, b2);
-					System.out.println(datumStart + datumSlut + " " + plats + " " + beskrivning);
+					String datumStart = s2.substring(i,  i2);
+					
+					int cleanStart = datumStart.indexOf("2015");
+					int cleanEnd = datumStart.indexOf(":15");
+					String cleanResult = datumStart.substring(cleanStart, cleanEnd);
+//					int i3 = s2.indexOf(" - ");
+//					int i4 = s2.indexOf(":00<br />");
+//					String datumSlut = s2.substring(i3, i4);
+//					int k = s2.indexOf("ts:</strong>");
+//					int k2 = s2.indexOf("<br /><strong>Mål");
+//					String plats = s2.substring(k, k2);
+//					int b = s2.indexOf("<p>");
+//					int b2 = s2.indexOf("</p>");
+//					String beskrivning = s2.substring(b, b2);
+					System.out.println(cleanResult);
 					
 //					int i = s2.indexOf("Tid:");
 //					int i2 = s2.indexOf("</strong>");

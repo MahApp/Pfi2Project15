@@ -41,7 +41,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	private String departure = "";
 
 	private int noOfUpdates = 0;
-	private int updateInterval = 2000;
+	private int updateInterval = 60000;
 	private int results = 4;
 	
 	public static final String[] COLUMN_NAMES = {"Line", "Destination", "Stop", "Departure"};
