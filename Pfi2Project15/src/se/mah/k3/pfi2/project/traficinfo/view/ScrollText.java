@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.trafikinfo;
+package se.mah.k3.pfi2.project.traficinfo.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -65,7 +65,10 @@ public class ScrollText extends JComponent {
     Graphics2D scratchG2 = scratchImage.createGraphics();
     scratchG2.setRenderingHints(renderHints);
 
-    Font font = new Font("Futura Book", Font.BOLD, 38);
+
+
+    Font font = new Font("Futura Book", Font.BOLD, 140);
+
 
     FontRenderContext frc = scratchG2.getFontRenderContext();
     TextLayout tl = new TextLayout(text, font, frc);
@@ -93,8 +96,7 @@ public class ScrollText extends JComponent {
     g2.setColor(Color.white);
     tl.draw(g2, 0, baselineOffset);
 
-    // Free-up resources right away, but keep "image" for
-    // animation.
+    // Free-up resources right away, but keep "image" for animation.
     scratchG2.dispose();
     scratchImage.flush();
     g2.dispose();
@@ -120,7 +122,6 @@ public class ScrollText extends JComponent {
 
         // adjust the scroll position
         currOffset = (currOffset + 1) % imageSize.width;
-
         // signal the event thread to call paint()
         repaint();
       } catch (InterruptedException x) {
@@ -136,18 +137,6 @@ public class ScrollText extends JComponent {
 
   public boolean isAlive() {
     return internalThread.isAlive();
-  }
-
-  public static void main(String[] args) {
-    ScrollText st = new ScrollText("Java can do animation!");
-
-    JPanel p = new JPanel(new FlowLayout());
-    p.add(st);
-
-    JFrame f = new JFrame("ScrollText Demo");
-    f.setContentPane(p);
-    f.setSize(400, 100);
-    f.setVisible(true);
   }
 }
 

@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.trafikinfo;
+package se.mah.k3.pfi2.project.traficinfo.xmlparser;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,6 +7,14 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import se.mah.k3.pfi2.project.traficinfo.control.Constants;
+import se.mah.k3.pfi2.project.traficinfo.control.Helpers;
+import se.mah.k3.pfi2.project.traficinfo.model.Journey;
+import se.mah.k3.pfi2.project.traficinfo.model.Journeys;
+import se.mah.k3.pfi2.project.traficinfo.model.Line;
+import se.mah.k3.pfi2.project.traficinfo.model.Lines;
+import se.mah.k3.pfi2.project.traficinfo.model.Station;
 
 
 

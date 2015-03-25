@@ -1,4 +1,6 @@
-package se.mah.k3.pfi2.project.trafikinfo;
+package se.mah.k3.pfi2.project.traficinfo.control;
+
+import se.mah.k3.pfi2.project.traficinfo.model.Station;
 
 
 
