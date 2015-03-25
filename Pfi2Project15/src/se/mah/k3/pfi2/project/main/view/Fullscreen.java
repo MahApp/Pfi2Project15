@@ -29,7 +29,7 @@ import se.mah.k3.pfi2.project.social.SocialPanel;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanelBig;
-import se.mah.k3.pfi2.project.traficinfo.TrafficInfo;
+import se.mah.k3.pfi2.project.traficinfo.view.TrafficInfo;
 
 
 
