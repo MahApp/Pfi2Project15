@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ScannerKranen {
 
 	public static void main(String[] args) {
-		ScannerKranen st = new ScannerKranen();  //Skapa instans av mig själv :) för att inte köra i statisk kontext
+		ScannerKranen st = new ScannerKranen(); 
 	//	st.readAndWriteMonday();
 	//	st.readAndWriteTuesday();
 	//	st.readAndWriteWednesday();
