@@ -9,14 +9,8 @@ import java.util.Date;
 public class FilterOutTime {
 	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
 	static Calendar cal;
-<<<<<<< HEAD
-	static Calendar cal2;
-	static Calendar cal3;
-	
-=======
 	static  Date timeBefore,timeAfter; // time stamp where 
 	int minuteMargin =30; // timespan that post filters out from 30min is standard
->>>>>>> branch 'TeamMattias' of https://github.com/MahApp/Pfi2Project15.git
 	FilterOutTime(){
 		cal=Calendar.getInstance(); // get the current time
 		

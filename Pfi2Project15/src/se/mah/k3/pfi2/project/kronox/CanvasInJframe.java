@@ -95,6 +95,7 @@ public class CanvasInJframe extends JFrame {
 	
 				try {
 
+					
 					CanvasInJframe frame = new CanvasInJframe();
 					frame.setVisible(false);
 					CanvasInJframe awtControlDemo = new CanvasInJframe();

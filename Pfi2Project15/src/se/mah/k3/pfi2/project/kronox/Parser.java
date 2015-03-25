@@ -19,11 +19,15 @@ import org.w3c.dom.NodeList;
 
 
 public class Parser {
-	public static boolean debug;
+	public static boolean debug=true;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
 	public static String biulding="odontologiska"; // change this to search for other bulding
 	public static void main(String[] args) {
+		
+		
+		ParserUpdateThread pt= new ParserUpdateThread();
+		pt.start();
 		
 		System.out.println("start program");
 		CanvasInJframe frame = new CanvasInJframe();
@@ -37,7 +41,7 @@ public class Parser {
 			e.printStackTrace();
 		}
 		awtControlDemo.loadData(getPost());
-		awtControlDemo.repaint();
+		//awtControlDemo.repaint();
 
 	}
 	
@@ -187,8 +191,8 @@ public class Parser {
 	}
 	
 	public static ArrayList<Post> getPost(){
-	
-
+	storedPost.clear();
+		
 	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 	for(int i=0; i< Urls.size();i++){
 		String schema=Urls.get(i);
