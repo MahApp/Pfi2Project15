@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="lib/httpmime-4.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jackson-core-2.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/xmlpull-xpp3-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="/Users/JoelHenning/Downloads/commons-lang3-3.3.2/commons-lang3-3.3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
