@@ -50,27 +50,34 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 			Rubrik.setBounds(353, 0, 371, 50);
 			Rubrik.setBackground(new Color(134,188,37));
 			panel2.add(Rubrik);
+					Rubrik.setLayout(null);
 			
 					
 					JLabel lblNews = new JLabel("Dagens lunch");
+					lblNews.setBounds(100, 9, 295, 39);
 					lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 					lblNews.setForeground(Color.WHITE);
 					Rubrik.add(lblNews);
 					
 					dagensLabel = new JLabel("");
 					dagensLabel.setFont(new Font("Futura", Font.PLAIN, 20));
-					dagensLabel.setBounds(17, 75, 536, 29);
+					dagensLabel.setBounds(65, 75, 536, 29);
 					panel2.add(dagensLabel);
 					
 					kapet = new JLabel("");
 					kapet.setFont(new Font("Futura", Font.PLAIN, 20));
-					kapet.setBounds(16, 116, 535, 33);
+					kapet.setBounds(65, 116, 535, 33);
 					panel2.add(kapet);
 					
 					veg = new JLabel("");
 					veg.setFont(new Font("Futura", Font.PLAIN, 20));
-					veg.setBounds(16, 157, 529, 38);
+					veg.setBounds(65, 157, 529, 38);
 					panel2.add(veg);
+					
+					JLabel lblNewLabel = new JLabel("New label");
+					lblNewLabel.setIcon(new ImageIcon(LunchPanel.class.getResource("/Images/salad.jpg")));
+					lblNewLabel.setBounds(814, 20, 183, 175);
+					panel2.add(lblNewLabel);
 			//panel.setBackground(new Color(134, 188, 37));
 					
 					readAndWriteMonday();
