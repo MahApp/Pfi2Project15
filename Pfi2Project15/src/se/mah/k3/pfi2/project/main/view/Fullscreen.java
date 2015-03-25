@@ -23,8 +23,6 @@ import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
-import se.mah.k3.pfi2.project.timeweather.TimePanel;
-import se.mah.k3.pfi2.project.traficinfo.TrafficInfo;
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**
@@ -44,7 +42,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.ORANGE);
+		contentPane.setBackground(new Color(249,179,0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -56,12 +54,11 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		moduleList.add(new TrafficInfo());
-		moduleList.add(new TimePanel());
-		moduleList.add(new NewsPanel());
-		moduleList.add(new BusPanel());
+//		moduleList.add(new KronoxPanel());
+//		moduleList.add(new DummyPanel());
+//		moduleList.add(new NewsPanel());
 		moduleList.add(new FillEmptySpace());
-		//moduleList.add(new DummyPanel());
+		moduleList.add(new BusPanel());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
@@ -80,7 +77,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			}
 			contentPane.add((Component) moduleInterface, cons);
 		}
-		setFullscreen(true);
+		setFullscreen(false);
 		
 	}
 

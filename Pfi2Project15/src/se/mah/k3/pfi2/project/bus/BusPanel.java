@@ -13,159 +13,182 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JTextArea;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 
 import java.awt.Font;
 
 import net.miginfocom.swing.MigLayout;
 
-import java.awt.Font;
-
-import net.miginfocom.swing.MigLayout;
-import java.awt.Component;
-import javax.swing.JLayeredPane;
-import javax.swing.JInternalFrame;
+import javax.swing.border.LineBorder;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class BusPanel extends JPanel implements ModuleInterface {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	JTable tableTitle;
+	JTable tableDepartures;
+
+	private String line = "";
+	private String destination = "";
+	private String stop = "";
+	private String departure = "";
+
+	private int noOfUpdates = 0;
+	private int updateInterval = 2000;
+	private int results = 4;
+	
+	public static final String[] COLUMN_NAMES = {"Line", "Destination", "Stop", "Departure"};
+	private DefaultTableModel model = new DefaultTableModel(COLUMN_NAMES, 0);
+
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
 	public Journeys journeys;
 	private Parser parser = new Parser();
-	public JTextArea Stop;
-	public JTextArea Departure;
-	public JTextArea Destination;
-	private int noOfUpdates = 0;
-	private int updateInterval = 60000;
-	private int results = 1;
-	public int priority = getExpectedPriority();
-	private int busCount = 0;
-	private JTextField textField;
-	public JTextArea Line;
-	
-	
 
 	/**
 	 * Create the panel.
 	 */
 	public BusPanel() {
+		setBorder(new LineBorder(Color.GRAY, 5, true));
+		setBackground(Color.WHITE);
+		setLayout(new MigLayout("insets 0", "[1%:n][grow][::1%,grow]", "[grow][grow]"));
+		departuresTable();
+		
+		//BYTA FÄRG PÅ VARANNAN RAD
+		UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+		if (defaults.get("Table.alternateRowColor") == null)
+			defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
+
+		//SKAPA TRÅD OCH STARTA HÄMTA AVGÅNGAR
 		Thread lineThread = new BusPanel.LineThread(parser);
+		Departures();
 
-		setBackground(Color.LIGHT_GRAY);
-		setLayout(new MigLayout("", "[grow][80px,grow][][grow][grow][80px][80px,grow][80px,grow][80px,grow]", "[][grow]"));
+		//LÄGG TILL TABLES I MIGLAYOUT
+		add(tableDepartures, "cell 0 1 3 1,grow");
+		add(tableTitle, "cell 1 0,grow");
 
-		JLabel lblLinje = new JLabel("Linje");
-		//test Ã¤ndring font size frÃ¥n 24 till 26
-		lblLinje.setFont(new Font("Futura LT", Font.BOLD, 42));
-		lblLinje.setForeground(new Color(0, 0, 0));
-		lblLinje.setVerticalAlignment(SwingConstants.TOP);
-		add(lblLinje, "cell 1 0,alignx center,aligny top");
+		System.out.println("START\n" + "UPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
+		lineThread.start();
+	}
 
-		JLabel lblNewLabel = new JLabel("Lï¿½ge");
-		lblNewLabel.setFont(new Font("Futura LT", Font.BOLD, 42));
-		lblNewLabel.setForeground(new Color(0, 0, 0));
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		add(lblNewLabel, "cell 7 0,alignx center,aligny top");
+	/**
+	 *Skapa JTable för titlar.
+	 */
+	private void titleTable() {
+		tableTitle = new JTable();
+		tableTitle.setForeground(Color.BLACK);
+		tableTitle.setBorder(new LineBorder(Color.GRAY, 3, true));
+		tableTitle.setBackground(Color.GRAY);
+		tableTitle.setRowSelectionAllowed(false);
+		tableTitle.setShowGrid(false);
+		tableTitle.setShowHorizontalLines(false);
+		tableTitle.setShowVerticalLines(false);
+		tableTitle.setFont(new Font("Futura LT", Font.PLAIN, 58));
+		tableTitle.setModel(new DefaultTableModel(
+				new Object[][] {
+						{"Linje", "Destination", "Läge", "Avgång"},
+				},
+				new String[] {
+						"Line", "Destination", "Stop", "Departure"
+				}
+				));
+	}
 
-		JLabel lblDestination = new JLabel("Destination");
-		lblDestination.setFont(new Font("Futura LT", Font.BOLD, 42));
-		lblDestination.setForeground(new Color(0, 0, 0));
-		lblDestination.setVerticalAlignment(SwingConstants.TOP);
-		add(lblDestination, "cell 5 0 2 1,alignx center,aligny top");
-		lblDestination.setBounds(92, 56, 236, 50);
+	/**
+	 *Skapa JTable för avgångar.
+	 */
+	private void departuresTable() {
+		tableDepartures = new JTable(model);
+		tableDepartures.setFont(new Font("Futura LT", Font.PLAIN, 42));
+		tableDepartures.setRowSelectionAllowed(false);
+		tableDepartures.setShowGrid(false);
+		tableDepartures.setShowHorizontalLines(false);
+		tableDepartures.setShowVerticalLines(false);
+	}
 
-		JLabel lblAvgr = new JLabel("Avgï¿½ng");
-		lblAvgr.setFont(new Font("Futura LT", Font.BOLD, 42));
-		lblAvgr.setForeground(new Color(0, 0, 0));
-		lblAvgr.setVerticalAlignment(SwingConstants.TOP);
-		add(lblAvgr, "cell 8 0,alignx center,aligny top");
-		
-		JLayeredPane layeredPane = new JLayeredPane();
-		add(layeredPane, "cell 1 1,grow");
-		
-		Line = new JTextArea();
-		Line.setFont(new Font("Dialog", Font.BOLD, 32));
-		Line.setDisabledTextColor(Color.BLACK);
-		Line.setBounds(0, 0, 99, 217);
-		layeredPane.add(Line);
-		Line.setBackground(new Color(0,0,0,0));
-		Line.setBorder(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 39, 99, 46);
-		layeredPane.add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 124, 99, 46);
-		layeredPane.add(panel_1);
-
-		Destination = new JTextArea();
-		Destination.setForeground(Color.BLACK);
-		Destination.setEditable(false);
-		Destination.setBackground(Color.LIGHT_GRAY);
-		Destination.setFont(new Font("Futura LT", Font.BOLD, 32));
-		Destination.setRows(2);
-		Destination.setAutoscrolls(false);
-		add(Destination, "cell 5 1 2 4,alignx center,growy");
-
-		Stop = new JTextArea();
-		Stop.setForeground(Color.BLACK);
-		Stop.setEditable(false);
-		Stop.setBackground(Color.LIGHT_GRAY);
-		Stop.setFont(new Font("Futura LT", Font.BOLD, 32));
-		Stop.setRows(2);
-		Stop.setAutoscrolls(false);
-		add(Stop, "cell 7 1 1 4,alignx center,growy");
-
-		Departure = new JTextArea();
-		Departure.setForeground(Color.BLACK);
-		Departure.setEditable(false);
-		Departure.setBackground(Color.LIGHT_GRAY);
-		Departure.setFont(new Font("Futura LT", Font.BOLD, 32));
-		Departure.setRows(2);
-		Departure.setAutoscrolls(false);
-		add(Departure, "cell 8 1 1 4,alignx center,growy");
-
-		if (priority == 1){
-			results = 4;
+	private void removeRows() {
+		DefaultTableModel dm = (DefaultTableModel) tableDepartures.getModel();
+		int rowCount = dm.getRowCount();
+	
+		for (int i = rowCount - 1; i >= 0; i--) {
+		    dm.removeRow(i);
 		}
+	}
+	
+	/**
+	 *Bestäm radhöjd på JTables.
+	 */
+	private void setRowHeights()
+	{
+		try
+		{
+			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();;
 
+			for (int row = 0; row < tableDepartures.getRowCount(); row++)
+			{
+				int rowHeight = tableDepartures.getRowHeight();
+
+				for (int column = 0; column < tableDepartures.getColumnCount(); column++)
+				{
+					centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+					tableTitle.getColumnModel().getColumn(column).setCellRenderer( centerRenderer );
+					tableDepartures.getColumnModel().getColumn(column).setCellRenderer( centerRenderer );
+					rowHeight = 80;
+				}
+				tableTitle.setRowHeight(row, rowHeight);
+				tableDepartures.setRowHeight(row, rowHeight);
+			}
+		}
+		catch(ClassCastException e) {}
+	}
+
+	/**
+	 *Hämta och skriv ut avgångar.
+	 */
+	public void Departures() {
 		String searchURL = Constants.getURL("80046", "80000", results);
-		System.out.println("START \nPRIORITET " + priority + "\nUPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
 		Journeys journeys = Parser.getJourneys(searchURL);
-		Destination.setText("");
-		Stop.setText("");
-		Departure.setText("");
 
+		removeRows();
+		
 		for (Journey journey : journeys.getJourneys()) {
 			int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
 			int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
 			String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
 			String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
 
-			Line.append("     " + journey.getLineOnFirstJourney() + "\n");
-			Destination.append(journey.getTowards() + "\n");
-			Stop.append(journey.getStopPoint() + "\n");
+			line = (journey.getLineOnFirstJourney());
+			destination = (journey.getTowards());
+			stop = (journey.getStopPoint());
 
 			try {
-				if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
-					Departure.append(time + "\n");
+				if (Integer.valueOf(depTime) >= 10 && Integer.valueOf(depTime) >= 0) {
+					departure = (time);
 				} else {
-					Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
+					departure = (journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min");
 				}
-			} catch (NumberFormatException ex) {
-
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
 			}
+			DefaultTableModel model = (DefaultTableModel) tableDepartures.getModel();
+			model.addRow(new Object[]{line, destination, stop, departure});
+			System.out.print(line + " " + destination + " " + stop + " " + departure + "\n");
 		}
-
-		lineThread.start();
+		System.out.println("");
+		titleTable();
+		departuresTable();
+		setRowHeights();
 	}
-
+	
+	/**
+	 * Uppdatera avgångar.
+	 */
 	public class LineThread extends Thread {
 		private Parser parser;
 
@@ -176,41 +199,13 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		public void run() {			
 			try {
 				while (true) {
-					String searchURL = Constants.getURL("80046", "80000", results);
-					Journeys journeys = Parser.getJourneys(searchURL);
-
-					Thread.sleep(updateInterval);
+					System.out.println("UPPDATERING " + noOfUpdates);
+					Departures();
 					noOfUpdates++;
-					System.out.println("UPPDATERING " + noOfUpdates + "\n");
-
-					Line.setText("");
-					Destination.setText("");
-					Stop.setText("");
-					Departure.setText("");
-
-					for (Journey journey : journeys.getJourneys()) {
-						int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
-						int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
-						String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
-						String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
-
-						busCount++;
-
-						Line.append("     " + journey.getLineOnFirstJourney() + "\n");
-						Destination.append(journey.getTowards() + "\n");
-						Stop.append(journey.getStopPoint() + "\n");
-						System.out.println("Buss " + busCount + " avgï¿½r om " + depTime + " min");
-
-						if (Integer.valueOf(depTime) > 10 && Integer.valueOf(depTime) > 0) {
-							Departure.append(time + "\n");
-						} else {
-							Departure.append(journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min \n");
-						}
-					}
+					Thread.sleep(updateInterval);
 				}
 			} catch (Exception ex) {
 			}
-			start();
 		}
 	}
 
