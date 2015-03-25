@@ -51,27 +51,34 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		Rubrik.setBounds(353, 0, 371, 50);
 		Rubrik.setBackground(new Color(0,158,212));
 		panel2.add(Rubrik);
+				Rubrik.setLayout(null);
 		
 				
 				JLabel lblNews = new JLabel("Event & händelser idag");
+				lblNews.setBounds(38, 9, 295, 39);
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
 				
 				event1 = new JLabel("");
 				event1.setFont(new Font("Futura", Font.PLAIN, 20));
-				event1.setBounds(50, 74, 956, 37);
+				event1.setBounds(284, 75, 956, 37);
 				panel2.add(event1);
 				
 				event2 = new JLabel("");
 				event2.setFont(new Font("Futura", Font.PLAIN, 20));
-				event2.setBounds(50, 122, 956, 37);
+				event2.setBounds(284, 116, 956, 37);
 				panel2.add(event2);
 				
 				event3 = new JLabel("");
 				event3.setFont(new Font("Futura", Font.PLAIN, 20));
-				event3.setBounds(50, 170, 956, 37);
+				event3.setBounds(284, 157, 956, 37);
 				panel2.add(event3);
+				
+				JLabel lblNewLabel = new JLabel("New label");
+				lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/11063394_10152837690193282_601781019_n.jpg")));
+				lblNewLabel.setBounds(65, 20, 183, 175);
+				panel2.add(lblNewLabel);
 				
 				
 				
