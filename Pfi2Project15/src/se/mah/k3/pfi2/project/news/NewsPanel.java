@@ -59,17 +59,17 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				Rubrik.add(lblNews);
 				
 				event1 = new JLabel("");
-				event1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				event1.setFont(new Font("Futura", Font.PLAIN, 20));
 				event1.setBounds(50, 74, 956, 37);
 				panel2.add(event1);
 				
 				event2 = new JLabel("");
-				event2.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				event2.setFont(new Font("Futura", Font.PLAIN, 20));
 				event2.setBounds(50, 122, 956, 37);
 				panel2.add(event2);
 				
 				event3 = new JLabel("");
-				event3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				event3.setFont(new Font("Futura", Font.PLAIN, 20));
 				event3.setBounds(50, 170, 956, 37);
 				panel2.add(event3);
 				
