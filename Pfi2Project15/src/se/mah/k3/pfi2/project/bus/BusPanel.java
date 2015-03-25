@@ -8,7 +8,6 @@ import se.mah.k3lara.skaneAPI.model.Journey;
 import se.mah.k3lara.skaneAPI.model.Journeys;
 import se.mah.k3lara.skaneAPI.model.Station;
 import se.mah.k3lara.skaneAPI.xmlparser.Parser;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,15 +34,31 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	private JTable tableTitle;
 	private JTable tableDepartures;
 
-	private String line = "1";
+	private String line = "";
 	private String destination = "";
 	private String stop = "";
 	private String departure = "";
+
+	private String line2 = "";
+	private String destination2 = "";
+	private String stop2 = "";
+	private String departure2 = "";
+
+	private String line3 = "";
+	private String destination3 = "";
+	private String stop3 = "";
+	private String departure3 = "";
+
+	private String line4 = "";
+	private String destination4 = "";
+	private String stop4 = "";
+	private String departure4 = "";
 
 	private int noOfUpdates = 0;
 	private int updateInterval = 2000;
 	private int results = 4;
 
+	//	private ArrayList<String> departureList = new ArrayList<String>();
 	public ArrayList<Station> searchStations = new ArrayList<Station>();
 	public Journeys journeys;
 	private Parser parser = new Parser();
@@ -82,16 +97,16 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		tableDepartures.setShowHorizontalLines(false);
 		tableDepartures.setShowVerticalLines(false);
 		tableDepartures.setModel(new DefaultTableModel(
-				new Object[][] {
-						{line, destination, stop, departure},
-						{line, destination, stop, departure},
-						{line, destination, stop, departure},
-						{line, destination, stop, departure},
-				},
-				new String[] {
-						"Line", "Destination", "Stop", "Departure"
-				}
-				));
+			new Object[][] {
+				{line, destination, stop, departure},
+				{"", "", "", ""},
+				{"", "", "", ""},
+				{"", "", "", ""},
+			},
+			new String[] {
+				"Line", "Destination", "Stop", "Departure"
+			}
+		));
 	}
 
 	/**
@@ -127,6 +142,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	public void Departures() {
 		String searchURL = Constants.getURL("80046", "80000", results);
 		Journeys journeys = Parser.getJourneys(searchURL);
+		//		String index = departureList.get(i);
 
 		for (Journey journey : journeys.getJourneys()) {
 			int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
@@ -149,8 +165,6 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		setRowHeights();
 	}
 
-
-
 	/**
 	 * Create the panel.
 	 */
@@ -164,11 +178,14 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		if (defaults.get("Table.alternateRowColor") == null)
 			defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
 
-		//SKRIV UT AVGÅNGAR EN GÅNG, RITA JTABLES OCH STARTA TRÅD
+		//SKAPA TRÅD OCH STARTA HÄMTA AVGÅNGAR
 		Thread lineThread = new BusPanel.LineThread(parser);
 		Departures();
+
+		//LÄGG TILL TABLES I MIGLAYOUT
 		add(tableDepartures, "cell 0 1 3 1,grow");
 		add(tableTitle, "cell 1 0,grow");
+
 		System.out.println("START\n" + "UPPDATERINGSINTERVALL: " + updateInterval/1000 + "s\n");
 		lineThread.start();
 	}
@@ -188,7 +205,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 				while (true) {
 					Departures();
 					noOfUpdates++;
-					System.out.println("UPPDATERING " + noOfUpdates + "\n");
+					System.out.println("UPPDATERING " + noOfUpdates + "\n" + line + " " + destination + " " + stop + " " + departure + "\n");
 					Thread.sleep(updateInterval);
 				}
 			} catch (Exception ex) {
