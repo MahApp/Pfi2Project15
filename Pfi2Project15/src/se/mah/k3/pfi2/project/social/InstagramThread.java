@@ -61,9 +61,10 @@ public class InstagramThread extends Thread {
 			}
 			
 			System.out.println("INSTAGRAMTHREAD: Yeah!");
-			socialPanel.removeAll();
-			socialPanel.add(posts.get(0).getPanel());
-			socialPanel.add(posts.get(1).getPanel());
+			socialPanel.panelContent.removeAll();
+			socialPanel.panelContent.add(posts.get(0).getPanel());
+			socialPanel.panelContent.add(posts.get(1).getPanel());
+			socialPanel.addBorder();
 			socialPanel.repaint();
 			
 			

@@ -2,11 +2,13 @@ package se.mah.k3.pfi2.project.social;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 public class InstagramPost {
@@ -18,51 +20,66 @@ public class InstagramPost {
 	private String imgText;
 	private String timePosted;
 	
-	
-	public InstagramPost(String userName, String imgUserUrl, String imgUrl, String imgText, String timePosted) {
+	public InstagramPost(String userName_in, String imgUserUrl_in, String imgUrl_in, String imgText_in, String timePosted_in) {
 		
-		this.userName = userName;
-		this.imgUserUrl = imgUserUrl;
-		this.imgUrl = imgUrl;
-		this.imgText = imgText;
-		this.timePosted = timePosted;
+		this.userName = userName_in;
+		this.imgUserUrl = imgUserUrl_in;
+		this.imgUrl = imgUrl_in;
+		this.imgText = imgText_in;
+		this.timePosted = timePosted_in;
+		
+		FontFutura futura = new FontFutura();
+		
+		
+		
+        ////////
+		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		
+		String fontNames[] = graphicsEnvironment.getAvailableFontFamilyNames();
+        for(int i=0; i < fontNames.length; i++){
+                //print font names
+                System.out.println(fontNames[i]);
+        }
+		/////////
 		
 		//Panel start
 		
 		panel = new JPanel();
-		panel.setBounds(5, 5, 540, 540);
+		panel.setFont(FontFutura.FuturaLT.deriveFont(14f));
+		panel.setBounds(0, 0, 540, 540);
 		//contentPane.add(panel); Detta görs i "controllern". Returnera panel i en getPanel-metod 
 		panel.setLayout(null);
 		
 		JLabel profileName = new JLabel(userName);
 		profileName.setForeground(Color.WHITE);
-		profileName.setFont(new Font("Calibri", Font.PLAIN, 23)); //TODO: Byt font
+		profileName.setFont(new Font("Futura LT", Font.PLAIN, 24));
+		System.out.println("profileName: " + profileName.getFont().toString());
 		profileName.setBounds(107, 451, 346, 29);
 		panel.add(profileName);
 		
-		JTextArea imageText = new JTextArea();
-		imageText.setWrapStyleWord(true);
-		imageText.setLineWrap(true);
+		JTextPane imageText = new JTextPane();
+//		imageText.setWrapStyleWord(true);
+//		imageText.setLineWrap(true);
 		imageText.setEditable(false);
 		imageText.setForeground(Color.WHITE);
-		imageText.setFont(new Font("Calibri", Font.PLAIN, 18));
+		imageText.setFont(FontFutura.FuturaLT.deriveFont(14f));
+		System.out.println("imageText: " + imageText.getFont().toString());
 		String textLimited = imgText;
 		if(textLimited.length() > 80) textLimited = textLimited.substring(0,80) + "...";
 		imageText.setText(textLimited);
 		imageText.setBounds(107, 479, 346, 50);
 		imageText.setBackground(new Color(255,255,255,0));
-		Font futura= new Font("Calibri", Font.PLAIN, 18);
 		panel.add(imageText);
 		
 		JLabel time = new JLabel(timePosted);
 		time.setForeground(Color.WHITE);
 		time.setHorizontalAlignment(SwingConstants.RIGHT);
-		time.setFont(new Font("Calibri", Font.PLAIN, 23));
+		time.setFont(new Font("Futura LT", Font.PLAIN, 24));
 		time.setBounds(447, 451, 83, 29);
 		panel.add(time);
 		
 		JLabel profilePicBorder = new JLabel("");
-		profilePicBorder.setIcon(new ImageIcon(SocialPanel.class.getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramProfilePicBorder.png"))); //Profile pic border
+		profilePicBorder.setIcon(new ImageIcon(getClass().getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramProfilePicBorder.png"))); //Profile pic border
 		profilePicBorder.setBounds(5, 444, 92, 92);
 		panel.add(profilePicBorder);
 		
@@ -72,7 +89,7 @@ public class InstagramPost {
 		panel.add(profilePic);
 		
 		JLabel gradientOverlay = new JLabel("");
-		gradientOverlay.setIcon(new ImageIcon(SocialPanel.class.getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramGradientOverlay.png"))); //Gradient overlay
+		gradientOverlay.setIcon(new ImageIcon(getClass().getResource("/se/mah/k3/pfi2/project/social/graphics/InstagramGradientOverlay.png"))); //Gradient overlay
 		gradientOverlay.setBounds(0, 440, 540, 100);
 		panel.add(gradientOverlay);
 		
