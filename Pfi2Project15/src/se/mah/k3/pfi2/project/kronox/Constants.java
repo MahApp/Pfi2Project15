@@ -74,6 +74,7 @@ public class Constants {
 			array.add(baseURL + n4071);
 			array.add(baseURL + n4081);
 			array.add(baseURL + n4083);
+			array.add(baseURL + n5020);
 			array.add(baseURL + n5040);
 
 		}
@@ -114,7 +115,7 @@ public class Constants {
 			array.add(baseURL + n5040);
 			array.add(baseURL + n6030);
 			array.add(baseURL + n6040);
-			
+
 		}
 		
 		else if (building.equals("gäddan")){
@@ -177,6 +178,17 @@ public class Constants {
 	public static String formatTime(String timeString){ // format the start time into HH:mm format
 		timeString=timeString.substring(11, 16);
 		return timeString;
+	}
+	
+	public static String formatKurs(String kursID){
+		
+		String[] test = (kursID.split("-"));
+		
+		kursID = test[0];
+		
+		System.out.println(kursID+"//////");
+		
+		return kursID;
 	}
 }
 
