@@ -63,7 +63,7 @@ public class WeatherPanel extends JPanel implements ModuleInterface{
 		setLayout(null);
 		
 		lblBorderSmall = new JLabel("border");
-		lblBorderSmall.setIcon(new ImageIcon(WeatherPanel.class.getResource("/se/mah/k3/pfi2/project/timeweather/images/border_small.png")));
+		lblBorderSmall.setIcon(new ImageIcon(WeatherPanel.class.getResource("/se/mah/k3/pfi2/project/timeweather/images/ramLiten.png")));
 		lblBorderSmall.setBounds(0, 0, 1080, 160);
 		add(lblBorderSmall);
 		
