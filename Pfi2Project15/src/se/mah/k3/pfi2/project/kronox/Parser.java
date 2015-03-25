@@ -237,7 +237,7 @@ public class Parser {
 
 	storedPost=FilterOutBiulding.filter(storedPost); // filter
 	storedPost=FilterOutRooms.filter(storedPost); // filter
-	storedPost=FilterOutTime.filter(storedPost); // filter
+	//storedPost=FilterOutTime.filter(storedPost); // filter
 
 	return storedPost;
 	}
