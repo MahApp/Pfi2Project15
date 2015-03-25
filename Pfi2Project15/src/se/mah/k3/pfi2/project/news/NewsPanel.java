@@ -75,7 +75,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				
 				
 				
-				readAndWriteMonday();
+				readAndWriteEvents();
 
 	}
 
@@ -110,70 +110,33 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		// TODO Auto-generated method stub
 		
 	}
-	public void readAndWriteMonday(){
+
+	public void readAndWriteEvents(){
 		try {
-			URL freda49 = new URL("http://www.freda49.se/lunch-malmo.html");
-			Scanner sc = new Scanner(freda49.openStream());
-			while (sc.hasNext()) {
-				String fullText = sc.nextLine();
+			URL mahKalender = new URL("http://www.mah.se/Nyheter/RSS/Kalender-fran-Malmo-hogskola/");
+			Scanner s = new Scanner(mahKalender.openStream());
+			while (s.hasNext()) {
+			//	String string = s.nextLine();
+			//	System.out.println(string);
+				String s2 = s.nextLine();
+				if (s2.contains("2015-03-27")){
+			//		System.out.println(s2);
+					
+					String eventOne = ("10.00 	Hälsa & Samhälle	Spikning: Allogenic stem cell transplantation");
+					String eventTwo = ("13.00 	Ubåtshallen 301 	Girls of Hope: Film screening");
+					String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hasslöf");
+					
+					System.out.println(eventOne);
+					System.out.println(eventTwo);
+					System.out.println(eventThree);
 				
-//				int menuStart = fullText.indexOf("LUNCHMENY");   //fr�n "lunchmeny"
-//				int menuEnd = fullText.indexOf("L=inneh");       //till "L=inneh�ller laktos"
-//				String fullMenu = fullText.substring(menuStart, menuEnd);
-//				
-//				int mondayStart = fullMenu.indexOf("ndag:");
-//				int mondayEnd = fullMenu.indexOf("TISDAG");
-//				String monday = fullMenu.substring(mondayStart, mondayEnd);
-				
-				String dagens = fullText;
-				if (dagens.contains("Husman")){	
-					int dagensStartRead = dagens.indexOf("Husman");
-					int dagensEndRead = dagens.indexOf("lsa:");
-					String dagensResultat = dagens.substring(dagensStartRead, dagensEndRead);
-					
-					int cleanStart = dagensResultat.indexOf("Husman:");
-					int cleanEnd = dagensResultat.indexOf("</span>");
-					String cleanResultat = dagensResultat.substring(cleanStart, cleanEnd);
-					
-					
-					System.out.println(cleanResultat);
-					event1.setText("\n" + cleanResultat + "\n" );
-					
+					event1.setText(eventOne);
+					event2.setText(eventTwo);
+					event3.setText(eventThree);
 				}
-				
-				String halsa = fullText;
-				if (halsa.contains("lsa:")){
-					int halsaStartRead = halsa.indexOf("lsa:");
-					int halsaEndRead = halsa.indexOf("Vegetarisk");
-					String halsaResultat = halsa.substring(halsaStartRead,  halsaEndRead);
-					
-					int cleanStart = halsaResultat.indexOf("lsa:");
-					int cleanEnd = halsaResultat.indexOf("</span>");
-					String cleanResultat = halsaResultat.substring(cleanStart, cleanEnd);
-							
-							
-					System.out.println("Ha" + cleanResultat);
-					event2.setText("Ha" + cleanResultat + "\n" );
+
 				}
-				
-				String veg = fullText;
-				if (veg.contains("Vegetarisk:")){ 
-					int vegStartRead = veg.indexOf("Vegetarisk");    
-					int vegEndRead = veg.indexOf(">TISDAG<");
-					String vegResultat = veg.substring(vegStartRead,  vegEndRead); //tar in all text inom taggarna "Vegetarisk" och 
-																				   //">TISDAG<"
-					
-					int cleanStart = vegResultat.indexOf("Vegetarisk");
-					int cleanEnd = vegResultat.indexOf("</span>");
-					String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text fr�n b�rjan av vegResultat och 
-																					    // </span> inom vegresultat
-					
-					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
-					event3.setText(cleanResultat);
-				}
-				
-			}
-			sc.close();
+			s.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

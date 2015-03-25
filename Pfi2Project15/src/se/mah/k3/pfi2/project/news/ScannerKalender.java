@@ -19,15 +19,15 @@ public class ScannerKalender {
 			//	System.out.println(string);
 				String s2 = s.nextLine();
 				if (s2.contains("2015-03-27")){
-					System.out.println(s2);
+			//		System.out.println(s2);
 					
-//					String eventOne = ("10.00 	Hälsa & Samhälle	Spikning: Allogenic stem cell transplantation");
-//					String eventTwo = ("13.00 	Ubåtshallen 301 	Girls of Hope: Film screening with director Aysegül Selenga Taskent");
-//					String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hasslöf");
-//					
-//					System.out.println(eventOne);
-//					System.out.println(eventTwo);
-//					System.out.println(eventThree);
+					String eventOne = ("10.00 	Hälsa & Samhälle	Spikning: Allogenic stem cell transplantation");
+					String eventTwo = ("13.00 	Ubåtshallen 301 	Girls of Hope: Film screening");
+					String eventThree = ("13.15	Orkanen D138 		Disputation - Helen Hasslöf");
+					
+					System.out.println(eventOne);
+					System.out.println(eventTwo);
+					System.out.println(eventThree);
 				
 				}
 
