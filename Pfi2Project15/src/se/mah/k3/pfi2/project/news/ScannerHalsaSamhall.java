@@ -55,8 +55,16 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = dagensResultat.indexOf("</span>");
 					String cleanResultat = dagensResultat.substring(cleanStart, cleanEnd);
 					
+
 					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
 					System.out.println(removeHtml);
+
+					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println(removeHtml);
+					
+					System.out.println(cleanResultat);
+					
+
 				}
 				
 				String halsa = fullText;
@@ -69,8 +77,14 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = halsaResultat.indexOf("</span>");
 					String cleanResultat = halsaResultat.substring(cleanStart, cleanEnd);
 							
+
 					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
 					System.out.println("Ha" + removeHtml);
+
+							
+					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println("Hä" + removeHtml);
+					System.out.println("Hä" + cleanResultat);
 				}
 				
 				String veg = fullText;
@@ -86,8 +100,13 @@ public class ScannerHalsaSamhall {
 																					    // </span> inom vegresultat
 					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
 					System.out.println(removeHtml);   //skriver ut vegResultat utan HTML-taggar
+
+					String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println(removeHtml);
+					
+					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
 				}
-				
+				// kommenterar här för skojs skull
 			}
 			sc.close();
 		}
