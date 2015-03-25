@@ -119,11 +119,11 @@ public class CanvasInJframe extends JFrame {
 	 */
 	public CanvasInJframe() {
 		System.out.println("construct");
-
+		setUndecorated(true); // hide buttons
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(5, 10, 5, 10)); //White inner border that creates margin around the schema
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		for (int i = 0; i < antalElement; i++) {
@@ -190,35 +190,35 @@ public class CanvasInJframe extends JFrame {
 		}
 
 		//skit i denna metod 4 now
-		public Graphics drawBackground() {
-			// initiate one-time graphics
-			Graphics2D g3 = null;
-			// g3 = (Graphics2D) g;
-
-			// mjuka upp texten
-			RenderingHints rh = new RenderingHints(
-					RenderingHints.KEY_TEXT_ANTIALIASING,
-					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
-			g3.setRenderingHints(rh);;
-			g3.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
-			// rader
-			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
-					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
-			g3.setStroke(stroke);
-			// Lägger till header-fältet m. text osv
-			g3.setFont(headerFont);
-			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
-					fieldHeight);
-			g3.setColor(headerFieldBackgroundColor);
-			g3.fill(headField);
-			g3.setColor(headerYellowTextColor);
-			g3.drawString("TID", 20, 50);
-			g3.drawString("KURS", 200, 50);
-			g3.drawString("LOKAL", 680, 50);
-			g3.drawString("STATUS", SCREEN_WIDTH - 175, 50);
-			return g3;
-
-		}
+//		public Graphics drawBackground() {
+//			// initiate one-time graphics
+//			Graphics2D g3 = null;
+//			// g3 = (Graphics2D) g;
+//
+//			// mjuka upp texten
+//			RenderingHints rh = new RenderingHints(
+//					RenderingHints.KEY_TEXT_ANTIALIASING,
+//					RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+//			g3.setRenderingHints(rh);;
+//			g3.drawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 1000);
+//			// rader
+//			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
+//					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
+//			g3.setStroke(stroke);
+//			// Lägger till header-fältet m. text osv
+//			g3.setFont(headerFont);
+//			Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,
+//					fieldHeight);
+//			g3.setColor(headerFieldBackgroundColor);
+//			g3.fill(headField);
+//			g3.setColor(headerYellowTextColor);
+//			g3.drawString("TID", 20, 50);
+//			g3.drawString("KURS", 200, 50);
+//			g3.drawString("LOKAL", 680, 50);
+//			g3.drawString("STATUS", SCREEN_WIDTH - 175, 50);
+//			return g3;
+//
+//		}
 
 		public void paint(Graphics g) {
 			//initierar metodvariabler
@@ -273,22 +273,16 @@ public class CanvasInJframe extends JFrame {
 				
 				//Sets the color to black before printin' it out
 				g2.setColor(Color.black);// write out time
-				g2.drawString(tempValues[0], 10,
-						(fieldHeight + fieldHeight / 2 + 10)
-								+ (fieldHeight * i));// write out course
-				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight
-						/ 2 + 10)
-						+ (fieldHeight * i));// write out classroom
-				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight
-						/ 2 + 10)
-						+ (fieldHeight * i));
+				g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
+				g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
+				g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
 				
 				//These images are just drawn in randomly at the moment
 				g2.drawImage(cancelImg, 940, 90, this);
 				g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
 				
 				//This line works as crossing over a canceled class maybe?
-				g2.drawLine(710, 120, 775, 120);
+				//g2.drawLine(710, 120, 775, 120);
 
 			}
 		}
