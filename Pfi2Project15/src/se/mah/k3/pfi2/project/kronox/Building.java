@@ -17,6 +17,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Building extends JFrame {
 	
@@ -47,29 +49,30 @@ public class Building extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.textInactiveText);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		final JComboBox buildings = new JComboBox();
-		buildings.setFont(new Font("Futura LT", Font.PLAIN, 18));
+		buildings.setFont(new Font("Futura LT", Font.PLAIN, 15));
 		buildings.setBounds(16, 107, 265, 22);
-		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ubåtshallen", "Orkanen", "Odontologkiska", "Gäddan"}));
+		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ubï¿½tshallen", "Orkanen", "Odontologkiska", "Gï¿½ddan"}));
 		contentPane.add(buildings);
 		
-		JButton btnRun = new JButton("Run");
+		JButton btnRun = new JButton("Set building");
 		btnRun.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				String currentBuilding = (String) buildings.getSelectedItem();
-			if(currentBuilding.equals("Kranen / Ubåtshallen")){
+			if(currentBuilding.equals("Kranen / Ubï¿½tshallen")){
 				currentBuilding = "kranen";
 			}else if (currentBuilding.equals("Orkanen")) {
 				currentBuilding = "orkanen";
 			}else if (currentBuilding.equals("Odontologiska")) {
 				currentBuilding = "odontologiska";
-			}else if (currentBuilding.equals("Gäddan")) {
-				currentBuilding = "gäddan";
+			}else if (currentBuilding.equals("Gï¿½ddan")) {
+				currentBuilding = "gï¿½ddan";
 			}
 			System.out.println("Setting current building to " + currentBuilding);
 				//Parser.setbuilding(currentBuilding);
@@ -92,7 +95,7 @@ public class Building extends JFrame {
 			
 		});
 		btnRun.setFont(new Font("Futura LT", Font.PLAIN, 15));
-		btnRun.setBounds(281, 107, 117, 22);
+		btnRun.setBounds(310, 107, 117, 22);
 		contentPane.add(btnRun);
 
 
