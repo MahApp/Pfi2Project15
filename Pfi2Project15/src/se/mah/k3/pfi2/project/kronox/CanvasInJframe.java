@@ -144,7 +144,8 @@ public class CanvasInJframe extends JFrame {
 			valueList.remove(i);
 		}
 		System.out.println(storedPost.size());
-		//antalElement = storedPost.size(); // change the element based on parsed
+
+		setAntalElement(storedPost.size());
 											// xml
 		for (int i = 0; i < storedPost.size(); i++) {
 
