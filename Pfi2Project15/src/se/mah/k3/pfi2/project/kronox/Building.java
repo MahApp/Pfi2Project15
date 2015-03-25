@@ -57,7 +57,7 @@ public class Building extends JFrame {
 		final JComboBox buildings = new JComboBox();
 		buildings.setFont(new Font("Futura LT", Font.PLAIN, 15));
 		buildings.setBounds(16, 107, 265, 22);
-		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ubï¿½tshallen", "Orkanen", "Odontologkiska", "Gï¿½ddan"}));
+		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen","Ubåtshallen", "Orkanen", "Odontologkiska", "Gäddan"}));
 		contentPane.add(buildings);
 		
 		JButton btnRun = new JButton("Set building");
@@ -65,15 +65,26 @@ public class Building extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				String currentBuilding = (String) buildings.getSelectedItem();
-			if(currentBuilding.equals("Kranen / Ubï¿½tshallen")){
-				currentBuilding = "kranen";
-			}else if (currentBuilding.equals("Orkanen")) {
-				currentBuilding = "orkanen";
-			}else if (currentBuilding.equals("Odontologiska")) {
-				currentBuilding = "odontologiska";
-			}else if (currentBuilding.equals("Gï¿½ddan")) {
-				currentBuilding = "gï¿½ddan";
+//			if(currentBuilding.equals("Kranen")){
+//				currentBuilding = "kranen";
+//			}else if(currentBuilding.equals("Ubåtshallen")){
+//					currentBuilding = "ubåtshallen";
+//			}else if (currentBuilding.equals("Orkanen")) {
+//				currentBuilding = "orkanen";
+//			}else if (currentBuilding.equals("Odontologiska")) {
+//				currentBuilding = "odontologiska";
+//			}else if (currentBuilding.equals("Gäddan")) {
+//				currentBuilding = "gäddan";
+//			}
+			switch(currentBuilding){
+			case "Kranen": currentBuilding = "kranen";break;
+			case "Ubåtshallen": currentBuilding = "ubåtshallen";break;
+			case "Orkanen": currentBuilding = "orkanen";break;
+			case "Gäddan": 	currentBuilding = "gäddan";break;
+			case "Odontologiska": currentBuilding = "odontologiska";break;
+			default:
 			}
+			
 			System.out.println("Setting current building to " + currentBuilding);
 				//Parser.setbuilding(currentBuilding);
 				Parser.biulding=currentBuilding;
@@ -87,6 +98,10 @@ public class Building extends JFrame {
 					awtControlDemo.showCanvasDemo();
 					awtControlDemo.setVisible(true);
 					awtControlDemo.setTitle("loading...");
+					
+					Building.this.setVisible(false);
+				//	System.exit(0);
+					
 				} catch (Exception er) {
 					er.printStackTrace();
 				}
