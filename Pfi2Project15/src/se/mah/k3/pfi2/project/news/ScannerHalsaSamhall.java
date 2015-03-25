@@ -3,11 +3,15 @@ package se.mah.k3.pfi2.project.news;
 import java.net.URL;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.*;
+
 public class ScannerHalsaSamhall {
 
 	public static void main(String[] args) {
 		ScannerHalsaSamhall st = new ScannerHalsaSamhall();
 		st.readAndWriteMonday();
+		
+		
 	}
 	
 	public void readAndWriteTuesday(){
@@ -39,7 +43,7 @@ public class ScannerHalsaSamhall {
 //				
 //				int mondayStart = fullMenu.indexOf("ndag:");
 //				int mondayEnd = fullMenu.indexOf("TISDAG");
-//				String monday = fullMenu.substring(mondayStart, mondayEnd);
+//				String monday = fullMenu.substring(mondayStart, mondayEnd);   //a
 				
 				String dagens = fullText;
 				if (dagens.contains("Husman")){	
@@ -51,9 +55,14 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = dagensResultat.indexOf("</span>");
 					String cleanResultat = dagensResultat.substring(cleanStart, cleanEnd);
 					
+
+					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println(removeHtml);
+
 					
 					System.out.println(cleanResultat);
 					
+
 				}
 				
 				String halsa = fullText;
@@ -66,8 +75,10 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = halsaResultat.indexOf("</span>");
 					String cleanResultat = halsaResultat.substring(cleanStart, cleanEnd);
 							
-							
-					System.out.println("Ha" + cleanResultat);
+
+					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println("Ha" + removeHtml);
+
 				}
 				
 				String veg = fullText;
@@ -81,10 +92,13 @@ public class ScannerHalsaSamhall {
 					int cleanEnd = vegResultat.indexOf("</span>");
 					String cleanResultat = vegResultat.substring(cleanStart, cleanEnd); //tar in all text fr�n b�rjan av vegResultat och 
 																					    // </span> inom vegresultat
+					String removeHtml =	StringEscapeUtils.unescapeHtml4(cleanResultat);
+					System.out.println(removeHtml);   //skriver ut vegResultat utan HTML-taggar
+
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
 				}
-				
+				// kommenterar här för skojs skull
 			}
 			sc.close();
 		}

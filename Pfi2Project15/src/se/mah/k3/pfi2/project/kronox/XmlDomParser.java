@@ -31,7 +31,7 @@ public  class XmlDomParser {
 		
 		
 		String xml = url;
-			System.out.println("getXml from kronox");
+		//	System.out.println("getXml from kronox");
 		try {
 			HttpClient httpClient = HttpClientBuilder.create().build(); 
 			HttpPost httpPost = new HttpPost(xml);

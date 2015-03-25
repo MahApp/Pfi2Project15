@@ -1,2 +1,6 @@
 /bin/
-/src/se/mah/k3/pfi2/project/social/Token.class
+# Exclude any PSD/AI source
+*.psd
+*.ai
+# Exclude OS X folder attributes
+.DS_Store
