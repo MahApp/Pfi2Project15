@@ -39,20 +39,20 @@ import javax.swing.ImageIcon;
 		
 		for (Weather weather : weathers.getWeathers()) {
 			//nu
-			gui.lblTemperature.setText(weather.getTemperature().get(0) + "Â°");
+			gui.lblTemperature.setText(weather.getTemperature().get(0) + "°");
 			
 			//just for tests
 			//gui.lblWeatherConditions.setText(weather.getWeather().get(0));
 			
 			//in three hours
 			gui.lblTime2.setText(weather.getTimeList().get(1));
-			gui.lblTemperature2.setText(weather.getTemperature().get(1)+ "Â°");
+			gui.lblTemperature2.setText(weather.getTemperature().get(1)+ "°");
 			
 			//gui.lblWeatherConditions2.setText(weather.getWeather().get(1));
 			
 			//in six hours
 			gui.lblTime3.setText(weather.getTimeList().get(2));
-			gui.lblTemperature3.setText(weather.getTemperature().get(2)+ "Â°");
+			gui.lblTemperature3.setText(weather.getTemperature().get(2)+ "°");
 			
 			//gui.lblWeatherConditions3.setText(weather.getWeather().get(2));
 			
