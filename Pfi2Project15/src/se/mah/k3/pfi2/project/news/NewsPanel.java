@@ -50,41 +50,43 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		setBackground(new Color(240, 241, 241));
 		setLayout(null);
 		
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(823, 19, 202, 196);
-		add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/salad.jpg")));
-		
-		JPanel RAM = new JPanel();
-		RAM.setBounds(816, 15, 217, 205);
-		add(RAM);
-		RAM.setBackground(new Color(134,188,37));
-		
 		JPanel panel2 = new JPanel();
-		panel2.setBounds(17, 11, 1047, 218);
+		panel2.setBorder(new LineBorder (new Color(134,188,37), 3, true));
+		panel2.setBounds(10, 11, 1060, 218);
 		panel2.setBackground(new Color(227, 230, 229));
 		add(panel2);
 		panel2.setLayout(null);
 		
 		JPanel Rubrik = new JPanel();
-		Rubrik.setBounds(116, 11, 218, 50);
+		Rubrik.setBorder(new LineBorder(new Color(134, 188, 37), 4, true));
+		Rubrik.setBounds(116, 0, 218, 50);
 		Rubrik.setBackground(new Color(134,188,37));
 		panel2.add(Rubrik);
 		
 				
-				JLabel lblNews = new JLabel("Lunch 69:-");
+				JLabel lblNews = new JLabel("Dagens lunch");
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
 				
 				
+				JLabel lblNewLabel = new JLabel("New label");
+				lblNewLabel.setBounds(812, 10, 202, 196);
+				panel2.add(lblNewLabel);
+				lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/salad.jpg")));
+				
+				
 				Meny.setFont(new Font("Futura", Font.PLAIN, 20));
 				Meny.setText("Här kommer menyn stå!");
-				Meny.setBounds(98, 70, 381, 163);
+				Meny.setBounds(48, 61, 381, 118);
 				Meny.setBackground(new Color(227, 230, 229));
 				Meny.setForeground(new Color(97, 101, 109));
 				panel2.add(Meny);
+				
+				JPanel RAM = new JPanel();
+				RAM.setBounds(805, 6, 214, 205);
+				panel2.add(RAM);
+				RAM.setBackground(new Color(134,188,37));
 		//panel.setBackground(new Color(134, 188, 37));
 				
 				readAndWriteMonday();
