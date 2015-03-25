@@ -22,8 +22,6 @@ import javax.swing.ImageIcon;
 
 public class NewsPanel extends JPanel implements ModuleInterface{
 
-	public JTextArea Meny = new JTextArea();
-	
 	/**
 	 * Create the panel.
 	 */
@@ -47,47 +45,44 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		setMinimumSize(new Dimension(1080,240));
 		setForeground(UIManager.getColor("scrollbar"));
 		setBorder(null);
-		setBackground(new Color(240, 241, 241));
+		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		JPanel panel2 = new JPanel();
-		panel2.setBorder(new LineBorder (new Color(134,188,37), 3, true));
+		panel2.setBorder(new LineBorder (new Color(0,158,212), 3, true));
 		panel2.setBounds(10, 11, 1060, 218);
-		panel2.setBackground(new Color(227, 230, 229));
+		panel2.setBackground(Color.WHITE);
 		add(panel2);
 		panel2.setLayout(null);
 		
 		JPanel Rubrik = new JPanel();
-		Rubrik.setBorder(new LineBorder(new Color(134, 188, 37), 4, true));
-		Rubrik.setBounds(116, 0, 218, 50);
-		Rubrik.setBackground(new Color(134,188,37));
+		Rubrik.setBorder(new LineBorder(new Color(0, 158, 212), 4, true));
+		Rubrik.setBounds(353, 0, 371, 50);
+		Rubrik.setBackground(new Color(0,158,212));
 		panel2.add(Rubrik);
 		
 				
-				JLabel lblNews = new JLabel("Dagens lunch");
+				JLabel lblNews = new JLabel("Events & H\u00E4ndelser idag");
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
 				
+				JLabel Event1 = new JLabel("Event 1");
+				Event1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				Event1.setBounds(50, 74, 956, 37);
+				panel2.add(Event1);
 				
-				JLabel lblNewLabel = new JLabel("New label");
-				lblNewLabel.setBounds(812, 10, 202, 196);
-				panel2.add(lblNewLabel);
-				lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/salad.jpg")));
+				JLabel Event2 = new JLabel("Event 2");
+				Event2.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				Event2.setBounds(50, 122, 956, 37);
+				panel2.add(Event2);
+				
+				JLabel Event3 = new JLabel("Event 3");
+				Event3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+				Event3.setBounds(50, 170, 956, 37);
+				panel2.add(Event3);
 				
 				
-				Meny.setFont(new Font("Futura", Font.PLAIN, 20));
-				Meny.setText("Här kommer menyn stå!");
-				Meny.setBounds(48, 61, 381, 118);
-				Meny.setBackground(new Color(227, 230, 229));
-				Meny.setForeground(new Color(97, 101, 109));
-				panel2.add(Meny);
-				
-				JPanel RAM = new JPanel();
-				RAM.setBounds(805, 6, 214, 205);
-				panel2.add(RAM);
-				RAM.setBackground(new Color(134,188,37));
-		//panel.setBackground(new Color(134, 188, 37));
 				
 				readAndWriteMonday();
 
@@ -151,7 +146,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 					
 					
 					System.out.println(cleanResultat);
-					Meny.append("\n" + cleanResultat + "\n" );
+					Events.append("\n" + cleanResultat + "\n" );
 					
 				}
 				
@@ -167,7 +162,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 							
 							
 					System.out.println("Ha" + cleanResultat);
-					Meny.append("Ha" + cleanResultat + "\n" );
+					Events.append("Ha" + cleanResultat + "\n" );
 				}
 				
 				String veg = fullText;
@@ -183,7 +178,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 																					    // </span> inom vegresultat
 					
 					System.out.println(cleanResultat);   //skriver ut vegResultat utan HTML-taggar
-					Meny.append(cleanResultat);
+					Events.append(cleanResultat);
 				}
 				
 			}
