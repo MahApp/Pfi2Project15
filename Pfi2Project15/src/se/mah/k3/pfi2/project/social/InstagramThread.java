@@ -51,8 +51,8 @@ public class InstagramThread extends Thread {
 			catch(Exception e){
 				//e.printStackTrace();
 			}
-			postsData = new ArrayList<PostData>(); //Ta bort???
-			posts = new ArrayList<InstagramPost>(); //Ta bort???
+			postsData = new ArrayList<PostData>();
+			posts = new ArrayList<InstagramPost>();
 			postsData = json.getPostsList();
 			
 			for(int i = 0; i < postsData.size(); i++){

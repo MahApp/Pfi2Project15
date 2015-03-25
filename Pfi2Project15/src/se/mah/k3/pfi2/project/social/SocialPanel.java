@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class SocialPanel extends JPanel implements ModuleInterface {
 
