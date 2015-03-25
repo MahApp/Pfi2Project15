@@ -76,7 +76,7 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 					
 					JLabel lblNewLabel = new JLabel("New label");
 					lblNewLabel.setIcon(new ImageIcon(LunchPanel.class.getResource("/Images/salad.png")));
-					lblNewLabel.setBounds(814, 20, 183, 175);
+					lblNewLabel.setBounds(787, 0, 208, 212);
 					panel2.add(lblNewLabel);
 			//panel.setBackground(new Color(134, 188, 37));
 					
