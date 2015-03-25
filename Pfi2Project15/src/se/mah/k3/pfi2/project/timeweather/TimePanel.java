@@ -29,14 +29,15 @@ public class TimePanel extends JPanel implements ModuleInterface{
 		setLayout(new GridLayout(0, 4, 0, 0));
 		
 		lblTime = new JLabel("Time");
+		lblTime.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblTime);
 		lblTime.setForeground(Color.BLACK);
-		lblTime.setFont(new Font("Futura", Font.PLAIN, 20));
+		lblTime.setFont(new Font("Futura", Font.PLAIN, 28));
 		
 		lblDate = new JLabel("Date");
 		add(lblDate);
 		lblDate.setForeground(Color.BLACK);
-		lblDate.setFont(new Font("Futura", Font.PLAIN, 13));
+		lblDate.setFont(new Font("Futura", Font.PLAIN, 20));
 		
 		lblBuilding = new JLabel("Kranen");
 		lblBuilding.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -66,19 +67,19 @@ public class TimePanel extends JPanel implements ModuleInterface{
 	@Override
 	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	@Override

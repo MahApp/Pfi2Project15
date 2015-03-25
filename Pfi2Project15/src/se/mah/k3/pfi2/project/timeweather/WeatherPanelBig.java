@@ -6,7 +6,6 @@ import javax.swing.SwingConstants;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,42 +16,45 @@ import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.Dimension;
+import java.util.Calendar;
+
 import javax.swing.border.LineBorder;
 
 public class WeatherPanelBig extends JPanel implements ModuleInterface{
 	private JPanel contentPane;
-	public JLabel lblTemperature = new JLabel("Temperature");
 	
-	public JLabel lblTime2 = new JLabel("Time");
-
+	//Prints out temperature, current and prognosis, in degrees Celsius
+	public JLabel lblTemperature = new JLabel("Temperature");
 	public JLabel lblTemperature2  = new JLabel("Temperature");
+	public JLabel lblTemperature3 = new JLabel("Temperature");
+	public JLabel lblTemperature4 = new JLabel("Temperature");
+	
+	//Label that prints "Nu" for the current weather
+	private JLabel lblNu = new JLabel("Nu");
+	//Labels that print the time period for each prognosis
+	public JLabel lblTime2 = new JLabel("Time");
+	public JLabel lblTime3 = new JLabel("Time");
+	public JLabel lblTime4  = new JLabel("Time");
+	
+	//labels that print the weather condition for each prognosis, just for tests
 	public JLabel lblWeatherConditions = new JLabel("WeatherConditions");
 	public JLabel lblWeatherConditions2  = new JLabel("WeatherConditions");
 	public JLabel lblWeatherConditions3 = new JLabel("WeatherConditions");
 	public JLabel lblWeatherConditions4 = new JLabel("WeatherConditions");
-	public JLabel lblTemperature3 = new JLabel("Temperature");
-	public JLabel lblTemperature4 = new JLabel("Temperature");
-	public JLabel lblTime3 = new JLabel("Time");
-	public JLabel lblTime4  = new JLabel("Time");
+	
+	//labels that show weather pictures that correspond with the weather condition
 	public JLabel lblWeatherPic1  = new JLabel("weather pic");
 	public JLabel lblWeatherPic2 = new JLabel("weather pic");
 	public JLabel lblWeatherPic3 = new JLabel("weather pic");
 	public JLabel lblWeatherPic4 = new JLabel("weather pic");
-	private JLabel lblNu = new JLabel("Nu");
+	
 	 private JPanel panel_1 = new JPanel();
 	 
 
-		
-		
-
-		
-	
-
-	
-
-		//builds a weatherpanel with the current weather and three prognosis ahead
-		//width 1080, height 320
-		//bigger, higher priority panel
+		/*builds a weatherpanel with the current weather and three prognosis ahead
+		  width 1080, height 320 (4 rows)
+		  bigger, higher priority panel
+		  */
 	
 	public WeatherPanelBig(){
 		WeatherThreadBig weatherThread = new WeatherThreadBig(WeatherPanelBig.this);
@@ -88,10 +90,13 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		lblNu.setBounds(6, 6, 1068, 40);
 		panel.add(lblNu);
 		
+		/*
+		 * Just for tests
 		lblWeatherConditions.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWeatherConditions.setFont(new Font("Futura", Font.PLAIN, 24));
 		lblWeatherConditions.setBounds(239, 127, 348, 27);
 		panel.add(lblWeatherConditions);
+		*/
 		
 		lblWeatherPic1.setBounds(0, 0, 1080, 160);
 		panel.add(lblWeatherPic1);
@@ -110,10 +115,12 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		lblTemperature2.setFont(new Font("Futura", Font.PLAIN, 48));
 		panel_1.add(lblTemperature2);
 		
+		/*
 		lblWeatherConditions2.setBounds(6, 132, 348, 27);
 		lblWeatherConditions2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWeatherConditions2.setFont(new Font("Futura", Font.PLAIN, 24));
 		panel_1.add(lblWeatherConditions2);
+		*/
 		
 		lblWeatherPic2.setBounds(0, 0, 360, 160);
 		panel_1.add(lblWeatherPic2);
@@ -124,10 +131,12 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		add(panel_2);
 		panel_2.setLayout(null);
 		
+		/*
 		lblWeatherConditions3.setBounds(6, 132, 348, 27);
 		lblWeatherConditions3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWeatherConditions3.setFont(new Font("Futura", Font.PLAIN, 24));
 		panel_2.add(lblWeatherConditions3);
+		*/
 		
 		lblTemperature3.setBounds(148, 40, 120, 80);
 		lblTemperature3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -149,12 +158,12 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		panel_3.setBounds(720, 160, 360, 160);
 		add(panel_3);
 		
-		
+		/*
 		lblWeatherConditions4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWeatherConditions4.setFont(new Font("Futura", Font.PLAIN, 24));
 		lblWeatherConditions4.setBounds(6, 132, 348, 27);
 		panel_3.add(lblWeatherConditions4);
-		
+		*/
 		
 		lblTemperature4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTemperature4.setFont(new Font("Futura", Font.PLAIN, 48));
@@ -172,23 +181,29 @@ public class WeatherPanelBig extends JPanel implements ModuleInterface{
 		
 			
 	}
-
+	//sets priority to "if space" between 3PM - 5PM, otherwise don't show
 	@Override
 	public int getExpectedPriority() {
-		// TODO Auto-generated method stub
-		return 0;
+		int priority;
+		int hours = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		if(hours >= 15 && hours <= 17){
+			priority = 5;
+		}else{
+			priority = 0;
+		}
+		return priority;
 	}
 
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 4;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 4;
 	}
 
 	@Override
