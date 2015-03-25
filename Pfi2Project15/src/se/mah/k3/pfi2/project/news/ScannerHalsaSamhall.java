@@ -43,7 +43,7 @@ public class ScannerHalsaSamhall {
 //				
 //				int mondayStart = fullMenu.indexOf("ndag:");
 //				int mondayEnd = fullMenu.indexOf("TISDAG");
-//				String monday = fullMenu.substring(mondayStart, mondayEnd);
+//				String monday = fullMenu.substring(mondayStart, mondayEnd);   //a
 				
 				String dagens = fullText;
 				if (dagens.contains("Husman")){	
