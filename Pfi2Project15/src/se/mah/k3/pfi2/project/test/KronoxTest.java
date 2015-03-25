@@ -1,4 +1,4 @@
-package se.mah.k3.pfi2.project.test;
+package se.mah.k3.pfi2.project.test; // 
 
 import java.io.IOException;
 
@@ -24,6 +24,7 @@ public class KronoxTest {
 			String s5 = KronoxAJAXGetFriendlyNames.getSupport("dator");
 			System.out.println("JSON to parse for support: "+ s5);
 		
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

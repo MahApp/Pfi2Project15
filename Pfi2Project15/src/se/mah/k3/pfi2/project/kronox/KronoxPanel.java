@@ -3,22 +3,30 @@ package se.mah.k3.pfi2.project.kronox;
 import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.timeweather.DateLogic;
+import se.mah.k3.pfi2.project.timeweather.TimeLogic;
 
 import java.awt.Color;
+
 import javax.swing.JLabel;
 
-public class KronoxPanel extends JPanel implements ModuleInterface{
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
+import javax.swing.SwingConstants;
+
+
+public class KronoxPanel extends JPanel implements ModuleInterface{
+	
 	/**
 	 * Create the panel.
 	 */
 	public KronoxPanel() {
-		setBackground(Color.GREEN);
 		
-		JLabel lblKronox = new JLabel("Kronox");
-		add(lblKronox);
-
 	}
+
 
 	@Override
 	public int getExpectedPriority() {

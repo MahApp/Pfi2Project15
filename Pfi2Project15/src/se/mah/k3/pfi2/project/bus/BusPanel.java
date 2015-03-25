@@ -8,8 +8,7 @@ import se.mah.k3lara.skaneAPI.model.Journey;
 import se.mah.k3lara.skaneAPI.model.Journeys;
 import se.mah.k3lara.skaneAPI.model.Station;
 import se.mah.k3lara.skaneAPI.xmlparser.Parser;
-
-import java.awt.Color;
+ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -142,8 +141,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 					rowHeight = 80;
 				}
 				tableTitle.setRowHeight(row, rowHeight);
-				tableDepartures.setRowHeight(row, rowHeight);
-				
+				tableDepartures.setRowHeight(row, rowHeight);	
 			}
 		}
 		catch(ClassCastException e) {}
