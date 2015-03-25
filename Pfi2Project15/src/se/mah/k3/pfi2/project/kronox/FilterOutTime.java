@@ -9,6 +9,11 @@ import java.util.Date;
 public class FilterOutTime {
 	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
 	static Calendar cal;
+
+	static Calendar cal2;
+	static Calendar cal3;
+	
+
 	static  Date timeBefore,timeAfter; // time stamp where 
 	int minuteMargin =30; // timespan that post filters out from 30min is standard
 	FilterOutTime(){
