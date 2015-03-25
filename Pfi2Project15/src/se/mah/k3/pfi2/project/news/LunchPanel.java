@@ -76,8 +76,23 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 					
 					JLabel lblNewLabel = new JLabel("New label");
 					lblNewLabel.setIcon(new ImageIcon(LunchPanel.class.getResource("/Images/salad.png")));
-					lblNewLabel.setBounds(787, 0, 208, 212);
+					lblNewLabel.setBounds(820, 0, 177, 212);
 					panel2.add(lblNewLabel);
+					
+					JLabel label = new JLabel("69 :-");
+					label.setFont(new Font("Futura", Font.BOLD, 20));
+					label.setBounds(683, 71, 74, 33);
+					panel2.add(label);
+					
+					JLabel label_1 = new JLabel("69 :-");
+					label_1.setFont(new Font("Futura", Font.BOLD, 20));
+					label_1.setBounds(683, 116, 74, 33);
+					panel2.add(label_1);
+					
+					JLabel label_2 = new JLabel("45 :-");
+					label_2.setFont(new Font("Futura", Font.BOLD, 20));
+					label_2.setBounds(683, 157, 74, 33);
+					panel2.add(label_2);
 			//panel.setBackground(new Color(134, 188, 37));
 					
 					readAndWriteMonday();

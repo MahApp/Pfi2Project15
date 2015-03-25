@@ -62,22 +62,22 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				
 				event1 = new JLabel("");
 				event1.setFont(new Font("Futura", Font.PLAIN, 20));
-				event1.setBounds(243, 75, 997, 37);
+				event1.setBounds(273, 75, 997, 37);
 				panel2.add(event1);
 				
 				event2 = new JLabel("");
 				event2.setFont(new Font("Futura", Font.PLAIN, 20));
-				event2.setBounds(243, 116, 997, 37);
+				event2.setBounds(273, 116, 997, 37);
 				panel2.add(event2);
 				
 				event3 = new JLabel("");
 				event3.setFont(new Font("Futura", Font.PLAIN, 20));
-				event3.setBounds(243, 157, 997, 37);
+				event3.setBounds(273, 157, 997, 37);
 				panel2.add(event3);
 				
 				JLabel lblNewLabel = new JLabel("New label");
 				lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/Forelashing.png")));
-				lblNewLabel.setBounds(36, 22, 180, 178);
+				lblNewLabel.setBounds(65, 22, 180, 178);
 				panel2.add(lblNewLabel);
 				
 				
