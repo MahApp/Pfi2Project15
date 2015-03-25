@@ -35,7 +35,6 @@ public class CanvasUpdateThread extends Thread {
 		this.demo = demo;
 		//System.out.println("hej");
 		addToList();
-		
 	}
 
 	public void run() {

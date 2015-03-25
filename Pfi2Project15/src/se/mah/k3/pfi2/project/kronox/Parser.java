@@ -19,16 +19,17 @@ import org.w3c.dom.NodeList;
 
 
 public class Parser {
-	public static boolean debug;
-	//private String startTid,slutTid;
+	public static boolean debug=true;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-
-//	static CanvasInJframe frame;
-	//static CanvasInJframe awtControlDemo ;
-	
-	public static String biulding="orkanen"; // change this to search for other bulding
+	public static String biulding="kranen"; // change this to search for other bulding
 	public static void main(String[] args) {
+		
+		
+		ParserUpdateThread pt= new ParserUpdateThread();
+		pt.start();
+		
+		System.out.println("start program");
 		CanvasInJframe frame = new CanvasInJframe();
 		CanvasInJframe awtControlDemo = new CanvasInJframe();
 		try{
@@ -39,72 +40,9 @@ public class Parser {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("start program");
-		//storedPosts= Parser.getPostsfrom("http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=m&intervallAntal=6&sokMedAND=false&sprak=SV&resurser=p.TGIND14h%2C");
-		
-		ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
-		for(int i=0; i< Urls.size();i++){
-			String schema=Urls.get(i);
-			System.out.println("got xml url from: "+schema);
-			storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
-		}
-		System.out.println(storedPost.size());
-		System.out.println("-----------------------------------------");
-		for(int i=0; i<storedPosts.size();i++){
-			System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
-		}
-		System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
-		
-		// format startTid & slutTid
-		for(int i=0; i<storedPost.size();i++){
-			SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); // paring format
-				try {
-					storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
-				} catch (ParseException e) {
-			} // Date
-			
-			storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
-			storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
-			// format minute and hours
-			//String digits[] =storedPost.get(i).getStartTid().split(":");
-			//int hour =Integer.parseInt(digits[0]);
-			//int minute= Integer.parseInt(digits[1]);
-			//System.out.println(hour+" "+minute);
-		}
+		awtControlDemo.loadData(getPost());
+		//awtControlDemo.repaint();
 
-		// sorting arraylist by startTid
-		Collections.sort(storedPost); // sorting by starttime
-		if(debug){
-			for (Post schema : storedPost) {
-				System.out.println(schema.getStartTid());
-			}
-		}
-
-		storedPost=FilterOutBiulding.filter(storedPost); // filter
-		storedPost=FilterOutRooms.filter(storedPost); // filter
-		storedPost=FilterOutTime.filter(storedPost); // filter
-		
-	/*SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:mm"); // Date for testing
-		Date d = null;
-		try {
-			 d = sdf.parse("2015-03-23 10:30");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		cal.set(2013, 03, 23, 10, 30);
-		for(int i=0; i<storedPost.size();i++){          // remove post that is old
-			//if(storedPost.get(i).startTidCal.before(cal.getTime())){ //currentTime
-			if(storedPost.get(i).startTidCal.before(d)){ //currentTime
-
-			storedPost.remove(i);
-			}
-		}*/
-		
-		awtControlDemo.loadData(storedPost);
-		awtControlDemo.repaint();
-		System.out.println(Urls);
 	}
 	
 	public static Posts getPostsfrom(String searchURL){
@@ -170,19 +108,15 @@ public class Parser {
 												if(debug)System.out.println(resursIdE.getTextContent()); // fšrsta
 													if(resursNodE.getAttribute("resursTypId").equals("UTB_KURSINSTANS_GRUPPER")){
 														tempSchemaPost.setKursId(resursIdE.getTextContent());
-														
 													}
 													if(resursNodE.getAttribute("resursTypId").equals("UTB_PROGRAMINSTANS_KLASSER")){
 														tempSchemaPost.setProgramId(resursIdE.getTextContent());
-													
 													}
 													if(resursNodE.getAttribute("resursTypId").equals("RESURSER_LOKALER")){
 														tempSchemaPost.setSalID(resursIdE.getTextContent());
-														
 													}
 													if(resursNodE.getAttribute("resursTypId").equals("RESURSER_SIGNATURER")){
 														tempSchemaPost.setResursSignatur(resursIdE.getTextContent());
-													
 													}
 												}
 										}
@@ -257,8 +191,8 @@ public class Parser {
 	}
 	
 	public static ArrayList<Post> getPost(){
-	
-
+	storedPost.clear();
+		
 	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
 	for(int i=0; i< Urls.size();i++){
 		String schema=Urls.get(i);
@@ -272,19 +206,31 @@ public class Parser {
 	//System.out.println("total post in all parsed XML: "+storedPost.size()+" stored in ArrayList:\"storedPost\"");
 	
 	for(int i=0; i<storedPost.size();i++){
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); // paring format
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // paring format
 			try {
+		if(debug)System.out.println(storedPost.get(i).getStartTid());
+
 				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
+			
+
+				System.out.println(storedPost.get(i).getStartTidCal());
 			} catch (ParseException e) {
 		} 
-		
-		storedPost.get(i).setStartTid(storedPost.get(i).getStartTid().substring(11, 16));  // set start time in HH:mm format
-		storedPost.get(i).setSlutTid(storedPost.get(i).getSlutTid().substring(11, 16)); // set end time in HH:mm format
+		storedPost.get(i).setStartTid(Constants.formatTime(storedPost.get(i).getStartTid()));  // set start time in HH:mm format
+		storedPost.get(i).setSlutTid(Constants.formatTime(storedPost.get(i).getSlutTid())); // set end time in HH:mm format
 
-//String digits[] =storedPost.get(i).getStartTid().split(":");
-	//	int hour =Integer.parseInt(digits[0]);
-	//	int minute= Integer.parseInt(digits[1]);
-		
+		if(storedPost.get(i).getSalID()!=null) { // format biulding
+			if(storedPost.get(i).getSalID().equals("null")||storedPost.get(i).getSalID().equals("")) {
+				System.out.println("post: "+i+ " is empty");
+			}else{
+				storedPost.get(i).setBiuldingId(storedPost.get(i).getSalID().substring(0, 2));
+				storedPost.get(i).setBiulding(Constants.parseBiuldingIdToBiulding(storedPost.get(i).getBiuldingId()));
+				System.out.println(storedPost.get(i).getBiuldingId());
+			}
+		}else{
+			System.out.println("post: "+i+ " is null");
+		}
+		storedPost.get(i).setKursId(Constants.formatKurs(storedPost.get(i).getKursId()));
 	}
 
 	Collections.sort(storedPost); // sort by startTime
@@ -294,9 +240,9 @@ public class Parser {
 		}
 	}
 
-	storedPost=FilterOutBiulding.filter(storedPost); // filter
-	storedPost=FilterOutRooms.filter(storedPost); // filter
-	storedPost=FilterOutTime.filter(storedPost); // filter
+	storedPost=FilterOutBiulding.filter(storedPost); // filter the biulding
+	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
+	storedPost=FilterOutTime.filter(storedPost); // filter Time
 
 	return storedPost;
 	}
@@ -308,4 +254,13 @@ public class Parser {
 		return this.biulding;	
 	}
 
+//	
+//	public static ArrayList<Post> addDummyPosts (ArrayList<Post> _post){
+//		
+//		ArrayList<Post> dummyfied = new ArrayList<Post>();
+//		dummyfied.add(new Post()); // canceled
+//		dummyfied.add(new Post()); // modified
+//		dummyfied.addAll(_post);
+//	}
+//	
 }

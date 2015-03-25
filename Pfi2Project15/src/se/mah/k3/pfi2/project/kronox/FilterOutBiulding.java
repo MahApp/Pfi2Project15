@@ -3,7 +3,7 @@ package se.mah.k3.pfi2.project.kronox;
 import java.util.ArrayList;
 
 public class FilterOutBiulding {
-	static Parser parser1 = new  Parser();
+//	static Parser parser1 = new  Parser(); parser är statisk ..den behöver inte instancieras
 	ArrayList<Post> osorteradePoster = new ArrayList<Post>();
 	static String currentBuilding = "";
 	
@@ -15,18 +15,17 @@ public class FilterOutBiulding {
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster) { // important filter code
 		ArrayList<Post> filtreradePoster = new ArrayList<Post>();
 
-		// for(Post p: sorteradePoster){ // for each loop search on Google if
-		// you dont know it
+		// for(Post p: sorteradePoster){ // for each loop search on Google if you dont know it
 		// ...code here for sorting
 		// }
 		
-		currentBuilding = parser1.getbuilding();
-		
+	//	currentBuilding = parser1.getbuilding(); parser är statisk
+		currentBuilding= Parser.biulding;
 		for (int i = 0; i < ofiltreradPoster.size(); i++) {
+			getBuilding = ofiltreradPoster.get(i).getBiulding();
 			
-			//getBuilding = ofiltreradPoster.get(i).get
 			if (getBuilding != currentBuilding) {
-				System.out.println("wrong building \n");
+				System.out.println("wrong building ");
 			}else{
 				filtreradePoster.add(ofiltreradPoster.get(i));
 			}

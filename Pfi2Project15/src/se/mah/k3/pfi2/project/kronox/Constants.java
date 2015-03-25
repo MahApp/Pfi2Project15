@@ -74,12 +74,36 @@ public class Constants {
 			array.add(baseURL + n4071);
 			array.add(baseURL + n4081);
 			array.add(baseURL + n4083);
+			array.add(baseURL + n5020);
 			array.add(baseURL + n5040);
+
 		}
 		
 		else if (building.equals("odontologiska")){
 			array.add(baseURL + od);
 			
+			
+			array.add(baseURL + idv);
+			array.add(baseURL + lut);
+			array.add(baseURL + us);
+			array.add(baseURL + ts);
+			array.add(baseURL + n3000);
+			array.add(baseURL + n3020);
+			array.add(baseURL + n3030);
+			array.add(baseURL + n3040);
+			array.add(baseURL + n3050);
+			array.add(baseURL + n3060);
+			array.add(baseURL + n3070);
+			array.add(baseURL + n3080);
+			array.add(baseURL + n4065);
+			array.add(baseURL + n4070);
+			array.add(baseURL + n4071);
+			array.add(baseURL + n4081);
+			array.add(baseURL + n4083);
+			array.add(baseURL + n5040);
+			array.add(baseURL + n6030);
+			array.add(baseURL + n6040);
+			array.add(baseURL + n7021);
 		}
 		
 		else if (building.equals("kranen")){
@@ -91,7 +115,7 @@ public class Constants {
 			array.add(baseURL + n5040);
 			array.add(baseURL + n6030);
 			array.add(baseURL + n6040);
-			
+
 		}
 		
 		else if (building.equals("gäddan")){
@@ -127,8 +151,44 @@ public class Constants {
 	}
 
 	public static String fixHTML(String _input) {
-		    return _input.replaceAll("\\<[^>]*>","");
+		return _input.replaceAll("\\<[^>]*>","");
 	}
 	
+	public static String parseBiuldingIdToBiulding(String _2letters){
+		String biuldingString="";
+		
+//		if(_2letters.equals("K8"))biuldingString="ubåtshallen";
+//		if (_2letters.equals("G8"))biuldingString="gäddan";
+//		if (_2letters.equals("KL"))biuldingString="odontologiska";
+//		if (_2letters.equals("OR"))biuldingString="orkanen";
+//		if (_2letters.equals("K2"))biuldingString="kranen";
+	     switch (_2letters) {
+         case "K8":biuldingString="ubåtshallen";break;
+         case "G8":biuldingString="gäddan";break;
+         case "KL":biuldingString="odontologiska"; break;
+         case "OR":biuldingString="orkanen";break;
+         case "K2":biuldingString="kranen";break;
+         default:
+        	 System.out.println("unknown biulding!!!");
+	     }
+		System.out.println(biuldingString);
+		return biuldingString;
+	}
+	
+	public static String formatTime(String timeString){ // format the start time into HH:mm format
+		timeString=timeString.substring(11, 16);
+		return timeString;
+	}
+	
+	public static String formatKurs(String kursID){
+		
+		String[] test = (kursID.split("-"));
+		
+		kursID = test[0];
+		
+		System.out.println(kursID+"//////");
+		
+		return kursID;
+	}
 }
 

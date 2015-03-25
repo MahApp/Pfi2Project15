@@ -22,12 +22,12 @@ public class Building extends JFrame {
 	
 	
 	public JPanel contentPane;
-	static Parser parser1 = new Parser();
+	//static Parser parser1 = new Parser();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(Runnable runnable) {
+	public static void main(String[] args0) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,7 +54,7 @@ public class Building extends JFrame {
 		final JComboBox buildings = new JComboBox();
 		buildings.setFont(new Font("Futura LT", Font.PLAIN, 18));
 		buildings.setBounds(16, 107, 265, 22);
-		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / Ub√•tshallen", "Orkanen", "Odontologkiska", "G√§ddan"}));
+		buildings.setModel(new DefaultComboBoxModel(new String[] {"Kranen / UbÂtshallen", "Orkanen", "Odontologkiska", "G‰ddan"}));
 		contentPane.add(buildings);
 		
 		JButton btnRun = new JButton("Run");
@@ -62,24 +62,42 @@ public class Building extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				String currentBuilding = (String) buildings.getSelectedItem();
-			if(currentBuilding.equals("Kranen / Ub√•tshallen")){
-				
+			if(currentBuilding.equals("Kranen / UbÂtshallen")){
 				currentBuilding = "kranen";
-						
 			}else if (currentBuilding.equals("Orkanen")) {
 				currentBuilding = "orkanen";
 			}else if (currentBuilding.equals("Odontologiska")) {
 				currentBuilding = "odontologiska";
-			}else if (currentBuilding.equals("G√§ddan")) {
-				currentBuilding = "g√§ddan";
+			}else if (currentBuilding.equals("G‰ddan")) {
+				currentBuilding = "g‰ddan";
 			}
 			System.out.println("Setting current building to " + currentBuilding);
-				parser1.setbuilding(currentBuilding);
+				//Parser.setbuilding(currentBuilding);
+				Parser.biulding=currentBuilding;
+				ParserUpdateThread pt= new ParserUpdateThread();
+				pt.start();
+				
+				CanvasInJframe frame = new CanvasInJframe();
+				CanvasInJframe awtControlDemo = new CanvasInJframe();
+				try{
+					frame.setVisible(false);
+					awtControlDemo.showCanvasDemo();
+					awtControlDemo.setVisible(true);
+					awtControlDemo.setTitle("loading...");
+				} catch (Exception er) {
+					er.printStackTrace();
+				}
+				awtControlDemo.loadData(Parser.getPost());
 			}
 			
 		});
 		btnRun.setFont(new Font("Futura LT", Font.PLAIN, 15));
 		btnRun.setBounds(281, 107, 117, 22);
 		contentPane.add(btnRun);
+
+
+
+		
+		//awtControlDemo.repaint();
 	}
 }
