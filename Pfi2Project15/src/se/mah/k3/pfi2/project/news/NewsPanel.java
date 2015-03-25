@@ -53,7 +53,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		panel2.add(Rubrik);
 		
 				
-				JLabel lblNews = new JLabel("Events & H\u00E4ndelser idag");
+				JLabel lblNews = new JLabel("Event & händelser idag");
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);
