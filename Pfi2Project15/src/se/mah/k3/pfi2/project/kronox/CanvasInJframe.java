@@ -1,7 +1,7 @@
 //Skapad av Mattias & Victor
 //2015-03-18
 //
-//Detta är en klass som visar posterna i schemat, till denna klass ska det tilldelas animationer och logik för att få in korrekta värden
+//Detta ï¿½r en klass som visar posterna i schemat, till denna klass ska det tilldelas animationer och logik fï¿½r att fï¿½ in korrekta vï¿½rden
 //
 //
 package se.mah.k3.pfi2.project.kronox;
@@ -30,7 +30,8 @@ public class CanvasInJframe extends JFrame {
 	private Panel controlPanel;
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
-	final static float DPI = 72; // Pixel density 96 är standard på moderna
+
+	final static float DPI = 72; // Pixel density 96 ï¿½r standard pï¿½ moderna
 	
 	//går att ändra, men starta på 10
 	public static int antalElement = 10;
@@ -41,7 +42,6 @@ public class CanvasInJframe extends JFrame {
 	final static int SCREEN_WIDTH = 1080;// 1080 old, 768px för LG monitorn
 	static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 	final static int fieldHeight = 80; // field height
-
 	// variables for Images
 	private Image cancelImg = Toolkit
 			.getDefaultToolkit()
@@ -60,11 +60,13 @@ public class CanvasInJframe extends JFrame {
 	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,
 			fontSize);// typsnittet vi ska använda
 	
+
 	//the fonts we've initilized. the numbers furthest to the right determines the font-size
 	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 30);
 	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 33);
 
 	// Variables for colors
+
 	private Color whiteColor = Color.decode("#ffffff");
 	private Color headerYellowTextColor = Color.decode("#ffffff");//E5DA9F
 	private Color headerFieldBackgroundColor = Color.decode("#0087b5");   // 3A3A39
@@ -85,7 +87,6 @@ public class CanvasInJframe extends JFrame {
 	String getMoment;
 	String getSalID;
 
-	// mått
 	/**
 	 * Launch the application.
 	 */
@@ -164,8 +165,6 @@ public class CanvasInJframe extends JFrame {
 	}
 
 	private void prepareGUI() {
-
-		// contentPane är huvudrutan
 		contentPane.setBackground(Color.WHITE);
 		// SetSize
 		contentPane.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -238,7 +237,6 @@ public class CanvasInJframe extends JFrame {
 			Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,
 					BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
 			g2.setStroke(stroke);
-			
 			
 			// Lägger till header-fältet m. text osv
 			g2.setFont(headerFont);

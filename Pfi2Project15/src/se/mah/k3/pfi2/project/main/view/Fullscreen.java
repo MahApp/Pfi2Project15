@@ -22,7 +22,17 @@ import se.mah.k3.pfi2.project.bus.BusPanel;
 import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
+import se.mah.k3.pfi2.project.news.LunchPanel;
 import se.mah.k3.pfi2.project.news.NewsPanel;
+
+
+import se.mah.k3.pfi2.project.social.SocialPanel;
+import se.mah.k3.pfi2.project.timeweather.TimePanel;
+import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
+import se.mah.k3.pfi2.project.timeweather.WeatherPanelBig;
+import se.mah.k3.pfi2.project.traficinfo.view.TrafficInfo;
+
+
 
 public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	/**
@@ -42,7 +52,10 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.ORANGE);
+
+		contentPane.setBackground(new Color(249,179,0));
+
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -54,9 +67,19 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		moduleList.add(new KronoxPanel());
-		moduleList.add(new DummyPanel());
+		//Comment and uncomment here to show your panel
+		//Add the panels not yet merged
+		moduleList.add(new TimePanel());
+		moduleList.add(new WeatherPanel());
+//		moduleList.add(new WeatherPanelBig());
 		moduleList.add(new NewsPanel());
+		moduleList.add(new BusPanel());
+		moduleList.add(new SocialPanel());
+		moduleList.add(new TrafficInfo());
+		moduleList.add(new FillEmptySpace());
+		//moduleList.add(new KronoxPanel());
+		moduleList.add(new NewsPanel());
+		moduleList.add(new LunchPanel());
 		moduleList.add(new FillEmptySpace());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
