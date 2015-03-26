@@ -25,6 +25,7 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
 import se.mah.k3.pfi2.project.social.SocialPanelBanner;
 import se.mah.k3.pfi2.project.social.SocialPanelMain;
+import se.mah.k3.pfi2.project.social.SocialPanelScreensaver;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.traficinfo.TrafficInfo;
 
@@ -58,12 +59,13 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		moduleList.add(new TrafficInfo());
-		moduleList.add(new TimePanel());
-		moduleList.add(new NewsPanel());
+		//moduleList.add(new TrafficInfo());
+		//moduleList.add(new TimePanel());
+		//moduleList.add(new NewsPanel());
 		//moduleList.add(new BusPanel());
-		//moduleList.add(new SocialPanelMain());
-		moduleList.add(new SocialPanelBanner());
+		moduleList.add(new SocialPanelMain());
+		//moduleList.add(new SocialPanelScreensaver());
+		//moduleList.add(new SocialPanelBanner());
 		moduleList.add(new FillEmptySpace());
 		//moduleList.add(new DummyPanel());
 		int yPlace = 0;

@@ -56,15 +56,14 @@ public class InstagramThread extends Thread {
 			postsData = json.getPostsList();
 			
 			for(int i = 0; i < postsData.size(); i++){
-				System.out.println("HÄR KOMMER DEN: " + postsData.get(i).getUserName() + postsData.get(i).getImgUserUrl() + postsData.get(i).getImgUrl() + postsData.get(i).getImgText() + postsData.get(i).getTimePosted());
+				System.out.println("Hï¿½R KOMMER DEN: " + postsData.get(i).getUserName() + postsData.get(i).getImgUserUrl() + postsData.get(i).getImgUrl() + postsData.get(i).getImgText() + postsData.get(i).getTimePosted());
 				posts.add(new InstagramPost(postsData.get(i).getUserName(), postsData.get(i).getImgUserUrl(), postsData.get(i).getImgUrl(), postsData.get(i).getImgText(), postsData.get(i).getTimePosted()));
 			}
 			
 			System.out.println("INSTAGRAMTHREAD: Yeah!");
-			socialPanel.panelContent.removeAll();
-			socialPanel.panelContent.add(posts.get(0).getPanel());
-			socialPanel.panelContent.add(posts.get(1).getPanel());
-			socialPanel.addBorder();
+			socialPanel.removeAll();
+			socialPanel.add(posts.get(0).getPanel());
+			socialPanel.add(posts.get(1).getPanel());
 			socialPanel.repaint();
 			
 			

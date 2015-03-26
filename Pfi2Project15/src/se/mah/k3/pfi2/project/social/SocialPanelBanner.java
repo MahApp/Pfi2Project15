@@ -1,14 +1,8 @@
 package se.mah.k3.pfi2.project.social;
 
-import java.util.Calendar;
-
 import javax.swing.JPanel;
 
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
-import se.mah.k3lara.skaneAPI.control.Constants;
-import se.mah.k3lara.skaneAPI.model.Journey;
-import se.mah.k3lara.skaneAPI.model.Journeys;
-import se.mah.k3lara.skaneAPI.xmlparser.Parser;
 
 import javax.swing.JLabel;
 
@@ -18,6 +12,10 @@ import javax.swing.ImageIcon;
 
 public class SocialPanelBanner extends JPanel implements ModuleInterface {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3423872452110760623L;
 	private long updateInterval = 5000; //Tidsintervall mellan banner-bild-byte, i millisekunder.
 	private ImageIcon hashtagBannerImg = new ImageIcon(SocialPanelBanner.class.getResource("/se/mah/k3/pfi2/project/social/graphics/LowPriorityHashtagBanner.png"));
 	private ImageIcon atBannerImg = new ImageIcon(SocialPanelBanner.class.getResource("/se/mah/k3/pfi2/project/social/graphics/LowPriorityAtBanner.png"));
