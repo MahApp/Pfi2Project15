@@ -34,10 +34,11 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	JTable tableTitle;
 	JTable tableDepartures;
 
-	private String line = "";
-	private String destination = "";
-	private String stop = "";
-	private String departure = "";
+	private String line;
+	private String destination;
+	private String stop;
+	private String departure;
+	private String time;
 
 	private int noOfUpdates = 0;
 	private int updateInterval = 60000;
@@ -55,6 +56,8 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 */
 	public BusPanel() {
 		setBackground(Color.GRAY);
+		setBorder(new LineBorder(new Color(192, 192, 192), 5, true));
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(new MigLayout("insets 0", "[1%:n][grow][::1%,grow]", "[grow][grow]"));
 		departuresTable();
 		
@@ -80,14 +83,13 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 */
 	private void titleTable() {
 		tableTitle = new JTable();
-		tableTitle.setForeground(Color.BLACK);
-		tableTitle.setBorder(new LineBorder(Color.GRAY, 3, true));
-		tableTitle.setBackground(Color.GRAY);
+		tableTitle.setForeground(Color.WHITE);
+		tableTitle.setBackground(Color.LIGHT_GRAY);
 		tableTitle.setRowSelectionAllowed(false);
 		tableTitle.setShowGrid(false);
 		tableTitle.setShowHorizontalLines(false);
 		tableTitle.setShowVerticalLines(false);
-		tableTitle.setFont(new Font("Futura LT", Font.PLAIN, 58));
+		tableTitle.setFont(new Font("Arial", Font.PLAIN, 58));
 		tableTitle.setModel(new DefaultTableModel(
 				new Object[][] {
 						{"Linje", "Destination", "Läge", "Avgång"},
@@ -103,7 +105,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 */
 	private void departuresTable() {
 		tableDepartures = new JTable(model);
-		tableDepartures.setFont(new Font("Futura LT", Font.PLAIN, 42));
+		tableDepartures.setFont(new Font("Arial", Font.PLAIN, 42));
 		tableDepartures.setRowSelectionAllowed(false);
 		tableDepartures.setShowGrid(false);
 		tableDepartures.setShowHorizontalLines(false);
@@ -158,7 +160,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		for (Journey journey : journeys.getJourneys()) {
 			int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
 			int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
-			String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
+			time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
 			String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
 
 			line = (journey.getLineOnFirstJourney());
@@ -169,7 +171,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 				if (Integer.valueOf(depTime) >= 10 && Integer.valueOf(depTime) >= 0) {
 					departure = (time);
 				} else {
-					departure = (journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min");
+					departure = (depTime + " min");
 				}
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
