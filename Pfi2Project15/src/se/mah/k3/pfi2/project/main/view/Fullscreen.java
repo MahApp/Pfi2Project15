@@ -59,10 +59,10 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	}
 	
 	private void setupPanels() {
-		//moduleList.add(new TrafficInfo());
-		//moduleList.add(new TimePanel());
-		//moduleList.add(new NewsPanel());
-		//moduleList.add(new BusPanel());
+		moduleList.add(new TrafficInfo());
+		moduleList.add(new TimePanel());
+		moduleList.add(new NewsPanel());
+		moduleList.add(new BusPanel());
 		moduleList.add(new SocialPanelMain());
 		//moduleList.add(new SocialPanelScreensaver());
 		//moduleList.add(new SocialPanelBanner());

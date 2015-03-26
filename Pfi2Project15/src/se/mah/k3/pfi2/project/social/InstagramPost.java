@@ -30,12 +30,12 @@ public class InstagramPost {
 		this.imgText = imgText_in;
 		this.timePosted = timePosted_in;
 
-		FontFutura futura = new FontFutura();
+//		FontFutura futura = new FontFutura();
 
 
 
 		////////
-		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
 //		String fontNames[] = graphicsEnvironment.getAvailableFontFamilyNames();
 //		for(int i=0; i < fontNames.length; i++){
@@ -47,14 +47,13 @@ public class InstagramPost {
 		//Panel start
 
 		panel = new JPanel();
-		panel.setFont(FontFutura.FuturaLT.deriveFont(14f));
 		panel.setBounds(0, 0, 540, 540);
 		//contentPane.add(panel); Detta görs i "controllern". Returnera panel i en getPanel-metod 
 		panel.setLayout(null);
 
 		JLabel profileName = new JLabel(userName);
 		profileName.setForeground(Color.WHITE);
-		profileName.setFont(new Font("Futura LT", Font.PLAIN, 24));
+		profileName.setFont(new Font("Futura LT Medium", Font.PLAIN, 24));
 //		System.out.println("profileName: " + profileName.getFont().toString());
 		profileName.setBounds(107, 451, 346, 29);
 		panel.add(profileName);
@@ -64,7 +63,7 @@ public class InstagramPost {
 		//		imageText.setLineWrap(true);
 		imageText.setEditable(false);
 		imageText.setForeground(Color.WHITE);
-		imageText.setFont(FontFutura.FuturaLT.deriveFont(14f));
+		imageText.setFont(new Font("Futura LT Medium", Font.PLAIN, 18));
 //		System.out.println("imageText: " + imageText.getFont().toString());
 		String textLimited = imgText;
 		if(textLimited.length() > 80) textLimited = textLimited.substring(0,80) + "...";
@@ -76,7 +75,7 @@ public class InstagramPost {
 		JLabel time = new JLabel(timePosted);
 		time.setForeground(Color.WHITE);
 		time.setHorizontalAlignment(SwingConstants.RIGHT);
-		time.setFont(new Font("Futura LT", Font.PLAIN, 24));
+		time.setFont(new Font("Futura LT Medium", Font.PLAIN, 24));
 		time.setBounds(447, 451, 83, 29);
 		panel.add(time);
 
