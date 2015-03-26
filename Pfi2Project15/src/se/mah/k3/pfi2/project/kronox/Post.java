@@ -28,7 +28,7 @@ public class Post implements Comparable<Post>{
 	public Date startTidCal;
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad; // raderad är cancel, updaterad är ändrad
-	public boolean deleteAnimate, stackupAnimate,hide;
+	public boolean deleteAnimate, stackupAnimate,hide,changed;
 	int maxletters= 25; // in moment
 	Point2D location;
 	Dimension2D dimension;

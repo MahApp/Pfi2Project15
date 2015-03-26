@@ -193,8 +193,9 @@ public class Parser {
 	public static ArrayList<Post> getPost(){
 	storedPost.clear();
 	storedPosts.clear();
-	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
-	System.out.println(Urls.size()+" amout of XML URL");
+	ArrayList<String> Urls = new ArrayList<String>();
+	Urls = Constants.getURL(biulding, null); // can get multiple URLs
+	System.out.println(Urls.size()+" amount of XML URL");
 	try{
 		for(int i=0; i< Urls.size();i++){
 			String schema=Urls.get(i);
@@ -204,6 +205,7 @@ public class Parser {
 		System.out.println(Urls.size()+" Error XML URLs out of bound");
 
 	}
+	System.out.println("current amount of Post: "+storedPost.size());
 if(debug)	System.out.println("-----------------------------------------");
 	for(int i=0; i<storedPosts.size();i++){
 		System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
@@ -223,7 +225,7 @@ if(debug)	System.out.println("-----------------------------------------");
 		} 
 		storedPost.get(i).setStartTid(Constants.formatTime(storedPost.get(i).getStartTid()));  // set start time in HH:mm format
 		storedPost.get(i).setSlutTid(Constants.formatTime(storedPost.get(i).getSlutTid())); // set end time in HH:mm format
-
+		System.out.println("current amount of Post: "+storedPost.size());
 		if(storedPost.get(i).getSalID()!=null) { // format biulding
 			if(storedPost.get(i).getSalID().equals("null")||storedPost.get(i).getSalID().equals("")) {
 				System.out.println("post: "+i+ " is empty");
@@ -237,18 +239,18 @@ if(debug)	System.out.println("-----------------------------------------");
 		}
 		storedPost.get(i).setKursId(Constants.formatKurs(storedPost.get(i).getKursId()));
 	}
-
+	System.out.println("current amount of Post: "+storedPost.size());
 	Collections.sort(storedPost); // sort by startTime
 	if(debug){
 		for (Post schema : storedPost) {
 			System.out.println(schema.getStartTid());
 		}
 	}
-
+	System.out.println("current amount of Post: "+storedPost.size());
 	storedPost=FilterOutBiulding.filter(storedPost); // filter the building
 	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
 	//storedPost=FilterOutTime.filter(storedPost); // filter Time
-
+	System.out.println("current amount of Post: "+storedPost.size());
 	return storedPost;
 	}
 	

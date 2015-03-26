@@ -40,10 +40,10 @@ public class Constants {
 	public static final String n6030 = "&orgenheterUTB=6030";
 	public static final String n6040 = "&orgenheterUTB=6040";
 	public static final String n7021 = "&orgenheterUTB=7021";
-	static ArrayList<String> array = new ArrayList<String>();
+	//	static ArrayList<String>  array = new ArrayList<String>();
 	
 	public static ArrayList<String> getURL(String building, String program){
-		
+		ArrayList<String>  array = new ArrayList<String>();
 		if(building.equals("ubåtshallen")){
 		array.add(baseURL + cts);
 		array.add(baseURL + ts);

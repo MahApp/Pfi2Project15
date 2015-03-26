@@ -31,7 +31,8 @@ public class ParserUpdateThread extends Thread {
 		System.out.println("parserThread is running");
 		while (running) {
 			try {
-					Parser.storedPost.clear();
+				Parser.storedPosts.clear();
+				Parser.storedPost.clear();
 				 kronoxPanel.setAntalElement(Parser.getPost().size());
 				 kronoxPanel.loadData();
 				 kronoxPanel.repaintPanel();
