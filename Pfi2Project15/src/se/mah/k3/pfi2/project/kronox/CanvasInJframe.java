@@ -25,13 +25,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
-
 public class CanvasInJframe extends JFrame {
 	private JPanel contentPane;
 	private Panel controlPanel;
 	// diverse bra variabler att ha
 	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
+
 	final static float DPI = 72; // Pixel density 96 ï¿½r standard pï¿½ moderna
 	
 	//går att ändra, men starta på 10
@@ -44,14 +43,22 @@ public class CanvasInJframe extends JFrame {
 	static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
 	final static int fieldHeight = 80; // field height
 	// variables for Images
-	private Image cancelImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png"));
-	private Image modifiedImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+	private Image cancelImg = Toolkit
+			.getDefaultToolkit()
+			.getImage(
+					getClass()
+							.getResource(
+									"/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png"));
+	private Image modifiedImg = Toolkit.getDefaultToolkit().getImage(
+			getClass().getResource(
+					"/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
 
 	// Variables for font-related stuff
 	public int fontSize = (int) Math.round(PT * screenRes / DPI);
 	public Font futuraBook = new Font("Futura LT", Font.PLAIN, fontSize);
 	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska använda
+	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,
+			fontSize);// typsnittet vi ska använda
 	
 
 	//the fonts we've initilized. the numbers furthest to the right determines the font-size
@@ -89,10 +96,12 @@ public class CanvasInJframe extends JFrame {
 	
 				try {
 
+					
 					CanvasInJframe frame = new CanvasInJframe();
 					frame.setVisible(false);
 					CanvasInJframe awtControlDemo = new CanvasInJframe();
-					CanvasUpdateThread t = new CanvasUpdateThread(awtControlDemo);
+					CanvasUpdateThread t = new CanvasUpdateThread(
+							awtControlDemo);
 					System.out.println("main thread");
 					t.start();		
 					awtControlDemo.showCanvasDemo();			
@@ -111,13 +120,13 @@ public class CanvasInJframe extends JFrame {
 	 */
 	public CanvasInJframe() {
 		System.out.println("construct");
-	//	setUndecorated(true); // hide buttons  //window
-	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //window
+		setUndecorated(true); // hide buttons
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 10, 5, 10)); //White inner border that creates margin around the schema
 		contentPane.setLayout(new BorderLayout(0, 0));
-	//	setContentPane(contentPane);							//window
+		setContentPane(contentPane);
 		for (int i = 0; i < antalElement; i++) {
 			valueList.add(fieldValues);
 		}
@@ -133,10 +142,15 @@ public class CanvasInJframe extends JFrame {
 		System.out.println("loaded into canvas");
 		valueList.clear();
 		shapeList.clear();
-
+		for (int i = valueList.size(); i > 0; i--) {
+			valueList.remove(i);
+		}
 		System.out.println(storedPost.size());
-		setAntalElement(storedPost.size());// xml
+
+		setAntalElement(storedPost.size());
+											// xml
 		for (int i = 0; i < storedPost.size(); i++) {
+
 			startTid = storedPost.get(i).getStartTid();
 			slutTid = storedPost.get(i).getSlutTid();
 			getMoment = storedPost.get(i).getMoment();
@@ -147,7 +161,7 @@ public class CanvasInJframe extends JFrame {
 			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
 		demo.repaint(); // this
-		//CanvasInJframe.this.setTitle("Loaded");// window
+		CanvasInJframe.this.setTitle("Loaded");
 	}
 
 	private void prepareGUI() {
@@ -209,6 +223,7 @@ public class CanvasInJframe extends JFrame {
 			//initierar metodvariabler
 			Graphics2D g2;
 			g2 = (Graphics2D) g;
+			
 			g2.setFont(fieldFont);
 
 			// Gör texten smoothare
@@ -230,7 +245,6 @@ public class CanvasInJframe extends JFrame {
 			g2.setColor(headerFieldBackgroundColor);
 			g2.fill(headField);
 			g2.setColor(headerYellowTextColor);
-			g2.drawRoundRect(0, 0, SCREEN_WIDTH, fieldHeight, 10, 10); // round rect
 			g2.drawString("TID", 20, 50);
 			g2.drawString("KURS", 200, 50);
 			g2.drawString("LOKAL", 680, 50);
@@ -302,6 +316,7 @@ public class CanvasInJframe extends JFrame {
 	public void setAntalElement(int antal){
 		antalElement = antal;
 //		sendContentPane = fieldHeight + (antalElement * fieldHeight);
+		
 		demo.setSize(SCREEN_WIDTH, fieldHeight + (antalElement * fieldHeight));
 	}
 }
