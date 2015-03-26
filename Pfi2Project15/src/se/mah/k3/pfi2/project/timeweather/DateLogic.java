@@ -7,7 +7,7 @@ private TimePanel timePanel;
 	
 	public DateLogic(TimePanel tp){
 		this.timePanel = tp;
-		Thread t = new DateThread(this);
+		Thread t = new DateThread(this,tp);
 		t.setName("DateThread");
 		t.start();
 	}
