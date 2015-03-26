@@ -1,5 +1,7 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import javax.swing.JPanel;
+
 public class ParserUpdateThread extends Thread {
 
 		/**
@@ -10,36 +12,38 @@ public class ParserUpdateThread extends Thread {
 		 * 
 		 * 
 		 * */
-	
-		int refreshRate=15*1000;
-		boolean  running=true;
-		
-		
-		
-	public ParserUpdateThread(){
+	KronoxPanel kronoxPanel;
+	final int parserRefreshInterval=40;
+	int refreshRate = parserRefreshInterval * 1000;
+	private volatile boolean running = true;
+
+	public ParserUpdateThread() {
 		super();
 		System.out.println("parserThread constructed");
-		
 	}
-	
-	public void run(){
-		System.out.println("parserThread is running");
-		
-		while(running){
-		
-		try {
-			Thread.sleep(refreshRate);
-			Parser.getPost();
-			System.out.println(Parser.storedPost.size());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		}
-		
+	public ParserUpdateThread(KronoxPanel kronoxPanel) {
+		super();
+		this.kronoxPanel= kronoxPanel;
+		System.out.println("parserThread constructed");
 	}
-	
 
-	
+	public void run() {
+		System.out.println("parserThread is running");
+		while (running) {
+			try {
+					Parser.storedPost.clear();
+				 kronoxPanel.setAntalElement(Parser.getPost().size());
+				 kronoxPanel.loadData();
+				 kronoxPanel.repaintPanel();
+				 Thread.sleep(refreshRate);
+			
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
 }

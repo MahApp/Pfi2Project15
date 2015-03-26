@@ -3,7 +3,6 @@ package se.mah.k3.pfi2.project.kronox;
 import java.util.ArrayList;
 
 public class Constants {
-	
 	public static final String baseURL = "http://schema.mah.se/setup/jsp/SchemaXML.jsp?startDatum=idag&intervallTyp=d&intervallAntal=1";
 	public static final String cts = "&orgenheterUTB=CTS";
 	public static final String odontologiska = "&orgenheterUTB=OD";
@@ -12,6 +11,7 @@ public class Constants {
 	public static final String od = "&orgenheterUTB=OD";
 	public static final String ts = "&orgenheterUTB=TS";
 	public static final String us = "&orgenheterUTB=US";
+	public static final String bit = "&orgenheterUTB=BIT";
 	public static final String n3000 = "&orgenheterUTB=3000";
 	public static final String n3020 = "&orgenheterUTB=3020";
 	public static final String n3030 = "&orgenheterUTB=3030";
@@ -81,29 +81,8 @@ public class Constants {
 		
 		else if (building.equals("odontologiska")){
 			array.add(baseURL + od);
+			array.add(baseURL + bit);
 			
-			
-			array.add(baseURL + idv);
-			array.add(baseURL + lut);
-			array.add(baseURL + us);
-			array.add(baseURL + ts);
-			array.add(baseURL + n3000);
-			array.add(baseURL + n3020);
-			array.add(baseURL + n3030);
-			array.add(baseURL + n3040);
-			array.add(baseURL + n3050);
-			array.add(baseURL + n3060);
-			array.add(baseURL + n3070);
-			array.add(baseURL + n3080);
-			array.add(baseURL + n4065);
-			array.add(baseURL + n4070);
-			array.add(baseURL + n4071);
-			array.add(baseURL + n4081);
-			array.add(baseURL + n4083);
-			array.add(baseURL + n5040);
-			array.add(baseURL + n6030);
-			array.add(baseURL + n6040);
-			array.add(baseURL + n7021);
 		}
 		
 		else if (building.equals("kranen")){
@@ -169,14 +148,20 @@ public class Constants {
          case "OR":biuldingString="orkanen";break;
          case "K2":biuldingString="kranen";break;
          default:
-        	 System.out.println("unknown biulding!!!");
+        	 System.err.println(_2letters+"unknown biulding!!!");
 	     }
-		System.out.println(biuldingString);
+	     if(Parser.debug)System.out.println(biuldingString);
 		return biuldingString;
 	}
 	
 	public static String formatTime(String timeString){ // format the start time into HH:mm format
+		try{
 		timeString=timeString.substring(11, 16);
+		}catch(NullPointerException e){
+			System.err.println(timeString +" ERROR no String format timeString!!!");
+		}catch(StringIndexOutOfBoundsException e){
+			System.err.println(timeString +" ERROR wrong index format timeString!!!");
+		}
 		return timeString;
 	}
 	

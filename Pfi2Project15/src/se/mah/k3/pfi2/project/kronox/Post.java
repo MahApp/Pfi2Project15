@@ -29,6 +29,7 @@ public class Post implements Comparable<Post>{
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad; // raderad är cancel, updaterad är ändrad
 	public boolean deleteAnimate, stackupAnimate,hide;
+	int maxletters= 25; // in moment
 	Point2D location;
 	Dimension2D dimension;
 	
@@ -184,7 +185,6 @@ public class Post implements Comparable<Post>{
 	}
 
 	public void setMoment(String moment) {
-		int maxletters= 38;
 		moment=Constants.fixUTF8(moment);
 		moment=Constants.fixHTML(moment);
 		if(moment.length()>maxletters)moment=moment.substring(0,maxletters)+"...";
