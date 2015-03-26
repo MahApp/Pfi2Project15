@@ -12,10 +12,10 @@ public class InstagramThread extends Thread {
 	private List<PostData> postsData;
 	private List<InstagramPost> posts = new ArrayList<InstagramPost>();
 	
-	private SocialPanel socialPanel;
+	private SocialPanelMain socialPanel;
 	private int updateInterval;
 
-	public InstagramThread(SocialPanel panel, int updateInterval) {
+	public InstagramThread(SocialPanelMain panel, int updateInterval) {
 		this.socialPanel = panel;
 		this.updateInterval = updateInterval;
 	}

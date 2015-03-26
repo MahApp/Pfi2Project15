@@ -23,7 +23,8 @@ import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.NewsPanel;
-import se.mah.k3.pfi2.project.social.SocialPanel;
+import se.mah.k3.pfi2.project.social.SocialPanelBanner;
+import se.mah.k3.pfi2.project.social.SocialPanelMain;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.traficinfo.TrafficInfo;
 
@@ -61,7 +62,8 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		moduleList.add(new TimePanel());
 		moduleList.add(new NewsPanel());
 		//moduleList.add(new BusPanel());
-		moduleList.add(new SocialPanel());
+		//moduleList.add(new SocialPanelMain());
+		moduleList.add(new SocialPanelBanner());
 		moduleList.add(new FillEmptySpace());
 		//moduleList.add(new DummyPanel());
 		int yPlace = 0;

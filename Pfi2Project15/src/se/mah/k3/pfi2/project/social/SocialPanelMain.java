@@ -20,7 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class SocialPanel extends JPanel implements ModuleInterface {
+public class SocialPanelMain extends JPanel implements ModuleInterface {
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class SocialPanel extends JPanel implements ModuleInterface {
 	/**
 	 * Create the panel.
 	 */
-	public SocialPanel() {
+	public SocialPanelMain() {
 		
 		setBorder(new EmptyBorder(10, 0, 10, 0));
 		setPreferredSize(new Dimension(1080,560));
