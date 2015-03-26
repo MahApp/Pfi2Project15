@@ -54,8 +54,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 * Create the panel.
 	 */
 	public BusPanel() {
-		setBorder(new LineBorder(Color.GRAY, 5, true));
-		setBackground(Color.WHITE);
+		setBackground(Color.GRAY);
 		setLayout(new MigLayout("insets 0", "[1%:n][grow][::1%,grow]", "[grow][grow]"));
 		departuresTable();
 		
