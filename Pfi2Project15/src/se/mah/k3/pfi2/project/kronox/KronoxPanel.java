@@ -9,6 +9,7 @@ import se.mah.k3.pfi2.project.timeweather.DateLogic;
 
 
 
+
 import java.awt.Color;
 
 import javax.swing.JLabel;
@@ -27,6 +28,7 @@ import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
@@ -42,6 +44,8 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	public Post minPost = new Post();
 
 	// Variables for measurements
+	final static int borderSize = 10;
+	final static int borderHeight = 5;
 	final static float PT = 7; // font size pt
 	final static int SCREEN_WIDTH = 1080;// 1080 old, 768px för LG monitorn
 	static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
@@ -87,7 +91,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	public KronoxPanel() {
 		//Building biuldingOption = new Building();
 		biuldingOption.setVisible(true);
-		
+		antalElement = 8;
 		ParserUpdateThread pt= new ParserUpdateThread(this); // thread
 		pt.start();
 		
@@ -106,19 +110,29 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		//contentPane = new JPanel();
 		//contentPane.setBorder(new EmptyBorder(5, 10, 5, 10)); //White inner border that creates margin around the schema
 		//contentPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(contentPane);							//window
+		//setContentPane(contentPane);		
+		//window
+	
 		for (int i = 0; i < antalElement; i++) {
 			valueList.add(fieldValues);
 		}
 		for (int i = 0; i < antalElement; i++) {
-			shapeList.add(new Rectangle2D.Float(0, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+			if(i == 0){
+				
+			}
+			if(i == antalElement-1){
+			shapeList.add(new RoundRectangle2D.Float(borderSize, 10, 100, 100, 5, 5));
+			}else{
+			shapeList.add(new Rectangle2D.Float(borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
+			}
 		}
+		
 		System.out.println(antalElement+"  posts!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 	}
 	
 	public void setAntalElement(int antal){
-		antalElement = antal;
+		antalElement = 5;
 		ROWS=antal+1;
 		//sendContentPane = fieldHeight + (antalElement * fieldHeight);
 		setMinimumSize(new Dimension(1080, 80*ROWS));
@@ -135,15 +149,19 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
 		g2.setRenderingHints(rh);
 		
-		//tar bort borders
+
+		//tar bort borders på smårutorna
+		
 		Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
 		g2.setStroke(stroke);
 		
 		// Lägger till header-fältet m. text osv
 		g2.setFont(headerFont);
-		Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,fieldHeight);
+		Shape headField1 = new RoundRectangle2D.Float(borderSize, 0, SCREEN_WIDTH- borderSize,fieldHeight, 35 ,35);
+		Shape headField2 = new Rectangle2D.Float(borderSize, fieldHeight/2, SCREEN_WIDTH - borderSize, fieldHeight-borderSize);
 		g2.setColor(headerFieldBackgroundColor);
-		g2.fill(headField);
+		g2.fill(headField2);
+		g2.fill(headField1);
 		g2.setColor(headerYellowTextColor);
 		g2.drawRoundRect(0, 0, SCREEN_WIDTH, fieldHeight, 10, 10); // round rect
 		g2.drawString("TID", 20, 50);
@@ -166,22 +184,34 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			} else {
 				g2.setColor(whiteColor);
 			}
-	
-			// fill skriver ut
 			g2.fill(tempShape);
+			// fill skriver ut
+			
 			
 			//Sets the color to black before printin' it out
 			g2.setColor(Color.black);// write out time
-			g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
-			g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
-			g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
+			g2.drawString(tempValues[0], borderSize + 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
+			g2.drawString(tempValues[1], borderSize +200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
+			g2.drawString(tempValues[2], borderSize +710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
 			
 			//These images are just drawn in randomly at the moment
 			g2.drawImage(cancelImg, 940, 90, this);
 			g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
 			//This line works as crossing over a canceled class maybe?
 			//g2.drawLine(710, 120, 775, 120);
+			
+		
+
+			
 		}
+				
+		//lägg till border på ramen
+		g2.setColor(headerFieldBackgroundColor);
+		g2.setStroke(new BasicStroke(5));
+		g2.drawLine(borderSize + 2, fieldHeight-10, borderSize +2, fieldHeight + antalElement*fieldHeight);
+		g2.drawLine(SCREEN_WIDTH - borderSize+7, fieldHeight-10, SCREEN_WIDTH - borderSize+7, fieldHeight * 2 + antalElement*fieldHeight);
+		//lägg till undre linjen
+		g2.drawLine(borderSize+2, (fieldHeight + antalElement*fieldHeight-2),SCREEN_WIDTH-borderSize+2, fieldHeight + (antalElement*fieldHeight-2));
 	}
 	public void loadData( ) {
 		System.out.println("loaded into canvas");
@@ -200,7 +230,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			valueList.add(new String[] { startTid + "-" + slutTid, Parser.storedPost.get(i).getKursId()+"  "+getMoment , getSalID });
 		}
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
-			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
 		repaint(); // this
 		//CanvasInJframe.this.setTitle("Loaded");// window
