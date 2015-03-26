@@ -79,7 +79,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				
 				JLabel lblNewLabel = new JLabel("New label");
 				lblNewLabel.setIcon(new ImageIcon(NewsPanel.class.getResource("/Images/Forelashing.png")));
-				lblNewLabel.setBounds(65, 22, 180, 178);
+				lblNewLabel.setBounds(63, 62, 155, 150);
 				panel2.add(lblNewLabel);
 				
 				
