@@ -8,7 +8,7 @@ import se.mah.k3lara.skaneAPI.model.Journey;
 import se.mah.k3lara.skaneAPI.model.Journeys;
 import se.mah.k3lara.skaneAPI.model.Station;
 import se.mah.k3lara.skaneAPI.xmlparser.Parser;
-import java.awt.Color;
+ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -34,16 +34,16 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	JTable tableTitle;
 	JTable tableDepartures;
 
-	private String line = "";
-	private String destination = "";
-	private String stop = "";
-	private String departure = "";
+	private String line;
+	private String destination;
+	private String stop;
+	private String departure;
+	private String time;
 
 	private int noOfUpdates = 0;
-	private int updateInterval = 2000;
+	private int updateInterval = 60000;
 	private int results = 4;
-	private int priority = getExpectedPriority();
-
+	
 	public static final String[] COLUMN_NAMES = {"Line", "Destination", "Stop", "Departure"};
 	private DefaultTableModel model = new DefaultTableModel(COLUMN_NAMES, 0);
 
@@ -55,16 +55,11 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 * Create the panel.
 	 */
 	public BusPanel() {
-		setBorder(new LineBorder(Color.GRAY, 5, true));
-		setBackground(Color.WHITE);
+		setBorder(new LineBorder(new Color(192, 192, 192), 5, true));
+		setBackground(Color.LIGHT_GRAY);
 		setLayout(new MigLayout("insets 0", "[1%:n][grow][::1%,grow]", "[grow][grow]"));
-		
-		if (priority == 1) {
-			results = 4;
-		}
-		
 		departuresTable();
-
+		
 		//BYTA FÄRG PÅ VARANNAN RAD
 		UIDefaults defaults = UIManager.getLookAndFeelDefaults();
 		if (defaults.get("Table.alternateRowColor") == null)
@@ -87,9 +82,8 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 */
 	private void titleTable() {
 		tableTitle = new JTable();
-		tableTitle.setForeground(Color.BLACK);
-		tableTitle.setBorder(new LineBorder(Color.GRAY, 3, true));
-		tableTitle.setBackground(Color.GRAY);
+		tableTitle.setForeground(Color.WHITE);
+		tableTitle.setBackground(Color.LIGHT_GRAY);
 		tableTitle.setRowSelectionAllowed(false);
 		tableTitle.setShowGrid(false);
 		tableTitle.setShowHorizontalLines(false);
@@ -120,12 +114,12 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	private void removeRows() {
 		DefaultTableModel dm = (DefaultTableModel) tableDepartures.getModel();
 		int rowCount = dm.getRowCount();
-
+	
 		for (int i = rowCount - 1; i >= 0; i--) {
-			dm.removeRow(i);
+		    dm.removeRow(i);
 		}
 	}
-
+	
 	/**
 	 *Bestäm radhöjd på JTables.
 	 */
@@ -161,11 +155,11 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		Journeys journeys = Parser.getJourneys(searchURL);
 
 		removeRows();
-
+		
 		for (Journey journey : journeys.getJourneys()) {
 			int HJ = journey.getDepDateTime().get(Calendar.HOUR_OF_DAY);
 			int MJ = journey.getDepDateTime().get(Calendar.MINUTE);
-			String time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
+			time = (String.format("%02d", HJ) + ":" + (String.format("%02d", MJ)));
 			String depTime = journey.getTimeToDeparture() + journey.getDepTimeDeviation();
 
 			line = (journey.getLineOnFirstJourney());
@@ -176,7 +170,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 				if (Integer.valueOf(depTime) >= 10 && Integer.valueOf(depTime) >= 0) {
 					departure = (time);
 				} else {
-					departure = (journey.getTimeToDeparture() + journey.getDepTimeDeviation() + " min");
+					departure = (depTime + " min");
 				}
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -191,7 +185,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		departuresTable();
 		setRowHeights();
 	}
-
+	
 	/**
 	 * Uppdatera avgångar.
 	 */
