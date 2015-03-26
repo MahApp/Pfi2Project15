@@ -117,14 +117,9 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			valueList.add(fieldValues);
 		}
 		for (int i = 0; i < antalElement; i++) {
-			if(i == 0){
-				
-			}
-			if(i == antalElement-1){
-			shapeList.add(new RoundRectangle2D.Float(borderSize, 10, 100, 100, 5, 5));
-			}else{
+	
 			shapeList.add(new Rectangle2D.Float(borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
-			}
+			
 		}
 		
 		System.out.println(antalElement+"  posts!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -138,7 +133,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		setMinimumSize(new Dimension(1080, 80*ROWS));
 		setPreferredSize(new Dimension(1080, 80*ROWS));
 		setMaximumSize(new Dimension(1080, 80*ROWS));
-		this.setSize(SCREEN_WIDTH, fieldHeight + (antalElement * fieldHeight));
+		this.setSize(SCREEN_WIDTH, fieldHeight + (antalElement * fieldHeight)+borderSize+5);
 	}
 	public  void paint(Graphics g) {
 		//initierar metodvariabler
@@ -178,15 +173,26 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			//en temporär lista sparar alla relevanta värden
 			String[] tempValues = (String[]) valueList.get(i);
 			
+			
+			//lägsta vågiga mötet
+			if(i == antalElement-1){
+				g2.setColor(headerFieldBackgroundColor);
+				g2.setStroke(new BasicStroke(5));
+				g2.drawRoundRect(borderSize+2, (antalElement * fieldHeight)+borderHeight+4, SCREEN_WIDTH-borderSize-4,  fieldHeight, 10, 35);
+				g2.setStroke(new BasicStroke(0));
+			}
+			
 			//varannan blå, varannan vit
 			if (i % 2 == 1) {
 				g2.setColor(blueFieldColor);
 			} else {
 				g2.setColor(whiteColor);
 			}
-			g2.fill(tempShape);
-			// fill skriver ut
 			
+		
+			g2.fill(tempShape);
+			
+			// fill skriver ut den understa hörnbildning
 			
 			//Sets the color to black before printin' it out
 			g2.setColor(Color.black);// write out time
@@ -208,10 +214,13 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		//lägg till border på ramen
 		g2.setColor(headerFieldBackgroundColor);
 		g2.setStroke(new BasicStroke(5));
-		g2.drawLine(borderSize + 2, fieldHeight-10, borderSize +2, fieldHeight + antalElement*fieldHeight);
-		g2.drawLine(SCREEN_WIDTH - borderSize+7, fieldHeight-10, SCREEN_WIDTH - borderSize+7, fieldHeight * 2 + antalElement*fieldHeight);
+		g2.drawLine(borderSize + 2                , fieldHeight-10, borderSize +2              , fieldHeight + antalElement*fieldHeight);
+		g2.drawLine(SCREEN_WIDTH - borderSize+5+2 , fieldHeight-10, SCREEN_WIDTH - borderSize+7, fieldHeight +  antalElement*fieldHeight);
 		//lägg till undre linjen
-		g2.drawLine(borderSize+2, (fieldHeight + antalElement*fieldHeight-2),SCREEN_WIDTH-borderSize+2, fieldHeight + (antalElement*fieldHeight-2));
+	//	g2.drawLine(borderSize+2, (fieldHeight + antalElement*fieldHeight-2),SCREEN_WIDTH-borderSize+2, fieldHeight + (antalElement*fieldHeight-2));
+		//möts av en rectangel
+		
+		
 	}
 	public void loadData( ) {
 		System.out.println("loaded into canvas");

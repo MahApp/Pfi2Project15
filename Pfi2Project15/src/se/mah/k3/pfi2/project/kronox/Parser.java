@@ -247,7 +247,7 @@ if(debug)	System.out.println("-----------------------------------------");
 
 	storedPost=FilterOutBiulding.filter(storedPost); // filter the building
 	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
-	storedPost=FilterOutTime.filter(storedPost); // filter Time
+	//storedPost=FilterOutTime.filter(storedPost); // filter Time
 
 	return storedPost;
 	}
