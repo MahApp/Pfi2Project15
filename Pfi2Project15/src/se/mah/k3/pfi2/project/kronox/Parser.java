@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 
 
 public class Parser {
-	public static boolean debug=true;
+	public static boolean debug;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
 	public static String biulding="ubåtshallen"; // change this to search for other bulding
