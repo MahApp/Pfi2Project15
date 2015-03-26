@@ -24,8 +24,6 @@ import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.LunchPanel;
 import se.mah.k3.pfi2.project.news.NewsPanel;
-
-
 import se.mah.k3.pfi2.project.social.SocialPanel;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
@@ -42,13 +40,14 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	private JPanel contentPane;
 	private boolean inFullScreenMode = false;
 	private int PrevX = 100 ,PrevY = 100 ,PrevWidth = 480,PrevHeight = 640;
-	public static ArrayList<ModuleInterface> moduleList = new ArrayList<ModuleInterface>();
+	public static ArrayList<ModuleInterface> moduleList = new ArrayList<ModuleInterface>(); 
 	
 	
 	/**
 	 * Create the frame.
+	 * @param mode 
 	 */
-	public Fullscreen() {
+	public Fullscreen(String mode) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -63,24 +62,39 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		contentPane.setLayout(gbl_contentPane);
 		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager(); //Listen to keyboard
         manager.addKeyEventDispatcher(this);
-        setupPanels();
+        setupPanels(mode);
 	}
 	
-	private void setupPanels() {
+	private void setupPanels(String mode) {
 		//Comment and uncomment here to show your panel
 		//Add the panels not yet merged
-		moduleList.add(new TimePanel());
-		moduleList.add(new WeatherPanel());
-//		moduleList.add(new WeatherPanelBig());
-		moduleList.add(new NewsPanel());
-		moduleList.add(new BusPanel());
-		moduleList.add(new SocialPanel());
-		moduleList.add(new TrafficInfo());
-		moduleList.add(new FillEmptySpace());
-		//moduleList.add(new KronoxPanel());
-		moduleList.add(new NewsPanel());
-		moduleList.add(new LunchPanel());
-		moduleList.add(new FillEmptySpace());
+		//Add more modes if needed to show your module so it shows best
+		//Also add a setupfile to match in main.controller
+		//Show as many modules as possible in a setup to avoid restarting many times
+		if (mode.equals("basic")){
+			moduleList.add(new TimePanel());
+			moduleList.add(new KronoxPanel());
+			moduleList.add(new FillEmptySpace());
+		}else if (mode.equals("weather")){
+			moduleList.add(new TimePanel());
+			moduleList.add(new KronoxPanel());
+			moduleList.add(new WeatherPanel());
+			moduleList.add(new FillEmptySpace());
+		}else{
+			moduleList.add(new TimePanel());
+			moduleList.add(new KronoxPanel());
+			moduleList.add(new WeatherPanel());
+	//		moduleList.add(new WeatherPanelBig());
+			moduleList.add(new NewsPanel());
+			moduleList.add(new BusPanel());
+			moduleList.add(new SocialPanel());
+			moduleList.add(new TrafficInfo());
+			moduleList.add(new FillEmptySpace());
+			//moduleList.add(new KronoxPanel());
+			moduleList.add(new NewsPanel());
+			moduleList.add(new LunchPanel());
+			moduleList.add(new FillEmptySpace());
+		}
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
