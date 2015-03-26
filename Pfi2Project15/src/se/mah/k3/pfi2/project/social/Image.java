@@ -20,6 +20,7 @@ public class Image {
 	private int desiredImgSizeY;
 	private ImageIcon processedImage;
 	private boolean rounded;
+	private boolean debug = false;
 	
 	public Image(String imgUrl, int desiredImgSizeX, int desiredImgSizeY, boolean rounded) {
 		this.imgUrl = imgUrl;
@@ -42,11 +43,11 @@ public class Image {
 			BufferedImage bImage;
 			bImage = ImageIO.read(url);
 
-			System.out.println("Target size: " + desiredImgSizeX + " x " + desiredImgSizeY);
+			if(debug)System.out.println("Target size: " + desiredImgSizeX + " x " + desiredImgSizeY);{}
 
 			int imageWidth = bImage.getWidth();
 			int imageHeight = bImage.getHeight();
-			System.out.println("Original size: " + imageWidth + " x " + imageHeight);
+			if(debug)System.out.println("Original size: " + imageWidth + " x " + imageHeight);{}
 
 			int newImageWidth;
 			int newImageHeight;
@@ -59,7 +60,7 @@ public class Image {
 				newImageHeight = Math.round(desiredImgSizeX * ((float)imageHeight/imageWidth));
 			}
 
-			System.out.println("New image: " + newImageWidth + " x " + newImageHeight);
+			if(debug)System.out.println("New image: " + newImageWidth + " x " + newImageHeight);{}
 
 			BufferedImage resizedImage=resize(bImage, newImageWidth, newImageHeight);//Send image for resizing
 			if(rounded)	resizedImage = makeRoundedCorner(resizedImage, newImageWidth);

@@ -18,6 +18,7 @@ public class JSonParser {
 	private String file;
 	private final String fooPt1 = "aHR0cHM6Ly9hcGkuaW5zdGFncmFtLmNvbS92MS91c2Vycy9zZWFyY2g/cT0=";
 	private final String fooPt2 = "JmFjY2Vzc190b2tlbj0xNzUyOTE4MzAyLjE1NDFmYzYuZjY2NjM2ODI0YTczNDQ0YmE2NTgwYjU1Y2U2ZjkyYzcmY291bnQ9MQ==";
+	private boolean debug = false;
 
 	private List<PostData> posts = new ArrayList<PostData>();
 	
@@ -45,16 +46,16 @@ public class JSonParser {
 				JSONObject images = object.getJSONObject("images");
 				JSONObject standard_resolution = images.getJSONObject("standard_resolution");
 				imgUrl = standard_resolution.getString("url");
-				System.out.println(imgUrl);
+				if(debug)System.out.println(imgUrl);{}
 
 				// Avsändare
 				JSONObject caption = object.getJSONObject("caption");
 				JSONObject from = caption.getJSONObject("from");
 				userName = from.getString("username");
-				System.out.println(userName);
+				if(debug)System.out.println(userName);{}
 
 				imgUserUrl = from.getString("profile_picture");
-				System.out.println(imgUserUrl);
+				if(debug)System.out.println(imgUserUrl);{}
 
 				// Bildtext
 				imgText = caption.getString("text");
@@ -62,9 +63,9 @@ public class JSonParser {
 				System.out.println(imgText);
 
 				String[] imgTextSplit = imgText.split(" ");
-				System.out.println(imgTextSplit[0]);
-				System.out.println(imgTextSplit[1]);
-				System.out.println(Arrays.toString(imgTextSplit));
+				if(debug)System.out.println(imgTextSplit[0]);{}
+				if(debug)System.out.println(imgTextSplit[1]);{}
+				if(debug)System.out.println(Arrays.toString(imgTextSplit));{}
 
 				imgText ="";
 				for (int i = 0; i < imgTextSplit.length; i++) {
@@ -98,7 +99,7 @@ public class JSonParser {
 					//e.printStackTrace();
 				}
 
-				System.out.println("****** Slutgiltigt Tidsformat ********");
+				if(debug)System.out.println("****** Slutgiltigt Tidsformat ********");{}
 				timePosted = getPostTime(longTime);
 				System.out.println(timePosted);// (3) Skickar Long
 				// unixTime till metoden
@@ -106,7 +107,7 @@ public class JSonParser {
 				// Och tar emot
 				// postTime,
 				// färdigformaterad
-				System.out.println("****** /Slutgiltigt Tidsformat ********");
+				if(debug)System.out.println("****** /Slutgiltigt Tidsformat ********");{}
 				posts.add(new PostData(userName, imgUserUrl, imgUrl, imgText, timePosted));
 			}
 		} catch (JSONException e) {
@@ -130,9 +131,9 @@ public class JSonParser {
 
 
 
-			System.out.println("RepostUrl: " + fooPt1Final + username + fooPt2Final);
+			if(debug)System.out.println("RepostUrl: " + fooPt1Final + username + fooPt2Final);{}
 			url = new URL(fooPt1Final + username + fooPt2Final);
-			System.out.println("O_o");
+			if(debug)System.out.println("O_o");{}
 			HttpsURLConnection con;
 			con = (HttpsURLConnection) url.openConnection();
 
@@ -144,7 +145,7 @@ public class JSonParser {
 			JSONArray data = obj.getJSONArray("data");
 			JSONObject object = data.getJSONObject(0);
 			userAvatarImg = object.getString("profile_picture");
-			System.out.println("Repost Avatar Url: " + userAvatarImg);
+			if(debug)System.out.println("Repost Avatar Url: " + userAvatarImg);{}
 
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
