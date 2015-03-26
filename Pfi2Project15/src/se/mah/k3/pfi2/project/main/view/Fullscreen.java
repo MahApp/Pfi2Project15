@@ -128,19 +128,19 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			moduleList.add(new BusPanel());
 			moduleList.add(new SocialPanel());
 			moduleList.add(new FillEmptySpace());
-		}else{
+		}else if (mode.equals("klockKronoxWeatherBus")){
 			moduleList.add(new TimePanel());
 			moduleList.add(new KronoxPanel());
 			moduleList.add(new WeatherPanel());
 	//		moduleList.add(new WeatherPanelBig());
-			moduleList.add(new NewsPanel());
+			//moduleList.add(new NewsPanel());
 			moduleList.add(new BusPanel());
-			moduleList.add(new SocialPanel());
-			moduleList.add(new TrafficInfo());
+			//moduleList.add(new SocialPanel());
+			//moduleList.add(new TrafficInfo());
 			moduleList.add(new FillEmptySpace());
 			//moduleList.add(new KronoxPanel());
-			moduleList.add(new NewsPanel());
-			moduleList.add(new LunchPanel());
+			//moduleList.add(new NewsPanel());
+			//moduleList.add(new LunchPanel());
 			moduleList.add(new FillEmptySpace());
 		}
 		moduleList.add(new TimePanel());
