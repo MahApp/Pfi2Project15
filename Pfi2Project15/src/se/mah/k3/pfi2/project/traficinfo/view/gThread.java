@@ -20,13 +20,16 @@ public class gThread extends Thread {
 	private ArrayList<String> texts = new ArrayList<String>();
 
 	private String searchURL;
+	private boolean timeToRun = false;
 	
 	private int count = 0;
-	
-	private int charLength;
-	
+		
 	public gThread(TrafficInfo g){
 		this.gui = g;
+	}
+	
+	public boolean getTimeToRun(){
+		return timeToRun;
 	}
 	
 
@@ -64,7 +67,8 @@ public class gThread extends Thread {
 						effects.add(effect);
 						details.add(detail);
 						texts.add(text);
-					System.out.println("CRITICAL TRIGGERED");
+					System.out.println("CRITICAL TRIGGERED, RUNNING");
+					timeToRun = true;
 					}
 				}	
 			}
@@ -85,7 +89,7 @@ public class gThread extends Thread {
 			
 
 			try {
-				Thread.sleep(30000);
+				Thread.sleep(50000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
