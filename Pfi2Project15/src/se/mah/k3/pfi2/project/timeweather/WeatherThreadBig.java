@@ -46,7 +46,7 @@ private void weatherUpdate(){
 	for (Weather weather : weathers.getWeathers()) {
 		
 		//now
-		gui.lblTemperature.setText(weather.getTemperature().get(0) + "°");
+		gui.lblTemperature.setText(weather.getTemperature().get(0) + "Â°");
 		
 		//just for test:
 		//gui.lblWeatherConditions.setText(weather.getWeather().get(0));
@@ -54,18 +54,18 @@ private void weatherUpdate(){
 		
 		//in three hours
 		gui.lblTime2.setText(weather.getTimeList().get(1));
-		gui.lblTemperature2.setText(weather.getTemperature().get(1)+ "°");
+		gui.lblTemperature2.setText(weather.getTemperature().get(1)+ "Â°");
 		//gui.lblWeatherConditions2.setText(weather.getWeather().get(1));
 		
 		
 		//in six hours
 		gui.lblTime3.setText(weather.getTimeList().get(2));
-		gui.lblTemperature3.setText(weather.getTemperature().get(2)+ "°");
+		gui.lblTemperature3.setText(weather.getTemperature().get(2)+ "Â°");
 		//gui.lblWeatherConditions3.setText(weather.getWeather().get(2));
 		
 		//in nine hours
 		gui.lblTime4.setText(weather.getTimeList().get(3));
-		gui.lblTemperature4.setText(weather.getTemperature().get(3)+ "°");
+		gui.lblTemperature4.setText(weather.getTemperature().get(3)+ "Â°");
 		//gui.lblWeatherConditions4.setText(weather.getWeather().get(3));
 		
 		//set big picture with big weather build
