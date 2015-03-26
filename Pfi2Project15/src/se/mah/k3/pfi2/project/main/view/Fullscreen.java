@@ -114,7 +114,6 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	private void setupPanels(String mode) {
 		//Comment and uncomment here to show your panel
 		//Add the panels not yet merged
-<<<<<<< HEAD
 		//Add more modes if needed to show your module so it shows best
 		//Also add a setupfile to match in main.controller
 		//Show as many modules as possible in a setup to avoid restarting many times
@@ -144,7 +143,6 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			moduleList.add(new LunchPanel());
 			moduleList.add(new FillEmptySpace());
 		}
-=======
 		moduleList.add(new TimePanel());
 		moduleList.add(new KronoxPanel());
 	//	moduleList.add(new WeatherPanel());
@@ -158,7 +156,6 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 //		moduleList.add(new NewsPanel());
 //		moduleList.add(new LunchPanel());
 		moduleList.add(new FillEmptySpace());
->>>>>>> refs/remotes/origin/TeamMattias
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
 			GridBagConstraints cons = new GridBagConstraints();
