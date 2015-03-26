@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class NewsPanel extends JPanel implements ModuleInterface{
 
@@ -40,22 +41,23 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 		setLayout(null);
 		
 		JPanel panel2 = new JPanel();
-		panel2.setBorder(new LineBorder (new Color(0,158,212), 3, true));
+		panel2.setBorder(new LineBorder (new Color(249,176,0), 3, true));
 		panel2.setBounds(10, 11, 1060, 218);
 		panel2.setBackground(Color.WHITE);
 		add(panel2);
 		panel2.setLayout(null);
 		
 		JPanel Rubrik = new JPanel();
-		Rubrik.setBorder(new LineBorder(new Color(0, 158, 212), 4, true));
-		Rubrik.setBounds(353, 0, 371, 50);
-		Rubrik.setBackground(new Color(0,158,212));
+		Rubrik.setBorder(new LineBorder(new Color(249, 176, 0), 4, true));
+		Rubrik.setBounds(3, 3, 1055, 60);
+		Rubrik.setBackground(new Color(249,176,0));
 		panel2.add(Rubrik);
 				Rubrik.setLayout(null);
 		
 				
-				JLabel lblNews = new JLabel("Event & händelser idag");
-				lblNews.setBounds(38, 9, 295, 39);
+				JLabel lblNews = new JLabel("Events & händelser idag");
+				lblNews.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNews.setBounds(-3, 9, 1061, 39);
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 				lblNews.setForeground(Color.WHITE);
 				Rubrik.add(lblNews);

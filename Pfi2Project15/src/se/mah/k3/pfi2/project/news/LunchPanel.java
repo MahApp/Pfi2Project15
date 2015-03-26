@@ -18,6 +18,7 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import javax.swing.border.LineBorder;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import javax.swing.SwingConstants;
 
 public class LunchPanel extends JPanel implements ModuleInterface{
 	
@@ -47,14 +48,15 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 			
 			JPanel Rubrik = new JPanel();
 			Rubrik.setBorder(new LineBorder(new Color(134, 188, 37), 1, true));
-			Rubrik.setBounds(353, 0, 371, 50);
+			Rubrik.setBounds(2, 3, 1057, 60);
 			Rubrik.setBackground(new Color(134,188,37));
 			panel2.add(Rubrik);
 					Rubrik.setLayout(null);
 			
 					
 					JLabel lblNews = new JLabel("Dagens lunch");
-					lblNews.setBounds(100, 9, 295, 39);
+					lblNews.setHorizontalAlignment(SwingConstants.CENTER);
+					lblNews.setBounds(0, 9, 1058, 39);
 					lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
 					lblNews.setForeground(Color.WHITE);
 					Rubrik.add(lblNews);
@@ -76,7 +78,7 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 					
 					JLabel lblNewLabel = new JLabel("New label");
 					lblNewLabel.setIcon(new ImageIcon(LunchPanel.class.getResource("/Images/salad.png")));
-					lblNewLabel.setBounds(820, 0, 177, 212);
+					lblNewLabel.setBounds(820, 15, 177, 197);
 					panel2.add(lblNewLabel);
 					
 					JLabel label = new JLabel("69 :-");
