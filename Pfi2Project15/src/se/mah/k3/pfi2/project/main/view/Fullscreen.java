@@ -20,12 +20,11 @@ import javax.swing.border.EmptyBorder;
 
 import se.mah.k3.pfi2.project.bus.BusPanel;
 import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
+import se.mah.k3.pfi2.project.kronox.CanvasInJframe;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.news.LunchPanel;
 import se.mah.k3.pfi2.project.news.NewsPanel;
-
-
 import se.mah.k3.pfi2.project.social.SocialPanel;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
@@ -68,16 +67,17 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		//Comment and uncomment here to show your panel
 		//Add the panels not yet merged
 		moduleList.add(new TimePanel());
-		moduleList.add(new WeatherPanel());
-//		moduleList.add(new WeatherPanelBig());
-		moduleList.add(new NewsPanel());
-		moduleList.add(new BusPanel());
-		moduleList.add(new SocialPanel());
-		moduleList.add(new TrafficInfo());
-		moduleList.add(new FillEmptySpace());
-		//moduleList.add(new KronoxPanel());
-		moduleList.add(new NewsPanel());
-		moduleList.add(new LunchPanel());
+		moduleList.add(new KronoxPanel());
+	//	moduleList.add(new WeatherPanel());
+		//moduleList.add(new WeatherPanelBig());
+		//moduleList.add(new NewsPanel());
+	//	moduleList.add(new BusPanel());
+	//	moduleList.add(new SocialPanel());
+	//	moduleList.add(new TrafficInfo());
+	//	moduleList.add(new FillEmptySpace());
+//		moduleList.add(new KronoxPanel());
+//		moduleList.add(new NewsPanel());
+//		moduleList.add(new LunchPanel());
 		moduleList.add(new FillEmptySpace());
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {

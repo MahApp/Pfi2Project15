@@ -2,56 +2,214 @@ package se.mah.k3.pfi2.project.kronox;
 
 import javax.swing.JPanel;
 
+import se.mah.k3.pfi2.project.kronox.CanvasInJframe.MyCanvas;
 import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.timeweather.DateLogic;
 //import se.mah.k3.pfi2.project.timeweather.TimeLogic;
+
 
 
 import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
-
+import javax.swing.border.EmptyBorder;
 
 public class KronoxPanel extends JPanel implements ModuleInterface{
+	// diverse bra variabler att ha
+	static int screenRes = Toolkit.getDefaultToolkit().getScreenResolution();
+	final static float DPI = 72; // Pixel density 96 ï¿½r standard pï¿½ moderna
 	
+	//går att ändra, men starta på 10
+	public static int antalElement = 10;
+	public Post minPost = new Post();
+
+	// Variables for measurements
+	final static float PT = 7; // font size pt
+	final static int SCREEN_WIDTH = 1080;// 1080 old, 768px för LG monitorn
+	static int SCREEN_HEIGHT = 1920;// old, 1024px för LG monitorn
+	final static int fieldHeight = 80; // field height
+	static int ROWS=10;
+	// variables for Images
+	private Image cancelImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/modifiedIcon.png"));
+	private Image modifiedImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
+
+	// Variables for font-related stuff
+	public int fontSize = (int) Math.round(PT * screenRes / DPI);
+	public Font futuraBook = new Font("Futura LT", Font.PLAIN, fontSize);
+	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
+	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska använda
+	
+	//the fonts we've initilized. the numbers furthest to the right determines the font-size
+	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 30);
+	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 33);
+
+	// Variables for colors
+	private Color whiteColor = Color.decode("#ffffff");
+	private Color headerYellowTextColor = Color.decode("#ffffff");//E5DA9F
+	private Color headerFieldBackgroundColor = Color.decode("#0087b5");   // 3A3A39
+	private Color blueFieldColor = Color.decode("#D6ECF3"); 
+	private Color redEditText = Color.decode("#C52033");
+
+	// Variables for functionality
+	private ArrayList<Shape> shapeList = new ArrayList<Shape>();
+	private ArrayList<Post> displayPost = new ArrayList<Post>();
+	private String[] fieldValues = { "- -:- - - -:- -", "LOADING...", "Sal..." };
+	private ArrayList<String[]> valueList = new ArrayList<String[]>();
+	static Building biuldingOption = new Building();
+	static boolean loaded = false;
+	
+	// variabler att hämta info i
+	String startTid;
+	String slutTid;
+	String getMoment;
+	String getSalID;
 	/**
 	 * Create the panel.
 	 */
 	public KronoxPanel() {
-		setMinimumSize(new Dimension(1080, 160));
-		setPreferredSize(new Dimension(1080, 160));
-		setMaximumSize(new Dimension(1080, 160));
+		//Building biuldingOption = new Building();
+		biuldingOption.setVisible(true);
 		
-		ParserUpdateThread pt= new ParserUpdateThread();
+		ParserUpdateThread pt= new ParserUpdateThread(this); // thread
 		pt.start();
 		
-		System.out.println("start program");
-		CanvasInJframe frame = new CanvasInJframe();
-		CanvasInJframe awtControlDemo = new CanvasInJframe();
-		try{
-			frame.setVisible(false);
-			awtControlDemo.showCanvasDemo();
-			awtControlDemo.setVisible(true);
-			awtControlDemo.setTitle("loading...");
-		} catch (Exception e) {
-			e.printStackTrace();
+		System.out.println("construct KronoxPanel");
+		//Parser.getPost();
+		//loadData();
+		
+		setAntalElement(Parser.storedPost.size());
+		//setMinimumSize(new Dimension(1080, 80*ROWS));
+		//setPreferredSize(new Dimension(1080, 80*ROWS));
+		//setMaximumSize(new Dimension(1080, 80*ROWS));
+	
+		//	setUndecorated(true); // hide buttons  //window
+		//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //window
+		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		//contentPane = new JPanel();
+		//contentPane.setBorder(new EmptyBorder(5, 10, 5, 10)); //White inner border that creates margin around the schema
+		//contentPane.setLayout(new BorderLayout(0, 0));
+		//setContentPane(contentPane);							//window
+		for (int i = 0; i < antalElement; i++) {
+			valueList.add(fieldValues);
 		}
-		awtControlDemo.loadData(Parser.getPost());
+		for (int i = 0; i < antalElement; i++) {
+			shapeList.add(new Rectangle2D.Float(0, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+		}
+		System.out.println(antalElement+"  posts!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
 	}
+	
+	public void setAntalElement(int antal){
+		antalElement = antal;
+		ROWS=antal+1;
+		//sendContentPane = fieldHeight + (antalElement * fieldHeight);
+		setMinimumSize(new Dimension(1080, 80*ROWS));
+		setPreferredSize(new Dimension(1080, 80*ROWS));
+		setMaximumSize(new Dimension(1080, 80*ROWS));
+		this.setSize(SCREEN_WIDTH, fieldHeight + (antalElement * fieldHeight));
+	}
+	public  void paint(Graphics g) {
+		//initierar metodvariabler
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setFont(fieldFont);
 
+		// Gör texten smoothare
+		RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+		g2.setRenderingHints(rh);
+		
+		//tar bort borders
+		Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
+		g2.setStroke(stroke);
+		
+		// Lägger till header-fältet m. text osv
+		g2.setFont(headerFont);
+		Shape headField = new Rectangle2D.Float(0, 0, SCREEN_WIDTH,fieldHeight);
+		g2.setColor(headerFieldBackgroundColor);
+		g2.fill(headField);
+		g2.setColor(headerYellowTextColor);
+		g2.drawRoundRect(0, 0, SCREEN_WIDTH, fieldHeight, 10, 10); // round rect
+		g2.drawString("TID", 20, 50);
+		g2.drawString("KURS", 200, 50);
+		g2.drawString("LOKAL", 715, 50);
+		g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
+		//Header koden-avslutad
+		
+		g2.setFont(fieldFont);
+		//Denna skriver ut Posterna + Rektanglarna
+		for (int i = 0; i < antalElement; i++) {
+			//en temporär rektangel skapas utifrån informationen i Shape-listan
+			Shape tempShape = shapeList.get(i);
+			//en temporär lista sparar alla relevanta värden
+			String[] tempValues = (String[]) valueList.get(i);
+			
+			//varannan blå, varannan vit
+			if (i % 2 == 1) {
+				g2.setColor(blueFieldColor);
+			} else {
+				g2.setColor(whiteColor);
+			}
+	
+			// fill skriver ut
+			g2.fill(tempShape);
+			
+			//Sets the color to black before printin' it out
+			g2.setColor(Color.black);// write out time
+			g2.drawString(tempValues[0], 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
+			g2.drawString(tempValues[1], 200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
+			g2.drawString(tempValues[2], 710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
+			
+			//These images are just drawn in randomly at the moment
+			g2.drawImage(cancelImg, 940, 90, this);
+			g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
+			//This line works as crossing over a canceled class maybe?
+			//g2.drawLine(710, 120, 775, 120);
+		}
+	}
+	public void loadData( ) {
+		System.out.println("loaded into canvas");
+		valueList.clear();
+		shapeList.clear();
 
+		System.out.println(Parser.storedPost.size());
+
+		setAntalElement(Parser.storedPost.size());// xml
+		
+		for (int i = 0; i < Parser.storedPost.size(); i++) {
+			startTid = Parser.storedPost.get(i).getStartTid();
+			slutTid = Parser.storedPost.get(i).getSlutTid();
+			getMoment = Parser.storedPost.get(i).getMoment();
+			getSalID = Parser.storedPost.get(i).getSalID();
+			valueList.add(new String[] { startTid + "-" + slutTid, Parser.storedPost.get(i).getKursId()+"  "+getMoment , getSalID });
+		}
+		for (int i = 0; i < Parser.storedPost.size(); i++) {
+			shapeList.add(new Rectangle2D.Float(minPost.getX(), fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+		}
+		repaint(); // this
+		//CanvasInJframe.this.setTitle("Loaded");// window
+	}
+	
 	@Override
 	public int getExpectedPriority() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 //	public void setPreferdNumberOfRows(int input) {
@@ -59,22 +217,23 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 //		// TODO Auto-generated method stub
 //	
 //	}
+	
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 3;
 	}
 
 	@Override
 	public int getMinNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 3;
 	}
 
 	@Override
 	public boolean showNumberOfRows(int start, int end) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

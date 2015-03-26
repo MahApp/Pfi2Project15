@@ -8,27 +8,24 @@ import java.util.Calendar;
 import java.util.Collections;
 
 public class CanvasUpdateThread extends Thread {
-	/**
+	    /**
 		 * 
 		 * 
 		 *   
 		 * 
 		 * 
-		
-		 * */
+		 **/
 	Parser parserClass = new Parser();
 	CanvasInJframe canvasClass = new CanvasInJframe();
 	FilterOutRooms filteredRooms = new FilterOutRooms();
 	FilterOutRooms filteredBuildings = new FilterOutRooms();
-	
 	ArrayList<Post> canvasPost = new ArrayList<Post>();
 	ArrayList<Post> filteredPosts = new ArrayList<Post>();
 	
 	public CanvasInJframe demo = new CanvasInJframe();
 	
-	
 	private int refreshRate = 100;
-	private boolean running = true;
+	private volatile boolean running = true;
 
 	public CanvasUpdateThread(CanvasInJframe demo) {
 		super();
@@ -41,7 +38,7 @@ public class CanvasUpdateThread extends Thread {
 		System.out.println("hej");
 		while (running) {
 			System.out.println("hej");
-			//demo.updatePost();
+			demo.updatePost();
 			demo.repaint();
 			try {
 				Thread.sleep(1000000);
@@ -57,7 +54,7 @@ public class CanvasUpdateThread extends Thread {
 	private void addToList(){
 		ArrayList<Post> tempPosts = new ArrayList<Post>();
 		//addera ofiltrerade till en variabel
-		canvasPost = parserClass.getPost();
+		//canvasPost = parserClass.getPost();
 		/*
 		//filtrera dem i FilterOutBuilding
 		tempPosts = filteredBuildings.filter(canvasPost); 

@@ -14,13 +14,11 @@ public class FilterOutTime {
 	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
 	
 	static Calendar cal;
-
+	
 	static Calendar cal2;
 	static Calendar cal3;
-
-	
 	 
-	static int minuteMargin =30; // timespan that post filters out from 30min is standard
+	static int minuteMargin =60*7; // timespan that post filters out from 30min is standard
 	FilterOutTime(){
 		cal=Calendar.getInstance(); // get the current time		
 	}
@@ -47,18 +45,18 @@ public class FilterOutTime {
 			timeAfter=new Date(System.currentTimeMillis()+minuteMargin*60*1000);
 			timeBefore=new Date(System.currentTimeMillis()-minuteMargin*60*1000);
 			
-			System.out.println(timeAfter+"timeAfter");
-			System.out.println(timeBefore+"timeBefore");
+			if(Parser.debug)System.out.println(" timeAfter"+timeAfter);
+			if(Parser.debug)System.out.println(" timeBefore"+timeBefore);
 			
 			System.out.println(ofiltreradPoster.get(i).getStartTidCal());
 			
 			//float postTime = Float.parseFloat(ofiltreradPoster.get(i).getStartTid());
 			if(!timeBefore.before(ofiltreradPoster.get(i).startTidCal)) {
 				//filtreradePoster.add(ofiltreradPoster.get(i));
-				System.out.println(ofiltreradPoster.get(i).startTidCal+ "before");
+				if(Parser.debug)System.err.println(ofiltreradPoster.get(i).startTidCal+ " before");
 			}else if(!timeAfter.after(ofiltreradPoster.get(i).startTidCal)){
 			//filtreradePoster.add(ofiltreradPoster.get(i));
-			System.out.println(ofiltreradPoster.get(i).startTidCal+ "after");
+				if(Parser.debug) System.err.println(ofiltreradPoster.get(i).startTidCal+ " after");
 			}else{
 				filtreradePoster.add(ofiltreradPoster.get(i));
 			}

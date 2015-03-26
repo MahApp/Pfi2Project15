@@ -22,7 +22,7 @@ public class Parser {
 	public static boolean debug=true;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-	public static String biulding="kranen"; // change this to search for other bulding
+	public static String biulding="ubåtshallen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		
 		
@@ -36,12 +36,12 @@ public class Parser {
 			frame.setVisible(false);
 			awtControlDemo.showCanvasDemo();
 			awtControlDemo.setVisible(true);
-			awtControlDemo.setTitle("loading...");
+			awtControlDemo.setTitle("loading..."); //window
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		awtControlDemo.loadData(getPost());
-		//awtControlDemo.repaint();
+		awtControlDemo.repaint();
 
 	}
 	
@@ -148,25 +148,25 @@ public class Parser {
 							if(debug)System.out.println("-"+ statusE.getTagName() + "...#" + j+": ");
 							NodeList statusC = statusE.getChildNodes();//NodeList resursNod = resursTradE.getChildNodes();
 								for(int k = 0; k < statusC.getLength(); k++){
-									Node arRaderad=statusC.item(k);
-									Element arRaderadE=(Element) arRaderad;
-								  NamedNodeMap attributes = arRaderad.getAttributes();
+									Node statusCN=statusC.item(k);
+									Element arRaderadE=(Element) statusCN;
+								  NamedNodeMap attributes = statusCN.getAttributes();
 								  Node theAttribute = attributes.item(0);
-								  if(debug)  System.out.print("--"+arRaderad.getNodeName()+":");
+								  if(debug)  System.out.print("--"+statusCN.getNodeName()+":");
 								  if(debug)	  System.out.println(theAttribute.getNodeValue());	
-								  if(arRaderad.getNodeName().equals("arRaderad")){
+								  if(statusCN.getNodeName().equals("arRaderad")){
 									  tempSchemaPost.setRaderad(Boolean.parseBoolean(theAttribute.getNodeValue()));
 								  }
-								if(arRaderad.getNodeName().equals("arPreliminar")){	
+								if(statusCN.getNodeName().equals("arPreliminar")){	
 									  tempSchemaPost.setTemp(Boolean.parseBoolean(theAttribute.getNodeValue()));
 								}
-								if(arRaderad.getNodeName().equals("arDubbelbokad"))	{
+								if(statusCN.getNodeName().equals("arDubbelbokad"))	{
 									  tempSchemaPost.setDubbelBokad(Boolean.parseBoolean(theAttribute.getNodeValue()));
 								}
-								 if(arRaderad.getNodeName().equals("arExtern")){
+								 if(statusCN.getNodeName().equals("arExtern")){
 									  tempSchemaPost.setExtern(Boolean.parseBoolean(theAttribute.getNodeValue()));
 								 }
-								if(arRaderad.getNodeName().equals("arOnskemal")){
+								if(statusCN.getNodeName().equals("arOnskemal")){
 									  tempSchemaPost.setOnskad(Boolean.parseBoolean(theAttribute.getNodeValue()));
 								}
 								 
@@ -192,14 +192,19 @@ public class Parser {
 	
 	public static ArrayList<Post> getPost(){
 	storedPost.clear();
-		
+	storedPosts.clear();
 	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
-	for(int i=0; i< Urls.size();i++){
-		String schema=Urls.get(i);
-		storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
+	System.out.println(Urls.size()+" amout of XML URL");
+	try{
+		for(int i=0; i< Urls.size();i++){
+			String schema=Urls.get(i);
+			storedPost.addAll(Parser.getPostsfrom(schema).getPostArray());
+		}
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println(Urls.size()+" Error XML URLs out of bound");
+
 	}
-//	System.out.println(storedPost.size());
-//	System.out.println("-----------------------------------------");
+if(debug)	System.out.println("-----------------------------------------");
 	for(int i=0; i<storedPosts.size();i++){
 		System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
 	}
@@ -240,7 +245,7 @@ public class Parser {
 		}
 	}
 
-	storedPost=FilterOutBiulding.filter(storedPost); // filter the biulding
+	storedPost=FilterOutBiulding.filter(storedPost); // filter the building
 	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
 	storedPost=FilterOutTime.filter(storedPost); // filter Time
 

@@ -45,7 +45,7 @@ public class FilterOutRooms {
 			}
 		}
 		
-		System.out.println("antal post:"+ofiltreradPoster.size() +"efter rum filtrering");
+		System.out.println("antal post: "+ofiltreradPoster.size() +" efter rum filtrering");
 		if (filtreradePoster.isEmpty()) {
 			return ofiltreradPoster;
 		} else {
