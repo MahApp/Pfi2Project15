@@ -12,6 +12,9 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+/**
+ * Omvandlar bilder från Instagram, så att de blir rätt storlek och passar i modulen.
+ */
 public class Image {
 	//Display image
 	
@@ -21,6 +24,13 @@ public class Image {
 	private ImageIcon processedImage;
 	private boolean rounded;
 	
+	/**
+	 * Konstruktor för Image
+	 * @param imgUrl url för bilden
+	 * @param desiredImgSizeX Xstorleken som bilden ska få
+	 * @param desiredImgSizeY Ystorleken som bilden ska få
+	 * @param rounded Om bilden ska få rundade kanter
+	 */
 	public Image(String imgUrl, int desiredImgSizeX, int desiredImgSizeY, boolean rounded) {
 		this.imgUrl = imgUrl;
 		this.desiredImgSizeX = desiredImgSizeX;
@@ -30,10 +40,17 @@ public class Image {
 		resizeImage();
 	}
 	
+	/**
+	 * Returnerar en färdig bild
+	 * @return Den färdiga bilden
+	 */
 	public ImageIcon getImage(){
 		return processedImage;
 	}
 
+	/**
+	 * Formar om bilden enligt parametrarna från konstruktorn
+	 */
 	private void resizeImage(){
 		URL url;
 		
@@ -71,6 +88,13 @@ public class Image {
 	}
 
 	//Resize image
+	/**
+	 * Ändrar storleken på bilden
+	 * @param image bilden som ska ändras
+	 * @param width bredd
+	 * @param height höjd
+	 * @return returnerar bilden
+	 */
 	public static BufferedImage resize(BufferedImage image, int width, int height) {
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
 		Graphics2D g2d = (Graphics2D) bi.createGraphics();
@@ -81,6 +105,12 @@ public class Image {
 	}
 	
 	//Circular goodness
+	/**
+	 * Gör rundade kanter på bilden, om konstruktorn fått en true för detta.
+	 * @param image bilden som ska få rundade kanter
+	 * @param cornerRadius Hur långt från hörnet själva avrundningen börjar, i pixlar. (Vi är inte helt säkra på denna, kan behöva förtydligas?)
+	 * @return returnerar färdig bild
+	 */
 	public static BufferedImage makeRoundedCorner(BufferedImage image, int cornerRadius) {
 	    int w = image.getWidth();
 	    int h = image.getHeight();

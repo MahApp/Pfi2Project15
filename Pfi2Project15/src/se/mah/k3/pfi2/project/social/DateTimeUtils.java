@@ -5,16 +5,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * Den här klassen hjälper oss att översätta unix tiden från Instagram API:et, samt tiden från systemet programmet körs på. Resultatet är förfluten tid i dagar eller veckor, så som Instagram gör det.
+ */
 public class DateTimeUtils {
 
 	private boolean debug = true;
 	
-	/*
-	 * Den här klassen hjälper oss att översätta unix tiden från Instagram API:et, samt tiden från systemet programmet körs på. 
-	 * Resultatet är förfluten tid i dagar eller veckor, så som Instagram gör det.
-	 */
-	
 	//(5) Här kommer postTime (format: unixTime) in som Long.
+	/**
+	 * Formaterar om tiden så att den blir läsbar.
+	 * @param l Tiden i Unix
+	 * @return Färdigformaterad tid
+	 */
 	public String calcTimeDifference(long l) {
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
@@ -52,6 +55,12 @@ public class DateTimeUtils {
 	}
 
 	// Skapar en String efter Instagrams datumlayout ('idag', '#d' eller '#v')
+	/**
+	 * Formaterar om tiden till idag, dagar eller veckor, beroende på vad som passar bäst.
+	 * @param startDate Används för att räkna ut tidsskillnad
+	 * @param endDate Används för att räkna ut tidsskillnad
+	 * @return Färdigformaterad tid i "idag, #dag eller #v"
+	 */
 	public String generateDateString(Date startDate, Date endDate){
 		
 		//milliseconds
