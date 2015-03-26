@@ -56,8 +56,8 @@ public class gThread extends Thread {
 				
 				//Adding FAKE information to test
 				
-				effects.add("Inställda tåg");
-				details.add("Tågen mellan Malmö C och Lund C är försenade med 15 minuter");
+				effects.add("Inst\u00E4llda t\u00e5g");
+				details.add("T\u00e5gen mellan Malm\u00f6 C och Lund C \u00E4r f\u00f6rsenade med 15 minuter");
 				texts.add("");
 
 					if(effect == "CRITICAL"){
