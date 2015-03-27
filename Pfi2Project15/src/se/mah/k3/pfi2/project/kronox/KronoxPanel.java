@@ -100,21 +100,12 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		pt.start();
 
 		System.out.println("construct KronoxPanel");
-		//Parser.getPost();
-		//loadData();
+
 		
 		setAntalElement(Parser.storedPost.size());
-		//	setMinimumSize(new Dimension(1080, 80));
-		//	setPreferredSize(new Dimension(1080, 80));
-		//	setMaximumSize(new Dimension(1080, 80));
-		//	setUndecorated(true); // hide buttons  //window
-		//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //window
+
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		//contentPane = new JPanel();
-		//contentPane.setBorder(new EmptyBorder(5, 10, 5, 10)); //White inner border that creates margin around the schema
-		//contentPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(contentPane);		
-		//window
+
 		for (int i = 0; i < antalElement; i++) {
 			valueList.add(fieldValues);
 		}
@@ -216,7 +207,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		}
 		
 		// animerade object 
-		g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
+	//	g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
 
 		
 		
@@ -229,9 +220,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		g2.setStroke(new BasicStroke(5));
 		g2.drawLine(borderSize + 2                , fieldHeight-10, borderSize +2              , fieldHeight + antalElement*fieldHeight);
 		g2.drawLine(SCREEN_WIDTH - borderSize+5+2 , fieldHeight-10, SCREEN_WIDTH - borderSize+7, fieldHeight +  antalElement*fieldHeight);
-		//lägg till undre linjen
-		//g2.drawLine(borderSize+2, (fieldHeight + antalElement*fieldHeight-2),SCREEN_WIDTH-borderSize+2, fieldHeight + (antalElement*fieldHeight-2));
-		//möts av en rectangel
+
 		
 		
 	}
@@ -267,7 +256,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
 		}
-		KronoxAnimationThread at = new KronoxAnimationThread(this); 
+	 KronoxAnimationThread at = new KronoxAnimationThread(this); 
 		at.start();
 		at.animate=true;
 		//repaint(); // this
