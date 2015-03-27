@@ -166,6 +166,11 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			moduleList.add(new LunchPanel());
 			moduleList.add(new FillEmptySpace());
 		}
+		else if (mode.equals("screensaver"))
+		{
+			moduleList.add(new SocialPanelScreensaver());
+			moduleList.add(new FillEmptySpace());
+		}
 //		moduleList.add(new SocialPanelMain());
 //		//moduleList.add(new SocialPanelScreensaver());
 //		//moduleList.add(new SocialPanelBanner());
