@@ -7,7 +7,7 @@ import java.util.TimeZone;
 
 public class DateTimeUtils {
 
-	private boolean debug = true;
+	private boolean debug = false;
 	
 	/*
 	 * Den här klassen hjälper oss att översätta unix tiden från Instagram API:et, samt tiden från systemet programmet körs på. 

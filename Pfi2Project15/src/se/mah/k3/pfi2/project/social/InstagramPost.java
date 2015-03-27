@@ -21,6 +21,7 @@ public class InstagramPost {
 	private String imgUrl;
 	private String imgText;
 	private String timePosted;
+	private boolean debug = false;
 
 	public InstagramPost(String userName_in, String imgUserUrl_in, String imgUrl_in, String imgText_in, String timePosted_in) {
 
@@ -30,19 +31,9 @@ public class InstagramPost {
 		this.imgText = imgText_in;
 		this.timePosted = timePosted_in;
 
-//		FontFutura futura = new FontFutura();
-
-
-
-		////////
-//		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-
-//		String fontNames[] = graphicsEnvironment.getAvailableFontFamilyNames();
-//		for(int i=0; i < fontNames.length; i++){
-//			//print font names
-//			System.out.println(fontNames[i]);
-//		}
-		/////////
+		FontFutura futura = new FontFutura();
+		
+		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
 		//Panel start
 
@@ -55,6 +46,7 @@ public class InstagramPost {
 		profileName.setForeground(Color.WHITE);
 		profileName.setFont(new Font("Futura LT Medium", Font.PLAIN, 24));
 //		System.out.println("profileName: " + profileName.getFont().toString());
+
 		profileName.setBounds(107, 451, 346, 29);
 		panel.add(profileName);
 
@@ -99,6 +91,10 @@ public class InstagramPost {
 		image.setBounds(0, 0, 540, 540);
 		panel.add(image);
 
+		//Result from fetching an Instagram post comes out here
+		//System.out.println("Användarnamn: " + this.userName + " URL till Användarens Avatar: " + this.imgUserUrl + " URL till Användarens Bild: " + this.imgUrl + " Användarens text till bilden: " + this.imgText + " När den postades: " + this.timePosted);
+		
+		
 		//Panel end
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
