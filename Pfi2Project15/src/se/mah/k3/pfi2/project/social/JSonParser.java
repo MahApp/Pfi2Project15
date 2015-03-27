@@ -13,6 +13,10 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.commons.codec.binary.Base64;
 import org.json.*;
 
+
+/**
+ * Parsar Json från Instagram, så att vi kan hämta information (bilder och text)
+ */
 public class JSonParser {
 
 	private String file;
@@ -26,6 +30,11 @@ public class JSonParser {
 		return posts;
 	}
 	
+	/**
+	 * Skapar en array med parsade objekt i String-form, även bilder. Dessa får man som url och får leta upp senare.
+	 * @param json Strängen som ska parsas
+	 * @param count Hur många poster som ska hämtas
+	 */
 	public void parseJSon(String json, int count) {
 		JSONObject obj;
 		try {
@@ -115,6 +124,11 @@ public class JSonParser {
 		}
 	}
 
+	/**
+	 * Letar upp profilbilden på originalpostaren, så att man kan visa i modulen vem som postade innan vi #repostade.
+	 * @param username Användare som ska sökas upp
+	 * @return Url för originalpostarens profilbild
+	 */
 	private String fetchRepostUserImage(String username){
 		URL url;
 		String json = "";
@@ -122,7 +136,7 @@ public class JSonParser {
 		String userAvatarImg = "";
 		try {
 
-
+			
 			byte[] fooPt1Out = Base64.decodeBase64( fooPt1 );
 			String fooPt1Final = new String(fooPt1Out);
 
@@ -166,6 +180,11 @@ public class JSonParser {
 	}
 
 	// (4) Här skapas en instans av DateTimeUtils
+	/**
+	 * Räknar ut hur lång tid sedan en bild postades, och skickar tillbaka den i läsbar text.
+	 * @param l Tiden bilden postades, i Unix format
+	 * @return Färdigformaterad tidssträng.
+	 */
 	private String getPostTime(long l) {
 
 		DateTimeUtils dateConverter = new DateTimeUtils();
@@ -174,6 +193,12 @@ public class JSonParser {
 		// färdigformaterad
 	}
 
+	/**
+	 * Ansluter till Instagrams API och hämtar ett antal poster.
+	 * @param https_url Url att hämta ifrån
+	 * @param count Antal poster att hämta
+	 * @return Datan från anslutningen
+	 */
 	public String fetchData(String https_url, int count) {
 
 		URL url;
@@ -201,6 +226,11 @@ public class JSonParser {
 
 	}
 
+	/**
+	 * Skriver ut datan från anslutningen till konsolen
+	 * @param con Anslutning till Instagrams API
+	 * @return Datan från anslutningen
+	 */
 	private String print_content(HttpsURLConnection con) {
 		String file = "";
 		if (con != null) {
@@ -218,6 +248,9 @@ public class JSonParser {
 
 
 				//System.out.println(file);
+				/**
+				 * Skrivs ut om du inte har internetuppkoppling
+				 */
 				if (file == ""){
 					System.out.println("No data recieved, please check your connection to Instagram API!");
 				}

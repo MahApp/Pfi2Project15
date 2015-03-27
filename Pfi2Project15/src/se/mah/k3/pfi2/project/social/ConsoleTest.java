@@ -2,6 +2,9 @@ package se.mah.k3.pfi2.project.social;
 
 import org.apache.commons.codec.binary.Base64;
 
+/**
+ * Denna klass används inte i modulen, den kan testa så att internetanslutningen funkar.
+ */
 public class ConsoleTest {
 	
 	
