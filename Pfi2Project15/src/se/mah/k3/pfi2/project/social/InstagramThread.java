@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 
+
+/**
+ * Skapar en tråd av Sociala medier modulen
+ */
 public class InstagramThread extends Thread {
 	
 	private JSonParser json;
@@ -14,12 +18,20 @@ public class InstagramThread extends Thread {
 	
 	private SocialPanelMain socialPanel;
 	private int updateInterval;
-
+	/**
+	 * Konstruktor för InstagramThread
+	 * @param panel Instans av SocialPanel
+	 * @param updateInterval Hur lång tid som ska gå mellan varje update, i millisekunder
+	 */
 	public InstagramThread(SocialPanelMain panel, int updateInterval) {
+
 		this.socialPanel = panel;
 		this.updateInterval = updateInterval;
 	}
-
+	
+	/**
+	 * Kallar på fetchData i JsonParser och skapar en ny array med posts
+	 */
 	@Override
 	public void run() {
 		while(true) {

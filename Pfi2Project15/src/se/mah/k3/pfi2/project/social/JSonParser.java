@@ -13,11 +13,16 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.commons.codec.binary.Base64;
 import org.json.*;
 
+
+/**
+ * Parsar Json från Instagram, så att vi kan hämta information (bilder och text)
+ */
 public class JSonParser {
 
 	private String file;
 	private final String fooPt1 = "aHR0cHM6Ly9hcGkuaW5zdGFncmFtLmNvbS92MS91c2Vycy9zZWFyY2g/cT0=";
 	private final String fooPt2 = "JmFjY2Vzc190b2tlbj0xNzUyOTE4MzAyLjE1NDFmYzYuZjY2NjM2ODI0YTczNDQ0YmE2NTgwYjU1Y2U2ZjkyYzcmY291bnQ9MQ==";
+	private boolean debug = false;
 
 	private List<PostData> posts = new ArrayList<PostData>();
 	
@@ -25,6 +30,11 @@ public class JSonParser {
 		return posts;
 	}
 	
+	/**
+	 * Skapar en array med parsade objekt i String-form, även bilder. Dessa får man som url och får leta upp senare.
+	 * @param json Strängen som ska parsas
+	 * @param count Hur många poster som ska hämtas
+	 */
 	public void parseJSon(String json, int count) {
 		JSONObject obj;
 		try {
@@ -45,16 +55,16 @@ public class JSonParser {
 				JSONObject images = object.getJSONObject("images");
 				JSONObject standard_resolution = images.getJSONObject("standard_resolution");
 				imgUrl = standard_resolution.getString("url");
-				System.out.println(imgUrl);
+				if(debug)System.out.println(imgUrl);{}
 
 				// Avsändare
 				JSONObject caption = object.getJSONObject("caption");
 				JSONObject from = caption.getJSONObject("from");
 				userName = from.getString("username");
-				System.out.println(userName);
+				if(debug)System.out.println(userName);{}
 
 				imgUserUrl = from.getString("profile_picture");
-				System.out.println(imgUserUrl);
+				if(debug)System.out.println(imgUserUrl);{}
 
 				// Bildtext
 				imgText = caption.getString("text");
@@ -62,9 +72,9 @@ public class JSonParser {
 				System.out.println(imgText);
 
 				String[] imgTextSplit = imgText.split(" ");
-				System.out.println(imgTextSplit[0]);
-				System.out.println(imgTextSplit[1]);
-				System.out.println(Arrays.toString(imgTextSplit));
+				if(debug)System.out.println(imgTextSplit[0]);{}
+				if(debug)System.out.println(imgTextSplit[1]);{}
+				if(debug)System.out.println(Arrays.toString(imgTextSplit));{}
 
 				imgText ="";
 				for (int i = 0; i < imgTextSplit.length; i++) {
@@ -98,7 +108,7 @@ public class JSonParser {
 					//e.printStackTrace();
 				}
 
-				System.out.println("****** Slutgiltigt Tidsformat ********");
+				if(debug)System.out.println("****** Slutgiltigt Tidsformat ********");{}
 				timePosted = getPostTime(longTime);
 				System.out.println(timePosted);// (3) Skickar Long
 				// unixTime till metoden
@@ -106,7 +116,7 @@ public class JSonParser {
 				// Och tar emot
 				// postTime,
 				// färdigformaterad
-				System.out.println("****** /Slutgiltigt Tidsformat ********");
+				if(debug)System.out.println("****** /Slutgiltigt Tidsformat ********");{}
 				posts.add(new PostData(userName, imgUserUrl, imgUrl, imgText, timePosted));
 			}
 		} catch (JSONException e) {
@@ -114,6 +124,11 @@ public class JSonParser {
 		}
 	}
 
+	/**
+	 * Letar upp profilbilden på originalpostaren, så att man kan visa i modulen vem som postade innan vi #repostade.
+	 * @param username Användare som ska sökas upp
+	 * @return Url för originalpostarens profilbild
+	 */
 	private String fetchRepostUserImage(String username){
 		URL url;
 		String json = "";
@@ -121,7 +136,7 @@ public class JSonParser {
 		String userAvatarImg = "";
 		try {
 
-
+			
 			byte[] fooPt1Out = Base64.decodeBase64( fooPt1 );
 			String fooPt1Final = new String(fooPt1Out);
 
@@ -130,9 +145,9 @@ public class JSonParser {
 
 
 
-			System.out.println("RepostUrl: " + fooPt1Final + username + fooPt2Final);
+			if(debug)System.out.println("RepostUrl: " + fooPt1Final + username + fooPt2Final);{}
 			url = new URL(fooPt1Final + username + fooPt2Final);
-			System.out.println("O_o");
+			if(debug)System.out.println("O_o");{}
 			HttpsURLConnection con;
 			con = (HttpsURLConnection) url.openConnection();
 
@@ -144,7 +159,7 @@ public class JSonParser {
 			JSONArray data = obj.getJSONArray("data");
 			JSONObject object = data.getJSONObject(0);
 			userAvatarImg = object.getString("profile_picture");
-			System.out.println("Repost Avatar Url: " + userAvatarImg);
+			if(debug)System.out.println("Repost Avatar Url: " + userAvatarImg);{}
 
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
@@ -165,6 +180,11 @@ public class JSonParser {
 	}
 
 	// (4) Här skapas en instans av DateTimeUtils
+	/**
+	 * Räknar ut hur lång tid sedan en bild postades, och skickar tillbaka den i läsbar text.
+	 * @param l Tiden bilden postades, i Unix format
+	 * @return Färdigformaterad tidssträng.
+	 */
 	private String getPostTime(long l) {
 
 		DateTimeUtils dateConverter = new DateTimeUtils();
@@ -173,6 +193,12 @@ public class JSonParser {
 		// färdigformaterad
 	}
 
+	/**
+	 * Ansluter till Instagrams API och hämtar ett antal poster.
+	 * @param https_url Url att hämta ifrån
+	 * @param count Antal poster att hämta
+	 * @return Datan från anslutningen
+	 */
 	public String fetchData(String https_url, int count) {
 
 		URL url;
@@ -200,6 +226,11 @@ public class JSonParser {
 
 	}
 
+	/**
+	 * Skriver ut datan från anslutningen till konsolen
+	 * @param con Anslutning till Instagrams API
+	 * @return Datan från anslutningen
+	 */
 	private String print_content(HttpsURLConnection con) {
 		String file = "";
 		if (con != null) {
@@ -217,6 +248,9 @@ public class JSonParser {
 
 
 				//System.out.println(file);
+				/**
+				 * Skrivs ut om du inte har internetuppkoppling
+				 */
 				if (file == ""){
 					System.out.println("No data recieved, please check your connection to Instagram API!");
 				}
