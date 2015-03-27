@@ -220,7 +220,6 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 
 		
 		
-		
 		//lägg till border på ramen
 		g2.setColor(headerFieldBackgroundColor);
 		g2.setStroke(new BasicStroke(5));
