@@ -32,7 +32,9 @@ import se.mah.k3.pfi2.project.main.controller.ModuleInterface;
 import se.mah.k3.pfi2.project.main.controller.Setup;
 import se.mah.k3.pfi2.project.news.LunchPanel;
 import se.mah.k3.pfi2.project.news.NewsPanel;
-import se.mah.k3.pfi2.project.social.SocialPanel;
+import se.mah.k3.pfi2.project.social.SocialPanelBanner;
+import se.mah.k3.pfi2.project.social.SocialPanelMain;
+import se.mah.k3.pfi2.project.social.SocialPanelScreensaver;
 import se.mah.k3.pfi2.project.timeweather.TimePanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanel;
 import se.mah.k3.pfi2.project.timeweather.WeatherPanelBig;
@@ -132,7 +134,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			moduleList.add(new KronoxPanel());
 			moduleList.add(new WeatherPanel());
 			moduleList.add(new BusPanel());
-			moduleList.add(new SocialPanel());
+			moduleList.add(new SocialPanelMain());
 			moduleList.add(new FillEmptySpace());
 		}else if (mode.equals("klockKronoxWeatherBus")){
 			moduleList.add(new TimePanel());
@@ -164,6 +166,9 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 			moduleList.add(new LunchPanel());
 			moduleList.add(new FillEmptySpace());
 		}
+//		moduleList.add(new SocialPanelMain());
+//		//moduleList.add(new SocialPanelScreensaver());
+//		//moduleList.add(new SocialPanelBanner());
 		//moduleList.add(new TimePanel());
 		//moduleList.add(new KronoxPanel());
 	//	moduleList.add(new WeatherPanel());
@@ -173,6 +178,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	//	moduleList.add(new SocialPanel());
 	//	moduleList.add(new TrafficInfo());
 	//	moduleList.add(new FillEmptySpace());
+
 
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {

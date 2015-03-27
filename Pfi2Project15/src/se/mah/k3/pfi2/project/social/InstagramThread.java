@@ -12,10 +12,10 @@ public class InstagramThread extends Thread {
 	private List<PostData> postsData;
 	private List<InstagramPost> posts = new ArrayList<InstagramPost>();
 	
-	private SocialPanel socialPanel;
+	private SocialPanelMain socialPanel;
 	private int updateInterval;
 
-	public InstagramThread(SocialPanel panel, int updateInterval) {
+	public InstagramThread(SocialPanelMain panel, int updateInterval) {
 		this.socialPanel = panel;
 		this.updateInterval = updateInterval;
 	}
@@ -56,7 +56,7 @@ public class InstagramThread extends Thread {
 			postsData = json.getPostsList();
 			
 			for(int i = 0; i < postsData.size(); i++){
-				System.out.println("HÄR KOMMER DEN: " + postsData.get(i).getUserName() + postsData.get(i).getImgUserUrl() + postsData.get(i).getImgUrl() + postsData.get(i).getImgText() + postsData.get(i).getTimePosted());
+				System.out.println("Hï¿½R KOMMER DEN: " + postsData.get(i).getUserName() + postsData.get(i).getImgUserUrl() + postsData.get(i).getImgUrl() + postsData.get(i).getImgText() + postsData.get(i).getTimePosted());
 				posts.add(new InstagramPost(postsData.get(i).getUserName(), postsData.get(i).getImgUserUrl(), postsData.get(i).getImgUrl(), postsData.get(i).getImgText(), postsData.get(i).getTimePosted()));
 			}
 			
