@@ -101,7 +101,7 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 				System.out.println("NAME: "+f3.getName());
 				System.out.println("NAME: "+f3.getFontName());
 				
-				System.out.println("NAME: -1 is ok "+f3.canDisplayUpTo("AbcdöäåÅÄÖ"));
+				System.out.println("NAME: -1 is ok "+f3.canDisplayUpTo("Abcdï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
 			 System.out.println("========================");
 		 }
         setupPanels(mode);
@@ -169,6 +169,12 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 		else if (mode.equals("screensaver"))
 		{
 			moduleList.add(new SocialPanelScreensaver());
+			moduleList.add(new FillEmptySpace());
+		}
+		else if (mode.equals("weatherMode"))
+		{
+			moduleList.add(new TimePanel());
+			moduleList.add(new WeatherPanelBig());
 			moduleList.add(new FillEmptySpace());
 		}
 //		moduleList.add(new SocialPanelMain());
