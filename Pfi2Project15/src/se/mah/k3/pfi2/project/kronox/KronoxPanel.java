@@ -82,6 +82,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	static Building biuldingOption = new Building();
 	static boolean loaded = false;
 	
+
 	// variabler att hämta info i
 	String startTid;
 	String slutTid;
@@ -92,20 +93,20 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	 */
 	public KronoxPanel() {
 		//Building biuldingOption = new Building();
+	
 		biuldingOption.setVisible(true);
 		antalElement = 8;
 		ParserUpdateThread pt= new ParserUpdateThread(this); // thread
 		pt.start();
-		
+
 		System.out.println("construct KronoxPanel");
 		//Parser.getPost();
 		//loadData();
 		
 		setAntalElement(Parser.storedPost.size());
-//		setMinimumSize(new Dimension(1080, 80));
-//		setPreferredSize(new Dimension(1080, 80));
-//		setMaximumSize(new Dimension(1080, 80));
-	
+		//	setMinimumSize(new Dimension(1080, 80));
+		//	setPreferredSize(new Dimension(1080, 80));
+		//	setMaximumSize(new Dimension(1080, 80));
 		//	setUndecorated(true); // hide buttons  //window
 		//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //window
 		setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -114,16 +115,12 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		//contentPane.setLayout(new BorderLayout(0, 0));
 		//setContentPane(contentPane);		
 		//window
-	
 		for (int i = 0; i < antalElement; i++) {
 			valueList.add(fieldValues);
 		}
 		for (int i = 0; i < antalElement; i++) {
-	
 			shapeList.add(new Rectangle2D.Float(borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
-			
 		}
-		
 		System.out.println(antalElement+"  posts!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 	}
@@ -146,7 +143,6 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		RenderingHints rh = new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
 		g2.setRenderingHints(rh);
 		
-
 		//tar bort borders på smårutorna
 		
 		Stroke stroke = new BasicStroke(1, BasicStroke.CAP_SQUARE,BasicStroke.JOIN_BEVEL, 0, new float[] { 1, 0 }, 0);
@@ -184,7 +180,8 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 				g2.setColor(headerFieldBackgroundColor);
 				g2.setStroke(new BasicStroke(5));
 				g2.drawRoundRect(borderSize+2, (antalElement * fieldHeight)+borderHeight+4, SCREEN_WIDTH-borderSize-4,  fieldHeight, 10, 35);
-				g2.setStroke(new BasicStroke(0));
+				g2.setStroke(new BasicStroke(0)); 
+				
 			}
 			
 			//varannan blå, varannan vit
@@ -194,9 +191,9 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 				g2.setColor(whiteColor);
 			}
 			
-		
-			g2.fill(tempShape);
 			
+			
+			g2.fill(tempShape);
 			// fill skriver ut den understa hörnbildning
 			
 			//Sets the color to black before printin' it out
@@ -217,6 +214,15 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 
 			
 		}
+		
+		// animerade object 
+		g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
+
+		
+		
+		
+		
+		
 				
 		//lägg till border på ramen
 		g2.setColor(headerFieldBackgroundColor);
@@ -224,7 +230,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		g2.drawLine(borderSize + 2                , fieldHeight-10, borderSize +2              , fieldHeight + antalElement*fieldHeight);
 		g2.drawLine(SCREEN_WIDTH - borderSize+5+2 , fieldHeight-10, SCREEN_WIDTH - borderSize+7, fieldHeight +  antalElement*fieldHeight);
 		//lägg till undre linjen
-	//	g2.drawLine(borderSize+2, (fieldHeight + antalElement*fieldHeight-2),SCREEN_WIDTH-borderSize+2, fieldHeight + (antalElement*fieldHeight-2));
+		//g2.drawLine(borderSize+2, (fieldHeight + antalElement*fieldHeight-2),SCREEN_WIDTH-borderSize+2, fieldHeight + (antalElement*fieldHeight-2));
 		//möts av en rectangel
 		
 		
@@ -241,14 +247,30 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			slutTid = Parser.storedPost.get(i).getSlutTid();
 			getMoment = Parser.storedPost.get(i).getMoment();
 			getSalID = Parser.storedPost.get(i).getSalID();
-			float textWidth=Constants.GetWidthOfString(this,fieldFont,"HEllo world"); //get width
-			valueList.add(new String[] { startTid + "-" + slutTid, Parser.storedPost.get(i).getKursId()+"  "+getMoment , getSalID });
+			
+			String fittedString=Parser.storedPost.get(i).getKursId()+"  "+getMoment;
+			int fitWidth=500,j=0;
+			float textWidth=Constants.GetWidthOfString(this,fieldFont,fittedString); //get width
+			if(fitWidth>textWidth){}else{
+			while(fitWidth<textWidth){
+				j++;
+				textWidth=Constants.GetWidthOfString(this,fieldFont,fittedString.substring(0, fittedString.length()-j));	
+				fittedString=fittedString.substring(0, fittedString.length()-j);
+				//System.out.println(fittedString);
+			}
+			j=0;
+			fittedString=fittedString+"...";
+			}
+			
+			valueList.add(new String[] { startTid + "-" + slutTid, fittedString , getSalID });
 		}
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
-		 
-		repaint(); // this
+		KronoxAnimationThread at = new KronoxAnimationThread(this); 
+		at.start();
+		at.animate=true;
+		//repaint(); // this
 		//CanvasInJframe.this.setTitle("Loaded");// window
 	}
 	

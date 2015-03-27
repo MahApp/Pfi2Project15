@@ -22,14 +22,17 @@ public class Post implements Comparable<Post>{
 	 * 
 	 * 
 	 * */
-	private float x, y, vx, vy, ax, ay; // for animation
+	// for animation
+	float x,y, vx, vy=0;
+	float destx,dexty=x-100;
+	float ax, ay = (float)-0.1;
 	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur,biuldingId,building;
 	public int sort;
 	public Date startTidCal,updateradTidCal;
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad; // raderad är cancel, updaterad är ändrad
 	public boolean deleteAnimate, stackupAnimate,hide,changed;
-	int maxletters= 25; // in moment
+	//int maxletters= 25; // formating is now in kronoxPanel for moment
 	Point2D location;
 	Dimension2D dimension;
 	
@@ -44,6 +47,7 @@ public class Post implements Comparable<Post>{
 	
 		
 	}
+	
 	public void display() {
 
 	}
@@ -187,7 +191,7 @@ public class Post implements Comparable<Post>{
 	public void setMoment(String moment) {
 		moment=Constants.fixUTF8(moment);
 		moment=Constants.fixHTML(moment);
-		if(moment.length()>maxletters)moment=moment.substring(0,maxletters)+"...";
+	//	if(moment.length()>maxletters)moment=moment.substring(0,maxletters)+"..."; // formating is now in kronoxPanel
 		
 		this.moment = moment;
 	}

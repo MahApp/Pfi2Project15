@@ -18,7 +18,7 @@ public class FilterOutTime {
 	static Calendar cal2;
 	static Calendar cal3;
 	 
-	static int minuteMargin =30; // timespan that post filters out from 30min is standard
+	static int minuteMargin =300; // timespan that post filters out from 30min is standard
 	FilterOutTime(){
 		cal=Calendar.getInstance(); // get the current time		
 	}
