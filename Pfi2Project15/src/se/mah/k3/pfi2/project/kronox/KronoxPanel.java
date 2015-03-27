@@ -265,7 +265,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			valueList.add(new String[] { startTid + "-" + slutTid, fittedString , getSalID });
 		}
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
-			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
+			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
 		}
 		KronoxAnimationThread at = new KronoxAnimationThread(this); 
 		at.start();
