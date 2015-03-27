@@ -90,7 +90,7 @@ public class FilterOutTime {
 			}
 		}*/
 		
-	System.out.println("antal post:"+ofiltreradPoster.size() +"efter starttids filtrering");
+	System.out.println("antal post:"+filtreradePoster.size() +"efter starttids filtrering");
 			return filtreradePoster;
 		
 	}

@@ -3,7 +3,6 @@ package se.mah.k3.pfi2.project.kronox;
 import javax.swing.JPanel;
 
 public class ParserUpdateThread extends Thread {
-
 		/**
 		 * 
 		 * 
@@ -13,7 +12,7 @@ public class ParserUpdateThread extends Thread {
 		 * 
 		 * */
 	KronoxPanel kronoxPanel;
-	final int parserRefreshInterval=40;
+	final int parserRefreshInterval=50;
 	int refreshRate = parserRefreshInterval * 1000;
 	private volatile boolean running = true;
 
@@ -31,9 +30,8 @@ public class ParserUpdateThread extends Thread {
 		System.out.println("parserThread is running");
 		while (running) {
 			try {
-				Parser.storedPosts.clear();
-				Parser.storedPost.clear();
-				 kronoxPanel.setAntalElement(Parser.getPost().size());
+				Parser.getPost();
+				 kronoxPanel.setAntalElement(Parser.storedPost.size());
 				 kronoxPanel.loadData();
 				 kronoxPanel.repaintPanel();
 				 Thread.sleep(refreshRate);

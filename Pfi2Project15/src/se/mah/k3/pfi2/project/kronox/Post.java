@@ -25,7 +25,7 @@ public class Post implements Comparable<Post>{
 	private float x, y, vx, vy, ax, ay; // for animation
 	private String startTid,slutTid,updaterad,editedBy,editedSince,programId,KursId,lararId,salID,moment,resursSignatur,biuldingId,building;
 	public int sort;
-	public Date startTidCal;
+	public Date startTidCal,updateradTidCal;
 	private Calendar slutTidCal;
 	private boolean raderad,temp,dubbelBokad,extern,onskad; // raderad är cancel, updaterad är ändrad
 	public boolean deleteAnimate, stackupAnimate,hide,changed;
@@ -291,5 +291,24 @@ public class Post implements Comparable<Post>{
 	public String getBiulding() {
 		return this.building;
 	}
+
+	public void setUpdateradTidCal(Date date) {
+		this.updateradTidCal=date;
+		
+	}
+	public Date getUpdateradTidCal() {
+	return  updateradTidCal;
+		
+	}
+
+	public boolean getChanged() {
+		return this.changed;
+	}
+
+	public void setChanged(boolean b) {
+		this.changed=b;
+	}
+
+
 
 }

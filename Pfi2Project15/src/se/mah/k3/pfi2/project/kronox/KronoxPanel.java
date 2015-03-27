@@ -10,6 +10,8 @@ import se.mah.k3.pfi2.project.timeweather.DateLogic;
 
 
 
+
+
 import java.awt.Color;
 
 import javax.swing.JLabel;
@@ -40,7 +42,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	final static float DPI = 72; // Pixel density 96 ï¿½r standard pï¿½ moderna
 	
 	//går att ändra, men starta på 10
-	public static int antalElement = 10;
+	public  int antalElement = 10;
 	public Post minPost = new Post();
 
 	// Variables for measurements
@@ -56,10 +58,10 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	private Image modifiedImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/se/mah/k3/pfi2/project/kronox/graphics/cancelIcon.png"));
 
 	// Variables for font-related stuff
-	public int fontSize = (int) Math.round(PT * screenRes / DPI);
-	public Font futuraBook = new Font("Futura LT", Font.PLAIN, fontSize);
-	public Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
-	public Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska använda
+	public static int fontSize = (int) Math.round(PT * screenRes / DPI);
+    public static Font futuraBook = new Font("Futura LT", Font.PLAIN, fontSize);
+	public static Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
+	public static Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska använda
 	
 	//the fonts we've initilized. the numbers furthest to the right determines the font-size
 	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 30);
@@ -100,9 +102,9 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		//loadData();
 		
 		setAntalElement(Parser.storedPost.size());
-		//setMinimumSize(new Dimension(1080, 80*ROWS));
-		//setPreferredSize(new Dimension(1080, 80*ROWS));
-		//setMaximumSize(new Dimension(1080, 80*ROWS));
+//		setMinimumSize(new Dimension(1080, 80));
+//		setPreferredSize(new Dimension(1080, 80));
+//		setMaximumSize(new Dimension(1080, 80));
 	
 		//	setUndecorated(true); // hide buttons  //window
 		//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //window
@@ -127,8 +129,8 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	}
 	
 	public void setAntalElement(int antal){
-		antalElement = 5;
-		ROWS=antal+1;
+		antalElement = Parser.storedPost.size();
+		ROWS=antalElement+1;
 		//sendContentPane = fieldHeight + (antalElement * fieldHeight);
 		setMinimumSize(new Dimension(1080, 80*ROWS));
 		setPreferredSize(new Dimension(1080, 80*ROWS));
@@ -159,7 +161,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		g2.fill(headField1);
 		g2.setColor(headerYellowTextColor);
 		g2.drawRoundRect(0, 0, SCREEN_WIDTH, fieldHeight, 10, 10); // round rect
-		g2.drawString("TID", 20, 50);
+		g2.drawString("TID", 80, 50);
 		g2.drawString("KURS", 200, 50);
 		g2.drawString("LOKAL", 715, 50);
 		g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
@@ -169,7 +171,10 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		//Denna skriver ut Posterna + Rektanglarna
 		for (int i = 0; i < antalElement; i++) {
 			//en temporär rektangel skapas utifrån informationen i Shape-listan
+			
+			try{
 			Shape tempShape = shapeList.get(i);
+		
 			//en temporär lista sparar alla relevanta värden
 			String[] tempValues = (String[]) valueList.get(i);
 			
@@ -205,7 +210,9 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
 			//This line works as crossing over a canceled class maybe?
 			//g2.drawLine(710, 120, 775, 120);
-			
+				}catch(IndexOutOfBoundsException e){
+				
+			}
 		
 
 			
@@ -226,9 +233,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		System.out.println("loaded into canvas");
 		valueList.clear();
 		shapeList.clear();
-
 		System.out.println(Parser.storedPost.size());
-
 		setAntalElement(Parser.storedPost.size());// xml
 		
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
@@ -236,14 +241,17 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			slutTid = Parser.storedPost.get(i).getSlutTid();
 			getMoment = Parser.storedPost.get(i).getMoment();
 			getSalID = Parser.storedPost.get(i).getSalID();
+			float textWidth=Constants.GetWidthOfString(this,fieldFont,"HEllo world"); //get width
 			valueList.add(new String[] { startTid + "-" + slutTid, Parser.storedPost.get(i).getKursId()+"  "+getMoment , getSalID });
 		}
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH, fieldHeight));
 		}
+		 
 		repaint(); // this
 		//CanvasInJframe.this.setTitle("Loaded");// window
 	}
+	
 	
 	@Override
 	public int getExpectedPriority() {

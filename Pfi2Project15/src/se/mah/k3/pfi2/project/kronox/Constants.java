@@ -1,5 +1,8 @@
 package se.mah.k3.pfi2.project.kronox;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Constants {
@@ -174,6 +177,19 @@ public class Constants {
 		System.out.println(kursID+"//////");
 		
 		return kursID;
+	}
+
+	public static float GetWidthOfString(KronoxPanel kronox,Font font,String string){
+		//FontMetrics metrics = kronox.getGraphics().getFontMetrics(kronox.futuraBold);
+		FontMetrics metrics =kronox.getGraphics().getFontMetrics(font);
+		// get the height of a line of text in this
+		// font and render context
+		int height = metrics.getHeight();
+		// get the advance of my text in this font
+		// and render context
+		int adv = metrics.stringWidth(string);
+		System.out.println(adv+" String pixel width for \""+string+"\"");
+		return adv;
 	}
 }
 

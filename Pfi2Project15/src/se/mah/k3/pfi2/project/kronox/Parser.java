@@ -22,6 +22,7 @@ public class Parser {
 	public static boolean debug;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
+	public static ArrayList <Post> animPost= new ArrayList <Post>(); // sorted Post for animation
 	public static String biulding="ubåtshallen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		
@@ -136,7 +137,7 @@ public class Parser {
 							if(debug)System.out.print("-"+ momentE.getTagName() + "...#" + j+": ");
 							if(debug)System.out.println(momentE.getTextContent()); // fšrsta
 							tempSchemaPost.setMoment(momentE.getTextContent());
-							
+
 							//System.out.println(parser.getValue(resursIdE, "resursId"));// fšrsta
 							}
 					}
@@ -218,7 +219,10 @@ if(debug)	System.out.println("-----------------------------------------");
 		if(debug)System.out.println(storedPost.get(i).getStartTid());
 
 				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
-			
+				System.out.println(storedPost.get(i).getEditedSince());
+				if(storedPost.get(i).getEditedSince()=="" && !storedPost.get(i).getEditedSince().equals("null") && !storedPost.get(i).getEditedSince().isEmpty()){
+					storedPost.get(i).setUpdateradTidCal(sdf.parse(storedPost.get(i).getEditedSince()));  // set start time in HH:mm format
+				}
 
 				System.out.println(storedPost.get(i).getStartTidCal());
 			} catch (ParseException e) {
@@ -246,10 +250,13 @@ if(debug)	System.out.println("-----------------------------------------");
 			System.out.println(schema.getStartTid());
 		}
 	}
-	System.out.println("current amount of Post: "+storedPost.size());
-	storedPost=FilterOutBiulding.filter(storedPost); // filter the building
-	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
-	//storedPost=FilterOutTime.filter(storedPost); // filter Time
+
+	
+	storedPost=FilterOutBiulding.filter(storedPost); // filter out the building
+	storedPost=FilterOutRooms.filter(storedPost); // filter out the rooms
+	storedPost=FilterChanges.filter(storedPost); // filter to set ifChanged
+	storedPost=FilterOutTime.filter(storedPost); // filter  Time
+	
 	System.out.println("current amount of Post: "+storedPost.size());
 	return storedPost;
 	}
