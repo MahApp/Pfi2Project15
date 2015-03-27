@@ -191,17 +191,26 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			
 			//Sets the color to black before printin' it out
 			g2.setColor(Color.black);// write out time
-
+			if(i==0)  {
+			//	g2.setColor(Color.red);
+			//	int offset= 15;
+				//g2.fillRect(SCREEN_WIDTH/2+170, fieldHeight*2+offset, SCREEN_WIDTH-offset*3-905, fieldHeight -offset*2);
+			//	g2.setColor(Color.WHITE);
+				g2.setFont(headerFont);
+			}
 			g2.drawString(tempValues[0], borderSize + 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
+			g2.drawString(tempValues[1], borderSize +200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
 			if(i==1)  {
 				g2.setColor(Color.red);
 				int offset= 15;
 				g2.fillRect(SCREEN_WIDTH/2+170, fieldHeight*2+offset, SCREEN_WIDTH-offset*3-905, fieldHeight -offset*2);
 				g2.setColor(Color.WHITE);
 			}
-			g2.drawString(tempValues[1], borderSize +200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
 			g2.drawString(tempValues[2], borderSize +710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
-			
+			if(i==0)  {
+	
+					g2.setFont(fieldFont);
+				}
 			//These images are just drawn in randomly at the moment
 			g2.drawImage(cancelImg, 940, 90, this);
 			g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
