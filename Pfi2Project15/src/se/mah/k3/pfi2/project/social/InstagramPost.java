@@ -92,7 +92,7 @@ public class InstagramPost {
 		panel.add(image);
 
 		//Result from fetching an Instagram post comes out here
-		System.out.println("Användarnamn: " + this.userName + " URL till Användarens Avatar: " + this.imgUserUrl + " URL till Användarens Bild: " + this.imgUrl + " Användarens text till bilden: " + this.imgText + " När den postades: " + this.timePosted)
+		//System.out.println("Användarnamn: " + this.userName + " URL till Användarens Avatar: " + this.imgUserUrl + " URL till Användarens Bild: " + this.imgUrl + " Användarens text till bilden: " + this.imgText + " När den postades: " + this.timePosted);
 		
 		
 		//Panel end
