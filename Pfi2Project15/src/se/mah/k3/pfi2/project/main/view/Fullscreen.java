@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.FontUIResource;
 
 import se.mah.k3.pfi2.project.bus.BusPanel;
+import se.mah.k3.pfi2.project.bus.BusPanelSmall;
 import se.mah.k3.pfi2.project.dummypanel.DummyPanel;
 import se.mah.k3.pfi2.project.kronox.CanvasInJframe;
 import se.mah.k3.pfi2.project.kronox.KronoxPanel;
@@ -141,9 +142,37 @@ public class Fullscreen extends JFrame implements KeyEventDispatcher {
 	//		moduleList.add(new WeatherPanelBig());
 			//moduleList.add(new NewsPanel());
 			moduleList.add(new BusPanel());
-			moduleList.add(new SocialPanel());
+			//moduleList.add(new SocialPanel());
+			//moduleList.add(new TrafficInfo());
+			moduleList.add(new FillEmptySpace());
+			//moduleList.add(new KronoxPanel());
+			//moduleList.add(new NewsPanel());
+			//moduleList.add(new LunchPanel());
+			moduleList.add(new FillEmptySpace());
+		}else if (mode.equals("klockKronoxWeatherNewsBusSmallLunch")){
+			moduleList.add(new TimePanel());
+			moduleList.add(new KronoxPanel());
+			moduleList.add(new WeatherPanel());
+	//		moduleList.add(new WeatherPanelBig());
+			moduleList.add(new NewsPanel());
+			moduleList.add(new BusPanelSmall());
+			//moduleList.add(new SocialPanel());
+			//moduleList.add(new TrafficInfo());
+			moduleList.add(new FillEmptySpace());
+			//moduleList.add(new KronoxPanel());
+			//moduleList.add(new NewsPanel());
+			moduleList.add(new LunchPanel());
 			moduleList.add(new FillEmptySpace());
 		}
+		//moduleList.add(new TimePanel());
+		//moduleList.add(new KronoxPanel());
+	//	moduleList.add(new WeatherPanel());
+		//moduleList.add(new WeatherPanelBig());
+		//moduleList.add(new NewsPanel());
+	//	moduleList.add(new BusPanel());
+	//	moduleList.add(new SocialPanel());
+	//	moduleList.add(new TrafficInfo());
+	//	moduleList.add(new FillEmptySpace());
 
 		int yPlace = 0;
 		for (ModuleInterface moduleInterface : moduleList) {
