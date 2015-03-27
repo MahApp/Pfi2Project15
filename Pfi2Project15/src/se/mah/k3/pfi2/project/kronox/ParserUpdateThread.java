@@ -12,7 +12,7 @@ public class ParserUpdateThread extends Thread {
 		 * 
 		 * */
 	KronoxPanel kronoxPanel;
-	final int parserRefreshInterval=50;
+	final int parserRefreshInterval=30;
 	int refreshRate = parserRefreshInterval * 1000;
 	private volatile boolean running = true;
 

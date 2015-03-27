@@ -23,7 +23,7 @@ public class Parser {
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
 	public static ArrayList <Post> animPost= new ArrayList <Post>(); // sorted Post for animation
-	public static String biulding="ubåtshallen"; // change this to search for other bulding
+	public static String biulding="kranen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		
 		

@@ -94,13 +94,12 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	public KronoxPanel() {
 		//Building biuldingOption = new Building();
 	
-		biuldingOption.setVisible(true);
+		biuldingOption.setVisible(false);
 		antalElement = 8;
 		ParserUpdateThread pt= new ParserUpdateThread(this); // thread
 		pt.start();
 
 		System.out.println("construct KronoxPanel");
-
 		
 		setAntalElement(Parser.storedPost.size());
 
@@ -127,6 +126,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	}
 	public  void paint(Graphics g) {
 		//initierar metodvariabler
+		setAntalElement(Parser.storedPost.size());
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setFont(fieldFont);
 
@@ -207,11 +207,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		}
 		
 		// animerade object 
-<<<<<<< HEAD
 		//g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
-=======
-	//	g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
->>>>>>> branch 'TeamMattias' of https://github.com/MahApp/Pfi2Project15.git
 
 		
 		
@@ -256,17 +252,14 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
 		}
-<<<<<<< HEAD
+
 		//KronoxAnimationThread at = new KronoxAnimationThread(this); 
 		//at.start();
 		//at.animate=true;
 		
-=======
-	 KronoxAnimationThread at = new KronoxAnimationThread(this); 
-		at.start();
-		at.animate=true;
->>>>>>> branch 'TeamMattias' of https://github.com/MahApp/Pfi2Project15.git
-		//repaint(); // this
+
+		
+		repaint(); // this
 		//CanvasInJframe.this.setTitle("Loaded");// window
 	}
 	
@@ -286,7 +279,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 	@Override
 	public int getPreferdNumberOfRows() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 10;
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FilterOutBiulding {
 //	static Parser parser1 = new  Parser(); parser är statisk ..den behöver inte instancieras
-	ArrayList<Post> osorteradePoster = new ArrayList<Post>();
+//	ArrayList<Post> osorteradePoster = new ArrayList<Post>();
 	static String currentBuilding = "";
 	
 	static String getBuilding;
@@ -14,7 +14,7 @@ public class FilterOutBiulding {
 
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster) { // important filter code
 		ArrayList<Post> filtreradePoster = new ArrayList<Post>();
-
+		filtreradePoster.clear();
 		// for(Post p: sorteradePoster){ // for each loop search on Google if you dont know it
 		// ...code here for sorting
 		// }

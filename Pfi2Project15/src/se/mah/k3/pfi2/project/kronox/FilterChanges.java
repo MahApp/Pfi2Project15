@@ -13,7 +13,7 @@ public class FilterChanges {
 	
 	static public ArrayList<Post> filter(ArrayList<Post> poster){     // important filtering code
 		 Date timeBefore= new Date(),timeAfter= new Date(); // time stamp where 
-
+		
 		for (int i = 0; i < poster.size(); i++)
 		{			
 			timeBefore=new Date(System.currentTimeMillis()-minuteMargin*60*1000);
