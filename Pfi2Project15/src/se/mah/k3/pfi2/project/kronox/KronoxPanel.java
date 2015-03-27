@@ -182,6 +182,9 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 				g2.setColor(whiteColor);
 			}
 			
+			if(i==1)  {
+				g2.setColor(Color.red);
+			}
 			
 			
 			g2.fill(tempShape);
