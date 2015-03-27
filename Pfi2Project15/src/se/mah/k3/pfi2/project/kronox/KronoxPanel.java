@@ -182,16 +182,21 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 				g2.setColor(whiteColor);
 			}
 			
-			if(i==1)  {
-				g2.setColor(Color.red);
-			}
-			
+	
 			
 			g2.fill(tempShape);
 			// fill skriver ut den understa hörnbildning
 			
+
+			
 			//Sets the color to black before printin' it out
 			g2.setColor(Color.black);// write out time
+			if(i==1)  {
+				g2.setColor(Color.red);
+				int offset= 15;
+				g2.fillRect(SCREEN_WIDTH/2+170, fieldHeight*2+offset, SCREEN_WIDTH-offset*3-905, fieldHeight -offset*2);
+				g2.setColor(Color.WHITE);
+			}
 			g2.drawString(tempValues[0], borderSize + 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
 			g2.drawString(tempValues[1], borderSize +200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
 			g2.drawString(tempValues[2], borderSize +710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
