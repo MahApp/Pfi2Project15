@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FilterOutRooms {
 
-	ArrayList<Post> osorteradePoster= new ArrayList<Post>();
+	//ArrayList<Post> osorteradePoster= new ArrayList<Post>();
    
 	static String startTid;
 	static String slutTid;
@@ -19,6 +19,7 @@ public class FilterOutRooms {
 	public static  ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster){     // important filter code
 		
 		ArrayList<Post> filtreradePoster= new ArrayList<Post>();
+		filtreradePoster.clear();
 		for (int i = 0; i < ofiltreradPoster.size(); i++) {
 			
 			// kolla om Moment = tomt

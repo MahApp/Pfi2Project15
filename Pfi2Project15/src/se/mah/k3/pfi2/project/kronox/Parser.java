@@ -22,7 +22,8 @@ public class Parser {
 	public static boolean debug;
 	public static ArrayList <Posts> storedPosts= new ArrayList <Posts>(); // unsorted raw array of Post 
 	public static ArrayList <Post> storedPost= new ArrayList <Post>(); // sorted raw Post
-	public static String biulding="ubåtshallen"; // change this to search for other bulding
+	public static ArrayList <Post> animPost= new ArrayList <Post>(); // sorted Post for animation
+	public static String biulding="kranen"; // change this to search for other bulding
 	public static void main(String[] args) {
 		
 		
@@ -136,7 +137,7 @@ public class Parser {
 							if(debug)System.out.print("-"+ momentE.getTagName() + "...#" + j+": ");
 							if(debug)System.out.println(momentE.getTextContent()); // fšrsta
 							tempSchemaPost.setMoment(momentE.getTextContent());
-							
+
 							//System.out.println(parser.getValue(resursIdE, "resursId"));// fšrsta
 							}
 					}
@@ -193,8 +194,9 @@ public class Parser {
 	public static ArrayList<Post> getPost(){
 	storedPost.clear();
 	storedPosts.clear();
-	ArrayList<String> Urls = Constants.getURL(biulding, null); // can get multiple URLs
-	System.out.println(Urls.size()+" amout of XML URL");
+	ArrayList<String> Urls = new ArrayList<String>();
+	Urls = Constants.getURL(biulding, null); // can get multiple URLs
+	System.out.println(Urls.size()+" amount of XML URL");
 	try{
 		for(int i=0; i< Urls.size();i++){
 			String schema=Urls.get(i);
@@ -204,6 +206,7 @@ public class Parser {
 		System.out.println(Urls.size()+" Error XML URLs out of bound");
 
 	}
+	System.out.println("current amount of Post: "+storedPost.size());
 if(debug)	System.out.println("-----------------------------------------");
 	for(int i=0; i<storedPosts.size();i++){
 		System.out.println("XML index: "+i +" have : "+storedPosts.get(i).getPostArray().size()+" posts");
@@ -216,14 +219,17 @@ if(debug)	System.out.println("-----------------------------------------");
 		if(debug)System.out.println(storedPost.get(i).getStartTid());
 
 				storedPost.get(i).setStartTidCal(sdf.parse(storedPost.get(i).getStartTid()));
-			
+				System.out.println(storedPost.get(i).getEditedSince());
+				if(storedPost.get(i).getEditedSince()=="" && !storedPost.get(i).getEditedSince().equals("null") && !storedPost.get(i).getEditedSince().isEmpty()){
+					storedPost.get(i).setUpdateradTidCal(sdf.parse(storedPost.get(i).getEditedSince()));  // set start time in HH:mm format
+				}
 
 				System.out.println(storedPost.get(i).getStartTidCal());
 			} catch (ParseException e) {
 		} 
 		storedPost.get(i).setStartTid(Constants.formatTime(storedPost.get(i).getStartTid()));  // set start time in HH:mm format
 		storedPost.get(i).setSlutTid(Constants.formatTime(storedPost.get(i).getSlutTid())); // set end time in HH:mm format
-
+		System.out.println("current amount of Post: "+storedPost.size());
 		if(storedPost.get(i).getSalID()!=null) { // format biulding
 			if(storedPost.get(i).getSalID().equals("null")||storedPost.get(i).getSalID().equals("")) {
 				System.out.println("post: "+i+ " is empty");
@@ -237,7 +243,7 @@ if(debug)	System.out.println("-----------------------------------------");
 		}
 		storedPost.get(i).setKursId(Constants.formatKurs(storedPost.get(i).getKursId()));
 	}
-
+	System.out.println("current amount of Post: "+storedPost.size());
 	Collections.sort(storedPost); // sort by startTime
 	if(debug){
 		for (Post schema : storedPost) {
@@ -245,10 +251,13 @@ if(debug)	System.out.println("-----------------------------------------");
 		}
 	}
 
-	storedPost=FilterOutBiulding.filter(storedPost); // filter the building
-	storedPost=FilterOutRooms.filter(storedPost); // filter the rooms
-	storedPost=FilterOutTime.filter(storedPost); // filter Time
-
+	
+	storedPost=FilterOutBiulding.filter(storedPost); // filter out the building
+	storedPost=FilterOutRooms.filter(storedPost); // filter out the rooms
+	storedPost=FilterChanges.filter(storedPost); // filter to set ifChanged
+	storedPost=FilterOutTime.filter(storedPost); // filter  Time
+	
+	System.out.println("current amount of Post: "+storedPost.size());
 	return storedPost;
 	}
 	

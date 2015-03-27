@@ -18,7 +18,7 @@ public class FilterOutTime {
 	static Calendar cal2;
 	static Calendar cal3;
 	 
-	static int minuteMargin =30; // timespan that post filters out from 30min is standard
+	static int minuteMargin =120; // timespan that post filters out from 30min is standard
 	FilterOutTime(){
 		cal=Calendar.getInstance(); // get the current time		
 	}
@@ -26,11 +26,13 @@ public class FilterOutTime {
 
 	static public ArrayList<Post> filter(ArrayList<Post> ofiltreradPoster){     // important filtering code
 		ArrayList<Post> filtreradePoster= new ArrayList<Post>();
+		filtreradePoster.clear();
+		System.out.println(minuteMargin +"time ");
 		//SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		 Date timeBefore= new Date(),timeAfter= new Date(); // time stamp where 
-//		timeBefore=null;
-//		timeAfter= null;
-
+		//		timeBefore=null;
+		//		timeAfter= null;
+		System.out.println(ofiltreradPoster.size() +" amount ");
 		for (int i = 0; i < ofiltreradPoster.size(); i++)
 		{
 //			try {
@@ -90,7 +92,7 @@ public class FilterOutTime {
 			}
 		}*/
 		
-	System.out.println("antal post:"+ofiltreradPoster.size() +"efter starttids filtrering");
+	System.out.println("antal post: "+filtreradePoster.size() +" efter starttids filtrering");
 			return filtreradePoster;
 		
 	}

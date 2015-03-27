@@ -93,24 +93,7 @@ public class Building extends JFrame {
 			System.out.println("Setting current building to " + currentBuilding);
 				//Parser.setbuilding(currentBuilding);
 				Parser.biulding=currentBuilding;
-//				ParserUpdateThread pt= new ParserUpdateThread();
-//				pt.start();
-				
-//				CanvasInJframe frame = new CanvasInJframe();
-//				CanvasInJframe awtControlDemo = new CanvasInJframe();
-//				try{
-//					frame.setVisible(false);
-//					awtControlDemo.showCanvasDemo();
-//					awtControlDemo.setVisible(true);
-					//awtControlDemo.setTitle("loading..."); window
-					
-					//Building.this.setVisible(false);
-				//	System.exit(0);
-					
-//				} catch (Exception er) {
-//					er.printStackTrace();
-//				}
-				//awtControlDemo.loadData(Parser.getPost());
+
 			}
 			
 		});
