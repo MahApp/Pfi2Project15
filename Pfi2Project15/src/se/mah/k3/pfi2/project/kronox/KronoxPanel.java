@@ -216,14 +216,11 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		}
 		
 		// animerade object 
-		g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
+		//g2.fillRect((int)Parser.storedPost.get(5).x+borderSize, (int)Parser.storedPost.get(5).y+5*fieldHeight, SCREEN_WIDTH-borderSize, fieldHeight);
 
 		
 		
 		
-		
-		
-				
 		//lägg till border på ramen
 		g2.setColor(headerFieldBackgroundColor);
 		g2.setStroke(new BasicStroke(5));
@@ -267,9 +264,10 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		for (int i = 0; i < Parser.storedPost.size(); i++) {
 			shapeList.add(new Rectangle2D.Float(minPost.getX()+borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
 		}
-		KronoxAnimationThread at = new KronoxAnimationThread(this); 
-		at.start();
-		at.animate=true;
+		//KronoxAnimationThread at = new KronoxAnimationThread(this); 
+		//at.start();
+		//at.animate=true;
+		
 		//repaint(); // this
 		//CanvasInJframe.this.setTitle("Loaded");// window
 	}
