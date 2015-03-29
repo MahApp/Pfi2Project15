@@ -59,13 +59,13 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 
 	// Variables for font-related stuff
 	public static int fontSize = (int) Math.round(PT * screenRes / DPI);
-    public static Font futuraBook = new Font("Futura LT", Font.PLAIN, fontSize);
+    public static Font futuraBook = new Font("Futura LT Regular", Font.PLAIN, fontSize);
 	public static Font futuraBold = new Font("Futura LT Heavy", Font.PLAIN, fontSize);
 	public static Font futuraMedium = new Font("Futura LT Regular", Font.PLAIN,fontSize);// typsnittet vi ska använda
 	
 	//the fonts we've initilized. the numbers furthest to the right determines the font-size
 	private Font fieldFont = futuraBook.deriveFont(Font.PLAIN, 30);
-	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 33);
+	private Font headerFont = futuraBold.deriveFont(Font.PLAIN, 40);
 
 	// Variables for colors
 	private Color whiteColor = Color.decode("#ffffff");
@@ -109,7 +109,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			valueList.add(fieldValues);
 		}
 		for (int i = 0; i < antalElement; i++) {
-			shapeList.add(new Rectangle2D.Float(borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize, fieldHeight));
+			shapeList.add(new Rectangle2D.Float(borderSize, fieldHeight + (i * fieldHeight), SCREEN_WIDTH-borderSize*10, fieldHeight));
 		}
 		System.out.println(antalElement+"  posts!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
@@ -141,17 +141,17 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		
 		// Lägger till header-fältet m. text osv
 		g2.setFont(headerFont);
-		Shape headField1 = new RoundRectangle2D.Float(borderSize, 0, SCREEN_WIDTH- borderSize,fieldHeight, 35 ,35);
-		Shape headField2 = new Rectangle2D.Float(borderSize, fieldHeight/2, SCREEN_WIDTH - borderSize, fieldHeight-borderSize);
+		Shape headField1 = new RoundRectangle2D.Float(borderSize, 0, SCREEN_WIDTH- borderSize*3,fieldHeight, 35 ,35);
+		Shape headField2 = new Rectangle2D.Float(borderSize, fieldHeight/2, borderSize, fieldHeight-borderSize);
 		g2.setColor(headerFieldBackgroundColor);
 		g2.fill(headField2);
 		g2.fill(headField1);
 		g2.setColor(headerYellowTextColor);
-		g2.drawRoundRect(0, 0, SCREEN_WIDTH, fieldHeight, 10, 10); // round rect
-		g2.drawString("TID", 80, 50);
-		g2.drawString("KURS", 200, 50);
-		g2.drawString("LOKAL", 715, 50);
-		g2.drawString("STATUS", SCREEN_WIDTH - 175, 50);
+		g2.drawRoundRect(0, 0, SCREEN_WIDTH , fieldHeight, 10, 10); // round rect
+		g2.drawString("Tid", 80, 50);
+		g2.drawString("Kurs", 380, 50);
+		g2.drawString("Lokal", 715, 50);
+		g2.drawString("Status", SCREEN_WIDTH - 175, 50);
 		//Header koden-avslutad
 		
 		g2.setFont(fieldFont);
@@ -170,7 +170,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			if(i == antalElement-1){
 				g2.setColor(headerFieldBackgroundColor);
 				g2.setStroke(new BasicStroke(5));
-				g2.drawRoundRect(borderSize+2, (antalElement * fieldHeight)+borderHeight+4, SCREEN_WIDTH-borderSize-4,  fieldHeight, 10, 35);
+				g2.drawRoundRect(borderSize+2, (antalElement * fieldHeight)+borderHeight+4, SCREEN_WIDTH-borderSize-24,  fieldHeight, 10, 35);
 				g2.setStroke(new BasicStroke(0)); 
 				
 			}
@@ -196,7 +196,7 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			//	int offset= 15;
 				//g2.fillRect(SCREEN_WIDTH/2+170, fieldHeight*2+offset, SCREEN_WIDTH-offset*3-905, fieldHeight -offset*2);
 			//	g2.setColor(Color.WHITE);
-				g2.setFont(headerFont);
+				//g2.setFont(fieldFont);
 			}
 			g2.drawString(tempValues[0], borderSize + 10,(fieldHeight + fieldHeight / 2 + 10)+ (fieldHeight * i));// write out time
 			g2.drawString(tempValues[1], borderSize +200, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));// class and moment
@@ -209,11 +209,11 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 			g2.drawString(tempValues[2], borderSize +710, (fieldHeight + fieldHeight/ 2 + 10)+ (fieldHeight * i));//lokal
 			if(i==0)  {
 	
-					g2.setFont(fieldFont);
+					//g2.setFont(fieldFont);
 				}
 			//These images are just drawn in randomly at the moment
-			g2.drawImage(cancelImg, 940, 90, this);
-			g2.drawImage(modifiedImg, 940, 90 + fieldHeight, this);
+			g2.drawImage(modifiedImg, 940, 90, this);
+			g2.drawImage(cancelImg, 940, 90 + fieldHeight, this);
 			//This line works as crossing over a canceled class maybe?
 			//g2.drawLine(710, 120, 775, 120);
 				}catch(IndexOutOfBoundsException e){
@@ -232,8 +232,8 @@ public class KronoxPanel extends JPanel implements ModuleInterface{
 		//lägg till border på ramen
 		g2.setColor(headerFieldBackgroundColor);
 		g2.setStroke(new BasicStroke(5));
-		g2.drawLine(borderSize + 2                , fieldHeight-10, borderSize +2              , fieldHeight + antalElement*fieldHeight);
-		g2.drawLine(SCREEN_WIDTH - borderSize+5+2 , fieldHeight-10, SCREEN_WIDTH - borderSize+7, fieldHeight +  antalElement*fieldHeight);
+		g2.drawLine(borderSize + 2 , fieldHeight-10, borderSize +2 , fieldHeight + antalElement*fieldHeight);
+		g2.drawLine(SCREEN_WIDTH - borderSize*3+5+2 , fieldHeight-10, SCREEN_WIDTH - borderSize*3+7, fieldHeight +  antalElement*fieldHeight);
 
 		
 		
