@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="se.mah.k3.pfi2.project.kronox.Cell" project="Pfi2Project15" 
-    file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/Cell.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="70" width="174" x="563" y="629"/>    
-    <display autosize="false" stereotype="false" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="se.mah.k3.pfi2.project.kronox.Post" project="Pfi2Project15" 
+  <class id="1" language="java" name="se.mah.k3.pfi2.project.kronox.Post" project="Pfi2Project15" 
     file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/Post.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="899" y="795"/>    
+    <position height="-1" width="-1" x="944" y="1011"/>    
     <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="se.mah.k3.pfi2.project.kronox.Posts" project="Pfi2Project15" 
+  <class id="2" language="java" name="se.mah.k3.pfi2.project.kronox.Posts" project="Pfi2Project15" 
     file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/Posts.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="660" y="140"/>    
     <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
@@ -28,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="se.mah.k3.pfi2.project.kronox.Parser" project="Pfi2Project15" 
+  <class id="3" language="java" name="se.mah.k3.pfi2.project.kronox.Parser" project="Pfi2Project15" 
     file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/Parser.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="372" y="179"/>    
     <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
@@ -37,68 +28,102 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="se.mah.k3.pfi2.project.kronox.XmlDomParser" project="Pfi2Project15" 
+  <class id="4" language="java" name="se.mah.k3.pfi2.project.kronox.XmlDomParser" project="Pfi2Project15" 
     file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/XmlDomParser.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="134" y="154"/>    
+    <position height="178" width="293" x="-47" y="65"/>    
+    <display autosize="false" stereotype="false" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="se.mah.k3.pfi2.project.kronox.Constants" project="Pfi2Project15" 
+    file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="103" y="706"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="se.mah.k3.pfi2.project.kronox.KronoxPanel" project="Pfi2Project15" 
+    file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/KronoxPanel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1270" y="462"/>    
     <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="se.mah.k3.pfi2.project.kronox.CanvasInJframe" project="Pfi2Project15" 
-    file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/CanvasInJframe.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1151" y="331"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="se.mah.k3.pfi2.project.kronox.Constants" project="Pfi2Project15" 
-    file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="143" y="508"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+  <class id="7" language="java" name="se.mah.k3.pfi2.project.kronox.ParserUpdateThread" project="Pfi2Project15" 
+    file="/Pfi2Project15/src/se/mah/k3/pfi2/project/kronox/ParserUpdateThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="392" y="-90"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
   <association id="8">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="9" name="cell">        
-        <position height="0" width="0" x="-263" y="307"/>      
-      </attribute>      
-      <multiplicity id="10" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-263" y="307"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="11">    
-    <bendpoint x="808" y="243"/>    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="posts">        
-        <position height="20" width="44" x="737" y="235"/>      
+      <attribute id="9" name="storedPosts">        
+        <position height="20" width="82" x="469" y="123"/>      
       </attribute>      
-      <multiplicity id="13" minimum="0" maximum="2147483647">        
-        <position height="18" width="25" x="756" y="259"/>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="14">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="15" name="storedPosts">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="11">    
+    <bendpoint x="783" y="192"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="12" name="posts">        
+        <position height="20" width="44" x="782" y="451"/>      
       </attribute>      
-      <multiplicity id="16" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="13" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="801" y="475"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
+    <bendpoint x="1278" y="-90"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="15" name="kronoxPanel">        
+        <position height="20" width="84" x="1150" y="-46"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1164" y="-80"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="18" name="displayPost">        
+        <position height="20" width="76" x="1064" y="620"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1076" y="604"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="21" name="minPost">        
+        <position height="20" width="60" x="1088" y="804"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1108" y="779"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
