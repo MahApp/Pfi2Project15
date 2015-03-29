@@ -32,17 +32,17 @@ public class TimePanel extends JPanel implements ModuleInterface{
 		lblTime.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblTime);
 		lblTime.setForeground(Color.BLACK);
-		lblTime.setFont(new Font("Futura LT Medium", Font.PLAIN, 28));
+		lblTime.setFont(new Font("Futura LT Medium", Font.PLAIN, 48));
 		
 		lblDate = new JLabel("Date");
 		add(lblDate);
 		lblDate.setForeground(Color.BLACK);
-		lblDate.setFont(new Font("Futura LT Medium", Font.PLAIN, 20));
+		lblDate.setFont(new Font("Futura LT Medium", Font.PLAIN, 30));
 		
 		lblBuilding = new JLabel("Kranen");
 		lblBuilding.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblBuilding.setForeground(Color.BLACK);
-		lblBuilding.setFont(new Font("Futura LT Medium", Font.PLAIN, 20));
+		lblBuilding.setFont(new Font("Futura LT Medium", Font.PLAIN, 48));
 		add(lblBuilding);
 		
 		lblMahLogo = new JLabel("");
