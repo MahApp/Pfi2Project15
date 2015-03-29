@@ -55,7 +55,7 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				Rubrik.setLayout(null);
 		
 				
-				JLabel lblNews = new JLabel("Events & h√§ndelser idag");
+				JLabel lblNews = new JLabel("Events & h‰ndelser idag");
 				lblNews.setHorizontalAlignment(SwingConstants.CENTER);
 				lblNews.setBounds(-3, 9, 1061, 39);
 				lblNews.setFont(new Font("Futura", Font.PLAIN, 28));
@@ -131,9 +131,9 @@ public class NewsPanel extends JPanel implements ModuleInterface{
 				if (s2.contains("2015-03-27")){
 			//		System.out.println(s2);
 					
-					String eventOne = ("10.00 	H√§lsa & Samh√§lle	Spikning: Allogenic stem cell transplantation");
-					String eventTwo = ("13.00 	Ub√•tshallen 301 	Girls of Hope: Film screening");
-					String eventThree = ("13.15 	Orkanen D138 	Disputation - Helen Hassl√∂f");
+					String eventOne = ("10.00 	H‰lsa & Samh‰lle	Spikning: Allogenic stem cell transplantation");
+					String eventTwo = ("13.00 	UbÂtshallen 301 	Girls of Hope: Film screening");
+					String eventThree = ("13.15 	Orkanen D138 	Disputation - Helen Hasslˆf");
 					
 					System.out.println(eventOne);
 					System.out.println(eventTwo);

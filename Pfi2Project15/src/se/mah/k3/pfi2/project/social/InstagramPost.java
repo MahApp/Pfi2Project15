@@ -55,12 +55,12 @@ public class InstagramPost {
 		//		imageText.setLineWrap(true);
 		imageText.setEditable(false);
 		imageText.setForeground(Color.WHITE);
-		imageText.setFont(new Font("Futura LT Medium", Font.PLAIN, 18));
+		imageText.setFont(new Font("Futura LT Medium", Font.PLAIN, 17));
 //		System.out.println("imageText: " + imageText.getFont().toString());
 		String textLimited = imgText;
 		if(textLimited.length() > 80) textLimited = textLimited.substring(0,80) + "...";
 		imageText.setText(textLimited);
-		imageText.setBounds(107, 479, 346, 50);
+		imageText.setBounds(107, 479, 346, 61);
 		imageText.setBackground(new Color(255,255,255,0));
 		panel.add(imageText);
 

@@ -89,7 +89,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 		tableTitle.setShowGrid(false);
 		tableTitle.setShowHorizontalLines(false);
 		tableTitle.setShowVerticalLines(false);
-		tableTitle.setFont(new Font("Arial", Font.PLAIN, 58));
+		tableTitle.setFont(new Font("Arial", Font.PLAIN, 35));
 		tableTitle.setModel(new DefaultTableModel(
 				new Object[][] {
 						{"Linje", "Destination", "Läge", "Avgång"},
@@ -105,7 +105,7 @@ public class BusPanel extends JPanel implements ModuleInterface {
 	 */
 	private void departuresTable() {
 		tableDepartures = new JTable(model);
-		tableDepartures.setFont(new Font("Arial", Font.PLAIN, 42));
+		tableDepartures.setFont(new Font("Arial", Font.PLAIN, 30));
 		tableDepartures.setRowSelectionAllowed(false);
 		tableDepartures.setShowGrid(false);
 		tableDepartures.setShowHorizontalLines(false);

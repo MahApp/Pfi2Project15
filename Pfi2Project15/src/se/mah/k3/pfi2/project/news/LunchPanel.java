@@ -178,10 +178,10 @@ public class LunchPanel extends JPanel implements ModuleInterface{
 								
 								
 						String removeHtml = StringEscapeUtils.unescapeHtml4(cleanResultat);
-						System.out.println("HÃ¤" + removeHtml);
-						System.out.println("HÃ¤" + cleanResultat);
+						System.out.println("Hä" + removeHtml);
+						System.out.println("Hä" + cleanResultat);
 						
-						veg.setText("HÃ¤" + removeHtml);
+						veg.setText("Hä" + removeHtml);
 					}
 					
 					String veg = fullText;
